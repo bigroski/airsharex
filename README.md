@@ -8,8 +8,8 @@
 </p>
 ## Instruction
 1. Git clone TUKI CMS into packages/bigroski
-	$ mkdir packages
-	$ cd packages
+	$ mkdir packages/bigroski
+	$ cd packages/bigroski
 
 	$ git clone https://github.com/bigroski/tukicms.git
 2. Setup Database
