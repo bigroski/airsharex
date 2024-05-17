@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome', function () {
     return view('welcome');
 });
+Route::get('/testPage', [StaticController::class, 'testPage']);
+Route::get('/blog', [StaticController::class, 'blog']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
