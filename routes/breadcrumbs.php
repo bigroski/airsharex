@@ -80,22 +80,19 @@ Breadcrumbs::for("merchendise.receive", function (BreadcrumbTrail $trail) {
     $trail->push('Receive Merchandise');
 });
 
-Breadcrumbs::for("web.setting.system", function (BreadcrumbTrail $trail) {
-    $trail->push('System Setting');
-});
 
 
 
 Breadcrumbs::resource('post', 'Post');
+Breadcrumbs::resource('menu', 'Menu');
 Breadcrumbs::resource('category', 'Category');
 Breadcrumbs::resource('tag', 'Tag');
 Breadcrumbs::resource('comment', 'Comment');
 
-// Breadcrumbs::resource('booking', 'Booking');
-// Breadcrumbs::resource('manifest', 'Manifest');
+Breadcrumbs::resource('booking', 'Booking');
+Breadcrumbs::resource('manifest', 'Manifest');
 Breadcrumbs::resource('page', 'Page');
-Breadcrumbs::resource('setting', 'Setting');
-// Breadcrumbs::resource('bills', 'Bills');
+Breadcrumbs::resource('bills', 'Bills');
 // Breadcrumbs::resource('bills-rules','Bill RUles');
 // Breadcrumbs::resource('logistic-request','Logistic Request');
 // Breadcrumbs::resource('consignee', 'Consignee');
@@ -113,15 +110,15 @@ Breadcrumbs::resource('setting', 'Setting');
 // Breadcrumbs::resource('group', 'Group');
 // Breadcrumbs::resource('pickup', 'Pickup');
 // Breadcrumbs::resource('drop-off', 'Drop Off');
-Breadcrumbs::resource('role', 'Role');
-Breadcrumbs::resource('location', 'Location');
+// Breadcrumbs::resource('role', 'Role');
+// Breadcrumbs::resource('location', 'Location');
 // Breadcrumbs::resource('customer-rate', 'Customer Rate');
 // Breadcrumbs::resource('delivery-rate', 'DeliveryRate');
 // Breadcrumbs::resource('sms-group', 'SMSGroup');
 // Breadcrumbs::resource('sms', 'SMS');
-// Breadcrumbs::resource('countries', 'Country');
+Breadcrumbs::resource('countries', 'Country');
 // Breadcrumbs::resource('countries/{country}/state', 'State');
-// Breadcrumbs::resource('routes', 'Route');
-// Breadcrumbs::resource('consignment', 'Consignment');
-// Breadcrumbs::resource('merchandise-type', 'Merchandise Type');
+Breadcrumbs::resource('routes', 'Route');
+Breadcrumbs::resource('consignment', 'Consignment');
+Breadcrumbs::resource('merchandise-type', 'Merchandise Type');
 // Booking

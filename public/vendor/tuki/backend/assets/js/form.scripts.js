@@ -211,8 +211,27 @@ $(document).ready(() => {
 		}
 	    
 	});
+	// alert();
+	if($('#isExternalLink').is(":checked") == true){
+		$('.form-element-link').find('div').css('display', 'block');
+		$('.form-element-page_id').find('div').css('display', 'none');
+	}else{
+		$('.form-element-page_id').find('div').css('display', 'block');
+		$('.form-element-link').find('div').css('display', 'none');
+	}
+	$('#isExternalLink').on('switchChange.bootstrapSwitch', function(e) {
+		if(e.target.checked == true){
+			$('.form-element-link').find('div').css('display', 'block');
+			$('.form-element-page_id').find('div').css('display', 'none');
+			
+		}else{
+			$('.form-element-page_id').find('div').css('display', 'block');
+			$('.form-element-link').find('div').css('display', 'none');
 
+			
+		}
 
+	});
 
 	$('#hasVat').on('switchChange.bootstrapSwitch', function(e) {
 		if(e.target.checked == true){
