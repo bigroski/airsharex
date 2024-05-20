@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\AdminAuthenticatedSessionController;
+
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -34,6 +36,31 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
 });
+// Admin Login Routes
+Route::prefix('admin')->middleware('guest')->group(function () {
+    // Route::get('register', [RegisteredUserController::class, 'create'])
+    //             ->name('register');
+
+    // Route::post('register', [RegisteredUserController::class, 'store']);
+
+    Route::get('login', [AdminAuthenticatedSessionController::class, 'create'])
+                ->name('admin.login');
+
+    Route::post('login', [AdminAuthenticatedSessionController::class, 'store']);
+
+    // Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+    //             ->name('password.request');
+
+    // Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    //             ->name('password.email');
+
+    // Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    //             ->name('password.reset');
+
+    // Route::post('reset-password', [NewPasswordController::class, 'store'])
+    //             ->name('password.store');
+});
+// End of admin Routes
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
