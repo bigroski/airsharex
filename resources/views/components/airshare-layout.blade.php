@@ -21,10 +21,9 @@
         <link href="{{asset('vendor/airsharex/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
         <!-- Styles -->
-        
+        <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
-
-        <link rel="stylesheet" href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}">
+        <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
 
         
     </head>
@@ -214,13 +213,18 @@
                 <div class="title"><h3>In Assiciation With</h3></div>
         <div class="clients-slider swiper">
           <div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-4.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-5.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-1.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></div>
+          <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/capital.png') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/marketing.png') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhubank.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhucoop.png') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhuinsurance.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhumgmt.jpg') }}" class="img-fluid" alt=""></div>
+
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhupay.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutransfer.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutravels.jpg') }}" class="img-fluid" alt=""></div>
+           
           </div>
         </div>
 

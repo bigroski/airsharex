@@ -224,6 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
       delay: 6000,
       disableOnInteraction: false
     },
+    navigation: {
+      nextEl: ".arrow-left",
+      prevEl: ".arrow-right",
+    },
     slidesPerView: 'auto',
     breakpoints: {
       320: {
@@ -232,15 +236,15 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       480: {
         slidesPerView: 3,
-        spaceBetween: 60
+        spaceBetween: 20
       },
       640: {
         slidesPerView: 4,
-        spaceBetween: 30
+        spaceBetween: 20
       },
       992: {
         slidesPerView: 6,
-        spaceBetween: 40
+        spaceBetween: 20
       }
     }
   });
@@ -249,12 +253,31 @@ document.addEventListener('DOMContentLoaded', () => {
    * Testimonials Slider
    */
   new Swiper('.grideSwiper', {
-    slidesPerView: 2.5,
-      grid: {
-        rows: 2,
-        fill: "row",
+    // slidesPerView: 2.5,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 30
       },
-      spaceBetween: 30,
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      },
+      992: {
+        slidesPerView: 2.5,
+        spaceBetween: 40,
+        grid: {
+          rows: 2,
+          fill: "row",
+        },
+      }
+    },
+      
+    //  spaceBetween: 30,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -275,19 +298,19 @@ document.addEventListener('DOMContentLoaded', () => {
     breakpoints: {
       320: {
         slidesPerView: 2,
-        spaceBetween: 40
+        spaceBetween: 20
       },
       480: {
         slidesPerView: 3,
-        spaceBetween: 60
+        spaceBetween: 20
       },
       640: {
-        slidesPerView: 4,
-        spaceBetween: 30
+        slidesPerView: 6,
+        spaceBetween: 20
       },
       992: {
-        slidesPerView: 6,
-        spaceBetween: 40
+        slidesPerView: 9,
+        spaceBetween: 20
       }
     }
   });

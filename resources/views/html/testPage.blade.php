@@ -20,16 +20,16 @@
 		<div class="filter-container">
 		<ul class="nav nav-tabs horizontal-scroll-tabs" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true">Book A Flight</button>
+				<button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true"><i class="lni lni-plane"></i> Book A Flight</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false" tabindex="-1">Schedule Flight</button>
+				<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Schedule Flight</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="rescue-tab" data-bs-toggle="tab" data-bs-target="#rescue" type="button" role="tab" aria-controls="rescue" aria-selected="false" tabindex="-1">Rescue</button>
+				<button class="nav-link" id="rescue-tab" data-bs-toggle="tab" data-bs-target="#rescue" type="button" role="tab" aria-controls="rescue" aria-selected="false" tabindex="-1"><i class="lni lni-first-aid"></i> Rescue</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1">Sharing</button>
+				<button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
 			</li>
 			<!-- Add more items as needed -->
 			</ul>
@@ -211,18 +211,25 @@
 		<div class="title d-flex justify-content-center">Schedule Flights</div>
 
         <div class="scheduled-slider swiper">
+		
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
-				<img src="{{ asset('vendor/airsharex/assets/img/services-1.jpg') }}" class="img-fluid" alt="">
-				<label>Langtang</label>
+			<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-1.jpg') }}" class="img-fluid" alt="">
+				<label>Langtang</label></a>
 			</div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""><label>Pokhara</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""><label>EBC</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-4.jpg') }}" class="img-fluid" alt=""><label>Illam</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-5.jpg') }}" class="img-fluid" alt=""><label>Biratnagar</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-1.jpg') }}" class="img-fluid" alt=""><label>Dharan</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""><label>Kathmandu</label></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""><label>Goshainkunda</label></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""><label>Pokhara</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""><label>EBC</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-4.jpg') }}" class="img-fluid" alt=""><label>Illam</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-5.jpg') }}" class="img-fluid" alt=""><label>Biratnagar</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-1.jpg') }}" class="img-fluid" alt=""><label>Dharan</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-2.jpg') }}" class="img-fluid" alt=""><label>Kathmandu</label></a></div>
+            <div class="swiper-slide"><a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""><label>Goshainkunda</label></a></div>
+          </div>
+		  <div class="arrow-left">
+				<i class="lni lni-arrow-left-circle"></i>
+          </div>
+		  <div class="arrow-right">
+		  		<i class="lni lni-arrow-right-circle"></i>
           </div>
         </div>
 
@@ -285,22 +292,23 @@
     </section>
 	<!-- End CTA Section -->
 
-<!-- ======= CTA Section ======= -->
+<!-- ======= Offered tickets ======= -->
 <section id="tickets" class="tickets">
 <div class="container">
+<div class="title d-flex">Tickets in offers</div>
 <div class="swiper grideSwiper">
     <div class="swiper-wrapper">
-			<div class="swiper-slide">
+	<div class="swiper-slide">
 				<div class="ticket-card">
 					<div class="card-image">
 						<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -313,10 +321,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -329,10 +337,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -345,10 +353,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -361,10 +369,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -377,10 +385,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -393,10 +401,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -409,10 +417,10 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -425,10 +433,26 @@
 					</div>
 					<div class="card-details">
 						<ul>
-							<li class="title">TIA - PKR</li>
-							<li class="company" >Prabhu Helicoptor</li>
-							<li class="date">21st January</li>
-							<li class="count">3 pax</li>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
+							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="ticket-card">
+					<div class="card-image">
+						<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
+					</div>
+					<div class="card-details">
+						<ul>
+							<li class="sub-title">TIA - PKR</li>
+							<li class="company" ><i class="lni lni-helicopter"></i> Prabhu Helicoptor</li>
+							<li class="date"><i class="lni lni-calendar"></i> 21st January</li>
+							<li class="count"><i class="lni lni-user"></i> 3 pax</li>
 							<li class="amount">NPR 35000/- <del> NPR 55000/-</del></li>
 						</ul>
 					</div>
@@ -441,6 +465,9 @@
 
 
 </section>
+<!-- End Offered tickets-->
+
+<!-- ======= Start Blogs ======= -->
 <section id="blogs" class="blogs">
 <div class="container">
 <div class="title d-flex justify-content-center">Blogs</div>
@@ -448,10 +475,10 @@
 		<div class="col-md-6">
 			<div class="blog featured-blog">
 				<figure class="img">
-					<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
+					<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
 				</figure>
 				<div class="blog-details">
-					<h3>Lorem Ipsum is simply dummy text of the printing </h3>
+					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
 					<div class="date">21st Jan</div>
 					<div class="excerpt">Maecenas volutpat, odio eget imperdiet faucibus, dui diam placerat turpis, non semper leo quam fringilla orci. Etiam vitae fringilla leo. Cras mollis ex vel mauris ullamcorper porta. Proin est felis, venenatis sed ex sit amet, luctus dictum tellus. Etiam</div>
 				</div>
@@ -460,30 +487,30 @@
 		<div class="col-md-6">
 			<div class="blog ">
 				<figure class="img">
-					<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
+				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
 				</figure>
 				<div class="blog-details">
-					<h3>Lorem Ipsum is simply dummy text of the printing </h3>
+					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
 					<div class="date">21st Jan</div>
 					
 				</div>
 			</div>
 			<div class="blog ">
 				<figure class="img">
-					<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
+				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
 				</figure>
 				<div class="blog-details">
-					<h3>Lorem Ipsum is simply dummy text of the printing </h3>
+					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a></h3>
 					<div class="date">21st Jan</div>
 				
 				</div>
 			</div>
 			<div class="blog ">
 				<figure class="img">
-					<img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt="">
+				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
 				</figure>
 				<div class="blog-details">
-					<h3>Lorem Ipsum is simply dummy text of the printing </h3>
+					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
 					<div class="date">21st Jan</div>
 					
 				</div>
@@ -494,7 +521,7 @@
 
 </section>
 	
-
+<!-- End Blogs-->
 
 	
 </x-airshare-layout>

@@ -19,6 +19,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/testPage', [StaticController::class, 'testPage']);
+Route::get('/about', [StaticController::class, 'about']);
 Route::get('/blog', [StaticController::class, 'blog']);
 
 // Route::get('/dashboard', function () {
