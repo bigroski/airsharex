@@ -91,147 +91,145 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+
+          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Login</a></li>
+          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Signup</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
       <div class="nav-right"> <a class="login" href="index.html#about">Login</a> | <a class="signup" href="index.html#about">Signup</a> </div>
-     
+    
 
     </div>
   </header><!-- End Header -->
         {{$slot}}
 
 
-        <footer>
+        <footer >
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-4">
-                    <a href="{{url('/')}}" class="footer-logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="{{asset('vendor/airsharex/assets/img/logo.png')}}" alt="">
-        <!-- <h1>HeroBiz<span>.</span></h1> -->
-      </a>
+                    <div class="col-lg-4 col-md-5 col-sm-12 col-12">
+                      <div class="footer-widget-contact">
+                          <a href="{{url('/')}}" class="footer-logo d-flex align-items-center">
+                            <img src="{{asset('vendor/airsharex/assets/img/logo.png')}}" alt="">
+                          </a>
+                          <div class="contact-info">
+                            <ul>
+                              <li>210, Dhobidhara Kathmandu, Nepal</li>
+                              <li><strong>Phone:</strong> 9861218495</li>
+                              <li><strong>Email:</strong> info@outrightnepal.com.np</li>
+                            </ul>
+                          </div>
+                      </div>
                     </div>
-                    <div class="col-md-9 col-sm-8">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-12">
-                            <div class="footer-widget">
-                                <h4>About AirshareX</h4>
-                                <ul>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-12">
-                        <div class="footer-widget">
-                                <h4>Additional Pages</h4>
-                                <ul>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-12">
-                        <div class="footer-widget">
-                                <h4>Affiliated</h4>
-                                <ul>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-12">
-                        <div class="footer-widget">
-                                <h4>Help & Support</h4>
-                                <ul>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                    <Li>
-                                        <a href="">Link</a>
-                                    </Li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-12 col-12">
+                      <div class="row">
+                          <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                              <div class="footer-widget footer-links">
+                                  <h4>About AirshareX</h4>
+                                  <ul>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href=""> Home</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">About us</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i>  <a href="">
+  Services
+  </a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">Terms of service
+  </a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href="">Privacy policy</a>
+                                      </Li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-6 col-sm-12 col-12 footer-links">
+                          <div class="footer-widget">
+                                  <h4>Our Services</h4>
+                                  <ul>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href=""> Search Tickets</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">Flight Fare</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href="">Termes of Service</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href="">Vendor</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">Partnership</a>
+                                      </Li>
+                                  </ul>
+                              </div>
+                          </div>
+                        
+                          <div class="col-lg-4 col-md-6 col-sm-12 col-12 footer-links">
+                          <div class="footer-widget">
+                                  <h4>Help & Support</h4>
+                                  <ul>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">Link</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i>  <a href="">Link</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i>  <a href="">Link</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i>   <a href="">Link</a>
+                                      </Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i> <a href="">Link</a>
+                                      </Li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                 </div>
-
-                 <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-out">
-                <div class="title"><h3>In Assiciation With</h3></div>
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/capital.png') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/marketing.png') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhubank.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhucoop.png') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhuinsurance.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhumgmt.jpg') }}" class="img-fluid" alt=""></div>
-
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhupay.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutransfer.jpg') }}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutravels.jpg') }}" class="img-fluid" alt=""></div>
-           
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
-
             </div>
+                 <!-- ======= Clients Section ======= -->
+            <section id="clients" class="clients">
+              <div class="container" data-aos="zoom-out">
+                        <div class="title"><h3>In Assiciation With</h3></div>
+                <div class="clients-slider swiper">
+                  <div class="swiper-wrapper align-items-center">
+                  <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/capital.png') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/marketing.png') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhubank.jpg') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhucoop.png') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhuinsurance.jpg') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhumgmt.jpg') }}" class="img-fluid" alt=""></div>
+
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhupay.jpg') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutransfer.jpg') }}" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutravels.jpg') }}" class="img-fluid" alt=""></div>
+                  
+                  </div>
+                </div>
+
+              </div>
+            </section><!-- End Clients Section -->
+
+            <div class="copyright-info">
+              <div class="container">
+              © Copyright AirshareX. All Rights Reserved 
+              </div>
+            </div>
+
+           
         </footer>
         @yield('page-scripts')
         <script src="{{asset('vendor/airsharex/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

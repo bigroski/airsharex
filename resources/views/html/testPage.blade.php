@@ -1,9 +1,7 @@
 <x-airshare-layout>
 
-<section class="component component-hero hero">
-	<div class="hero-image">
-		<img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" />
-	</div>
+<section class="component component-hero hero" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+	
 	<div class="hero-content">
 		<div class="container">
 			<div class="hero-container">
@@ -48,28 +46,28 @@
 			</div>
 			</div>
 			<div class="row g-3">
-			<div class="col-md-3 col-sm-6 col-12">
+			<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
 			
 			<input type="text"  class="form-control" placeholder="From">
 			</div>
-			<div class="col-md-3 col-sm-6 col-12">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 			
 			<input type="text" class="form-control"  placeholder="To">
 			</div>
-			<div class="col-md-2 col-sm-6 col-12">
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
 			
 			<input type="date" class="form-control" >
 			</div>
-			<div class="col-md-2 col-sm-6 col-12">
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
 			
 			<input type="date" class="form-control" >
 			</div>
-			<div class="col-md-1 col-sm-6 col-12">
+			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 			
 			<input type="number" class="form-control"  >
 			</div>
 
-			<div class="col-md-1 col-sm-6 col-12">
+			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 			<button type="submit" class="btn btn-danger mb-3">Search</button>
 			</div>
 			
@@ -240,9 +238,9 @@
 <section id="why-choose" class="why-choose">
       <div class="container">
 		<div class="title d-flex justify-content-center">Why Choose Us</div>
-
+		<div class="title-details">Proin luctus semper lobortis. Nunc efficitur ipsum a nisl euismod porttitor. Phasellus ac imperdiet odio. Proin commodo mattis justo vel gravida. In sollicitudin hendrerit elit eu dapibus. Phasellus ut tortor a dui viverra posuere id id lorem. Nulla et eros efficitur, pharetra felis quis, mollis felis.</div>
        <div class="row">
-		<div class="col-md-4 col-sm-6 col-12">
+		<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 			<div class="why-wrapper">
 				<img src="{{ asset('vendor/airsharex/assets/img/heli1.jpeg') }}" />
 				<div class="content">
@@ -252,7 +250,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-12">
+		<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 			<div class="why-wrapper">
 				<img src="{{ asset('vendor/airsharex/assets/img/heli1.jpeg') }}" />
 				<div class="content">
@@ -262,7 +260,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-12">
+		<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 			<div class="why-wrapper">
 				<img src="{{ asset('vendor/airsharex/assets/img/heli1.jpeg') }}" />
 				<div class="content">
@@ -284,7 +282,59 @@
 	</div>
 	<div class="cta-content">
 		<div class="container">
-		
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-md-6 col-sm-12 col-12">
+				<h2><span>Daily</span> Mountain Flight</h2>
+			</div>
+			<div class="col-md-6 col-sm-12 col-12 ">
+				<div class="cta-details d-flex justify-content-end ">
+				<div class="table-responsive"><table class="table table-striped">
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>Airlines&nbsp;</strong></p>
+			</td>
+			<td>
+			<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Buddha Airlines&nbsp;</p>
+			</td>
+			<td>
+			<p>06:15 am -- 07:15 am every day&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Yeti Airlines&nbsp;</p>
+			</td>
+			<td>
+			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Shree Airlines&nbsp;</p>
+			</td>
+			<td>
+			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table></div>
+
+
+				</div>
+				<div class="btn-link d-flex justify-content-end">
+				<a  href="">Explore</a>
+				</div>
+				
+			
+
+			</div>
+		</div>
 
         
 
@@ -472,49 +522,62 @@
 <div class="container">
 <div class="title d-flex justify-content-center">Blogs</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-lg-6 col-md-12">
+
+		
+
 			<div class="blog featured-blog">
-				<figure class="img">
-					<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
-				</figure>
-				<div class="blog-details">
-					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
-					<div class="date">21st Jan</div>
-					<div class="excerpt">Maecenas volutpat, odio eget imperdiet faucibus, dui diam placerat turpis, non semper leo quam fringilla orci. Etiam vitae fringilla leo. Cras mollis ex vel mauris ullamcorper porta. Proin est felis, venenatis sed ex sit amet, luctus dictum tellus. Etiam</div>
+				<div class="background-img" style="background-image: url('{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}')"></div>
+				<div class="post__text inverse-text">
+					<div class="post__text-wrap">
+						<div class="post__text-inner">
+							<h3 class="post__title typescale-2">Mt. Everest Flight Tour for Nepali, Indian and Foreigners - Discount Prices</h3>
+							<div class="post__excerpt">The Shadow Brokers group unleashed an exploit that fueled a global ransomware attack. Now they say they've got more where that came from.</div>
+							<div class="post__meta">
+					 <time class="time published" datetime="2016-08-20T08:53+00:00" title="August 20, 2016 at 08:53 am">
+					 <i class="lni lni-alarm-clock"></i> 2 hours ago</time>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div class="blog ">
-				<figure class="img">
-				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
-				</figure>
-				<div class="blog-details">
-					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
-					<div class="date">21st Jan</div>
-					
+				<a href="#single-url" class="link-overlay"></a>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-12">
+		<div class="blog ">
+			<div class="post__thumb">
+				<a href="#single-url"><img src="{{ asset('vendor/airsharex/assets/img/blog1.jpg') }}"></a>
+			</div>
+			<div class="post__text">
+				<h3 class="post__title typescale-2"><a href="#single-url">Best season for Mountain Flight to see Mt. Everest</a></h3>
+				<div class="post__meta">
+					 <time class="time published" datetime="2016-08-20T08:53+00:00" title="August 20, 2016 at 08:53 am"><i class="mdicon mdicon-schedule"></i>2 hours ago</time> 
+					</div>
 				</div>
 			</div>
 			<div class="blog ">
-				<figure class="img">
-				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
-				</figure>
-				<div class="blog-details">
-					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a></h3>
-					<div class="date">21st Jan</div>
-				
+			<div class="post__thumb">
+				<a href="#single-url"><img src="{{ asset('vendor/airsharex/assets/img/blog2.jpg') }}"></a>
+			</div>
+			<div class="post__text">
+				<h3 class="post__title typescale-2"><a href="#single-url">Everest Mountain Flight in Nepal – From Kathmandu</a></h3>
+				<div class="post__meta">
+					 <time class="time published" datetime="2016-08-20T08:53+00:00" title="August 20, 2016 at 08:53 am"><i class="mdicon mdicon-schedule"></i>2 hours ago</time> 
+					</div>
 				</div>
 			</div>
 			<div class="blog ">
-				<figure class="img">
-				<a href=""><img src="{{ asset('vendor/airsharex/assets/img/services-3.jpg') }}" class="img-fluid" alt=""></a>
-				</figure>
-				<div class="blog-details">
-					<h3><a href="">Lorem Ipsum is simply dummy text of the printing</a> </h3>
-					<div class="date">21st Jan</div>
-					
+			<div class="post__thumb">
+				<a href="#single-url"><img src="{{ asset('vendor/airsharex/assets/img/blog3.jpg') }}"></a>
+			</div>
+			<div class="post__text">
+				<h3 class="post__title typescale-2"><a href="#single-url">Tesla will reveal the finished Model 3 in July</a></h3>
+				<div class="post__meta">
+					 <time class="time published" datetime="2016-08-20T08:53+00:00" title="August 20, 2016 at 08:53 am"><i class="mdicon mdicon-schedule"></i>2 hours ago</time> 
+					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </div>
