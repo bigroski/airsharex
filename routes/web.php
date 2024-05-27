@@ -33,4 +33,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__.'/auth.php';
-Route::any('{slug}', [SiteController::class, 'page'])->where('slug', '[0-9,a-z,/]+')->middleware('web');
+Route::get('/', [SiteController::class, 'page']);
+Route::any('{slug}', [SiteController::class, 'page']);
