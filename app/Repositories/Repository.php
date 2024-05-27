@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Classes\Repositories;
+namespace App\Repositories;
 
 use Illuminate\Support\Facades\Log;
 
 class Repository
 {
     public $model;
+    
 
     /**
      * Paginate Model

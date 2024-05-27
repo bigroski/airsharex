@@ -14,7 +14,12 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('dashboard'));
 });
-
+Breadcrumbs::for('web.airports.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Airports', route('web.airports.index'));
+});
+Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
+    $trail->push('Airports', route('web.airports.create'));
+});
 Breadcrumbs::macro('resource', function (string $name, string $title) {
     // Home > Blog
     Breadcrumbs::for("web.{$name}.index", function (BreadcrumbTrail $trail) use ($name, $title) {
@@ -22,11 +27,11 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
         $trail->push($title, route("web.{$name}.index"));
     });
 
-    // Home > Blog > New
-    Breadcrumbs::for("web.{$name}.create", function (BreadcrumbTrail $trail) use ($name, $title) {
-        $trail->parent("web.{$name}.index");
-        $trail->push('New '.$title, route("web.{$name}.create"));
-    });
+    // // Home > Blog > New
+    // Breadcrumbs::for("web.{$name}.create", function (BreadcrumbTrail $trail) use ($name, $title) {
+    //     $trail->parent("web.{$name}.index");
+    //     $trail->push('New '.$title, route("web.{$name}.create"));
+    // });
 
     // // Home > Blog > Post 123
     Breadcrumbs::for("web.{$name}.show", function (BreadcrumbTrail $trail) use ($name) {

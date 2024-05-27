@@ -1,7 +1,7 @@
 <?php
 
-namespace Bigroski\Tukicms\App\Classes\Services;
-use Bigroski\Tukicms\App\Classes\Services\BaseService;
+namespace App\Services;
+use App\Services\BaseService;
 use App\Repositories\AirportRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +10,7 @@ use Illuminate\Validation\Rules;
 use Auth;
 // use App\Models\User;
 
-class PostService extends BaseService{
+class AirportService extends BaseService{
 	public function __construct(public AirportRepository $airportRepository){
 			
 	}
