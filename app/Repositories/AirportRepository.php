@@ -31,6 +31,7 @@ class AirportRepository
             $modelItem = $modelItem->with($with);
         }
         $modelItem = $modelItem->orderBy('created_at', 'desc')->paginate();
+
         return $modelItem;
     }
 

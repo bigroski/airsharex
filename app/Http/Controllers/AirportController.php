@@ -12,7 +12,7 @@ class AirportController extends Controller
 
 
     public function __Construct(private AirportService $airportService){
-        $this->setRoutes(['create', 'edit', 'destroy'], 'post', 'web');
+        $this->setRoutes(['create', 'edit', 'destroy'], 'airports', 'web');
 
     }
     /**
@@ -38,22 +38,39 @@ class AirportController extends Controller
      */
     public function create(Request $request)
     {
-        dd('create airports');
+        // dd('create airports');
+        return $this->renderCreateForm(
+            $this->airportService->getModel('airport'),
+            ['Airport', 'Create Airport'],
+        );
+
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $airport = $this->airportService->create($request);
+
+        $request->session()->flash('success', $airport->name . ' has been created');
+
+        return redirect()->route('web.airports.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(striasmng $id)
     {
         dd('shoew airports');
+    }
+    public function edit(Request $request,$id){
+        $airport = $this->airportService->findById($id);
+        return $this->renderUpdateForm(
+            $airport,
+            ['Update Airport', 'Edit Airport'],
+        );
     }
 
     /**
@@ -61,7 +78,9 @@ class AirportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->airportService->updatePost($request, $id);
+        $request->session()->flash('success', 'Successfully Updated');
+        return redirect()->route('web.airtport.index');
     }
 
     /**

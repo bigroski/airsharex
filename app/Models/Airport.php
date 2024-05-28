@@ -30,25 +30,32 @@ class Airport extends Model
     public $formConfig = [
         'create' => [
             'title' => 'Create Airport',
-            'route' => 'web.airport.store',
+            'route' => 'web.airports.store',
             'method' => 'post',
             
         ],
         'update' => [
             'title' => 'Edit Airport',
-            'route' => 'web.airport.update',
+            'route' => 'web.airports.update',
             'method' => 'put',
             
         ],
         
     ];
     public $formFields = [
-        'title' => [
+        'name' => [
             'label' => 'Name',
             'type' => 'text',
             'placeholder' => 'Enter name',
             'required' => true,
-            'span' => 'col-md-2'
+            'span' => 'col-md-6'
+        ],
+        'IATA_code' => [
+            'label' => 'IATA Code',
+            'type' => 'text',
+            'placeholder' => 'Enter IATA Code',
+            'required' => true,
+            'span' => 'col-md-6' 
         ],
         'country_id' => [
             'label' => 'Country',
@@ -56,36 +63,38 @@ class Airport extends Model
             'choices' => ['Nepal','India'],
             'placeholder' => 'Select country',
             'required' => true,
-            'span' => 'col-8',
+            'span' => 'col-6',
         ],
         
         'location' => [
-            'label' => 'Locationn',
+            'label' => 'Location',
             'type' => 'text',
             'placeholder' => 'Enter location',
             'required' => true,
-            'span' => 'col-md-12' 
+            'span' => 'col-md-6' 
         ],
-        'IATA_code' => [
-            'label' => 'IATA Code',
-            'type' => 'text',
-            'placeholder' => 'Enter IATA Code',
-            'required' => true,
-            'span' => 'col-md-12' 
-        ],
-        'termanal' => [
+        
+        
+        'terminal' => [
             'label' => 'Terminal',
             'type' => 'text',
             'placeholder' => 'Enter Terminal',
             'required' => true,
-            'span' => 'col-md-12' 
+            'span' => 'col-md-6' 
         ],
         'runway' => [
             'label' => 'Runway',
             'type' => 'text',
             'placeholder' => 'Enter runway',
             'required' => true,
-            'span' => 'col-md-12' 
+            'span' => 'col-md-6' 
+        ],
+        'ICAO_code'=> [
+            'label' => 'ICAO Code',
+            'type' => 'text',
+            'placeholder' => 'Enter ICAO Code',
+            'required' => true,
+            'span' => 'col-md-6' 
         ],
         
         

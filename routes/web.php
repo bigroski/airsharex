@@ -26,14 +26,16 @@ Route::get('/blog', [StaticController::class, 'blog']);
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(AirportController::class)->prefix('admin/airports')->group(function () {
-    Route::get('/', 'index')->name('web.airports.index');
-    Route::get('/create', 'create')->name('web.airports.create');
-    Route::post('/store', 'store')->name('web.airports.store');
-    Route::get('/{id}/edit', 'edit');
-    Route::put('/update', 'updateCompanyDetails')->name('airports.update');
-    Route::get('/{id}', 'show');
-});
+// Route::controller(AirportController::class)->prefix('admin/airports')->group(function () {
+//     Route::get('/', 'index')->name('web.airport.index');
+//     Route::get('/create', 'create')->name('web.airport.create');
+//     Route::post('/store', 'store')->name('web.airport.store');
+//     Route::get('/{id}/edit', 'edit');
+//     Route::put('/update', 'updateCompanyDetails')->name('airport.update');
+//     Route::get('/{id}', 'show');
+// });
+Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

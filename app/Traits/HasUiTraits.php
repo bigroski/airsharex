@@ -61,7 +61,7 @@ trait HasUiTraits
      * @return View                 Generated View
      */
     public function generateList($pageAttributes, $columns, $values, $buttons = [], $except = null){
-
+     
         // dd($this->generateTableButtons($buttons, $except));
         if($this->adapter == 'simpleTable'){
 
