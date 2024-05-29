@@ -182,6 +182,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'PgBuilder' => Bigroski\Tukicms\App\Facade\PgBuilder::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
