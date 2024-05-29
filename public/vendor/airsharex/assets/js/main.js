@@ -217,12 +217,16 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Clients Slider
    */
-  new Swiper('.clients-slider', {
+  new Swiper('.scheduled-slider', {
     speed: 400,
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 6000,
       disableOnInteraction: false
+    },
+    navigation: {
+      nextEl: ".arrow-left",
+      prevEl: ".arrow-right",
     },
     slidesPerView: 'auto',
     breakpoints: {
@@ -231,16 +235,20 @@ document.addEventListener('DOMContentLoaded', () => {
         spaceBetween: 40
       },
       480: {
-        slidesPerView: 3,
-        spaceBetween: 60
+        slidesPerView: 2,
+        spaceBetween: 20
       },
       640: {
-        slidesPerView: 4,
-        spaceBetween: 80
+        slidesPerView: 3,
+        spaceBetween: 20
       },
       992: {
+        slidesPerView: 4,
+        spaceBetween: 20
+      },
+      1200: {
         slidesPerView: 6,
-        spaceBetween: 120
+        spaceBetween: 30
       }
     }
   });
@@ -248,36 +256,132 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Testimonials Slider
    */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
+  new Swiper('.grideSwiper', {
+    // slidesPerView: 2.5,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 30
+      },
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      },
+      992: {
+        slidesPerView: 2.5,
+        spaceBetween: 40,
+        grid: {
+          rows: 2,
+          fill: "row",
+        },
+      }
+    },
+      
+    //  spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+  });
+
+  /**
+   * Clients Slider
+   */
+  new Swiper('.clients-slider', {
+    speed: 400,
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 6000,
       disableOnInteraction: false
     },
     slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+    breakpoints: {
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      480: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 6,
+        spaceBetween: 20
+      },
+      992: {
+        slidesPerView: 9,
+        spaceBetween: 20
+      }
     }
   });
 
   /**
-   * Testimonials Slider
+   * Clients Slider
    */
-  new Swiper('.portfolio-details-slider', {
-    speed: 600,
+  new Swiper('.testimonials-slider', {
+    speed: 400,
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 9000,
       disableOnInteraction: false
     },
     slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      480: {
+        slidesPerView: 1.5,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      992: {
+        slidesPerView: 3.5,
+        spaceBetween: 40
+      }
+    }
+  });
+
+   /**
+   * Clients Slider
+   */
+   new Swiper('.history-slider', {
+    speed: 400,
+    loop: false,
+    autoplay: {
+      delay: 9000,
+      disableOnInteraction: false
+    },
+    navigation: {
+      nextEl: ".arrow-left",
+      prevEl: ".arrow-right",
+    },
+    slidesPerView: 'auto',
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      480: {
+        slidesPerView: 1.5,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      992: {
+        slidesPerView: 3.5,
+        spaceBetween: 40
+      }
     }
   });
 

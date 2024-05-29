@@ -6120,7 +6120,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/bigroski/tukicms",
-                "reference": "d234e8a051a832605dbe00428a3ba3b8b94e29b5"
+                "reference": "cf50f6c4b8b14f67a41a21a4e0ffd159f0277a6f"
             },
             "require": {
                 "barryvdh/laravel-dompdf": "^2.0",
@@ -11215,5 +11215,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
