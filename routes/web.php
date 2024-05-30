@@ -19,8 +19,20 @@ use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
-// Route::get('/testPage', [StaticController::class, 'testPage']);
+Route::get('/home', [StaticController::class, 'home']);
+Route::get('/about', [StaticController::class, 'about']);
+Route::get('/services', [StaticController::class, 'services']);
 Route::get('/blog', [StaticController::class, 'blog']);
+Route::get('/signup', [StaticController::class, 'signup']);
+Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/history', [StaticController::class, 'history']);
+Route::get('/ourstory', [StaticController::class, 'ourstory']);
+Route::get('/contact', [StaticController::class, 'contact']);
+Route::get('/policy', [StaticController::class, 'policy']);
+Route::get('/disclaimer', [StaticController::class, 'disclaimer']);
+Route::get('/gallery', [StaticController::class, 'gallery']);
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -33,4 +45,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__.'/auth.php';
-Route::any('{slug}', [SiteController::class, 'page'])->where('slug', '[0-9,a-z,/]+')->middleware('web');
+Route::get('/', [SiteController::class, 'page']);
+Route::any('{slug}', [SiteController::class, 'page']);
