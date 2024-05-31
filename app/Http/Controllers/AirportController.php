@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Traits\HasUiTraits;
 use App\Services\AirportService;
 use  App\DataTables\AirportDataTable;
+use Ramsey\Uuid\Type\Integer;
+
 class AirportController extends Controller
 {
     use HasUiTraits;
@@ -61,7 +63,7 @@ class AirportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(striasmng $id)
+    public function show(Integer $id)
     {
         dd('shoew airports');
     }
@@ -76,9 +78,9 @@ class AirportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Integer $id)
     {
-        $this->airportService->updatePost($request, $id);
+        $this->airportService->update($request, $id);
         $request->session()->flash('success', 'Successfully Updated');
         return redirect()->route('web.airtport.index');
     }
@@ -86,8 +88,10 @@ class AirportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,Integer $id)
     {
-        //
+        $this->airportService->delete($id);
+        $request->session()->flash('success', 'Successfully deleted');
+        return redirect()->route('web.airtport.index');
     }
 }

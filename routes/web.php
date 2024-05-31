@@ -5,6 +5,8 @@ use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\VendorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,10 @@ Route::get('/blog', [StaticController::class, 'blog']);
 //     Route::get('/{id}', 'show');
 // });
 Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
+Route::resource('admin/vendors', VendorController
+
+::class, ['as' => 'web']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

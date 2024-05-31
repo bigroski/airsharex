@@ -17,10 +17,10 @@ return new class extends Migration
             $table->bigInteger('country_id')->unsigned()->index()->nullable();
             $table->string('name');
             $table->string('location');
-            $table->string('IATA_code')->unique();
-            $table->string('ICAO_code');
-            $table->string('terminal');
-            $table->string('runway');
+            $table->string('IATA_code')->unique()->nullable();
+            $table->string('ICAO_code')->nullable();
+            $table->string('terminal')->nullable();
+            $table->string('runway')->nullable();
             $table->timestamps();
         });
     }

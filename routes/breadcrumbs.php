@@ -20,6 +20,12 @@ Breadcrumbs::for('web.airports.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
     $trail->push('Airports', route('web.airports.create'));
 });
+Breadcrumbs::for('web.vendors.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Vendors', route('web.vendors.index'));
+});
+Breadcrumbs::for('web.vendors.create', function (BreadcrumbTrail $trail) {
+    $trail->push('Vendors', route('web.vendors.create'));
+});
 Breadcrumbs::macro('resource', function (string $name, string $title) {
     // Home > Blog
     Breadcrumbs::for("web.{$name}.index", function (BreadcrumbTrail $trail) use ($name, $title) {

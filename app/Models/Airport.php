@@ -40,6 +40,12 @@ class Airport extends Model
             'method' => 'put',
             
         ],
+        'delete' => [
+            'title' => 'Delete Airport',
+            'route' => 'web.airports.delete',
+            'method' => 'delete',
+            
+        ],
         
     ];
     public $formFields = [
