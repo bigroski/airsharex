@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('country_id')->unsigned()->index()->nullable();
             $table->string('name');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->string('IATA_code')->unique()->nullable();
             $table->string('ICAO_code')->nullable();
             $table->string('terminal')->nullable();

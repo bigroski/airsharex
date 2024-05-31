@@ -5,6 +5,8 @@ use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\PassengerController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VendorController;
 
 /*
@@ -52,6 +54,9 @@ Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
 Route::resource('admin/vendors', VendorController
 
 ::class, ['as' => 'web']);
+Route::resource('admin/passengers', PassengerController::class, ['as' => 'web']);
+Route::resource('admin/testimonials', TestimonialController::class, ['as' => 'web']);
+
 
 
 Route::middleware('auth')->group(function () {

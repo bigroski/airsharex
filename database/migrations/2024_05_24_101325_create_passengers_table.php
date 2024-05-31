@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('passengers', function (Blueprint $table) {
-
+        $table->id();
         $table->string('first_name')  ;
-        $table->string('middle_name')  ;
+        $table->string('middle_name')->nullable()  ;
         $table->string('last_name')  ;
         $table->string('gender')  ;
-        $table->date('date_of_birth')->nullablke();
+        $table->date('date_of_birth')->nullable();
         $table->string('salutation')->nullable()  ;
         $table->string('phone')->nullable()  ;
         $table->string('email')->nullable()  ;
