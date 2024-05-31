@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PassengerDataTable;
+use App\Http\Requests\PassengerRequest;
 use App\Services\passengerService;
 use Illuminate\Http\Request;
 use App\Traits\HasUiTraits;
@@ -45,7 +46,7 @@ class PassengerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PassengerRequest $request)
     {
         
         // dd($request->all());
@@ -80,7 +81,7 @@ class PassengerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PassengerRequest $request, string $id)
     {
        
         $this->passengerService->update($request, $id);

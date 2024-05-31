@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\HasUiTraits;
 use App\DataTables\VendorDataTable;
+use App\Http\Requests\VendorRequest;
 use App\Services\VendorService;
 use Ramsey\Uuid\Type\Integer;
 
@@ -46,7 +47,7 @@ class VendorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VendorRequest $request)
     {
         // dd($request->all());
         $vendor = $this->vendorService->create($request);
@@ -67,7 +68,7 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Integer $id)
+    public function edit($id)
     {
         $vendor = $this->vendorService->findById($id);
         return $this->renderUpdateForm(
@@ -79,7 +80,7 @@ class VendorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Integer $id)
+    public function update(VendorRequest $request, $id)
     {
         $this->vendorService->update($request, $id);
         $request->session()->flash('success', 'Successfully Updated');

@@ -8,7 +8,7 @@ use App\Http\Controllers\AirportController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VendorController;
-
+use Bigroski\Tukicms\App\Http\Middleware\TukiAccessMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,32 +42,35 @@ Route::get('/gallery', [StaticController::class, 'gallery']);
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::controller(AirportController::class)->prefix('admin/airports')->group(function () {
-//     Route::get('/', 'index')->name('web.airport.index');
-//     Route::get('/create', 'create')->name('web.airport.create');
-//     Route::post('/store', 'store')->name('web.airport.store');
-//     Route::get('/{id}/edit', 'edit');
-//     Route::put('/update', 'updateCompanyDetails')->name('airport.update');
-//     Route::get('/{id}', 'show');
-// });
-Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
-Route::resource('admin/vendors', VendorController
+// Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
+// Route::resource('admin/vendors', VendorController
 
-::class, ['as' => 'web']);
-Route::resource('admin/passengers', PassengerController::class, ['as' => 'web']);
-Route::resource('admin/testimonials', TestimonialController::class, ['as' => 'web']);
+// ::class, ['as' => 'web']);
+// Route::resource('admin/passengers', PassengerController::class, ['as' => 'web']);
+// Route::resource('admin/testimonials', TestimonialController::class, ['as' => 'web']);
 
+Route::prefix("admin")->middleware(
+    [
+        'web',
+        'auth',
+        TukiAccessMiddleware::class
+    ]
+)->group(
+    function () {
+        Route::resource('airports', AirportController::class, ['as' => 'web']);
+        Route::resource('vendors', VendorController::class, ['as' => 'web']);
+        Route::resource('passengers', PassengerController::class, ['as' => 'web']);
 
+        Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
+    }
+);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page'])->where('slug', '[0-9,a-z,/]+')->middleware('web');
-
-
-

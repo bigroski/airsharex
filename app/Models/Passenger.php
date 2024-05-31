@@ -75,7 +75,7 @@ class Passenger extends Model
             'label' => 'Middle Name',
             'type' => 'text',
             'placeholder' => 'Enter middle name',
-            'required' => true,
+            'required' => false,
             'span' => 'col-md-6' 
         ],
         'last_name' => [

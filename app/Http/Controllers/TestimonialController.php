@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\TestimonialDataTable;
+use App\Http\Requests\TetimonialRequest;
 use App\Services\TestimonialService;
 use Illuminate\Http\Request;
 use App\Traits\HasUiTraits;
@@ -11,16 +12,16 @@ use Ramsey\Uuid\Type\Integer;
 class TestimonialController extends Controller
 {
     use HasUiTraits;
-    public function __Construct(private TestimonialService $testimonialService){
+    public function __Construct(private TestimonialService $testimonialService)
+    {
         $this->setRoutes(['create', 'edit', 'destroy'], 'testimonials', 'web');
-
     }
     /**
      * Display a listing of the resource.
      */
     public function index(TestimonialDataTable $testimonialDataTable)
     {
-        
+
         $this->setTableAdapter('datatable');
         $this->setDatatable($testimonialDataTable);
         $testimonials = $this->testimonialService->paginate();
@@ -45,9 +46,9 @@ class TestimonialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TetimonialRequest $request)
     {
-        
+
         // dd($request->all());
         $testimonial = $this->testimonialService->create($request);
 
@@ -67,9 +68,9 @@ class TestimonialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        
+
         $testimonial = $this->testimonialService->findById($id);
         return $this->renderUpdateForm(
             $testimonial,
@@ -80,9 +81,9 @@ class TestimonialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Integer $id)
+    public function update(TetimonialRequest $request, $id)
     {
-        
+
         $this->testimonialService->update($request, $id);
         $request->session()->flash('success', 'Successfully Updated');
         return redirect()->route('web.testimonials.index');
@@ -91,7 +92,7 @@ class TestimonialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request,Integer $id)
+    public function destroy(Request $request, $id)
     {
         $this->testimonialService->delete($id);
         $request->session()->flash('success', 'Successfully Updated');

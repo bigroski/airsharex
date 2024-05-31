@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('location')->nullable();
             $table->string('IATA_code')->unique()->nullable();
-            $table->string('ICAO_code')->nullable();
+            $table->string('ICAO_code')->nullable()->unique();
             $table->string('terminal')->nullable();
             $table->string('runway')->nullable();
             $table->timestamps();

@@ -56,6 +56,7 @@ class Airport extends Model
             'required' => true,
             'span' => 'col-md-6'
         ],
+        // International Air Transport Association's (IATA) Location Identifier
         'IATA_code' => [
             'label' => 'IATA Code',
             'type' => 'text',
@@ -95,6 +96,7 @@ class Airport extends Model
             'required' => true,
             'span' => 'col-md-6' 
         ],
+        // Civil Aviation Organization (ICAO) Code
         'ICAO_code'=> [
             'label' => 'ICAO Code',
             'type' => 'text',

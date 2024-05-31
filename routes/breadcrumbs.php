@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
@@ -14,53 +14,30 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('dashboard'));
 });
-//airports
-Breadcrumbs::for('web.airports.index', function (BreadcrumbTrail $trail) {
-    $trail->push('Airports', route('web.airports.index'));
-});
+
 Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
     $trail->push('Airports', route('web.airports.create'));
-});
-Breadcrumbs::for('web.airports.edit', function (BreadcrumbTrail $trail) {
-    $trail->push('Airports', route('web.airports.edit'));
-});
-//airports
-Breadcrumbs::for('web.vendors.index', function (BreadcrumbTrail $trail) {
-    $trail->push('Vendors', route('web.vendors.index'));
 });
 Breadcrumbs::for('web.vendors.create', function (BreadcrumbTrail $trail) {
     $trail->push('Vendors', route('web.vendors.create'));
 });
 
-//testimonials
-Breadcrumbs::for('web.testimonials.index', function (BreadcrumbTrail $trail) {
-    $trail->push('testimonials', route('web.testimonials.index'));
-});
 Breadcrumbs::for('web.testimonials.create', function (BreadcrumbTrail $trail) {
     $trail->push('testimonials', route('web.testimonials.create'));
-});
-// passengers
-Breadcrumbs::for('web.passengers.index', function (BreadcrumbTrail $trail) {
-    $trail->push('passengers', route('web.passengers.index'));
 });
 Breadcrumbs::for('web.passengers.create', function (BreadcrumbTrail $trail) {
     $trail->push('passengers', route('web.passengers.create'));
 });
-Breadcrumbs::for("web.passengers.edit", function (BreadcrumbTrail $trail, $model)  {
-    $trail->parent("web.passengers.show", $model);
-    $trail->push("Edit", route("web.passengers.edit", $model->id));
-});
-
 Breadcrumbs::macro('resource', function (string $name, string $title) {
     // Home > Blog
     Breadcrumbs::for("web.{$name}.index", function (BreadcrumbTrail $trail) use ($name, $title) {
         $trail->parent('home');
         $trail->push($title, route("web.{$name}.index"));
     });
-        // Breadcrumbs::for("web.{$name}.edit", function (BreadcrumbTrail $trail, $model) use ($name, $title) {
-        //     $trail->parent("web.{$name}.show", $model);
-        //     $trail->push("Edit {$title}", route("web.{$name}.edit", $model->id));
-        // });
+    // Breadcrumbs::for("web.{$name}.edit", function (BreadcrumbTrail $trail, $model) use ($name, $title) {
+    //     $trail->parent("web.{$name}.show", $model);
+    //     $trail->push("Edit {$title}", route("web.{$name}.edit", $model->id));
+    // });
     // // Home > Blog > New
     // Breadcrumbs::for("web.{$name}.create", function (BreadcrumbTrail $trail) use ($name, $title) {
     //     $trail->parent("web.{$name}.index");
@@ -77,7 +54,7 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
     // $modelName = 'App\Models\\'.$modelName;
     Breadcrumbs::for("web.{$name}.edit", function (BreadcrumbTrail $trail) use ($name) {
 
-    	$trail->parent("web.{$name}.index");
+        $trail->parent("web.{$name}.index");
         $trail->push('Edit');
     });
 });
@@ -118,9 +95,10 @@ Breadcrumbs::for("merchendise.receive", function (BreadcrumbTrail $trail) {
     $trail->parent("web.manifest.index");
     $trail->push('Receive Merchandise');
 });
-
-
-
+Breadcrumbs::resource('vendors', 'Vendors');
+Breadcrumbs::resource('airports', 'Airports');
+Breadcrumbs::resource('passengers', 'Passengers');
+Breadcrumbs::resource('testimonials', 'Testimonials');
 
 Breadcrumbs::resource('post', 'Post');
 Breadcrumbs::resource('menu', 'Menu');
