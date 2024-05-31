@@ -20,6 +20,9 @@ Breadcrumbs::for('web.airports.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
     $trail->push('Airports', route('web.airports.create'));
 });
+Breadcrumbs::for('web.airports.edit', function (BreadcrumbTrail $trail) {
+    $trail->push('Airports', route('web.airports.edit'));
+});
 Breadcrumbs::for('web.vendors.index', function (BreadcrumbTrail $trail) {
     $trail->push('Vendors', route('web.vendors.index'));
 });
