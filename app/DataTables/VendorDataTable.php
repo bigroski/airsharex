@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Airport;
+use App\Models\Vendor;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Bigroski\Tukicms\App\Traits\Tuples;
 
-class AirportDataTable extends DataTable
+class VendorDataTable extends DataTable
 {
     use Tuples;
 
@@ -34,10 +34,10 @@ class AirportDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Airport $model
+     * @param \App\Models\Vendor $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Airport $model): QueryBuilder
+    public function query(Vendor $model): QueryBuilder
     {
         return $model->newQuery()->orderBy('created_at', 'desc');
     }
@@ -50,7 +50,7 @@ class AirportDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('airport-table')
+                    ->setTableId('vendor-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -85,6 +85,6 @@ class AirportDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'airport_' . date('YmdHis');
+        return 'vendor_' . date('YmdHis');
     }
 }
