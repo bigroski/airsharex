@@ -84,7 +84,10 @@ Breadcrumbs::for("merchendise.receive", function (BreadcrumbTrail $trail) {
 
 
 Breadcrumbs::resource('post', 'Post');
+Breadcrumbs::resource('onlineBooking', 'OnlineBooking');
 Breadcrumbs::resource('menu', 'Menu');
+
+
 Breadcrumbs::resource('category', 'Category');
 Breadcrumbs::resource('tag', 'Tag');
 Breadcrumbs::resource('comment', 'Comment');
@@ -121,4 +124,6 @@ Breadcrumbs::resource('countries', 'Country');
 Breadcrumbs::resource('routes', 'Route');
 Breadcrumbs::resource('consignment', 'Consignment');
 Breadcrumbs::resource('merchandise-type', 'Merchandise Type');
+Breadcrumbs::resource('book', 'Book');
+Breadcrumbs::resource('pen', 'Pen');
 // Booking
