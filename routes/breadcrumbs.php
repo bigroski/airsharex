@@ -100,6 +100,8 @@ Breadcrumbs::resource('airports', 'Airports');
 Breadcrumbs::resource('passengers', 'Passengers');
 Breadcrumbs::resource('testimonials', 'Testimonials');
 
+Breadcrumbs::resource('customer', 'Customer');
+
 Breadcrumbs::resource('post', 'Post');
 Breadcrumbs::resource('menu', 'Menu');
 Breadcrumbs::resource('category', 'Category');

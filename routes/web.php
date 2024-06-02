@@ -9,6 +9,8 @@ use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VendorController;
 use Bigroski\Tukicms\App\Http\Middleware\TukiAccessMiddleware;
+use App\Http\Controllers\CustomerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +64,8 @@ Route::prefix("admin")->middleware(
         Route::resource('passengers', PassengerController::class, ['as' => 'web']);
 
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
+        Route::resource('customer', CustomerController::class, ['as' => 'web']);
+
     }
 );
 

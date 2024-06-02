@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\TestimonialDataTable;
 use App\Http\Requests\TetimonialRequest;
+use App\Models\Airport;
 use App\Services\TestimonialService;
 use Illuminate\Http\Request;
 use App\Traits\HasUiTraits;
@@ -21,8 +22,8 @@ class TestimonialController extends Controller
      */
     public function index(TestimonialDataTable $testimonialDataTable)
     {
-
-        $this->setTableAdapter('datatable');
+        // dd(['TIA','GBA'],Airport::pluck('name'))
+;        $this->setTableAdapter('datatable');
         $this->setDatatable($testimonialDataTable);
         $testimonials = $this->testimonialService->paginate();
         return $this->generateList(

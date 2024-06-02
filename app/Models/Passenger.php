@@ -103,7 +103,7 @@ class Passenger extends Model
         ],
         'date_of_birth'=> [
             'label' => 'Date of birth',
-            'type' => 'text',
+            'type' => 'date',
             'placeholder' => 'Enter Date of birth',
             'required' => true,
             'span' => 'col-md-6' 
