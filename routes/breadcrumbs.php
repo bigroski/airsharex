@@ -96,6 +96,7 @@ Breadcrumbs::resource('booking', 'Booking');
 Breadcrumbs::resource('manifest', 'Manifest');
 Breadcrumbs::resource('page', 'Page');
 Breadcrumbs::resource('bills', 'Bills');
+Breadcrumbs::resource('device', 'Device');
 // Breadcrumbs::resource('bills-rules','Bill RUles');
 // Breadcrumbs::resource('logistic-request','Logistic Request');
 // Breadcrumbs::resource('consignee', 'Consignee');

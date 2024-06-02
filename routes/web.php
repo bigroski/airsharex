@@ -7,6 +7,7 @@ use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 use App\Http\Controllers\OnlineBookingController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PenController;
+use App\Http\Controllers\DeviceController;
 
 use Bigroski\Tukicms\App\Http\Middleware\TukiAccessMiddleware;
 
@@ -51,7 +52,7 @@ Route::prefix("admin")->middleware(
     Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
     Route::resource('book', BookController::class, ['as' => 'web']);
     Route::resource('pen', PenController::class, ['as' => 'web']);
-	
+	Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
 

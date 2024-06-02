@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pen;
-use App\Classes\Services\PenService;
+use App\Models\Table;
+use App\Classes\Services\TableService;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
-use App\DataTables\PenDataTable;
-class PenController extends Controller
+use App\DataTables\TableDataTable;
+class TableController extends Controller
 {
     use HasUiTraits;
 
-    public function __construct(protected PenService $penService)
+    public function __construct(protected TableService $tableService)
     {
-        $this->setRoutes(['create', 'edit', 'destroy'], 'pen', 'web');
+        $this->setRoutes(['create', 'edit', 'destroy'], 'table', 'web');
     }
     /**
      * Display a listing of the resource.
      */
-    public function index(PenDataTable $datatable)
+    public function index(TableDataTable $datatable)
     {
         //
                 // ---------------------------------------------
@@ -30,11 +30,11 @@ class PenController extends Controller
         // End of Datatable Adapter
         // ---------------------------------------------
         // Permission authorization;
-        // $this->authorize('web.pen.index');
+        // $this->authorize('web.table.index');
         $model = null;
         return $this->generateList(
-            ['Pen', 'List of all Pen'],
-            $this->penService->getModelFields('pen'),
+            ['Table', 'List of all Table'],
+            $this->tableService->getModelFields('table'),
             $model
         );
     }
@@ -46,8 +46,8 @@ class PenController extends Controller
     {
         //
         return $this->renderCreateForm(
-            $this->penService->getModel('pen'),
-            ['Pen', 'Create Pen'],
+            $this->tableService->getModel('table'),
+            ['Table', 'Create Table'],
         );
     }
 
@@ -57,11 +57,11 @@ class PenController extends Controller
     public function store(Request $request)
     {
         //
-        $Pen = $this->penService->makePen($request);
+        $Table = $this->tableService->makeTable($request);
 
-        $request->session()->flash('success', $Pen->id . ' has been created');
+        $request->session()->flash('success', $Table->id . ' has been created');
 
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.table.index');
     }
 
     /**
@@ -77,11 +77,11 @@ class PenController extends Controller
      */
     public function edit(string $id)
     {
-        $pen = $this->penService->findById($id);
+        $table = $this->tableService->findById($id);
         // dd($post->categories);
         return $this->renderUpdateForm(
-            $pen,
-            ['Update Pen', 'Edit Pen'],
+            $table,
+            ['Update Table', 'Edit Table'],
         );
     }
 
@@ -90,9 +90,9 @@ class PenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->penService->updatePen($request, $id);
+        $this->tableService->updateTable($request, $id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.table.index');
     }
 
     /**
@@ -100,8 +100,8 @@ class PenController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        $this->penService->delete($id);
+        $this->tableService->delete($id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.table.index');
     }
 }

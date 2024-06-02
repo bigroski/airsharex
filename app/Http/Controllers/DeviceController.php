@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pen;
-use App\Classes\Services\PenService;
+use App\Models\Device;
+use App\Classes\Services\DeviceService;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
-use App\DataTables\PenDataTable;
-class PenController extends Controller
+use App\DataTables\DeviceDataTable;
+class DeviceController extends Controller
 {
     use HasUiTraits;
 
-    public function __construct(protected PenService $penService)
+    public function __construct(protected DeviceService $deviceService)
     {
-        $this->setRoutes(['create', 'edit', 'destroy'], 'pen', 'web');
+        $this->setRoutes(['create', 'edit', 'destroy'], 'device', 'web');
     }
     /**
      * Display a listing of the resource.
      */
-    public function index(PenDataTable $datatable)
+    public function index(DeviceDataTable $datatable)
     {
         //
                 // ---------------------------------------------
@@ -30,11 +30,11 @@ class PenController extends Controller
         // End of Datatable Adapter
         // ---------------------------------------------
         // Permission authorization;
-        // $this->authorize('web.pen.index');
+        // $this->authorize('web.device.index');
         $model = null;
         return $this->generateList(
-            ['Pen', 'List of all Pen'],
-            $this->penService->getModelFields('pen'),
+            ['Device', 'List of all Device'],
+            $this->deviceService->getModelFields('device'),
             $model
         );
     }
@@ -46,8 +46,8 @@ class PenController extends Controller
     {
         //
         return $this->renderCreateForm(
-            $this->penService->getModel('pen'),
-            ['Pen', 'Create Pen'],
+            $this->deviceService->getModel('device'),
+            ['Device', 'Create Device'],
         );
     }
 
@@ -57,11 +57,11 @@ class PenController extends Controller
     public function store(Request $request)
     {
         //
-        $Pen = $this->penService->makePen($request);
+        $Device = $this->deviceService->makeDevice($request);
 
-        $request->session()->flash('success', $Pen->id . ' has been created');
+        $request->session()->flash('success', $Device->id . ' has been created');
 
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.device.index');
     }
 
     /**
@@ -77,11 +77,11 @@ class PenController extends Controller
      */
     public function edit(string $id)
     {
-        $pen = $this->penService->findById($id);
+        $device = $this->deviceService->findById($id);
         // dd($post->categories);
         return $this->renderUpdateForm(
-            $pen,
-            ['Update Pen', 'Edit Pen'],
+            $device,
+            ['Update Device', 'Edit Device'],
         );
     }
 
@@ -90,9 +90,9 @@ class PenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->penService->updatePen($request, $id);
+        $this->deviceService->updateDevice($request, $id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.device.index');
     }
 
     /**
@@ -100,8 +100,8 @@ class PenController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        $this->penService->delete($id);
+        $this->deviceService->delete($id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.pen.index');
+        return redirect()->route('web.device.index');
     }
 }
