@@ -232,6 +232,8 @@
            
         </footer>
         @yield('page-scripts')
+        <script src="{{asset('vendor/airsharex/assets/vendor/jquery.min.js')}}"></script>
+        <script src="{{asset('vendor/airsharex/assets/vendor/parallax.min.js')}}"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/aos/aos.js')}}"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>

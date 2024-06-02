@@ -1,13 +1,14 @@
 <x-airshare-layout>
 <!-- Breadcrumbs -->
-<section class="component breadcrumbs" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+
+<section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0" >
 		<div class="container">
             <div class="breadcrumb-content text-white">
                 <h1>ABOUT US</h1>
                 <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
             </div>
 		</div>
-</section>
+</section> 
 <!-- Breadcrumbs -->
 
 <!-- About -->
@@ -59,7 +60,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="abt-img">
-                        <img src="{{ asset('vendor/airsharex/assets/img/about-img1.png') }}" class="abt-img1" />
+                        <img src="{{ asset('vendor/airsharex/assets/img/about-img1.png') }}" class="abt-img11" />
                         <img src="{{ asset('vendor/airsharex/assets/img/about-img2.png') }}" class="abt-img2"/>
                     </div>
                 </div>

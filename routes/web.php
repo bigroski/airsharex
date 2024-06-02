@@ -24,6 +24,8 @@ Route::get('/services', [StaticController::class, 'services']);
 Route::get('/blog', [StaticController::class, 'blog']);
 Route::get('/signup', [StaticController::class, 'signup']);
 Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
+Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::get('/history', [StaticController::class, 'history']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact', [StaticController::class, 'contact']);
