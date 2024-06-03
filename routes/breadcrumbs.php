@@ -28,6 +28,9 @@ Breadcrumbs::for('web.testimonials.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('web.passengers.create', function (BreadcrumbTrail $trail) {
     $trail->push('passengers', route('web.passengers.create'));
 });
+Breadcrumbs::for('web.gallery.create', function (BreadcrumbTrail $trail) {
+    $trail->push('gallery', route('web.gallery.create'));
+});
 Breadcrumbs::macro('resource', function (string $name, string $title) {
     // Home > Blog
     Breadcrumbs::for("web.{$name}.index", function (BreadcrumbTrail $trail) use ($name, $title) {
@@ -99,7 +102,7 @@ Breadcrumbs::resource('vendors', 'Vendors');
 Breadcrumbs::resource('airports', 'Airports');
 Breadcrumbs::resource('passengers', 'Passengers');
 Breadcrumbs::resource('testimonials', 'Testimonials');
-
+Breadcrumbs::resource('gallery', 'Gallery');
 Breadcrumbs::resource('customer', 'Customer');
 
 Breadcrumbs::resource('post', 'Post');
