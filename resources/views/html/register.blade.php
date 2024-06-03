@@ -1,5 +1,5 @@
 <x-airshare-layout>
-<section class="component breadcrumbs" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+<section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0" >
 		<div class="container">
             <div class="breadcrumb-content text-white">
                 <h1>Register</h1>
@@ -41,8 +41,11 @@
                   I accept <a href="">term & conditions</a> and <a href="">privacy policy</a>.
                 </label>
               </div>
-              <div class="d-grid">
+              <div class="d-flex gap-4">
                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Register</button>
+                <button class="btn btn-outline-secondary btn-login text-uppercase fw-bold" type="submit">Login</button>
+
+                
               </div>
               <hr class="my-4">
               <div class="d-grid mb-2">

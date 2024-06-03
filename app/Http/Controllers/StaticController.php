@@ -35,6 +35,9 @@ class StaticController extends Controller
 	public function register(){
 		return view('html.register');
 	}
+	public function forgetpassord(){
+		return view('html.forgetpassord');
+	}
 	public function history(){
 		return view('html.history');
 	}
@@ -52,5 +55,8 @@ class StaticController extends Controller
 	}
 	public function gallery(){
 		return view('html.gallery');
+	}
+	public function emailverify(){
+		return view('html.emailverify');
 	}
 }
