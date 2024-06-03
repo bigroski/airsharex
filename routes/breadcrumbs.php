@@ -80,7 +80,9 @@ Breadcrumbs::for("merchendise.receive", function (BreadcrumbTrail $trail) {
     $trail->push('Receive Merchandise');
 });
 
-
+Breadcrumbs::for('web.setting.system', function (BreadcrumbTrail $trail){
+    $trail->push('System Setting');
+});
 
 
 Breadcrumbs::resource('post', 'Post');
