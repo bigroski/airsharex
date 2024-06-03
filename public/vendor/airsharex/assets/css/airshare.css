@@ -985,6 +985,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
   margin-top: -150px;
   position: relative;
   z-index: 999;
+  overflow: visible;
   /* background: #fff; */
 }
 .filter-container {
@@ -1921,10 +1922,39 @@ section.testimonials-section{
 
 
  footer {
-  padding: 65px 0 0;
+  padding: 265px 0 0px;
   border-top: 4px solid #f00;
   background: #f5f5f5;
-
+  background-position: bottom left !important;
+  background-repeat: no-repeat !important;
+  background-size:cover !important;
+  position: relative;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgb(255,255,255);
+      /* background: linear-gradient(180deg, rgb(146, 146, 146) 0%, rgb(189, 189, 189) 30%, rgb(255, 255, 255) 100%); */
+      opacity: 0.85;
+      -webkit-transition-property: all;
+      -moz-transition-property: all;
+      transition-property: all;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-timing-function: ease;
+      -moz-transition-timing-function: ease;
+      transition-timing-function: ease;
+      z-index: 1;
+  }
+  .container{
+    position: relative;
+    z-index: 1;
+  }
   .footer-logo img {
     max-height: 90px;
     width: auto;
@@ -1989,6 +2019,8 @@ section#clients{
   color: #fff;
   text-align: center;
   padding: 20px 0;
+  position: relative;
+        z-index: 1;
 }
 
 }

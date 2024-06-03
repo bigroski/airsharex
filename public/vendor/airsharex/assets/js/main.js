@@ -403,7 +403,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+const elem = document.getElementById('foo');
+const rangepicker = new DateRangePicker(elem, {
+  autohide: false
+});
 
+const startElem = document.getElementById('start');
+const endElem = document.getElementById('end');
+
+startElem.addEventListener('changeDate', function(e) {
+  console.log('start', e.detail.date);
+});
+
+endElem.addEventListener('changeDate', function(e) {
+  console.log('end', e.detail.date);
+});
 
 
 // parallax

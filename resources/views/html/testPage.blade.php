@@ -54,14 +54,14 @@
 			<label>To</label>
 			<input type="text" class="form-control"  placeholder="To">
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			<label>Departure</label>
-			<input type="date" class="form-control" >
+			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+			<div id="foo">
+  <input type="text" name="start" id="start" class="form-control" placeholder="Depature">
+  
+  <input type="text" name="end" id="end" class="form-control" placeholder="Arrival">
+</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			<label>Arrival</label>
-			<input type="date" class="form-control" placeholder="Arrival" >
-			</div>
+			
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 			<label>Passenger</label>
 			<input type="number" class="form-control" placeholder="passenger" >
