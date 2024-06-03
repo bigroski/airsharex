@@ -39,16 +39,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-
-          <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="index.html" class="active">Home 1 - index.html</a></li>
-            </ul>
-          </li>
-
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          {!! getFrontEndMenu() !!}
           <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li>
@@ -90,10 +81,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-
-          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Login</a></li>
-          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Signup</a></li>
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->

@@ -28,7 +28,7 @@
 				<button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
 			</li>
 			<!-- Add more items as needed -->
-			</ul>
+		</ul>
 
 			<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
