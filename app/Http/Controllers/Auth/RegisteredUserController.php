@@ -45,7 +45,13 @@ class RegisteredUserController extends Controller
             'type'=>$request->type,
         ]);
 
-        $user->assignRole('Customer');
+        if($request->type=='vendor'){
+            $user->assignRole('Vendor');
+
+        }else{
+            $user->assignRole('Customer');
+        }
+        
         event(new Registered($user));
 
         Auth::login($user);
