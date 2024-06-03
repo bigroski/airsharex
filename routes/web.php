@@ -5,6 +5,7 @@ use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VendorController;
@@ -52,6 +53,10 @@ Route::get('/gallery', [StaticController::class, 'gallery']);
 // Route::resource('admin/passengers', PassengerController::class, ['as' => 'web']);
 // Route::resource('admin/testimonials', TestimonialController::class, ['as' => 'web']);
 
+//Register User
+
+Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('customer.register');
+
 Route::prefix("admin")->middleware(
     [
         'web',
@@ -65,7 +70,6 @@ Route::prefix("admin")->middleware(
         Route::resource('passengers', PassengerController::class, ['as' => 'web']);
 
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
-        Route::resource('customer', CustomerController::class, ['as' => 'web']);        
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
 
     }

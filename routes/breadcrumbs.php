@@ -103,7 +103,6 @@ Breadcrumbs::resource('airports', 'Airports');
 Breadcrumbs::resource('passengers', 'Passengers');
 Breadcrumbs::resource('testimonials', 'Testimonials');
 Breadcrumbs::resource('gallery', 'Gallery');
-Breadcrumbs::resource('customer', 'Customer');
 
 Breadcrumbs::resource('post', 'Post');
 Breadcrumbs::resource('menu', 'Menu');
