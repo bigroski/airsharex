@@ -8,6 +8,15 @@
     </div>
   </section>
   <section class="login">
+  @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -37,13 +46,13 @@
               </div>
 
               <div class="form-floating mb-3">
-                <select class="form-select @error('user_type') is-invalid @enderror" id="floatingUserType" name="user_type" required>
+                <select class="form-select @error('type') is-invalid @enderror" id="floatingUserType" name="type" required>
                   <!-- <option value="" disabled selected>Select User Type</option> -->
-                  <option value="customer" {{ old('user_type') == 'cusromer' ? 'selected' : '' }}>Customer</option>
-                  <option value="vendor" {{ old('user_type') == 'vendor' ? 'selected' : '' }}>Vendor</option>
+                  <option value="customer" {{ old('type') == 'cusromer' ? 'selected' : '' }}>Customer</option>
+                  <option value="vendor" {{ old('type') == 'vendor' ? 'selected' : '' }}>Vendor</option>
                 </select>
                 <label for="floatingUserType">User Type</label>
-                @error('user_type')
+                @error('type')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
               </div>

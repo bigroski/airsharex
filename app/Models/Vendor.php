@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Bigroski\Tukicms\App\Traits\HasListableTrait;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Vendor extends Model
 {
@@ -135,6 +136,8 @@ protected $casts = [
             'label' => ' Website',
             'type' => 'text'
         ]
-    ];
-    
+    public function user(): MorphOne
+    {
+        return $this->morphOne(User::class, 'detailable');
+    }
 }

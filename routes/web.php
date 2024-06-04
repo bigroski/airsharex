@@ -5,6 +5,7 @@ use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 use Bigroski\Tukicms\App\Http\Controllers\SiteController;
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\TestimonialController;
@@ -55,8 +56,8 @@ Route::get('/gallery', [StaticController::class, 'gallery']);
 
 //Register User
 
-Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('customer.register');
-
+Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
+Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
 Route::prefix("admin")->middleware(
     [
         'web',

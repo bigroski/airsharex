@@ -1,28 +1,34 @@
 <x-airshare-layout>
-<section class="component breadcrumbs" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
-		<div class="container">
-            <div class="breadcrumb-content text-white">
-                <h1>Login</h1>
-                <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
-            </div>
-		</div>
-</section>
-<section class="login">
-<div class="row">
+  <section class="component breadcrumbs" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+    <div class="container">
+      <div class="breadcrumb-content text-white">
+        <h1>Login</h1>
+        <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
+      </div>
+    </div>
+  </section>
+  <section class="login">
+    <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-            <form action="/user/register" method="POST" id="registrationForm" novalidate>
-             @csrf
-        @method('post')
+            <form action="/user/login" method="POST" id="registrationForm" novalidate>
+              @csrf
+              @method('post')
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" name="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com">
+                <label for="floatingInputEmail">Email address</label>
+                @error('email')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
+                @error('password')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
               </div>
 
               <div class="form-check mb-3">
@@ -51,8 +57,7 @@
         </div>
       </div>
     </div>
-</section>
+  </section>
 
 
 </x-airshare-layout>
-

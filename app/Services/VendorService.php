@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Post;
 use App\Repositories\VendorRepository;
 use Illuminate\Validation\Rules;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 // use App\Models\User;
 
 class VendorService extends BaseService{
@@ -24,7 +25,9 @@ class VendorService extends BaseService{
 	 */
 
 	public function create($request){
+		$user = Auth::user();
 		$data = $request->all();
+		$data['user_id'] = $user->type=='vendor'??$user->id??null;
 		$vendor = $this->vendorRepository->create($data);		
 		return $vendor;
 	}
@@ -42,6 +45,8 @@ class VendorService extends BaseService{
 	public function update($request, $airport){
 		$airport = $this->findById($airport);	
 		$data = $request->all();
+		$user = Auth::user();
+		$data['user_id'] = $user->type=='vendor'??$user->id??null;
 		$this->vendorRepository->update($data, $airport);
 		
 		return $airport;
