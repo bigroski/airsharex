@@ -108,10 +108,10 @@
         {{$slot}}
 
 
-        <footer style="background:url({{asset('vendor/airsharex/assets/img/image-asset.jpg')}});">
+        <footer style="background:url({{asset('vendor/airsharex/assets/img/footer-bg.jpeg')}});">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-5 col-sm-12 col-12">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                       <div class="footer-widget-contact">
                           <a href="{{url('/')}}" class="footer-logo d-flex align-items-center">
                             <img src="{{asset('vendor/airsharex/assets/img/logo.png')}}" alt="">
@@ -125,7 +125,7 @@
                           </div>
                       </div>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-sm-12 col-12">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                       <div class="row">
                           <div class="col-lg-3 col-md-4 col-sm-12 col-12">
                               <div class="footer-widget footer-links">
