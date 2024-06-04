@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{$basicSetting->site_name}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -35,7 +35,7 @@
 
       <a href="{{url('/')}}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="{{asset('vendor/airsharex/assets/img/logo.png')}}" alt="">
+        <img src="{{$appearanceSetting->logo}}" alt="">
         <!-- <h1>HeroBiz<span>.</span></h1> -->
       </a>
 
@@ -106,9 +106,9 @@
                           </a>
                           <div class="contact-info">
                             <ul>
-                              <li>210, Dhobidhara Kathmandu, Nepal</li>
-                              <li><strong>Phone:</strong> 9861218495</li>
-                              <li><strong>Email:</strong> info@outrightnepal.com.np</li>
+                              <li>{{$basicSetting->address}}</li>
+                              <li><strong>Phone:</strong> {{$basicSetting->contact_number}}</li>
+                              <li><strong>Email:</strong> {{$basicSetting->email}}</li>
                             </ul>
                           </div>
                       </div>
@@ -185,7 +185,7 @@
                  <!-- ======= Clients Section ======= -->
             <section id="clients" class="clients">
               <div class="container">
-                        <div class="title"><h3>In Assiciation With</h3></div>
+                        <div class="title"><h3>In Association With</h3></div>
                 <div class="clients-slider swiper">
                   <div class="swiper-wrapper align-items-center">
                   <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
