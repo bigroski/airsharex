@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/vendor/airsharex/assets/css/airshare.css">
 <section class="component component-hero hero" style="background:url('{{ $featured_image }}');">
 	
 	<div class="hero-content">

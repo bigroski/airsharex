@@ -5,7 +5,8 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-
+use App\Settings\BasicSetting;
+use App\Settings\Appearance;
 class AirshareLayout extends Component
 {
     /**
@@ -21,6 +22,11 @@ class AirshareLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.airshare-layout');
+        $basicSetting = app(BasicSetting::class);
+        $appearanceSetting = app(Appearance::class);
+        return view('components.airshare-layout')->with([
+            'basicSetting' => $basicSetting,
+            'appearanceSetting' => $appearanceSetting
+        ]);
     }
 }
