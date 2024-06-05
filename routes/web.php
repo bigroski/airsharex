@@ -13,6 +13,7 @@ use App\Http\Controllers\VendorController;
 use Bigroski\Tukicms\App\Http\Middleware\TukiAccessMiddleware;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MailingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,7 @@ Route::prefix("admin")->middleware(
 
     }
 );
+Route::resource('mailing-list', MailingListController::class, ['as' => 'web']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

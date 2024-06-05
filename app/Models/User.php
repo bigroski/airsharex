@@ -48,16 +48,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function detailable(): MorphTo
+   
+    public function Vendor()
     {
-        return $this->morphTo();
+        return $this->hasOne(Vendor::class);
     }
-    // public function Vendor()
-    // {
-    //     return $this->morphOne(Vendor::class, 'detailable');
-    // }
-    // public function customer()
-    // {
-    //     return $this->morphOne(Customer::class, 'detailable');
-    // }
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
 }

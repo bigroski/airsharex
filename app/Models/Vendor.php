@@ -15,13 +15,19 @@ class Vendor extends Model
    'name',
    'type',
     'country_id',
+    'user_id',
+    'country_name',
+    'city',
+    'state',
    'address',
+   'address_one',
    'contact_person',
    'phone',
    'email',
    'website',
+   'enabled'
 ];
-    
+
 protected $casts = [
     'id' => 'integer',
     'created_at' => 'timestamp',
@@ -135,9 +141,10 @@ protected $casts = [
         'website' => [
             'label' => ' Website',
             'type' => 'text'
-        ]
-    public function user(): MorphOne
+        ]];
+
+    public function user()
     {
-        return $this->morphOne(User::class, 'detailable');
+        return $this->belongsTo(User::class);
     }
 }

@@ -11,7 +11,7 @@ use App\Traits\HasUiTraits;
 class PassengerController extends Controller
 {
     use HasUiTraits;
-    public function __Construct(private passengerService $passengerService){
+    public function __construct(private passengerService $passengerService){
         $this->setRoutes(['create', 'edit', 'destroy'], 'passengers', 'web');
 
     }
