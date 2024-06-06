@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('tukicms::auth.login');
+        return view('auth.login');
     }
 
     /**

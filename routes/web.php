@@ -14,6 +14,11 @@ use Bigroski\Tukicms\App\Http\Middleware\TukiAccessMiddleware;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\OnlineBookingController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\PenController;
+use App\Http\Controllers\DeviceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,15 +38,32 @@ Route::get('/home', [StaticController::class, 'home']);
 Route::get('/about', [StaticController::class, 'about']);
 Route::get('/services', [StaticController::class, 'services']);
 Route::get('/blog', [StaticController::class, 'blog']);
+Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 Route::get('/signup', [StaticController::class, 'signup']);
 Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
+Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::get('/history', [StaticController::class, 'history']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact', [StaticController::class, 'contact']);
 Route::get('/policy', [StaticController::class, 'policy']);
 Route::get('/disclaimer', [StaticController::class, 'disclaimer']);
 Route::get('/gallery', [StaticController::class, 'gallery']);
-
+Route::prefix("admin")->middleware(
+    [
+        'web',
+        'auth',
+        TukiAccessMiddleware::class
+    // 'auth:web',
+    // config('jetstream.auth_session'),
+    // 'verified'
+    ]
+)->group( function () {
+    Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
+    Route::resource('book', BookController::class, ['as' => 'web']);
+    Route::resource('pen', PenController::class, ['as' => 'web']);
+	Route::resource('device', DeviceController::class, ['as' => 'web']);
+});
 
 
 // Route::get('/dashboard', function () {

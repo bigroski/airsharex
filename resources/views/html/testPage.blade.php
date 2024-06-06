@@ -1,6 +1,6 @@
 <x-airshare-layout>
 
-<section class="component component-hero hero" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}">
 	
 	<div class="hero-content">
 		<div class="container">
@@ -47,27 +47,28 @@
 			</div>
 			<div class="row g-3">
 			<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-			
+			<label>From</label>
 			<input type="text"  class="form-control" placeholder="From">
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-			
+			<label>To</label>
 			<input type="text" class="form-control"  placeholder="To">
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			
-			<input type="date" class="form-control" >
+			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+			<div id="foo">
+  <input type="text" name="start" id="start" class="form-control" placeholder="Depature">
+  
+  <input type="text" name="end" id="end" class="form-control" placeholder="Arrival">
+</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
 			
-			<input type="date" class="form-control" >
-			</div>
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-			
-			<input type="number" class="form-control"  >
+			<label>Passenger</label>
+			<input type="number" class="form-control" placeholder="passenger" >
 			</div>
 
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
+				<label>&nbsp;</label>
 			<button type="submit" class="btn btn-danger mb-3">Search</button>
 			</div>
 			
@@ -272,17 +273,17 @@
 		</div>
 	   </div>
       </div>
-    </section><!-- End Wy choose us  Section -->
-
-
+	  <div class="img-box-5"><img alt="spinner" loading="lazy" width="193" height="193" decoding="async" data-nimg="1" class="img-1 spin-right" srcset="{{ asset('vendor/airsharex/assets/img/about-bg.png') }}" src="{{ asset('vendor/airsharex/assets/img/about-bg.png') }}" style="color: transparent;"></div>
+	
+	</section><!-- End Wy choose us  Section -->
+	
+	
 	<!-- ======= CTA Section ======= -->
-	<section id="cta" class="cta">
-	<div class="cta-image">
-		<img src="{{ asset('vendor/airsharex/assets/img/cta-img.png') }}" />
-	</div>
+	<section id="cta" class="cta header-image light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="100" data-image-src="{{ asset('vendor/airsharex/assets/img/hd-1.jpg') }}">
+	
 	<div class="cta-content">
 		<div class="container">
-		<div class="row d-flex justify-content-center align-items-center">
+		<div class="row d-flex justify-content-center align-items-center text-white">
 			<div class="col-md-6 col-sm-12 col-12">
 				<h2><span>Daily</span> Mountain Flight</h2>
 			</div>
@@ -343,7 +344,7 @@
 	<!-- End CTA Section -->
 
 <!-- ======= Offered tickets ======= -->
-<section id="tickets" class="tickets">
+<section id="tickets" class="tickets ">
 <div class="container">
 <div class="title d-flex">Tickets in offers</div>
 <div class="swiper grideSwiper">

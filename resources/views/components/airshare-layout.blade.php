@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{$basicSetting->site_name}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,6 +20,8 @@
         <link href="{{asset('vendor/airsharex/assets/vendor/aos/aos.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!-- Styles -->
         <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
@@ -33,22 +35,13 @@
 
       <a href="{{url('/')}}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="{{asset('vendor/airsharex/assets/img/logo.png')}}" alt="">
+        <img src="{{$appearanceSetting->logo}}" alt="">
         <!-- <h1>HeroBiz<span>.</span></h1> -->
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
-
-          <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="index.html" class="active">Home 1 - index.html</a></li>
-            </ul>
-          </li>
-
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          {!! getFrontEndMenu() !!}
           <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li>
@@ -90,10 +83,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-
-          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Login</a></li>
-          <li class="mobile-nav"><a class="nav-link " href="index.html#contact">Signup</a></li>
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
@@ -106,7 +96,7 @@
         {{$slot}}
 
 
-        <footer >
+        <footer style="background:url({{asset('vendor/airsharex/assets/img/image-asset.jpg')}});">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-5 col-sm-12 col-12">
@@ -116,16 +106,16 @@
                           </a>
                           <div class="contact-info">
                             <ul>
-                              <li>210, Dhobidhara Kathmandu, Nepal</li>
-                              <li><strong>Phone:</strong> 9861218495</li>
-                              <li><strong>Email:</strong> info@outrightnepal.com.np</li>
+                              <li>{{$basicSetting->address}}</li>
+                              <li><strong>Phone:</strong> {{$basicSetting->contact_number}}</li>
+                              <li><strong>Email:</strong> {{$basicSetting->email}}</li>
                             </ul>
                           </div>
                       </div>
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-12 col-12">
                       <div class="row">
-                          <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                          <div class="col-lg-3 col-md-4 col-sm-12 col-12">
                               <div class="footer-widget footer-links">
                                   <h4>About AirshareX</h4>
                                   <ul>
@@ -150,7 +140,7 @@
                                   </ul>
                               </div>
                           </div>
-                          <div class="col-lg-4 col-md-6 col-sm-12 col-12 footer-links">
+                          <div class="col-lg-3 col-md-4 col-sm-12 col-12 footer-links">
                           <div class="footer-widget">
                                   <h4>Our Services</h4>
                                   <ul>
@@ -173,26 +163,19 @@
                               </div>
                           </div>
                         
-                          <div class="col-lg-4 col-md-6 col-sm-12 col-12 footer-links">
+                          <div class="col-lg-6 col-md-4 col-sm-12 col-12 footer-links">
                           <div class="footer-widget">
-                                  <h4>Help & Support</h4>
-                                  <ul>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">Link</a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i>  <a href="">Link</a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i>  <a href="">Link</a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i>   <a href="">Link</a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">Link</a>
-                                      </Li>
-                                  </ul>
+                                  <h4>Newsletter Module</h4>
+                                  <p>Signup to our Newsletter to receive latest updates</p>
+                                  <form>
+                                  <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Email address</label>
+                                  </div>
+                                  <div class="d-flex">
+                <button class="btn btn-danger btn-footer" type="submit">Subscribe</button>
+              </div>
+                                    </form>
                               </div>
                           </div>
                       </div>
@@ -201,8 +184,8 @@
             </div>
                  <!-- ======= Clients Section ======= -->
             <section id="clients" class="clients">
-              <div class="container" data-aos="zoom-out">
-                        <div class="title"><h3>In Assiciation With</h3></div>
+              <div class="container">
+                        <div class="title"><h3>In Association With</h3></div>
                 <div class="clients-slider swiper">
                   <div class="swiper-wrapper align-items-center">
                   <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
@@ -232,6 +215,10 @@
            
         </footer>
         @yield('page-scripts')
+        <script src="{{asset('vendor/airsharex/assets/vendor/jquery.min.js')}}"></script>
+        <script src="{{asset('vendor/airsharex/assets/vendor/parallax.min.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/aos/aos.js')}}"></script>
         <script src="{{asset('vendor/airsharex/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
