@@ -73,8 +73,8 @@ class Testimonial extends Model
             'with' => [
                 'relationship' => 'airport',
                 'model' => 'Airport',
-                'from' => 'name,id',
-                'valueFrom' => 'quantifiedName'
+                'from' => 'name',
+                // 'valueFrom' => 'quantifiedName'
             ],
             'prefetch' => true,
         ],

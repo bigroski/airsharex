@@ -153,7 +153,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+/**
+   * Datepicker
+   */
 
+  if ($(".date-picker").length) {
+    $(".date-picker").datepicker();
+    }
+    if ($(".time-picker").length) {
+        $(function () {
+            $(".time-picker").timepicker();
+        });
+    }
   /**
    * Scroll top button
    */
@@ -403,22 +414,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-const elem = document.getElementById('foo');
-const rangepicker = new DateRangePicker(elem, {
-  autohide: false
+
+
+// select2
+
+$(document).ready(function() {
+  $selectElement = $('.test_skill').select2({
+    placeholder: "Please select an skill",
+    allowClear: false,
+    theme: "classic"
+  });
 });
 
-const startElem = document.getElementById('start');
-const endElem = document.getElementById('end');
 
-startElem.addEventListener('changeDate', function(e) {
-  console.log('start', e.detail.date);
+// add-sub button
+document.addEventListener('DOMContentLoaded', function () {
+  const containers = document.querySelectorAll('.qty-container');
+  const totalQuantitySpan = document.getElementById('totalQuantity');
+
+  function updateTotalQuantity() {
+      let total = 0;
+      document.querySelectorAll('input[name="quantity"]').forEach(input => {
+          total += parseInt(input.value);
+      });
+      totalQuantitySpan.textContent = total;
+  }
+
+  containers.forEach(container => {
+      const qtyMinusButton = container.querySelector('.qtyminus');
+      const qtyPlusButton = container.querySelector('.qtyplus');
+      const qtyInput = container.querySelector('input[name="quantity"]');
+
+      qtyMinusButton.addEventListener('click', function () {
+          let currentValue = parseInt(qtyInput.value);
+          if (currentValue > 0) {
+              qtyInput.value = currentValue - 1;
+              updateTotalQuantity();
+          }
+      });
+
+      qtyPlusButton.addEventListener('click', function () {
+          let currentValue = parseInt(qtyInput.value);
+          qtyInput.value = currentValue + 1;
+          updateTotalQuantity();
+      });
+  });
+
+  // Initial calculation of total quantity
+  updateTotalQuantity();
 });
 
-endElem.addEventListener('changeDate', function(e) {
-  console.log('end', e.detail.date);
+
+// passenger popup
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleButton = document.getElementById('toggleButton');
+  const popup = document.getElementById('popup');
+
+  toggleButton.addEventListener('click', function (event) {
+      popup.classList.toggle('show');
+      event.stopPropagation();  // Prevent the click event from propagating to the document
+  });
+
+  document.addEventListener('click', function () {
+      if (popup.classList.contains('show')) {
+          popup.classList.remove('show');
+      }
+  });
+
+  popup.addEventListener('click', function (event) {
+      event.stopPropagation();  // Prevent the click event from propagating to the document
+  });
 });
 
+
+// radio one/two way
+function toggleInputs() {
+  const isOneWay = document.getElementById('inlineRadio1').checked;
+  const endInput = document.getElementById('end');
+  endInput.disabled = isOneWay;
+}
+
+
+// pricerange
+
+$(function () {
+  $(".price-range").slider({
+    step: 500,
+    range: true,
+    min: 0,
+    max: 500000,
+    values: [15000, 100000],
+    slide: function (event, ui) {
+        $(".priceRange").val("Rs " + ui.values[0].toLocaleString() + " - Rs " + ui.values[1].toLocaleString());
+    },
+});
+$(".priceRange").val("Rs " + $(".price-range").slider("values", 0).toLocaleString() + " - Rs " + $(".price-range").slider("values", 1).toLocaleString());
+});
 
 // parallax
 

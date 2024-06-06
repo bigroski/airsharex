@@ -61,12 +61,28 @@ return [
 
                         ],
                         [
-                            'name' => 'Devices',
+                            'name' => 'Airports',
                             'icon-class' => 'fas fa-book-medical',
-                            'routeName' => 'web.device.index',
+                            'routeName' => 'web.airports.index',
                             'permission-name' => 'web.booking.create',
 
                         ],
+                        [
+                            'name' => 'Testimonials',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.testimonials.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        [
+                            'name' => 'Gallery',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.gallery.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        
+                        
                         // [
                         //     'name' => 'Faqs Category',
                         //     'icon-class' => 'fas fa-book-medical',
@@ -105,6 +121,20 @@ return [
                 [
                     'name' => 'Users',
                     'sub_menus' => [
+                        [
+                            'name' => 'Vendors',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.vendors.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        [
+                            'name' => 'Passengers',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.airports.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
                         [
                             'name' => 'Customers',
                             'icon-class' => 'fas fa-user-friends',

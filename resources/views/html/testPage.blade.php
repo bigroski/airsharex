@@ -46,30 +46,59 @@
 			</div>
 			</div>
 			<div class="row g-3">
-			<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-			<label>From</label>
-			<input type="text"  class="form-control" placeholder="From">
+			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
+				<select class="test_skill form-control" placeholder="From">
+					<option >KTM</option>
+				</select>
 			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-			<label>To</label>
-			<input type="text" class="form-control"  placeholder="To">
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<select class="test_skill form-control " placeholder="to">
+					<option >POK</option>
+				</select>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-			<div id="foo">
-  <input type="text" name="start" id="start" class="form-control" placeholder="Depature">
-  
-  <input type="text" name="end" id="end" class="form-control" placeholder="Arrival">
-</div>
+			<div class="col-lg-5 col-md-4 col-sm-6 col-12">
+				<div id="foo">
+					<input type="text" name="start" id="start" class="form-control date-picker" placeholder="Depature">
+					<input type="text" name="end" id="end" class="form-control date-picker" placeholder="Arrival">
+				</div>
 			</div>
+				
 			
-			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-			<label>Passenger</label>
-			<input type="number" class="form-control" placeholder="passenger" >
-			</div>
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+				<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
+        : <span id="totalQuantity">0</span>
+    </span></button>
+					<div class="count-table" id="popup">
+						<div class="pass-count" >
+							<h4>Adult</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Child</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Infant</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+					</div>
 
+			</div>
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-				<label>&nbsp;</label>
-			<button type="submit" class="btn btn-danger mb-3">Search</button>
+				
+				<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
 			</div>
 			
 			</div>

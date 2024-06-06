@@ -59,4 +59,16 @@ class StaticController extends Controller
 	public function emailverify(){
 		return view('html.emailverify');
 	}
+	public function account(){
+		return view('html.account');
+	}
+	public function search(){
+		return view('html.search');
+	}
+	public function news(){
+		return view('html.news');
+	}
+	public function newsdetail(){
+		return view('html.newsdetail');
+	}
 }

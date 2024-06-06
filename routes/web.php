@@ -49,6 +49,11 @@ Route::get('/contact', [StaticController::class, 'contact']);
 Route::get('/policy', [StaticController::class, 'policy']);
 Route::get('/disclaimer', [StaticController::class, 'disclaimer']);
 Route::get('/gallery', [StaticController::class, 'gallery']);
+Route::get('/account', [StaticController::class, 'account']);
+Route::get('/search', [StaticController::class, 'search']);
+Route::get('/news',[StaticController::class,'news']);
+Route::get('/newsdetail',[StaticController::class,'newsdetail']);
+
 Route::prefix("admin")->middleware(
     [
         'web',
