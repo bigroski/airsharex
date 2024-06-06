@@ -2309,20 +2309,24 @@ i.lni.lni-search {
 
 /* account page */
 section.component-account.account {
-.nav.flex-column.nav-pills {
-    width: 200px !important;
-}
-.nav-pills .nav-link {
-  color: #474747;
-}
-  .nav .nav-link.active {
-    color: var(--bs-nav-pills-link-active-color);
-    background-color: #f00;
+  .nav.flex-column.nav-pills {
+    width: 220px !important;
+      .nav-link {
+        width: 200px;
+        height: 45px;
+        margin-bottom: 4px;
+        background: #f5f5f5;
+        &.active {
+          color: var(--bs-nav-pills-link-active-color);
+          background-color: #f00;
+        }
+   
+    }
   }
-
+  .nav-pills .nav-link {
+    color: #474747;
+  }
  
-}
-
 .profile-info {
   display: flex;
   width: 100%;
