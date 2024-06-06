@@ -41,13 +41,15 @@
                   I accept <a href="">term & conditions</a> and <a href="">privacy policy</a>.
                 </label>
               </div>
-              <div class="d-flex gap-4">
+              <div class="d-grid gap-4">
                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Register</button>
-                <button class="btn btn-outline-secondary btn-login text-uppercase fw-bold" type="submit">Login</button>
-
-                
-              </div>
-              <hr class="my-4">
+               
+              </div> 
+              
+              
+              <label class="form-check-label justify-center d-flex my-2 gap-2">Have already an account?  <a href=""> Login here</a></label>
+              
+              <hr class="my-4"> 
               <div class="d-grid mb-2">
                 <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
                   <i class="fab fa-google me-2"></i> Sign in with Google

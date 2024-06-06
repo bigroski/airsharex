@@ -58,8 +58,8 @@
 			</div>
 			<div class="col-lg-5 col-md-4 col-sm-6 col-12">
 				<div id="foo">
-					<input type="text" name="start" id="start" class="form-control" placeholder="Depature">
-					<input type="text" name="end" id="end" class="form-control" placeholder="Arrival">
+					<input type="text" name="start" id="start" class="form-control date-picker" placeholder="Depature">
+					<input type="text" name="end" id="end" class="form-control date-picker" placeholder="Arrival">
 				</div>
 			</div>
 				

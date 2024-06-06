@@ -153,7 +153,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+/**
+   * Datepicker
+   */
 
+  if ($(".date-picker").length) {
+    $(".date-picker").datepicker();
+    }
+    if ($(".time-picker").length) {
+        $(function () {
+            $(".time-picker").timepicker();
+        });
+    }
   /**
    * Scroll top button
    */
@@ -403,22 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// datepicker
-const elem = document.getElementById('foo');
-const rangepicker = new DateRangePicker(elem, {
-  autohide: false
-});
-
-const startElem = document.getElementById('start');
-const endElem = document.getElementById('end');
-
-startElem.addEventListener('changeDate', function(e) {
-  console.log('start', e.detail.date);
-});
-
-endElem.addEventListener('changeDate', function(e) {
-  console.log('end', e.detail.date);
-});
 
 
 // select2
@@ -491,6 +486,30 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
+// radio one/two way
+function toggleInputs() {
+  const isOneWay = document.getElementById('inlineRadio1').checked;
+  const endInput = document.getElementById('end');
+  endInput.disabled = isOneWay;
+}
+
+
+// pricerange
+
+$(function () {
+  $(".price-range").slider({
+    step: 500,
+    range: true,
+    min: 0,
+    max: 500000,
+    values: [15000, 100000],
+    slide: function (event, ui) {
+        $(".priceRange").val("Rs " + ui.values[0].toLocaleString() + " - Rs " + ui.values[1].toLocaleString());
+    },
+});
+$(".priceRange").val("Rs " + $(".price-range").slider("values", 0).toLocaleString() + " - Rs " + $(".price-range").slider("values", 1).toLocaleString());
+});
 
 // parallax
 
