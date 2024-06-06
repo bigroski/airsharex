@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Bigroski\Tukicms\App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Foundation\Auth\User as Authenticatable;
 use Bigroski\Tukicms\App\Models\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -22,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'type'
     ];
 
     /**
@@ -43,4 +48,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+   
+    public function Vendor()
+    {
+        return $this->hasOne(Vendor::class);
+    }
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
 }
