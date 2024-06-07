@@ -1,11 +1,10 @@
-<link rel="stylesheet" type="text/css" href="http://localhost:8000/vendor/airsharex/assets/css/airshare.css">
-<section class="component component-hero hero" style="background:url('{{ $featured_image }}');">
+<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ $featured_image }}">
 	
 	<div class="hero-content">
 		<div class="container">
 			<div class="hero-container">
 			<h2>{{$title}}</h2>
-			<p>made Easy by</p>
+			<p>{{$sub_title}}</p>
 			<h1>{{$description}}</h1>
 			</div>
 		</div>
@@ -29,7 +28,7 @@
 				<button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
 			</li>
 			<!-- Add more items as needed -->
-		</ul>
+			</ul>
 
 			<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
@@ -45,29 +44,59 @@
 			</div>
 			</div>
 			<div class="row g-3">
-			<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-			
-			<input type="text"  class="form-control" placeholder="From">
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-			
-			<input type="text" class="form-control"  placeholder="To">
+			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
+				<select class="test_skill form-control" placeholder="From">
+					<option >KTM</option>
+				</select>
 			</div>
 			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			
-			<input type="date" class="form-control" >
+				<select class="test_skill form-control " placeholder="to">
+					<option >POK</option>
+				</select>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			
-			<input type="date" class="form-control" >
+			<div class="col-lg-5 col-md-4 col-sm-6 col-12">
+				<div id="foo">
+					<input type="text" name="start" id="start" class="form-control date-picker" placeholder="Depature">
+					<input type="text" name="end" id="end" class="form-control date-picker" placeholder="Arrival">
+				</div>
 			</div>
-			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
+				
 			
-			<input type="number" class="form-control"  >
-			</div>
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+				<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
+        : <span id="totalQuantity">0</span>
+    </span></button>
+					<div class="count-table" id="popup">
+						<div class="pass-count" >
+							<h4>Adult</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Child</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Infant</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+					</div>
 
+			</div>
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-			<button type="submit" class="btn btn-danger mb-3">Search</button>
+				
+				<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
 			</div>
 			
 			</div>

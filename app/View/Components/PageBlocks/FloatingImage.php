@@ -13,10 +13,17 @@ class FloatingImage extends Component
 
 {
     use TukiComponents;
-    public $componentName = 'This block is used int floting image in about us page';
+    public $componentName = 'About Airshare';
     // defines if this component is laravel component or tuki component
     public $container = 'laravel';
-        public $fields = [
+    public $fields = [
+        'leading' => [
+            'label' => 'Leading Text',
+            'name' =>'leading',
+            'type' => 'text',
+            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'value' => ''
+        ],
         'title' => [
             'label' => 'Block Title',
             'name' =>'title',
@@ -33,11 +40,42 @@ class FloatingImage extends Component
             'value' => ''
         ],
         'featured_image' => [
-            'label' => 'Featured Image',
+            'label' => 'Image Upload',
             'name' => 'featured_image',
             'type' => 'file',
             'value' => ''
         ],
+        'second_featured_image' => [
+            'label' => 'Upload second image',
+            'name' => 'second_featured_image',
+            'type' => 'file',
+            'value' => ''
+        ],
+        'counters' => [
+                "name" => 'counters',
+                'label' => 'Counters',
+                'type' => 'repeater',
+                'value' => '',
+                'fields' => [
+                    'title' => [
+                        'label' => 'Title',
+                        'name' =>'title',
+                        'type' => 'text',
+                        'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                        'placeHolder' => 'Enter Section title',
+                        'value' => ''
+                    ],
+                    'number' => [
+                        'label' => 'Number',
+                        'name' =>'url',
+                        'type' => 'text',
+                        'default' => '',
+                        'placeHolder' => 'Enter Number',
+                        'value' => ''
+                    ],
+                ]
+        ],
+        
     ];
 
     /**

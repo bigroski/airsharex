@@ -16,7 +16,7 @@ class ContactMap extends Component
     public $componentName = 'Contact Map';
     // defines if this component is laravel component or tuki component
     public $container = 'laravel';
-        public $fields = [
+    public $fields = [
         'title' => [
             'label' => 'Block Title',
             'name' =>'title',
@@ -29,15 +29,60 @@ class ContactMap extends Component
             'name' =>'description',
             'type' => 'textarea',
             'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            // 'placeHolder' => 'Enter your Hero title',
             'value' => ''
         ],
-        'featured_image' => [
-            'label' => 'Featured Image',
-            'name' => 'featured_image',
-            'type' => 'file',
-            'value' => ''
-        ],
+        'feature' => [
+                "name" => 'feature',
+                'label' => 'Feature',
+                'type' => 'repeater',
+                'value' => '',
+                'fields' => [
+                    'featured_image' => [
+                        'label' => 'Image Upload',
+                        'name' => 'featured_image',
+                        'type' => 'file',
+                        'value' => ''
+                    ]
+                ]
+            ],
+        'offices' => [
+                "name" => 'offices',
+                'label' => 'Offices',
+                'type' => 'repeater',
+                'value' => '',
+                'fields' => [
+                    'office_name' => [
+                        'label' => 'Office Name',
+                        'name' => 'office_name',
+                        'type' => 'text',
+                        'value' => ''
+                    ],
+                    'office_address' => [
+                        'label' => 'Office Address',
+                        'name' => 'office_address',
+                        'type' => 'text',
+                        'value' => ''
+                    ],
+                    'office_email' => [
+                        'label' => 'Office Email',
+                        'name' => 'office_email',
+                        'type' => 'text',
+                        'value' => ''
+                    ],
+                    'office_phone' => [
+                        'label' => 'Office Phone',
+                        'name' => 'office_phone',
+                        'type' => 'text',
+                        'value' => ''
+                    ]
+                ]
+            ]
+        // 'featured_image' => [
+        //     'label' => 'Featured Image',
+        //     'name' => 'featured_image',
+        //     'type' => 'file',
+        //     'value' => ''
+        // ],
     ];
 
     /**

@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
             'user_id'=>$user->id,
             'email'=>$request->email,
         ];
-        $mailingList = $this->mailingListService->adduserToMailingListP($mailingListData);
+        $mailingList = $this->mailingListService->adduserToMailingList($mailingListData);
         
         event(new Registered($user));
 

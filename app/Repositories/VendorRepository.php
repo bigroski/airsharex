@@ -99,6 +99,13 @@ class VendorRepository
        return  $model->delete();
     }
 
+    /**
+     * get Latest vendors
+     * @return [type] Vendor
+     */
+    public function getLatest($limit = 5){
+        return $this->model->orderBy('created_at', 'asc')->limit($limit)->get();
+    }
 
 
 

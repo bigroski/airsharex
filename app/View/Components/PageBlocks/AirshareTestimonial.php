@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-
+use App\Services\TestimonialService;
 class AirshareTestimonial extends Component
 {
     use TukiComponents;
@@ -15,41 +15,20 @@ class AirshareTestimonial extends Component
     public $container = 'laravel';
 
     public $fields = [
-        'slider' => [
-            "name" => 'slider',
-            'label' => 'Slider',
-            'type' => 'repeater',
-            'value' => '',
-            'fields' => [
-                'title' => [
-                    'label' => 'New Fancy Title',
-                    'name' =>'title',
-                    'type' => 'text',
-                    'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    'placeHolder' => 'Enter Section title',
-                    'value' => ''
-                ],
-                'description' => [
-                    'label' => 'Description',
-                    'name' =>'description',
-                    'type' => 'textarea',
-                    'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    'placeHolder' => 'Enter description',
-                    'value' => ''
-                ],
-                'featured_image' => [
-                    'label' => 'Image Upload',
-                    'name' => 'featured_image',
-                    'type' => 'file',
-                    'value' => ''
-                ]
-            ]
-
-
-
-
-            
-        ]
+        'leading' => [
+            'label' => 'Block leading',
+            'name' =>'leading',
+            'type' => 'text',
+            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'value' => ''
+        ],
+        'title' => [
+            'label' => 'Block Title',
+            'name' =>'title',
+            'type' => 'text',
+            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'value' => ''
+        ],
         
         
         
@@ -67,6 +46,10 @@ class AirshareTestimonial extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.page-blocks.airshare-testimonial');
+        $testimonialService = app(TestimonialService::class);
+        $homeTestimonial = $testimonialService->homeTestimonial();
+        $data = $this->getValues();
+        $data['testimonials'] = $homeTestimonial;
+        return view('components.page-blocks.airshare-testimonial')->with($data);
     }
 }

@@ -7,14 +7,17 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Settings\BasicSetting;
 use App\Settings\Appearance;
+use App\Services\VendorService;
 class AirshareLayout extends Component
 {
+    private VendorService $vendorService;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
         //
+        $this->vendorService = app(VendorService::class);
     }
 
     /**
@@ -24,9 +27,13 @@ class AirshareLayout extends Component
     {
         $basicSetting = app(BasicSetting::class);
         $appearanceSetting = app(Appearance::class);
+        // Get the lattest vendors for footer
+        $featuredVendors = $this->vendorService->featuredVendors();
+
         return view('components.airshare-layout')->with([
             'basicSetting' => $basicSetting,
-            'appearanceSetting' => $appearanceSetting
+            'appearanceSetting' => $appearanceSetting,
+            'featuredVendors' => $featuredVendors
         ]);
     }
 }
