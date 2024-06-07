@@ -75,6 +75,13 @@ return [
 
                         ],
                         [
+                            'name' => 'Leadership',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.leadership.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        [
                             'name' => 'Gallery',
                             'icon-class' => 'fas fa-book-medical',
                             'routeName' => 'web.gallery.index',

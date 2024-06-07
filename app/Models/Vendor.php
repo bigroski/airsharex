@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Bigroski\Tukicms\App\Traits\HasListableTrait;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Vendor extends Model
+class Vendor extends Model implements HasMedia
 {
     use HasFactory;
     use HasListableTrait;
+    use InteractsWithMedia;
     public $fillable =   [
    'name',
    'type',
@@ -116,11 +119,21 @@ protected $casts = [
             'required' => true,
             'span' => 'col-md-6' 
         ],
-        
+        'featured_image' => [
+            'label' => 'Logo',
+            'type' => 'file',
+            'placeholder' => 'Upload Image',
+            'required' => true,
+            'span' => 'col-md-9'
+        ],        
         
     ];
 
     public $listable = [
+        'featured_image' => [
+            'label' => 'Featured Image',
+            'type' => 'image'
+        ],
         'name' => [
             'label' => 'Name',
             'type' => 'text'
@@ -146,5 +159,13 @@ protected $casts = [
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function getFeaturedImageAttribute(){
+        $images = $this->getMedia('featured_image');
+        if($images->count() > 0){
+
+            return $images[0]->getFullUrl();
+        }
+        return '';
     }
 }

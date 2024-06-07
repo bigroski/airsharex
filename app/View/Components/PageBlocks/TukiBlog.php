@@ -2,26 +2,21 @@
 
 namespace App\View\Components\PageBlocks;
 
+
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-use App\Services\TestimonialService;
-class AirshareTestimonial extends Component
+
+
+class TukiBlog extends Component
+
 {
     use TukiComponents;
-    public $componentName = 'AirshareX Testimonial';
+    public $componentName = 'Blog Index';
     // defines if this component is laravel component or tuki component
     public $container = 'laravel';
-
-    public $fields = [
-        'leading' => [
-            'label' => 'Block leading',
-            'name' =>'leading',
-            'type' => 'text',
-            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'value' => ''
-        ],
+        public $fields = [
         'title' => [
             'label' => 'Block Title',
             'name' =>'title',
@@ -29,10 +24,22 @@ class AirshareTestimonial extends Component
             'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'value' => ''
         ],
-        
-        
-        
+        'description' => [
+            'label' => 'Block Description',
+            'name' =>'description',
+            'type' => 'textarea',
+            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            // 'placeHolder' => 'Enter your Hero title',
+            'value' => ''
+        ],
+        'featured_image' => [
+            'label' => 'Featured Image',
+            'name' => 'featured_image',
+            'type' => 'file',
+            'value' => ''
+        ],
     ];
+
     /**
      * Create a new component instance.
      */
@@ -46,10 +53,8 @@ class AirshareTestimonial extends Component
      */
     public function render(): View|Closure|string
     {
-        $testimonialService = app(TestimonialService::class);
-        $homeTestimonial = $testimonialService->homeTestimonial();
-        $data = $this->getValues();
-        $data['testimonials'] = $homeTestimonial;
-        return view('components.page-blocks.airshare-testimonial')->with($data);
+        return view('components.page-blocks.tuki-blog')->with($this->getValues());
     }
+
+
 }

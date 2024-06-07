@@ -18,6 +18,7 @@ use App\Http\Controllers\OnlineBookingController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\LeadershipController;
 
 
 /*
@@ -35,7 +36,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/home', [StaticController::class, 'home']);
-Route::get('/about', [StaticController::class, 'about']);
+Route::get('/about-static', [StaticController::class, 'about']);
 Route::get('/services', [StaticController::class, 'services']);
 Route::get('/blog', [StaticController::class, 'blog']);
 Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
@@ -45,14 +46,15 @@ Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::get('/history', [StaticController::class, 'history']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
-Route::get('/contact', [StaticController::class, 'contact']);
+Route::get('/contact-static', [StaticController::class, 'contact']);
+Route::post('/contact', [StaticController::class, 'processContact'])->name('site.processContact');
 Route::get('/policy', [StaticController::class, 'policy']);
-Route::get('/disclaimer', [StaticController::class, 'disclaimer']);
+Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
 Route::get('/search', [StaticController::class, 'search']);
 Route::get('/news',[StaticController::class,'news']);
-Route::get('/newsdetail',[StaticController::class,'newsdetail']);
+Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
 
 Route::prefix("admin")->middleware(
     [
@@ -70,17 +72,6 @@ Route::prefix("admin")->middleware(
 	Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::resource('admin/airports', AirportController::class, ['as' => 'web']);
-// Route::resource('admin/vendors', VendorController
-
-// ::class, ['as' => 'web']);
-// Route::resource('admin/passengers', PassengerController::class, ['as' => 'web']);
-// Route::resource('admin/testimonials', TestimonialController::class, ['as' => 'web']);
 
 //Register User
 
@@ -100,7 +91,7 @@ Route::prefix("admin")->middleware(
 
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
-
+        Route::resource('leadership', LeadershipController::class, ['as' => 'web']);
     }
 );
 Route::resource('mailing-list', MailingListController::class, ['as' => 'web']);

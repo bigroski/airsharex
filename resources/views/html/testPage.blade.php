@@ -318,47 +318,49 @@
 			</div>
 			<div class="col-md-6 col-sm-12 col-12 ">
 				<div class="cta-details d-flex justify-content-end ">
-				<div class="table-responsive"><table class="table table-striped">
-	<tbody>
-		<tr>
-			<td>
-			<p><strong>Airlines&nbsp;</strong></p>
-			</td>
-			<td>
-			<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Buddha Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:15 am -- 07:15 am every day&nbsp;</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Yeti Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Shree Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-			</td>
-		</tr>
-	</tbody>
-</table></div>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<td>
+									<p><strong>Airlines&nbsp;</strong></p>
+									</td>
+									<td>
+									<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Buddha Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:15 am -- 07:15 am every day&nbsp;</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Yeti Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Shree Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
 
 				</div>
 				<div class="btn-link d-flex justify-content-end">
-				<a  href="">Explore</a>
+					<a  href="">Explore</a>
 				</div>
 				
 			

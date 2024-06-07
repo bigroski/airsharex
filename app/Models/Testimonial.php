@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Bigroski\Tukicms\App\Traits\HasListableTrait;
-
-class Testimonial extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Testimonial extends Model  implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
+
     use HasListableTrait;
 
     public $fillable =[
@@ -47,6 +50,13 @@ class Testimonial extends Model
         
     ];
     public $formFields = [
+        'featured_image' => [
+            'label' => 'Featured Image',
+            'type' => 'file',
+            'placeholder' => 'Enter tag name',
+            'required' => true,
+            'span' => 'col-md-9'
+        ],
         'rating' => [
             'label' => 'Rating',
             'type' => 'select',
@@ -107,6 +117,10 @@ class Testimonial extends Model
     ];
 
     public $listable = [
+        'featured_image' => [
+            'label' => 'Featured Image',
+            'type' => 'image'
+        ],
         'testifier_name' => [
             'label' => 'Name',
             'type' => 'text'
@@ -134,4 +148,12 @@ class Testimonial extends Model
         return $this->belongsTo(Airport::class);
     }
 
+    public function getFeaturedImageAttribute(){
+        $images = $this->getMedia('featured_image');
+        if($images->count() > 0){
+
+            return $images[0]->getFullUrl();
+        }
+        return '';
+    }
 }

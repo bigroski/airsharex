@@ -136,7 +136,9 @@
   </a>
                                       </Li>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i><a href="">Privacy policy</a>
+                                      <i class="bi bi-chevron-right"></i><a href="/privacypolicy">Privacy policy</a></Li>
+                                      <Li>
+                                      <i class="bi bi-chevron-right"></i><a href="/disclaimer">Disclaimer</a>
                                       </Li>
                                   </ul>
                               </div>
@@ -189,17 +191,10 @@
                         <div class="title"><h3>In Association With</h3></div>
                 <div class="clients-slider swiper">
                   <div class="swiper-wrapper align-items-center">
-                  <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/capital.png') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/marketing.png') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhubank.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhucoop.png') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhuinsurance.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhumgmt.jpg') }}" class="img-fluid" alt=""></div>
-
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhupay.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutransfer.jpg') }}" class="img-fluid" alt=""></div>
-                    <div class="swiper-slide"><img src="{{ asset('vendor/airsharex/assets/img/prabhutravels.jpg') }}" class="img-fluid" alt=""></div>
+                    @foreach($featuredVendors as $vendor)
+                        <div class="swiper-slide"><img src="{{ $vendor->featured_image }}" class="img-fluid" alt=""></div>
+                    @endforeach
+                    
                   
                   </div>
                 </div>

@@ -2,18 +2,20 @@
 
 namespace App\View\Components\PageBlocks;
 
+
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-use App\Services\TestimonialService;
-class AirshareTestimonial extends Component
+use App\Classes\Services\LeadershipService;
+
+class Leadership extends Component
+
 {
     use TukiComponents;
-    public $componentName = 'AirshareX Testimonial';
+    public $componentName = 'Leadership';
     // defines if this component is laravel component or tuki component
     public $container = 'laravel';
-
     public $fields = [
         'leading' => [
             'label' => 'Block leading',
@@ -29,10 +31,8 @@ class AirshareTestimonial extends Component
             'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'value' => ''
         ],
-        
-        
-        
     ];
+
     /**
      * Create a new component instance.
      */
@@ -46,10 +46,13 @@ class AirshareTestimonial extends Component
      */
     public function render(): View|Closure|string
     {
-        $testimonialService = app(TestimonialService::class);
-        $homeTestimonial = $testimonialService->homeTestimonial();
         $data = $this->getValues();
-        $data['testimonials'] = $homeTestimonial;
-        return view('components.page-blocks.airshare-testimonial')->with($data);
+        $leadershipService = app(LeadershipService::class);
+        $team = $leadershipService->all();
+        $data['teams'] = $team;
+        
+        return view('components.page-blocks.leadership')->with($data);
     }
+
+
 }
