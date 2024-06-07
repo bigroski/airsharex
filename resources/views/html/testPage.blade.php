@@ -1,6 +1,6 @@
 <x-airshare-layout>
 
-<section class="component component-hero hero" style="background:url('{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}');">
+<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}">
 	
 	<div class="hero-content">
 		<div class="container">
@@ -46,29 +46,59 @@
 			</div>
 			</div>
 			<div class="row g-3">
-			<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-			
-			<input type="text"  class="form-control" placeholder="From">
-			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-			
-			<input type="text" class="form-control"  placeholder="To">
+			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
+				<select class="test_skill form-control" placeholder="From">
+					<option >KTM</option>
+				</select>
 			</div>
 			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			
-			<input type="date" class="form-control" >
+				<select class="test_skill form-control " placeholder="to">
+					<option >POK</option>
+				</select>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-			
-			<input type="date" class="form-control" >
+			<div class="col-lg-5 col-md-4 col-sm-6 col-12">
+				<div id="foo">
+					<input type="text" name="start" id="start" class="form-control date-picker" placeholder="Depature">
+					<input type="text" name="end" id="end" class="form-control date-picker" placeholder="Arrival">
+				</div>
 			</div>
-			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
+				
 			
-			<input type="number" class="form-control"  >
-			</div>
+			<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+				<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
+        : <span id="totalQuantity">0</span>
+    </span></button>
+					<div class="count-table" id="popup">
+						<div class="pass-count" >
+							<h4>Adult</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Child</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+						<div class="pass-count">
+							<h4>Infant</h4> 
+							<div class="adder qty-container">
+								<input type='button' value='-' class='qtyminus' field='quantity' />
+								<input type='text' name='quantity' value='0' class='qty' />
+								<input type='button' value='+' class='qtyplus' field='quantity' />
+							</div>
+						</div>
+					</div>
 
+			</div>
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-			<button type="submit" class="btn btn-danger mb-3">Search</button>
+				
+				<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
 			</div>
 			
 			</div>
@@ -272,63 +302,65 @@
 		</div>
 	   </div>
       </div>
-    </section><!-- End Wy choose us  Section -->
-
-
+	  <div class="img-box-5"><img alt="spinner" loading="lazy" width="193" height="193" decoding="async" data-nimg="1" class="img-1 spin-right" srcset="{{ asset('vendor/airsharex/assets/img/about-bg.png') }}" src="{{ asset('vendor/airsharex/assets/img/about-bg.png') }}" style="color: transparent;"></div>
+	
+	</section><!-- End Wy choose us  Section -->
+	
+	
 	<!-- ======= CTA Section ======= -->
-	<section id="cta" class="cta">
-	<div class="cta-image">
-		<img src="{{ asset('vendor/airsharex/assets/img/cta-img.png') }}" />
-	</div>
+	<section id="cta" class="cta header-image light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="100" data-image-src="{{ asset('vendor/airsharex/assets/img/hd-1.jpg') }}">
+	
 	<div class="cta-content">
 		<div class="container">
-		<div class="row d-flex justify-content-center align-items-center">
+		<div class="row d-flex justify-content-center align-items-center text-white">
 			<div class="col-md-6 col-sm-12 col-12">
 				<h2><span>Daily</span> Mountain Flight</h2>
 			</div>
 			<div class="col-md-6 col-sm-12 col-12 ">
 				<div class="cta-details d-flex justify-content-end ">
-				<div class="table-responsive"><table class="table table-striped">
-	<tbody>
-		<tr>
-			<td>
-			<p><strong>Airlines&nbsp;</strong></p>
-			</td>
-			<td>
-			<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Buddha Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:15 am -- 07:15 am every day&nbsp;</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Yeti Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Shree Airlines&nbsp;</p>
-			</td>
-			<td>
-			<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-			</td>
-		</tr>
-	</tbody>
-</table></div>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<td>
+									<p><strong>Airlines&nbsp;</strong></p>
+									</td>
+									<td>
+									<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Buddha Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:15 am -- 07:15 am every day&nbsp;</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Yeti Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p>Shree Airlines&nbsp;</p>
+									</td>
+									<td>
+									<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
 
 				</div>
 				<div class="btn-link d-flex justify-content-end">
-				<a  href="">Explore</a>
+					<a  href="">Explore</a>
 				</div>
 				
 			
@@ -343,7 +375,7 @@
 	<!-- End CTA Section -->
 
 <!-- ======= Offered tickets ======= -->
-<section id="tickets" class="tickets">
+<section id="tickets" class="tickets ">
 <div class="container">
 <div class="title d-flex">Tickets in offers</div>
 <div class="swiper grideSwiper">

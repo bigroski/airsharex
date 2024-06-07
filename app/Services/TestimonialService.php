@@ -25,6 +25,7 @@ class TestimonialService extends BaseService{
 	public function create($request){
 		$data = $request->all();
 		$testimonial = $this->testimonialRepository->create($data);		
+		addFeaturedImage($testimonial, $request);
 		return $testimonial;
 	}
 
@@ -42,10 +43,13 @@ class TestimonialService extends BaseService{
 		$testimonial = $this->findById($testimonial);	
 		$data = $request->all();
 		$this->testimonialRepository->update($data, $testimonial);
-		
+		addFeaturedImage($testimonial, $request);
 		return $testimonial;
 	}
 	public function delete($id){
         return $this->testimonialRepository->destroy($id);
+	}
+	public function homeTestimonial(){
+		return $this->testimonialRepository->model->inRandomOrder()->take(10)->get();
 	}
 }

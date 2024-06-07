@@ -29,6 +29,7 @@ class VendorService extends BaseService{
 		$data = $request->all();
 		$data['user_id'] = $user->type=='vendor'??$user->id??null;
 		$vendor = $this->vendorRepository->create($data);		
+		addFeaturedImage($vendor, $request);
 		return $vendor;
 	}
 
@@ -48,10 +49,18 @@ class VendorService extends BaseService{
 		$user = Auth::user();
 		$data['user_id'] = $user->type=='vendor'??$user->id??null;
 		$this->vendorRepository->update($data, $airport);
+		addFeaturedImage($airport, $request);
 		
 		return $airport;
 	}
 	public function delete($id){
         return $this->vendorRepository->destroy($id);
+	}
+	/**
+	 * Get the list of featured vendors
+	 * @return [type] [description]
+	 */
+	public function featuredVendors(){
+		return $this->vendorRepository->getLatest(20);
 	}
 }

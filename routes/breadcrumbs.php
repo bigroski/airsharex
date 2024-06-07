@@ -15,22 +15,22 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('dashboard'));
 });
 
-Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
-    $trail->push('Airports', route('web.airports.create'));
-});
-Breadcrumbs::for('web.vendors.create', function (BreadcrumbTrail $trail) {
-    $trail->push('Vendors', route('web.vendors.create'));
-});
+// Breadcrumbs::for('web.airports.create', function (BreadcrumbTrail $trail) {
+//     $trail->push('Airports', route('web.airports.create'));
+// });
+// Breadcrumbs::for('web.vendors.create', function (BreadcrumbTrail $trail) {
+//     $trail->push('Vendors', route('web.vendors.create'));
+// });
 
-Breadcrumbs::for('web.testimonials.create', function (BreadcrumbTrail $trail) {
-    $trail->push('testimonials', route('web.testimonials.create'));
-});
-Breadcrumbs::for('web.passengers.create', function (BreadcrumbTrail $trail) {
-    $trail->push('passengers', route('web.passengers.create'));
-});
-Breadcrumbs::for('web.gallery.create', function (BreadcrumbTrail $trail) {
-    $trail->push('gallery', route('web.gallery.create'));
-});
+// Breadcrumbs::for('web.testimonials.create', function (BreadcrumbTrail $trail) {
+//     $trail->push('testimonials', route('web.testimonials.create'));
+// });
+// Breadcrumbs::for('web.passengers.create', function (BreadcrumbTrail $trail) {
+//     $trail->push('passengers', route('web.passengers.create'));
+// });
+// Breadcrumbs::for('web.gallery.create', function (BreadcrumbTrail $trail) {
+//     $trail->push('gallery', route('web.gallery.create'));
+// });
 Breadcrumbs::macro('resource', function (string $name, string $title) {
     // Home > Blog
     Breadcrumbs::for("web.{$name}.index", function (BreadcrumbTrail $trail) use ($name, $title) {
@@ -41,11 +41,11 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
     //     $trail->parent("web.{$name}.show", $model);
     //     $trail->push("Edit {$title}", route("web.{$name}.edit", $model->id));
     // });
-    // // Home > Blog > New
-    // Breadcrumbs::for("web.{$name}.create", function (BreadcrumbTrail $trail) use ($name, $title) {
-    //     $trail->parent("web.{$name}.index");
-    //     $trail->push('New '.$title, route("web.{$name}.create"));
-    // });
+    // Home > Blog > New
+    Breadcrumbs::for("web.{$name}.create", function (BreadcrumbTrail $trail) use ($name, $title) {
+        $trail->parent("web.{$name}.index");
+        $trail->push('New '.$title, route("web.{$name}.create"));
+    });
 
     // // Home > Blog > Post 123
     Breadcrumbs::for("web.{$name}.show", function (BreadcrumbTrail $trail) use ($name) {
@@ -61,85 +61,26 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
         $trail->push('Edit');
     });
 });
-
-
-
-
-Breadcrumbs::for("web.booking.batch-list", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.booking.index");
-    $trail->push('Bulk Booking', route("web.booking.batch-list"));
-});
-
-Breadcrumbs::for("web.booking.manual-bulk", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.booking.index");
-    $trail->push('Manual Booking');
-});
-
-Breadcrumbs::for("web.manifest.inventory", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.manifest.index");
-    $trail->push('Inventory');
-});
-Breadcrumbs::for("web.bills.accounts", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.bills.index");
-    $trail->push('Create Information');
-});
-
-
-
-
-
-Breadcrumbs::for("web.booking.bulk", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.booking.batch-list");
-    $trail->push('Create ');
-});
-
-
-Breadcrumbs::for("merchendise.receive", function (BreadcrumbTrail $trail) {
-    $trail->parent("web.manifest.index");
-    $trail->push('Receive Merchandise');
-});
+Breadcrumbs::resource('post', 'Post');
+Breadcrumbs::resource('category', 'Category');
+Breadcrumbs::resource('tag', 'Tag');
 Breadcrumbs::resource('vendors', 'Vendors');
 Breadcrumbs::resource('airports', 'Airports');
 Breadcrumbs::resource('passengers', 'Passengers');
 Breadcrumbs::resource('testimonials', 'Testimonials');
 Breadcrumbs::resource('gallery', 'Gallery');
+Breadcrumbs::resource('leadership', 'Leadership');
+Breadcrumbs::for('web.setting.system', function (BreadcrumbTrail $trail){
+    $trail->push('System Setting');
+});
 
-Breadcrumbs::resource('post', 'Post');
+
+// Breadcrumbs::resource('post', 'Post');
+// Breadcrumbs::resource('onlineBooking', 'OnlineBooking');
 Breadcrumbs::resource('menu', 'Menu');
-Breadcrumbs::resource('category', 'Category');
-Breadcrumbs::resource('tag', 'Tag');
-Breadcrumbs::resource('comment', 'Comment');
-
-Breadcrumbs::resource('booking', 'Booking');
-Breadcrumbs::resource('manifest', 'Manifest');
-Breadcrumbs::resource('page', 'Page');
-Breadcrumbs::resource('bills', 'Bills');
-// Breadcrumbs::resource('bills-rules','Bill RUles');
-// Breadcrumbs::resource('logistic-request','Logistic Request');
-// Breadcrumbs::resource('consignee', 'Consignee');
-// Breadcrumbs::resource('logistic-provider', 'Logistic Provider');
-// Breadcrumbs::resource('cnGroup', 'Cn Group');
-// Breadcrumbs::resource('logistics', 'Logistics');
-// Breadcrumbs::resource('statement', 'Statement');
-// Breadcrumbs::resource('payment', 'Payment');
-// Breadcrumbs::resource('credit', 'Credit');
-// Breadcrumbs::resource('company', 'Company');
-// Breadcrumbs::resource('customer', 'Customer');
-// Breadcrumbs::resource('branch', 'Branch');
-// Breadcrumbs::resource('employee', 'Employee');
-// Breadcrumbs::resource('pickup-request','Pickup Request');
-// Breadcrumbs::resource('group', 'Group');
-// Breadcrumbs::resource('pickup', 'Pickup');
-// Breadcrumbs::resource('drop-off', 'Drop Off');
-// Breadcrumbs::resource('role', 'Role');
-// Breadcrumbs::resource('location', 'Location');
-// Breadcrumbs::resource('customer-rate', 'Customer Rate');
-// Breadcrumbs::resource('delivery-rate', 'DeliveryRate');
-// Breadcrumbs::resource('sms-group', 'SMSGroup');
-// Breadcrumbs::resource('sms', 'SMS');
-Breadcrumbs::resource('countries', 'Country');
-// Breadcrumbs::resource('countries/{country}/state', 'State');
-Breadcrumbs::resource('routes', 'Route');
-Breadcrumbs::resource('consignment', 'Consignment');
-Breadcrumbs::resource('merchandise-type', 'Merchandise Type');
+// Breadcrumbs::resource('routes', 'Route');
+// Breadcrumbs::resource('consignment', 'Consignment');
+// Breadcrumbs::resource('merchandise-type', 'Merchandise Type');
+// Breadcrumbs::resource('book', 'Book');
+// Breadcrumbs::resource('pen', 'Pen');
 // Booking
