@@ -35,28 +35,32 @@ use App\Http\Controllers\LeadershipController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
+// DONE
 Route::get('/home', [StaticController::class, 'home']);
 Route::get('/about-static', [StaticController::class, 'about']);
-Route::get('/services', [StaticController::class, 'services']);
-Route::get('/blog', [StaticController::class, 'blog']);
-Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
-Route::get('/signup', [StaticController::class, 'signup']);
-Route::get('/htmlregister', [StaticController::class, 'register']);
-Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
-Route::get('/emailverify', [StaticController::class, 'emailverify']);
-Route::get('/history', [StaticController::class, 'history']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact-static', [StaticController::class, 'contact']);
 Route::post('/contact', [StaticController::class, 'processContact'])->name('site.processContact');
 Route::get('/policy', [StaticController::class, 'policy']);
 Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
-Route::get('/gallery', [StaticController::class, 'gallery']);
-Route::get('/account', [StaticController::class, 'account']);
-Route::get('/search', [StaticController::class, 'search']);
 Route::get('/news',[StaticController::class,'news']);
 Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
 Route::get('/news/category/{slug}',[StaticController::class,'category'])->name('site.news-category');
 Route::get('/news/tag/{slug}',[StaticController::class,'tag'])->name('site.news-tag');
+Route::get('/history-static', [StaticController::class, 'history']);
+Route::post('/account/update', [StaticController::class, 'updateAccount'])->name('site.post.account');
+// Route::get('/blog', [StaticController::class, 'blog']);
+// Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
+
+Route::get('/services', [StaticController::class, 'services']);
+Route::get('/signup', [StaticController::class, 'signup']);
+Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
+Route::get('/emailverify', [StaticController::class, 'emailverify']);
+
+Route::get('/gallery', [StaticController::class, 'gallery']);
+Route::get('/account', [StaticController::class, 'account']);
+Route::get('/search', [StaticController::class, 'search'])->name('site.search');
 
 Route::prefix("admin")->middleware(
     [
@@ -68,10 +72,10 @@ Route::prefix("admin")->middleware(
     // 'verified'
     ]
 )->group( function () {
-    Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
-    Route::resource('book', BookController::class, ['as' => 'web']);
-    Route::resource('pen', PenController::class, ['as' => 'web']);
-	Route::resource('device', DeviceController::class, ['as' => 'web']);
+    // Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
+    // Route::resource('book', BookController::class, ['as' => 'web']);
+    // Route::resource('pen', PenController::class, ['as' => 'web']);
+	// Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
 

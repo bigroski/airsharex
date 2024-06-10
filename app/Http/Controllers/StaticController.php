@@ -9,6 +9,7 @@ use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
 use App\Mail\ContactForm;
 use Mail;
+use Auth;
 class StaticController extends Controller
 {
     //
@@ -79,10 +80,15 @@ class StaticController extends Controller
 	public function news(){
 		$posts = $this->postService->paginatePosts();
 		$categories = $this->categoryService->getAllCategories();
-		
+		$recent = $this->postService->getLatestArticles(2);
+		$popularCategories = $this->tagService->getPopular();
 		return view('html.news')->with([
 			'posts' => $posts,
-			'categories' => $categories
+			'categories' => $categories,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
+
+
 		]);
 	}
 	public function newsdetail($slug){
@@ -105,27 +111,52 @@ class StaticController extends Controller
 		return redirect()->back();
 	}
 	public function category($slug){
-		$selectedCategory = $this->categoryService->findBySlug($slug);
+		$selectedCategory = $this->categoryService->findBySlug('category',$slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
 		$categories = $this->categoryService->getAllCategories();
+		$recent = $this->postService->getLatestArticles(2);
+
+		$popularCategories = $this->tagService->getPopular();
+
 		
 		return view('html.news')->with([
 			'posts' => $posts,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
 			'selectedCategory' => $selectedCategory,
 			'categories' => $categories
 		]);
 	}
 	public function tag($slug){
-		$selectedCategory = $this->tagService->findBySlug($slug);
+		$selectedCategory = $this->tagService->findBySlug('tag', $slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
 		$categories = $this->categoryService->getAllCategories();
+		$recent = $this->postService->getLatestArticles(2);
+
+		$popularCategories = $this->tagService->getPopular();
+
 		
 		return view('html.news')->with([
 			'posts' => $posts,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
 			'selectedCategory' => $selectedCategory,
 			'categories' => $categories
 		]);
+	}
+	public function updateAccount(Request $request){
+		$user = Auth::user();
+		$user->first_name = $request->first_name;
+		$user->last_name = $request->last_name;
+		$user->phone = $request->phone;
+		$user->address_one = $request->address_one;
+		$user->address_two = $request->address_two;
+		$user->city = $request->city;
+		$user->state = $request->state;
+		$user->save();
+		$request->session()->flash('success', 'Profile successfully updated');
+		return redirect()->back();
 	}
 }

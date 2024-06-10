@@ -1,5 +1,11 @@
 <x-airshare-layout>
-  <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0">
+  @php
+    $banner_image = asset('vendor/airsharex/assets/img/banner.jpeg');
+    if(isset($selectedCategory) && $selectedCategory->featured_image != ''){
+      $banner_image = $selectedCategory->featured_image;
+    }
+  @endphp
+  <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ $banner_image }}" data-offset="0">
     <div class="container">
       <div class="breadcrumb-content text-white">
         @if(isset($selectedCategory))
@@ -8,7 +14,9 @@
         @else
         <h1>News</h1>
         @endif
-        <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
+        @if(isset($selectedCategory))
+        <p>{{$selectedCategory->short_description}}</p>
+        @endif
       </div>
     </div>
   </section>
@@ -79,41 +87,8 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12">
-          <aside class="sidebar">
-            <div class="widget search">
-              <h5 class="widget-title">Search</h5>
-              <form class="blog-search-form">
-                <input type="text" class="form-control" placeholder="Search Here...">
-                <button type="submit">
-                  <i class="far fa-search"></i>
-                </button>
-              </form>
-            </div>
-            <div class="widget category">
-              <h5 class="widget-title">Category</h5>
-              <div class="category-list">
-               @foreach($categories as $category)
-                <a href="{{route('site.news-category', $category->slug)}}">
-                  <i class="far fa-arrow-right"></i>{{$category->name}} <span>({{$category->posts()->count()}})</span>
-                </a>
-                @endforeach
-                
-              </div>
-            </div>
-            <div class="widget sidebar-tag">
-              <h5 class="widget-title">Popular Tags</h5>
-              <div class="tag-list">
-                <a href="#">Booking</a>
-                <a href="#">Business</a>
-                <a href="#">Tour</a>
-                <a href="#">Flight</a>
-                <a href="#">Cruise</a>
-                <a href="#">Activity</a>
-                <a href="#">Luxury</a>
-                <a href="#">Travel</a>
-              </div>
-            </div>
-          </aside>
+          @include('partials.sidebar')
+          
         </div>
       </div>
     </div>
