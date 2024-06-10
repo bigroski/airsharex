@@ -104,4 +104,28 @@ class StaticController extends Controller
 		$request->session()->flash('success', 'Thank you for Contacting Us');
 		return redirect()->back();
 	}
+	public function category($slug){
+		$selectedCategory = $this->categoryService->findBySlug($slug);
+		// dd($selectedCategory);
+		$posts = $selectedCategory->posts()->paginate();
+		$categories = $this->categoryService->getAllCategories();
+		
+		return view('html.news')->with([
+			'posts' => $posts,
+			'selectedCategory' => $selectedCategory,
+			'categories' => $categories
+		]);
+	}
+	public function tag($slug){
+		$selectedCategory = $this->tagService->findBySlug($slug);
+		// dd($selectedCategory);
+		$posts = $selectedCategory->posts()->paginate();
+		$categories = $this->categoryService->getAllCategories();
+		
+		return view('html.news')->with([
+			'posts' => $posts,
+			'selectedCategory' => $selectedCategory,
+			'categories' => $categories
+		]);
+	}
 }
