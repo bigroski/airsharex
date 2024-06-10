@@ -55,6 +55,8 @@ Route::get('/account', [StaticController::class, 'account']);
 Route::get('/search', [StaticController::class, 'search']);
 Route::get('/news',[StaticController::class,'news']);
 Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
+Route::get('/news/category/{slug}',[StaticController::class,'category'])->name('site.news-category');
+Route::get('/news/tag/{slug}',[StaticController::class,'tag'])->name('site.news-tag');
 
 Route::prefix("admin")->middleware(
     [
