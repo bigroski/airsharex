@@ -111,6 +111,7 @@ class StaticController extends Controller
 		return redirect()->back();
 	}
 	public function category($slug){
+		
 		$selectedCategory = $this->categoryService->findBySlug('category',$slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
@@ -129,6 +130,7 @@ class StaticController extends Controller
 		]);
 	}
 	public function tag($slug){
+		// dd($slug);
 		$selectedCategory = $this->tagService->findBySlug('tag', $slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();

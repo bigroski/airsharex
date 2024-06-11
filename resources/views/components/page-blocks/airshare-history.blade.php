@@ -12,6 +12,7 @@
           </div>
         </swip-nav>
           <div class="swiper-wrapper">
+            @if($counters)
             @foreach($counters as $counter)
             <div class="swiper-slide">
               <div class="history-list">
@@ -25,7 +26,7 @@
             </div><!-- End testimonial item -->
 
             @endforeach
-            
+            @endif
           </div>
           <div class="swiper-pagination"></div>
         </div>
