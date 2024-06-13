@@ -8,6 +8,7 @@ use Bigroski\Tukicms\App\Classes\Services\PostService;
 use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
 use App\Mail\ContactForm;
+use Http;
 use Mail;
 use Auth;
 class StaticController extends Controller
@@ -104,10 +105,23 @@ class StaticController extends Controller
 		]);
 	}
 	public function processContact(Request $request){
-		// dd($request->all());
-		
-		Mail::to('pratik.raghubanshi@gmail.com')->send(new ContactForm($request->all()));
-		$request->session()->flash('success', 'Thank you for Contacting Us');
+		$response = Http::withOptions(['verify' => false])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
+		    'response' => $request->get('g-recaptcha-response'),
+		]);
+		// dump($request->all());
+		// // dump($request->get('g-recaptcha-response'));
+		// dump($response);
+		// dump($response->body());
+		if($response->json('success') == true){
+
+			Mail::to('pratik.raghubanshi@gmail.com')->send(new ContactForm($request->all()));
+			$request->session()->flash('success', 'Thank you for Contacting Us');
+		}else{
+			$request->session()->flash('error', 'Please verify you are not a bot.');
+
+		}
+		// dd('here');
 		return redirect()->back();
 	}
 	public function category($slug){

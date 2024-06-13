@@ -40,32 +40,32 @@
                 <div class="col-md-6 col-sm-12">
                   <div class="contact-form">
                         {{$description}}
-                        <form name="qryform"  id="qryform" method="post" action="{{route('site.processContact')}}" novalidate="novalidate">
+                        <form name="qryform"  id="qryform" method="post" action="{{route('site.processContact')}}" >
                             @csrf
                             <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
                             </div>
                             <div class="form-group">
                             <label>Email:</label>
-                            <input type="email" class="form-control" id="name" placeholder="Enter Email" name="email">
+                            <input type="email" class="form-control" id="name" placeholder="Enter Email" name="email" required>
                             </div>
                             
                             <div class="form-group">
                             <label>Phone No.:</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone no." name="phone">
+                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone no." name="phone" required>
                             </div>
                             <div class="form-group">
                             <label>Subject:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Subject" name="subject">
+                            <input type="text" class="form-control" id="name" placeholder="Subject" name="subject" required>
                             </div>
                             
                             <div class="form-group">
                             <label>Message:</label>
-                            <textarea name="issues" class="form-control" id="iq" placeholder="Enter your Message"></textarea>
+                            <textarea name="issues" class="form-control" id="iq" placeholder="Enter your Message" required></textarea>
                             </div>
-                            
-                            
+                            <div id="recaptcha"></div>
+                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
                             <button type="submit" class="btn btn-lg btn-danger">Submit</button>
                         </form>
                   </div>
@@ -74,3 +74,14 @@
 		</div>
 </section>
 <!-- About -->
+@section('page-scripts')
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('recaptcha', {
+              'sitekey' : '6LekVwsTAAAAABjA9Aro5dm2mrl3kb6hMk6VsHhl'
+            });
+        };
+    </script>
+
+@endsection
