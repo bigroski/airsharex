@@ -7,6 +7,7 @@ use Bigroski\Tukicms\App\Models\Post;
 use Bigroski\Tukicms\App\Classes\Services\PostService;
 use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
+use Bigroski\Tukicms\App\Classes\Services\CommentService;
 use App\Mail\ContactForm;
 use Http;
 use Mail;
@@ -17,7 +18,8 @@ class StaticController extends Controller
 
 	public function __construct(private PostService $postService,
 		private CategoryService $categoryService,
-		private TagService $tagService
+		private TagService $tagService,
+		private CommentService $commentService
 	){
 
 	}
@@ -109,10 +111,6 @@ class StaticController extends Controller
 		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
 		    'response' => $request->get('g-recaptcha-response'),
 		]);
-		// dump($request->all());
-		// // dump($request->get('g-recaptcha-response'));
-		// dump($response);
-		// dump($response->body());
 		if($response->json('success') == true){
 
 			Mail::to('pratik.raghubanshi@gmail.com')->send(new ContactForm($request->all()));
@@ -121,7 +119,21 @@ class StaticController extends Controller
 			$request->session()->flash('error', 'Please verify you are not a bot.');
 
 		}
-		// dd('here');
+		return redirect()->back();
+	}
+	public function processComment(Request $request){
+		$response = Http::withOptions(['verify' => false])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
+		    'response' => $request->get('g-recaptcha-response'),
+		]);
+		if($response->json('success') == true){
+
+			$this->commentService->makeComment($request);
+			$request->session()->flash('success', 'Thank you for Contacting Us');
+		}else{
+			$request->session()->flash('error', 'Please verify you are not a bot.');
+
+		}
 		return redirect()->back();
 	}
 	public function category($slug){

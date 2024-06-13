@@ -41,6 +41,8 @@ Route::get('/about-static', [StaticController::class, 'about']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact-static', [StaticController::class, 'contact']);
 Route::post('/contact', [StaticController::class, 'processContact'])->name('site.processContact');
+Route::post('/comment/save', [StaticController::class, 'processComment'])->name('site.processComment');
+
 Route::get('/policy', [StaticController::class, 'policy']);
 Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
 Route::get('/news',[StaticController::class,'news']);

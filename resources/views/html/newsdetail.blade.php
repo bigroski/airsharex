@@ -68,67 +68,46 @@
                                  
                               </div>
                               <div class="blog-comments">
-                                   <h3>Comments (20)</h3>
+                                   <h3>Comments ({{$post->comments()->count()}})</h3>
                                    <div class="blog-comments-wrapper">
+                                        @foreach($post->comments as $comment)
                                         <div class="blog-comments-single">
                                              <div class="blog-comments-img">
                                              
                                                   <img src="http://i.pravatar.cc/500?img=1" alt="thumb">
                                              </div>
                                              <div class="blog-comments-content">
-                                                  <h5>Jesse Sinkler</h5>
+                                                  <h5>{{$comment->name}}</h5>
                                                   <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
+                                                       <i class="bi bi-stopwatch"></i> {{$comment->created_at}} </span>
+                                                  <p>{{$comment->description}}</p>
                                                   <a href="#">
                                                        <i class="far fa-reply"></i> Reply </a>
                                              </div>
                                         </div>
-                                        <div class="blog-comments-single blog-comments-reply">
-                                             <div class="blog-comments-img">
-                                                  <img src="http://i.pravatar.cc/500?img=2" alt="thumb">
-                                             </div>
-                                             <div class="blog-comments-content">
-                                                  <h5>Daniel Wellman</h5>
-                                                  <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
-                                                  <a href="#">
-                                                       <i class="far fa-reply"></i> Reply </a>
-                                             </div>
-                                        </div>
-                                        <div class="blog-comments-single">
-                                             <div class="blog-comments-img">
-                                                  <img src="http://i.pravatar.cc/500?img=3" alt="thumb">
-                                             </div>
-                                             <div class="blog-comments-content">
-                                                  <h5>Kenneth Evans</h5>
-                                                  <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
-                                                  <a href="#">
-                                                       <i class="far fa-reply"></i> Reply </a>
-                                             </div>
-                                        </div>
+                                        @endforeach
                                    </div>
                                    <div class="blog-comments-form">
                                         <h3>Leave A Comment</h3>
-                                        <form action="#">
+                                        <form action="{{route('site.processComment')}}" method="post">
+                                             @csrf
                                              <div class="row">
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Your Name*">
+                                                            <input type="text" class="form-control" placeholder="Your Name*" name="name">
                                                        </div>
                                                   </div>
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="email" class="form-control" placeholder="Your Email*">
+                                                            <input type="email" class="form-control" placeholder="Your Email*" name="email">
                                                        </div>
                                                   </div>
                                                   <div class="col-md-12">
                                                        <div class="form-group">
-                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*"></textarea>
+                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*" name="description"></textarea>
                                                        </div>
+                                                       <div id="recaptcha"></div>
+                                                       <input type="hidden" name="post_id" value="{{$post->id}}">
                                                        <button type="submit" class="theme-btn">Post Comment <i class="far fa-paper-plane"></i>
                                                        </button>
                                                   </div>
@@ -147,6 +126,16 @@
      </div>
 </section>
 
+@section('page-scripts')
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('recaptcha', {
+              'sitekey' : '6LekVwsTAAAAABjA9Aro5dm2mrl3kb6hMk6VsHhl'
+            });
+        };
+    </script>
 
+@endsection
 </x-airshare-layout>
 
