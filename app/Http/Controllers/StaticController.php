@@ -106,6 +106,19 @@ class StaticController extends Controller
 			'popularTags' => $popularCategories
 		]);
 	}
+
+	public function newsSearch(Request $request){
+		$posts = $this->postService->searchByTitle($request->get('query'));
+		$recent = $this->postService->getLatestArticles(2);
+		$categories = $this->categoryService->getAllCategories();
+		$popularCategories = $this->tagService->getPopular();
+		return view('html.news')->with([
+			'posts' => $posts, 
+			'recents' => $recent,
+			'categories' => $categories,
+			'popularTags' => $popularCategories
+		]);
+	}
 	public function processContact(Request $request){
 		$response = Http::withOptions(['verify' => false])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
 		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
@@ -137,6 +150,7 @@ class StaticController extends Controller
 		return redirect()->back();
 	}
 	public function category($slug){
+		
 		$selectedCategory = $this->categoryService->findBySlug('category',$slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
@@ -155,6 +169,7 @@ class StaticController extends Controller
 		]);
 	}
 	public function tag($slug){
+		// dd($slug);
 		$selectedCategory = $this->tagService->findBySlug('tag', $slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
@@ -173,6 +188,7 @@ class StaticController extends Controller
 		]);
 	}
 	public function updateAccount(Request $request){
+		
 		$user = Auth::user();
 		$user->first_name = $request->first_name;
 		$user->last_name = $request->last_name;
@@ -182,7 +198,13 @@ class StaticController extends Controller
 		$user->city = $request->city;
 		$user->state = $request->state;
 		$user->save();
+		uploadToMedia($user, $request, 'citizenship');
+		uploadToMedia($user, $request, 'avatar');
 		$request->session()->flash('success', 'Profile successfully updated');
 		return redirect()->back();
+	}
+
+	public function changePassword($request){
+
 	}
 }

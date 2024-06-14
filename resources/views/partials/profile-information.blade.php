@@ -1,4 +1,7 @@
+
 <div class="profile-info">
+ <form action="{{route('site.post.account')}}" method="POSt" enctype="multipart/form-data">
+                @csrf
               <div class="row">
                 <div class="col-xl-4">
                   <!-- Profile picture card-->
@@ -8,13 +11,13 @@
                       <!-- Profile picture image-->
                       <div class="avatar-upload">
                         <div class="avatar-edit">
-                          <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                          <input type='file' name="avatar" id="imageUpload" accept=".png, .jpg, .jpeg" />
                           <label for="imageUpload">
                             <i class="lni lni-pencil"></i>
                           </label>
                         </div>
                         <div class="avatar-preview">
-                          <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);"></div>
+                          <div id="imagePreview" style="background-image: url({{getMediaPath($user,'avatar')}});"></div>
                         </div>
                       </div>
                       <!-- Profile picture help block-->
@@ -28,8 +31,7 @@
                   <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                      <form action="{{route('site.post.account')}}" method="POSt">
-                        @csrf
+                     
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                           <!-- Form Group (first name)-->
@@ -60,8 +62,8 @@
                         <div class="row gx-3 mb-3">
                           <!-- Form Group (organization name)-->
                           <div class="col-md-12">
-                            <label class="small mb-1" for="inputOrgName">Address 1</label>
-                            <input class="form-control" id="inputOrgName" type="text" placeholder="Address 1" value="{{$user->address_one}}" name="address_one">
+                            <label class="small mb-1" for="inputAddressOne">Address 1</label>
+                            <input class="form-control" id="inputAddressOne" type="text" placeholder="Address 1" value="{{$user->address_one}}" name="address_one">
                           </div>
                           <!-- Form Group (location)-->
                         </div>
@@ -69,8 +71,8 @@
                         <div class="row gx-3 mb-3">
                           <!-- Form Group (organization name)-->
                           <div class="col-md-12">
-                            <label class="small mb-1" for="inputOrgName">Address 2</label>
-                            <input class="form-control" id="inputOrgName" type="text" placeholder="Address 2" value="{{$user->address_two}}" name="address_two">
+                            <label class="small mb-1" for="inputAddressTwo">Address 2</label>
+                            <input class="form-control" id="inputAddressTwo" type="text" placeholder="Address 2" value="{{$user->address_two}}" name="address_two">
                           </div>
                           <!-- Form Group (location)-->
                         </div>
@@ -78,8 +80,8 @@
                         <div class="row gx-3 mb-3">
                           <!-- Form Group (organization name)-->
                           <div class="col-md-6">
-                            <label class="small mb-1" for="inputOrgName">City</label>
-                            <input class="form-control" id="inputOrgName" type="text" placeholder="City" value="{{$user->city}}" name="city">
+                            <label class="small mb-1" for="inputCity">City</label>
+                            <input class="form-control" id="inputCity" type="text" placeholder="City" value="{{$user->city}}" name="city">
                           </div>
                           <!-- Form Group (location)-->
                           <div class="col-md-6">
@@ -99,17 +101,17 @@
                             </div>
                             <div class="col-md-6">
                               <div class="file-preview">
-                                <img src="http://i.pravatar.cc/500?img=7" />
-                                <i class="lni lni-cross-circle"></i>
+                                <img src="{{getMediaPath($user, 'citizenship')}}" />
+                                <!-- <i class="lni lni-cross-circle"></i> -->
                               </div>
                             </div>
                           </div>
                         </div>
                         <!-- Save changes button-->
                         <button class="btn btn-danger" type="submit">Save changes</button>
-                      </form>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+    </form>
+</div>

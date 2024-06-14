@@ -31,16 +31,19 @@
                                                   <i class="bi bi-chat-left"></i>3.2k Comments
                                                   </li>
                                                   <li>
-                                                  <i class="bi bi-hand-thumbs-up"></i>1.4k Like
-                                                  </li>
-                                                  <li>
                                                   <i class="bi bi-calendar"></i>{{$post->created_at->toFormattedDateString()}}
                                                   </li>
                                              </ul>
                                         </div>
                                         <div class="blog-meta-right">
-                                             <a href="#" class="share-link">
-                                             <i class="bi bi-share"></i>Share </a>
+                                             <?php $currentPageLink = url()->full(); ?>
+                                                {!! Share::page($currentPageLink,'Share in social Meia')
+                                                ->facebook()
+                                                ->twitter()
+                                                ->linkedin('Extra linkedin summary can be passed here')
+                                                ->whatsapp(); !!}
+                                             <!-- <a href="#" class="share-link">
+                                             <i class="bi bi-share"></i>Share </a> -->
                                         </div>
                                    </div>
                                    <div class="blog-details">

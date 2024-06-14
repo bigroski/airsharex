@@ -63,7 +63,7 @@ Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
 Route::get('/search', [StaticController::class, 'search'])->name('site.search');
-
+Route::get('/search/news', [StaticController::class, 'newsSearch'])->name('news.search');
 Route::prefix("admin")->middleware(
     [
         'web',
@@ -108,6 +108,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
 });
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
