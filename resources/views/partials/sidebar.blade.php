@@ -1,8 +1,8 @@
 <aside class="sidebar">
                          <div class="widget search">
                               <h5 class="widget-title">Search</h5>
-                              <form class="blog-search-form">
-                                   <input type="text" class="form-control" placeholder="Search Here...">
+                              <form action="{{route('news.search')}}" method="GET" class="blog-search-form">
+                                   <input type="text" name="query" class="form-control" placeholder="Search Here...">
                                    <button type="submit">
                                         <i class="far fa-search"></i>
                                    </button>

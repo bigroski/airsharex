@@ -103,6 +103,19 @@ class StaticController extends Controller
 			'popularTags' => $popularCategories
 		]);
 	}
+
+	public function newsSearch(Request $request){
+		$posts = $this->postService->searchByTitle($request->get('query'));
+		$recent = $this->postService->getLatestArticles(2);
+		$categories = $this->categoryService->getAllCategories();
+		$popularCategories = $this->tagService->getPopular();
+		return view('html.news')->with([
+			'posts' => $posts, 
+			'recents' => $recent,
+			'categories' => $categories,
+			'popularTags' => $popularCategories
+		]);
+	}
 	public function processContact(Request $request){
 		// dd($request->all());
 		
@@ -149,6 +162,7 @@ class StaticController extends Controller
 		]);
 	}
 	public function updateAccount(Request $request){
+		
 		$user = Auth::user();
 		$user->first_name = $request->first_name;
 		$user->last_name = $request->last_name;
@@ -158,7 +172,13 @@ class StaticController extends Controller
 		$user->city = $request->city;
 		$user->state = $request->state;
 		$user->save();
+		uploadToMedia($user, $request, 'citizenship');
+		uploadToMedia($user, $request, 'avatar');
 		$request->session()->flash('success', 'Profile successfully updated');
 		return redirect()->back();
+	}
+
+	public function changePassword($request){
+
 	}
 }
