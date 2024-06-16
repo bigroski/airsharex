@@ -7,15 +7,19 @@ use Bigroski\Tukicms\App\Models\Post;
 use Bigroski\Tukicms\App\Classes\Services\PostService;
 use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
+use Bigroski\Tukicms\App\Classes\Services\CommentService;
 use App\Mail\ContactForm;
+use Http;
 use Mail;
+use Auth;
 class StaticController extends Controller
 {
     //
 
 	public function __construct(private PostService $postService,
 		private CategoryService $categoryService,
-		private TagService $tagService
+		private TagService $tagService,
+		private CommentService $commentService
 	){
 
 	}
@@ -79,10 +83,15 @@ class StaticController extends Controller
 	public function news(){
 		$posts = $this->postService->paginatePosts();
 		$categories = $this->categoryService->getAllCategories();
-		
+		$recent = $this->postService->getLatestArticles(2);
+		$popularCategories = $this->tagService->getPopular();
 		return view('html.news')->with([
 			'posts' => $posts,
-			'categories' => $categories
+			'categories' => $categories,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
+
+
 		]);
 	}
 	public function newsdetail($slug){
@@ -97,35 +106,105 @@ class StaticController extends Controller
 			'popularTags' => $popularCategories
 		]);
 	}
+
+	public function newsSearch(Request $request){
+		$posts = $this->postService->searchByTitle($request->get('query'));
+		$recent = $this->postService->getLatestArticles(2);
+		$categories = $this->categoryService->getAllCategories();
+		$popularCategories = $this->tagService->getPopular();
+		return view('html.news')->with([
+			'posts' => $posts, 
+			'recents' => $recent,
+			'categories' => $categories,
+			'popularTags' => $popularCategories
+		]);
+	}
 	public function processContact(Request $request){
-		// dd($request->all());
-		
-		Mail::to('pratik.raghubanshi@gmail.com')->send(new ContactForm($request->all()));
-		$request->session()->flash('success', 'Thank you for Contacting Us');
+		$response = Http::withOptions(['verify' => false])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
+		    'response' => $request->get('g-recaptcha-response'),
+		]);
+		if($response->json('success') == true){
+
+			Mail::to('pratik.raghubanshi@gmail.com')->send(new ContactForm($request->all()));
+			$request->session()->flash('success', 'Thank you for Contacting Us');
+		}else{
+			$request->session()->flash('error', 'Please verify you are not a bot.');
+
+		}
+		return redirect()->back();
+	}
+	public function processComment(Request $request){
+		$response = Http::withOptions(['verify' => false])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+		    'secret' => '6LekVwsTAAAAAJYCvQewgxiGM_pUMhkT5AdfgsOO',
+		    'response' => $request->get('g-recaptcha-response'),
+		]);
+		if($response->json('success') == true){
+
+			$this->commentService->makeComment($request);
+			$request->session()->flash('success', 'Thank you for Contacting Us');
+		}else{
+			$request->session()->flash('error', 'Please verify you are not a bot.');
+
+		}
 		return redirect()->back();
 	}
 	public function category($slug){
-		$selectedCategory = $this->categoryService->findBySlug($slug);
+		
+		$selectedCategory = $this->categoryService->findBySlug('category',$slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
 		$categories = $this->categoryService->getAllCategories();
+		$recent = $this->postService->getLatestArticles(2);
+
+		$popularCategories = $this->tagService->getPopular();
+
 		
 		return view('html.news')->with([
 			'posts' => $posts,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
 			'selectedCategory' => $selectedCategory,
 			'categories' => $categories
 		]);
 	}
 	public function tag($slug){
-		$selectedCategory = $this->tagService->findBySlug($slug);
+		// dd($slug);
+		$selectedCategory = $this->tagService->findBySlug('tag', $slug);
 		// dd($selectedCategory);
 		$posts = $selectedCategory->posts()->paginate();
 		$categories = $this->categoryService->getAllCategories();
+		$recent = $this->postService->getLatestArticles(2);
+
+		$popularCategories = $this->tagService->getPopular();
+
 		
 		return view('html.news')->with([
 			'posts' => $posts,
+			'popularTags' => $popularCategories,
+			'recents' => $recent,
 			'selectedCategory' => $selectedCategory,
 			'categories' => $categories
 		]);
+	}
+	public function updateAccount(Request $request){
+		
+		$user = Auth::user();
+		$user->first_name = $request->first_name;
+		$user->last_name = $request->last_name;
+		$user->phone = $request->phone;
+		$user->address_one = $request->address_one;
+		$user->address_two = $request->address_two;
+		$user->city = $request->city;
+		$user->state = $request->state;
+		$user->save();
+		uploadToMedia($user, $request, 'citizenship');
+		uploadToMedia($user, $request, 'avatar');
+		$request->session()->flash('success', 'Profile successfully updated');
+		return redirect()->back();
+	}
+
+	public function changePassword($request){
+
 	}
 }

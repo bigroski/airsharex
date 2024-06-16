@@ -32,7 +32,7 @@
 
 			<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
-				<form>
+				<form action="{{route('site.search')}}" method="get">
 			<div class="my-3">
 			<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -103,7 +103,7 @@
 			</form>
 			</div>
 			<div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-			<form>
+			<form action="{{route('site.search')}}" method="get">
 			<div class="my-3">
 			<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -144,7 +144,7 @@
 			</form>
 			</div>
 			<div class="tab-pane fade" id="rescue" role="tabpanel" aria-labelledby="rescue-tab">
-			<form>
+			<form action="{{route('site.search')}}" method="get">
 			<div class="my-3">
 			<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -185,7 +185,7 @@
 			</form>
 			</div>
 			<div class="tab-pane fade" id="sharing" role="tabpanel" aria-labelledby="sharing-tab">
-			<form>
+			<form action="{{route('site.search')}}" method="get">
 			<div class="my-3">
 			<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">

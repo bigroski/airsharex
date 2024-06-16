@@ -88,6 +88,10 @@ class Repository
     {
         return $this->model->where($column_name, $condition);
     }
+    public function queryLike($column_name, $condition)
+    {
+        return $this->model->where($column_name,'LIKE', '%'.$condition.'%');
+    }
     public function destroy($id)
     {          
        $model = $this->findById($id);

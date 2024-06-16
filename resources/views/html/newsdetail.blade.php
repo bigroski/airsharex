@@ -31,16 +31,19 @@
                                                   <i class="bi bi-chat-left"></i>3.2k Comments
                                                   </li>
                                                   <li>
-                                                  <i class="bi bi-hand-thumbs-up"></i>1.4k Like
-                                                  </li>
-                                                  <li>
                                                   <i class="bi bi-calendar"></i>{{$post->created_at->toFormattedDateString()}}
                                                   </li>
                                              </ul>
                                         </div>
                                         <div class="blog-meta-right">
-                                             <a href="#" class="share-link">
-                                             <i class="bi bi-share"></i>Share </a>
+                                             <?php $currentPageLink = url()->full(); ?>
+                                                {!! Share::page($currentPageLink,'Share in social Meia')
+                                                ->facebook()
+                                                ->twitter()
+                                                ->linkedin('Extra linkedin summary can be passed here')
+                                                ->whatsapp(); !!}
+                                             <!-- <a href="#" class="share-link">
+                                             <i class="bi bi-share"></i>Share </a> -->
                                         </div>
                                    </div>
                                    <div class="blog-details">
@@ -68,67 +71,46 @@
                                  
                               </div>
                               <div class="blog-comments">
-                                   <h3>Comments (20)</h3>
+                                   <h3>Comments ({{$post->comments()->count()}})</h3>
                                    <div class="blog-comments-wrapper">
+                                        @foreach($post->comments as $comment)
                                         <div class="blog-comments-single">
                                              <div class="blog-comments-img">
                                              
                                                   <img src="http://i.pravatar.cc/500?img=1" alt="thumb">
                                              </div>
                                              <div class="blog-comments-content">
-                                                  <h5>Jesse Sinkler</h5>
+                                                  <h5>{{$comment->name}}</h5>
                                                   <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
+                                                       <i class="bi bi-stopwatch"></i> {{$comment->created_at}} </span>
+                                                  <p>{{$comment->description}}</p>
                                                   <a href="#">
                                                        <i class="far fa-reply"></i> Reply </a>
                                              </div>
                                         </div>
-                                        <div class="blog-comments-single blog-comments-reply">
-                                             <div class="blog-comments-img">
-                                                  <img src="http://i.pravatar.cc/500?img=2" alt="thumb">
-                                             </div>
-                                             <div class="blog-comments-content">
-                                                  <h5>Daniel Wellman</h5>
-                                                  <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
-                                                  <a href="#">
-                                                       <i class="far fa-reply"></i> Reply </a>
-                                             </div>
-                                        </div>
-                                        <div class="blog-comments-single">
-                                             <div class="blog-comments-img">
-                                                  <img src="http://i.pravatar.cc/500?img=3" alt="thumb">
-                                             </div>
-                                             <div class="blog-comments-content">
-                                                  <h5>Kenneth Evans</h5>
-                                                  <span>
-                                                       <i class="bi bi-stopwatch"></i> 29 August, 2024 </span>
-                                                  <p>There are many variations of passages the majority have suffered in some injected humour or randomised words which don't look even slightly believable.</p>
-                                                  <a href="#">
-                                                       <i class="far fa-reply"></i> Reply </a>
-                                             </div>
-                                        </div>
+                                        @endforeach
                                    </div>
                                    <div class="blog-comments-form">
                                         <h3>Leave A Comment</h3>
-                                        <form action="#">
+                                        <form action="{{route('site.processComment')}}" method="post">
+                                             @csrf
                                              <div class="row">
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Your Name*">
+                                                            <input type="text" class="form-control" placeholder="Your Name*" name="name">
                                                        </div>
                                                   </div>
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="email" class="form-control" placeholder="Your Email*">
+                                                            <input type="email" class="form-control" placeholder="Your Email*" name="email">
                                                        </div>
                                                   </div>
                                                   <div class="col-md-12">
                                                        <div class="form-group">
-                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*"></textarea>
+                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*" name="description"></textarea>
                                                        </div>
+                                                       <div id="recaptcha"></div>
+                                                       <input type="hidden" name="post_id" value="{{$post->id}}">
                                                        <button type="submit" class="theme-btn">Post Comment <i class="far fa-paper-plane"></i>
                                                        </button>
                                                   </div>
@@ -140,58 +122,23 @@
                     </div>
                </div>
                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <aside class="sidebar">
-                         <div class="widget search">
-                              <h5 class="widget-title">Search</h5>
-                              <form class="blog-search-form">
-                                   <input type="text" class="form-control" placeholder="Search Here...">
-                                   <button type="submit">
-                                        <i class="far fa-search"></i>
-                                   </button>
-                              </form>
-                         </div>
-                         <div class="widget category">
-                              <h5 class="widget-title">Category</h5>
-                              <div class="category-list">
-                                   @foreach($categories as $category)
-                                   <a href="#">
-                                        <i class="far fa-arrow-right"></i>{{$category->name}} <span>({{$category->posts()->count()}})</span>
-                                   </a>
-                                   @endforeach
-                              </div>
-                         </div>
-                         <div class="widget recent-post">
-                              <h5 class="widget-title">Recent Post</h5>
-                              @foreach($recents as $recent)
-                              <div class="recent-post-single">
-                                   <div class="recent-post-img">
-                                        <img src="{{$recent->featured_image}}" alt="thumb">
-                                   </div>
-                                   <div class="recent-post-bio">
-                                        <h6>
-                                             <a href="{{route('site.news-detail', $recent->slug)}}">{{$recent->title}}</a>
-                                        </h6>
-                                        <span>
-                                             <i class="bi bi-stopwatch"></i>{{$recent->created_at->toFormattedDateString()}} </span>
-                                   </div>
-                              </div>
-                              @endforeach
-                         </div>
-                       
-                         <div class="widget sidebar-tag">
-                              <h5 class="widget-title">Popular Tags</h5>
-                              <div class="tag-list">
-                                   @foreach($popularTags as $tags)
-                                   <a href="#">{{$tags->name}}</a>
-                                   @endforeach
-                              </div>
-                         </div>
-                    </aside>
+                    @include('partials.sidebar')
+                    
                </div>
           </div>
      </div>
 </section>
 
+@section('page-scripts')
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('recaptcha', {
+              'sitekey' : '6LekVwsTAAAAABjA9Aro5dm2mrl3kb6hMk6VsHhl'
+            });
+        };
+    </script>
 
+@endsection
 </x-airshare-layout>
 

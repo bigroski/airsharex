@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Bigroski\Tukicms\App\Classes\Services\UserService;
 
 class ProfileController extends Controller
 {
+    public function __construct(private UserService $userService){
+
+    }
     /**
      * Display the user's profile form.
      */
@@ -56,5 +60,12 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function changePassword(Request $request){
+        $user  = Auth::user();
+        $this->userService->changePassword($request, $user);
+        $request->session()->flash('success', 'Password Successfully updated');
+        return redirect()->back();
     }
 }

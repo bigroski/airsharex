@@ -27,7 +27,7 @@
         <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
-
+        <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
         
     </head>
     <body class="antialiased">
@@ -94,6 +94,7 @@
 
     </div>
   </header><!-- End Header -->
+        @include('partials.flash')
         {{$slot}}
 
 
