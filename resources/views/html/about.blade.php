@@ -29,7 +29,7 @@
           <div class="col-xl-4 col-md-6 d-flex aos-init aos-animate" data-aos="zoom-out">
             <div class="count-item position-relative">
               <div class="counts">
-                13+
+              <span class="counter" data-count="+" data-to="13" data-speed="3000">13</span>
               </div>
               <p>Airlines</p>
              
@@ -38,7 +38,7 @@
 
           <div class="col-xl-4 col-md-6 d-flex aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
             <div class="count-item position-relative">
-              <div class="counts">34</div>
+              <div class="counts"><span class="counter" data-count="+" data-to="34" data-speed="3000">34</span></div>
               <p>Schedule Flights</p>
             
             </div>
@@ -47,7 +47,7 @@
           <div class="col-xl-4 col-md-6 d-flex aos-init aos-animate" data-aos="zoom-out" data-aos-delay="400">
             <div class="count-item position-relative">
               <div class="counts">
-                5689
+              <span class="counter" data-count="+" data-to="5659" data-speed="3000">5659</span>
               </div>
               <p>Happy Clients</p>
              
