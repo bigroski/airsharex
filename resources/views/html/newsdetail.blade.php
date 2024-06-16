@@ -52,7 +52,7 @@
                                         <hr>
                                         @if($post->categories)
                                         <div class="blog-details-tags pb-20">
-                                             <h5>Tags : </h5>
+                                             <!-- <h5>Tags : </h5> -->
                                              <ul>
                                                   @foreach($post->categories as $category)
                                                   <li>
@@ -84,8 +84,8 @@
                                                   <span>
                                                        <i class="bi bi-stopwatch"></i> {{$comment->created_at}} </span>
                                                   <p>{{$comment->description}}</p>
-                                                  <a href="#">
-                                                       <i class="far fa-reply"></i> Reply </a>
+                                                  <!-- <a href="#">
+                                                       <i class="far fa-reply"></i> Reply </a> -->
                                              </div>
                                         </div>
                                         @endforeach
