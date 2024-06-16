@@ -89,8 +89,8 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <div class="nav-right"> <a class="login" href="index.html#about">Login</a> | <a class="signup" href="index.html#about">Signup</a> </div>
-    
+      <!-- <div class="nav-right"> <a class="login" href="index.html#about">Login</a>  <a class="signup" href="index.html#about">Signup</a> </div> -->
+      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> Profile</a> </div>
 
     </div>
   </header><!-- End Header -->
