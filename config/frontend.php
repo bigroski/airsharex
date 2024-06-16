@@ -88,6 +88,13 @@ return [
                             'permission-name' => 'web.booking.create',
 
                         ],
+                        [
+                            'name' => 'Services',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.service.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
                         
                         
                         // [

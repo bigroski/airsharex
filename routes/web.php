@@ -19,7 +19,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
-
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +93,7 @@ Route::prefix("admin")->middleware(
     ]
 )->group(
     function () {
+        Route::resource('service', ServiceController::class, ['as' => 'web']);
         Route::resource('airports', AirportController::class, ['as' => 'web']);
         Route::resource('vendors', VendorController::class, ['as' => 'web']);
         Route::resource('passengers', PassengerController::class, ['as' => 'web']);

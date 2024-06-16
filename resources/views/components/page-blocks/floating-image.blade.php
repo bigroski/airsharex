@@ -13,7 +13,8 @@
                       <div class="col-xl-4 col-md-6 d-flex aos-init aos-animate" data-aos="zoom-out">
                         <div class="count-item position-relative">
                           <div class="counts">
-                            {{$counter->url}}
+                          <span class="counter" data-count="+" data-to="{{$counter->url}}" data-speed="3000">{{$counter->url}}</span>
+                            
                           </div>
                           <p>{{$counter->title}}</p>
                          

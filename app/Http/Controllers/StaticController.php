@@ -8,6 +8,7 @@ use Bigroski\Tukicms\App\Classes\Services\PostService;
 use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
 use Bigroski\Tukicms\App\Classes\Services\CommentService;
+use App\Classes\Services\ServiceService;
 use App\Mail\ContactForm;
 use Http;
 use Mail;
@@ -19,7 +20,8 @@ class StaticController extends Controller
 	public function __construct(private PostService $postService,
 		private CategoryService $categoryService,
 		private TagService $tagService,
-		private CommentService $commentService
+		private CommentService $commentService,
+		private ServiceService $serviceService
 	){
 
 	}
@@ -30,7 +32,11 @@ class StaticController extends Controller
 		return view('html.about');
 	}
 	public function services(){
-		return view('html.services');
+		$allServices = $this->serviceService->getAll();
+		// dump($allServices);
+		return view('html.services')->with([
+			'services'=> $allServices
+		]);
 	}
 	public function blog(){
 		$posts = Post::all();
