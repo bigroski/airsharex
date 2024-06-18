@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Services\GalleryService;
 use Illuminate\Http\Request;
 use Bigroski\Tukicms\App\Models\Post;
 use Bigroski\Tukicms\App\Classes\Services\PostService;
@@ -21,7 +22,8 @@ class StaticController extends Controller
 		private CategoryService $categoryService,
 		private TagService $tagService,
 		private CommentService $commentService,
-		private ServiceService $serviceService
+		private ServiceService $serviceService,
+		private GalleryService $galleryService
 	){
 
 	}
@@ -75,7 +77,8 @@ class StaticController extends Controller
 		return view('html.disclaimer');
 	}
 	public function gallery(){
-		return view('html.gallery');
+		$galleries = $this->galleryService->getAllData();
+		return view('html.gallery',['galleries'=>$galleries]);
 	}
 	public function emailverify(){
 		return view('html.emailverify');

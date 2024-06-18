@@ -12,7 +12,13 @@ class GalleryService extends BaseService{
 	public function __construct(public GalleryRepository $galleryRepository){
 			
 	}
-
+	public function getAllData(){
+		return $this->galleryRepository
+		->getAllData();
+	}
+	public function getAll(){
+		return $this->galleryRepository->getAll();
+	}
 	public function paginate(){
 		return $this->galleryRepository->paginate();
 	}
