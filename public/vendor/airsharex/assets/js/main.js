@@ -494,7 +494,15 @@ function toggleInputs() {
   endInput.disabled = isOneWay;
 }
 
+// counter
 
+$(".counter").countTo();
+$(".counts").appear(
+  function () {
+      $(".counter").countTo();
+  },
+  { accY: -100 }
+);
 // pricerange
 
 $(function () {

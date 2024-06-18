@@ -19,7 +19,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
-
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,27 +35,35 @@ use App\Http\Controllers\LeadershipController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
+// DONE
 Route::get('/home', [StaticController::class, 'home']);
 Route::get('/about-static', [StaticController::class, 'about']);
+Route::get('/ourstory', [StaticController::class, 'ourstory']);
+Route::get('/contact-static', [StaticController::class, 'contact']);
+Route::post('/contact', [StaticController::class, 'processContact'])->name('site.processContact');
+Route::post('/comment/save', [StaticController::class, 'processComment'])->name('site.processComment');
+
+Route::get('/policy', [StaticController::class, 'policy']);
+Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
+Route::get('/news',[StaticController::class,'news']);
+Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
+Route::get('/news/category/{slug}',[StaticController::class,'category'])->name('site.news-category');
+Route::get('/news/tag/{slug}',[StaticController::class,'tag'])->name('site.news-tag');
+Route::get('/history-static', [StaticController::class, 'history']);
+Route::post('/account/update', [StaticController::class, 'updateAccount'])->name('site.post.account');
+// Route::get('/blog', [StaticController::class, 'blog']);
+// Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
+
 Route::get('/services', [StaticController::class, 'services']);
-Route::get('/blog', [StaticController::class, 'blog']);
-Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 Route::get('/signup', [StaticController::class, 'signup']);
 Route::get('/htmlregister', [StaticController::class, 'register']);
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
-Route::get('/history', [StaticController::class, 'history']);
-Route::get('/ourstory', [StaticController::class, 'ourstory']);
-Route::get('/contact-static', [StaticController::class, 'contact']);
-Route::post('/contact', [StaticController::class, 'processContact'])->name('site.processContact');
-Route::get('/policy', [StaticController::class, 'policy']);
-Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
+
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
-Route::get('/search', [StaticController::class, 'search']);
-Route::get('/news',[StaticController::class,'news']);
-Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
-
+Route::get('/search', [StaticController::class, 'search'])->name('site.search');
+Route::get('/search/news', [StaticController::class, 'newsSearch'])->name('news.search');
 Route::prefix("admin")->middleware(
     [
         'web',
@@ -66,10 +74,10 @@ Route::prefix("admin")->middleware(
     // 'verified'
     ]
 )->group( function () {
-    Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
-    Route::resource('book', BookController::class, ['as' => 'web']);
-    Route::resource('pen', PenController::class, ['as' => 'web']);
-	Route::resource('device', DeviceController::class, ['as' => 'web']);
+    // Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
+    // Route::resource('book', BookController::class, ['as' => 'web']);
+    // Route::resource('pen', PenController::class, ['as' => 'web']);
+	// Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
 
@@ -85,6 +93,7 @@ Route::prefix("admin")->middleware(
     ]
 )->group(
     function () {
+        Route::resource('service', ServiceController::class, ['as' => 'web']);
         Route::resource('airports', AirportController::class, ['as' => 'web']);
         Route::resource('vendors', VendorController::class, ['as' => 'web']);
         Route::resource('passengers', PassengerController::class, ['as' => 'web']);
@@ -100,6 +109,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
 });
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);

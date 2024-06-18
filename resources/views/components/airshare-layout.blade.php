@@ -27,7 +27,7 @@
         <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
-
+        <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
         
     </head>
     <body class="antialiased">
@@ -43,7 +43,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           {!! getFrontEndMenu() !!}
-          <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <!-- <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li>
                 <a href="#">Column 1 link 1</a>
@@ -84,16 +84,17 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          
+           -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <div class="nav-right"> <a class="login" href="index.html#about">Login</a> | <a class="signup" href="index.html#about">Signup</a> </div>
-    
+      <!-- <div class="nav-right"> <a class="login" href="index.html#about">Login</a>  <a class="signup" href="index.html#about">Signup</a> </div> -->
+      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> Profile</a> </div>
 
     </div>
   </header><!-- End Header -->
+        @include('partials.flash')
         {{$slot}}
 
 
