@@ -45,13 +45,19 @@
 			</div>
 			<div class="row g-3">
 			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
-				<select class="test_skill form-control" placeholder="From">
-					<option >KTM</option>
+				<select name = "from" class="test_skill form-control" placeholder="From">
+					<!-- <option >KTM</option> -->
+					@foreach ($cities as $city)
+                    <option value="{{ $city['CityId'] }}">{{ $city['CityName'] }}</option>
+                @endforeach
 				</select>
 			</div>
 			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-				<select class="test_skill form-control " placeholder="to">
-					<option >POK</option>
+				<select name = "to" class="test_skill form-control " placeholder="to">
+					<!-- <option >POK</option> -->
+					@foreach ($cities as $city)
+                    <option value="{{ $city['CityId'] }}">{{ $city['CityName'] }}</option>
+                @endforeach
 				</select>
 			</div>
 			<div class="col-lg-5 col-md-4 col-sm-6 col-12">

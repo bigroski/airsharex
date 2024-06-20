@@ -11,6 +11,7 @@ use Bigroski\Tukicms\App\Classes\Services\TagService;
 use Bigroski\Tukicms\App\Classes\Services\CommentService;
 use App\Classes\Services\ServiceService;
 use App\Mail\ContactForm;
+use App\Services\ApiService;
 use Http;
 use Mail;
 use Auth;
@@ -23,11 +24,13 @@ class StaticController extends Controller
 		private TagService $tagService,
 		private CommentService $commentService,
 		private ServiceService $serviceService,
-		private GalleryService $galleryService
+		private GalleryService $galleryService,
+		private ApiService $apiService,
 	){
-
+ 
 	}
 	public function home(){
+		$city = $this->apiService->getCity();
 		return view('html.testPage');
 	}
 	public function about(){
@@ -87,6 +90,30 @@ class StaticController extends Controller
 		return view('html.account');
 	}
 	public function search(){
+		
+	
+
+		$data = [
+			"FromCityId"=> 1,
+			"FromCity"=> "Kathamndu",
+			"ToCityId"=> 2,
+			"ToCity"=> "Pokhara",
+			"DepartureDate"=> "2024-06-26",
+			"NationalityCode"=> "NP",
+			"SeatCount"=> 1,
+			"HeliId"=> 0,
+			"HeliType"=> "test",
+			"heliOperatorId"=> 1,
+			"heliOperator"=> "test",
+			"pageNumber"=> 1,
+			"pageSize"=> 10,
+			"PartnerClientId"=> "test"
+		];
+
+$serchData = $this->apiService->serchTrip($data);
+
+// dd('here serach',$serchData);
+
 		return view('html.search');
 	}
 	public function news(){

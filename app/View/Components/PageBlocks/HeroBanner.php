@@ -2,7 +2,7 @@
 
 namespace App\View\Components\PageBlocks;
 
-
+use App\Services\ApiService;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -60,7 +60,10 @@ class HeroBanner extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.page-blocks.hero-banner')->with($this->getValues());
+        $apiService = app(ApiService::class);
+       
+        $cities = $apiService->getCity();
+        return view('components.page-blocks.hero-banner',compact('cities'))->with($this->getValues());
     }
 
 
