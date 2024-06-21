@@ -30,6 +30,9 @@ class StaticController extends Controller
  
 	}
 	public function home(){
+		
+		$response = $this->apiService->authenticate();
+		dd($response);
 		$city = $this->apiService->getCity();
 		return view('html.testPage');
 	}
@@ -89,32 +92,46 @@ class StaticController extends Controller
 	public function account(){
 		return view('html.account');
 	}
-	public function search(){
+	public function search(Request $request){
 		
-	
+		// dd($request->input('from'));
+		// if ($request->isMethod('post')) {
+			$data = $request->all();
 
-		$data = [
-			"FromCityId"=> 1,
-			"FromCity"=> "Kathamndu",
-			"ToCityId"=> 2,
-			"ToCity"=> "Pokhara",
-			"DepartureDate"=> "2024-06-26",
-			"NationalityCode"=> "NP",
-			"SeatCount"=> 1,
-			"HeliId"=> 0,
-			"HeliType"=> "test",
-			"heliOperatorId"=> 1,
-			"heliOperator"=> "test",
-			"pageNumber"=> 1,
-			"pageSize"=> 10,
-			"PartnerClientId"=> "test"
-		];
+  		$fromCity = $request['from'];
+        
+        $fromCityParts = explode(' - ', $fromCity);
+        
+        $fromCityId = $fromCityParts[0];
+        $fromCityName = $fromCityParts[1];
 
-$serchData = $this->apiService->serchTrip($data);
+		$toCity = $request['to'];
+        
+        $toCityParts = explode(' - ', $toCity);
+        
+        $toCityId = $toCityParts[0];
+        $toCityName = $toCityParts[1];
+			$data = [
+				"FromCityId"=> $fromCityId,
+				"FromCity"=> $fromCityName,
+				"ToCityId"=> $toCityId ,
+				"ToCity"=> $toCityName,
+				"DepartureDate"=> $request['start_date'],
+				"NationalityCode"=> "NP",
+				"SeatCount"=> $request['seat_count'],
+				"pageNumber"=> 1,
+				"pageSize"=> 10,];
 
-// dd('here serach',$serchData);
+		$data["heliOperatorId"]= 0;
+		$data["heliOperator"]= "200013";  
+		$data["PartnerClientId"]= "1";
+		// dd($data);
+		$serchData = $this->apiService->serchTrip($data);
+		$returnData = isset($serchData['ResultData']['MYDHTripSearch']['TripSearchResult'])?$serchData['ResultData']['MYDHTripSearch']['TripSearchResult']:[];
+		// print_r($serchData['ResultData']['MYDHTripSearch']['TripSearchResult']);
+		// dd('here serach',$returnData,$serchData);
 
-		return view('html.search');
+		return view('html.search',compact('returnData'));
 	}
 	public function news(){
 		$posts = $this->postService->paginatePosts();

@@ -18,10 +18,17 @@ class ApiService
         ]);
     }
 
-    public function authenticate($data)
+    public function authenticate()
     {
         try {
-            $response = $this->client->post('/v1/Authenticate/Authenticate ', [
+            $data =  [
+                "UserName" => config('api.asx.username'),
+                "Password" => config('api.asx.password'),
+                "AccessCode" => config('api.asx.access_code'),
+                "RequestedBy" => config('api.asx.requested_by'),
+            ];
+
+            $response = $this->client->post('/v1/Authenticate/Authenticate', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -29,8 +36,10 @@ class ApiService
                 ],
                 'json' => $data
             ]);
+            $responseData = json_decode($response->getBody()->getContents(), true);
+            session(['asx_api_token' => $responseData['ResultData']['AccessToken']]);
 
-            return json_decode($response->getBody()->getContents(), true);
+            return $responseData ;
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 throw new Exception($e->getResponse()->getBody()->getContents());
@@ -137,11 +146,19 @@ class ApiService
     {
 
         try {
+            if (session()->has('asx_api_token')) {
+                // Key exists, do something with the value
+              } else {
+                // Key doesn't exist, call your method
+                $this->authenticate();
+              }
+              $apiToken=session()->get('asx_api_token');
 
-            $response = $this->client->post('/v1/MYTrip/SearchMYTripV1', [
+            $response = $this->client->post('/SearchTrip', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token'=>$apiToken,
                     'Accept'    => 'application/json',
                 ],
                 'json' => $data

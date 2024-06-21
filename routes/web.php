@@ -62,7 +62,9 @@ Route::get('/emailverify', [StaticController::class, 'emailverify']);
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
+Route::post('/search', [StaticController::class, 'search'])->name('site.search');
 Route::get('/search', [StaticController::class, 'search'])->name('site.search');
+
 Route::get('/search/news', [StaticController::class, 'newsSearch'])->name('news.search');
 Route::prefix("admin")->middleware(
     [

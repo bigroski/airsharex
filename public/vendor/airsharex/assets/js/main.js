@@ -431,6 +431,8 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function () {
   const containers = document.querySelectorAll('.qty-container');
   const totalQuantitySpan = document.getElementById('totalQuantity');
+  const totalSeatInput = document.getElementById('seatCount');
+
 
   function updateTotalQuantity() {
       let total = 0;
@@ -438,6 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
           total += parseInt(input.value);
       });
       totalQuantitySpan.textContent = total;
+      totalSeatInput.value=total;
   }
 
   containers.forEach(container => {
