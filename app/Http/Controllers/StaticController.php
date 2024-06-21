@@ -86,6 +86,9 @@ class StaticController extends Controller
 	public function search(){
 		return view('html.search');
 	}
+	public function checkout(){
+		return view('html.checkout');
+	}
 	public function news(){
 		$posts = $this->postService->paginatePosts();
 		$categories = $this->categoryService->getAllCategories();

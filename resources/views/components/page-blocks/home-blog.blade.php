@@ -7,7 +7,7 @@
 			$first = $posts->first();
 			
 			$slice = $posts->slice(1);
-		@endphp
+		@endphpphp
 		<div class="col-lg-6 col-md-12">
 
 		
