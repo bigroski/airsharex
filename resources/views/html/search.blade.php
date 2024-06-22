@@ -119,7 +119,7 @@
                <div class="col-lg-8 col-xl-9">
                     <div class="col-md-12">
                          <div class="booking-sort">
-                         <h5 class="card-title mb-0 fw-light fs-5">2,350 Results Found</h5>
+                         <h5 class="card-title mb-0 fw-light fs-5">{{count($returnData)}} Results Found</h5>
                               
                               <div class="col-md-3 booking-sort-box">
                                    <select class="select">
@@ -132,7 +132,7 @@
                          </div>
                     </div>
                     <div class="row">
-                    @foreach ($returnData as $data)
+                    @forelse  ($returnData as $data)
                    
                          
                             <div class="col-lg-12">
@@ -318,7 +318,9 @@
                                       </div>
                                  </div>
                             </div>
-                    @endforeach
+                            @empty
+                    <p>No data found.</p>
+                    @endforelse
 
                             <!-- <div class="col-lg-12">
                                  <div class="flight-booking-item">
@@ -1420,8 +1422,8 @@
                                       </div>
                                  </div>
                             </div>
-
-                            <div class="col-lg-12">
+ -->
+                            <!-- <div class="col-lg-12">
                                  <div class="flight-booking-item">
                                       <div class="flight-booking-wrapper">
                                            <div class="flight-booking-info">
@@ -1440,7 +1442,7 @@
                                                                </div>
                                                                <div class="start-time-info">
                                                                     <h6 class="start-time-text">07:30</h6>
-                                                                    <span class="flight-destination">KTM</span>
+                                                                    <span class="flight-destination">KATHMANDU</span>
                                                                </div>
                                                           </div>
                                                           <div class="flight-stop">
@@ -1453,7 +1455,7 @@
                                                                </div>
                                                                <div class="start-time-info">
                                                                     <h6 class="end-time-text">08:35</h6>
-                                                                    <span class="flight-destination">POK</span>
+                                                                    <span class="flight-destination">ANNAPURNA BASE CAMP</span>
                                                                </div>
                                                           </div>
                                                      </div>
@@ -1608,7 +1610,7 @@
 
 
 
-                            <div class="pagination-area">
+                            <!-- <div class="pagination-area">
                                  <div aria-label="Page navigation example">
                                       <ul class="pagination">
                                            <li class="page-item">
@@ -1637,7 +1639,7 @@
                                       </ul>
                                  </div>
                                 
-                            </div>
+                            </div> -->
                          
                     </div>
                </div>

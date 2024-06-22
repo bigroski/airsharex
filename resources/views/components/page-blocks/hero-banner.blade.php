@@ -32,7 +32,7 @@
 
 			<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
-				<form action="{{route('site.search')}}" method="get">
+				<form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
 				<!-- @csrf -->
 			<div class="my-3">
 			<div class="form-check form-check-inline">
@@ -104,7 +104,7 @@
 			</div>
 			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 				
-				<button type="submit" class="btn btn-danger mb-3">Search here<i class="lni lni-search"></i></button>
+				<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
 			</div>
 			
 			</div>

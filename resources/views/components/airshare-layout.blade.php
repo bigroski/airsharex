@@ -28,6 +28,11 @@
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
+        <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+
+        <script  href="{{asset('/js/validation/flightSearchValidation.js')}}" crossorigin="anonymous"></script>
+
         
     </head>
     <body class="antialiased">
@@ -38,6 +43,7 @@
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{{$appearanceSetting->logo}}" alt="">
         <!-- <h1>HeroBiz<span>.</span></h1> -->
+        
       </a>
 
       <nav id="navbar" class="navbar">
