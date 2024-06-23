@@ -94,8 +94,7 @@ class StaticController extends Controller
 	}
 	public function search(Request $request){
 		
-		// dd($request->input('from'));
-		// if ($request->isMethod('post')) {
+		
 			$data = $request->all();
 
   		$fromCity = $request['from'];
@@ -117,10 +116,10 @@ class StaticController extends Controller
 				"ToCityId"=> $toCityId ,
 				"ToCity"=> $toCityName,
 				"DepartureDate"=> $request['start_date'],
-				"NationalityCode"=> "NP",
+				"NationalityCode"=>$request['nationality'],
 				"SeatCount"=> $request['seat_count'],
-				"pageNumber"=> 1,
-				"pageSize"=> 10,];
+				"pageNumber"=> isset($request['pageNumber'])?$request['pageNumber']:1,
+				"pageSize"=> isset($request['pageSize'])?$request['pageSize']:10,];
 
 		$data["heliOperatorId"]= 0;
 		$data["heliOperator"]= "200013";  

@@ -39,7 +39,7 @@ class ApiService
             $responseData = json_decode($response->getBody()->getContents(), true);
             session(['asx_api_token' => $responseData['ResultData']['AccessToken']]);
 
-            return $responseData ;
+            return $responseData;
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 throw new Exception($e->getResponse()->getBody()->getContents());
@@ -63,7 +63,7 @@ class ApiService
 
             $result = json_decode($response->getBody()->getContents(), true);
             // dd($result->ResultData->City);
-            return $result['ResultData']['City'];
+            return $result['ResultData']['City']?? $result['ResultData']['City'];
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -84,9 +84,9 @@ class ApiService
                 ]
             ]);
 
-            $result = $response->getBody()->getContents();
+            $result = json_decode($response->getBody()->getContents());
 
-            return json_decode($result, true);
+           return $result;
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -107,9 +107,9 @@ class ApiService
                 ]
             ]);
 
-            $result = $response->getBody()->getContents();
+            $result =json_decode( $response->getBody()->getContents(),true);
 
-            return json_decode($result, true);
+            return $result['ResultData']['Nationality'] ?? $result['ResultData']['Nationality'];
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -148,17 +148,17 @@ class ApiService
         try {
             if (session()->has('asx_api_token')) {
                 // Key exists, do something with the value
-              } else {
+            } else {
                 // Key doesn't exist, call your method
                 $this->authenticate();
-              }
-              $apiToken=session()->get('asx_api_token');
+            }
+            $apiToken = session()->get('asx_api_token');
 
             $response = $this->client->post('/SearchTrip', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
-                    'authentication-token'=>$apiToken,
+                    'authentication-token' => $apiToken,
                     'Accept'    => 'application/json',
                 ],
                 'json' => $data
@@ -235,7 +235,6 @@ class ApiService
 
     public function selectTrip($data)
     {
-
         try {
 
             $response = $this->client->post('/v1/MYTrip/SelectMYTripV1', [
