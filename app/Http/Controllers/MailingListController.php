@@ -56,12 +56,10 @@ class MailingListController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $MailingList = $this->mailingListService->makeMailingList($request);
-
         $request->session()->flash('success', $MailingList->id . ' has been created');
 
-        return redirect()->route('web.mailingList.index');
+        return redirect()->route('register');
     }
 
     /**

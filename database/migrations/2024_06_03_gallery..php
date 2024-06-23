@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable()->default(NULL);
-            // $table->string('name')->nullable()->default(NULL);
             $table->string('description')->nullable()->default(NULL);
-            $table->string('file_path')->nullable()->default(NULL);
             $table->string('upload_date')->nullable()->default(NULL);
             $table->string('tags')->nullable()->default(NULL);
             $table->string('photographer')->nullable()->default(NULL);
