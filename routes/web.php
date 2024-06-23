@@ -59,6 +59,7 @@ Route::get('/signup', [StaticController::class, 'signup']);
 Route::get('/htmlregister', [StaticController::class, 'register']);
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
+Route::get('/checkout', [StaticController::class, 'checkout']);
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);

@@ -497,6 +497,12 @@ function toggleInputs() {
   endInput.disabled = isOneWay;
 }
 
+// checkout cose button
+$(document).ready(function() {
+  $('.lni-close').on('click', function() {
+      $(this).closest('.flight-booking').hide();
+  });
+});
 // counter
 
 $(".counter").countTo();
