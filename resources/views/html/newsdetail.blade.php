@@ -41,7 +41,7 @@
                                                 ->facebook()
                                                 ->twitter()
                                                 ->linkedin('Extra linkedin summary can be passed here')
-                                                ->whatsapp(); !!}
+                                                ->whatsapp() !!}
                                              <!-- <a href="#" class="share-link">
                                              <i class="bi bi-share"></i>Share </a> -->
                                         </div>
