@@ -2881,6 +2881,16 @@ div#v-pills-tabContent {
   margin: 6.1px 0;
   color: #4f4b8b
 }
+.checkout .flight-booking-info {
+  width: 100% !important
+}
+.checkout .flight-booking-item .flight-booking-content {
+  justify-content: space-between !important
+}
+.checkout .flight-booking-airline{
+  flex: 1 !important;
+  justify-content: space-between;
+}
 
 @media all and (max-width:1199px) {
   .flight-booking-wrapper {
@@ -2902,6 +2912,7 @@ div#v-pills-tabContent {
       width: 100%;
       margin-top: 30px
   }
+ 
   .flight-booking-item .price-info {
       margin-bottom: 0
   }
@@ -2950,6 +2961,14 @@ div#v-pills-tabContent {
       margin-top: 20px;
       padding-top: 20px;
       border-top: 1px solid rgba(0, 0, 0, .05)
+  }
+}
+@media all and (max-width:767px) {
+  .max-sm-flex-col{
+    flex-direction: column;
+  }
+  .flight-booking-airline {
+    gap: 30px;
   }
 }
 
