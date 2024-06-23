@@ -18,88 +18,26 @@
 
 
     <div class="row g-6 portfolio-container">
-
+    @if($galleries->isEmpty())
+        <p>No gallery data available.</p>
+    @else
+    @foreach($galleries as $gallery)
+               
       <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
+        <!-- <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
           <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
+        </a> -->
+        <a href="{{ $gallery->getFeaturedImageAttribute()}}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
+          <img src="{{ $gallery->getFeaturedImageAttribute()}}" class="img-fluid" alt="">
+        </a> 
         <div class="portfolio-info">
-          <h4>App 1</h4>
+          <h4>{{$gallery->name}}</h4>
         </div>
+        
       </div><!-- End Portfolio Item -->
-
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
-      <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a>
-        <div class="portfolio-info">
-          <h4>App 1</h4>
-        </div>
-      </div><!-- End Portfolio Item -->
+    @endforeach
+    @endif
+      
 
     </div><!-- End Portfolio Container -->
 
