@@ -11,6 +11,7 @@ use Bigroski\Tukicms\App\Classes\Services\TagService;
 use Bigroski\Tukicms\App\Classes\Services\CommentService;
 use App\Classes\Services\ServiceService;
 use App\Mail\ContactForm;
+use App\Services\ApiService;
 use Http;
 use Mail;
 use Auth;
@@ -23,11 +24,16 @@ class StaticController extends Controller
 		private TagService $tagService,
 		private CommentService $commentService,
 		private ServiceService $serviceService,
-		private GalleryService $galleryService
+		private GalleryService $galleryService,
+		private ApiService $apiService,
 	){
-
+ 
 	}
 	public function home(){
+		
+		$response = $this->apiService->authenticate();
+		dd($response);
+		$city = $this->apiService->getCity();
 		return view('html.testPage');
 	}
 	public function about(){
@@ -86,8 +92,45 @@ class StaticController extends Controller
 	public function account(){
 		return view('html.account');
 	}
-	public function search(){
-		return view('html.search');
+	public function search(Request $request){
+		
+		
+			$data = $request->all();
+
+  		$fromCity = $request['from'];
+        
+        $fromCityParts = explode(' - ', $fromCity);
+        
+        $fromCityId = $fromCityParts[0];
+        $fromCityName = $fromCityParts[1];
+
+		$toCity = $request['to'];
+        
+        $toCityParts = explode(' - ', $toCity);
+        
+        $toCityId = $toCityParts[0];
+        $toCityName = $toCityParts[1];
+			$data = [
+				"FromCityId"=> $fromCityId,
+				"FromCity"=> $fromCityName,
+				"ToCityId"=> $toCityId ,
+				"ToCity"=> $toCityName,
+				"DepartureDate"=> $request['start_date'],
+				"NationalityCode"=>$request['nationality'],
+				"SeatCount"=> $request['seat_count'],
+				"pageNumber"=> isset($request['pageNumber'])?$request['pageNumber']:1,
+				"pageSize"=> isset($request['pageSize'])?$request['pageSize']:10,];
+
+		$data["heliOperatorId"]= 0;
+		$data["heliOperator"]= "200013";  
+		$data["PartnerClientId"]= "1";
+		// dd($data);
+		$serchData = $this->apiService->serchTrip($data);
+		$returnData = isset($serchData['ResultData']['MYDHTripSearch']['TripSearchResult'])?$serchData['ResultData']['MYDHTripSearch']['TripSearchResult']:[];
+		// print_r($serchData['ResultData']['MYDHTripSearch']['TripSearchResult']);
+		// dd('here serach',$returnData,$serchData);
+
+		return view('html.search',compact('returnData'));
 	}
 	public function checkout(){
 		return view('html.checkout');

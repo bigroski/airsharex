@@ -32,72 +32,91 @@
 
 			<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
-				<form action="{{route('site.search')}}" method="get">
+				<form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
+				<!-- @csrf -->
 			<div class="my-3">
 			<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+			<input class="form-check-input" type="radio" name="filght_type" id="inlineRadio1" value="oneway">
 			<label class="form-check-label" for="inlineRadio1">One way</label>
 			</div>
 			<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+			<input class="form-check-input" type="radio" name="filght_type" id="inlineRadio2" value="twoway">
 			<label class="form-check-label" for="inlineRadio2">Two way</label>
 			</div>
 			</div>
+			
 			<div class="row g-3">
-			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
-				<select class="test_skill form-control" placeholder="From">
-					<option >KTM</option>
-				</select>
-			</div>
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-				<select class="test_skill form-control " placeholder="to">
-					<option >POK</option>
-				</select>
-			</div>
-			<div class="col-lg-5 col-md-4 col-sm-6 col-12">
-				<div id="foo">
-					<input type="text" name="start" id="start" class="form-control date-picker" placeholder="Depature">
-					<input type="text" name="end" id="end" class="form-control date-picker" placeholder="Arrival">
+			<div class="row g-3">
+				<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
+					<select name = "from" class="test_skill form-control" placeholder="From">
+						<!-- <option >KTM</option> -->
+						@foreach ($cities as $city)
+						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}">{{ $city['CityName'] }}</option>
+					@endforeach
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+					<select name = "to" class="test_skill form-control " placeholder="to">
+						<!-- <option >POK</option> -->
+						@foreach ($cities as $city)
+						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}">{{ $city['CityName'] }}</option>
+					@endforeach
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+					<select name = "nationality" class="test_skill form-control " placeholder="to">
+						<!-- <option >POK</option> -->
+						@foreach ($nationalities as $nationality)
+						<option value="{{ $nationality['NationalityCode'] }}">{{ $nationality['Nationality']}}</option>
+					@endforeach
+					</select>
 				</div>
 			</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+					<div id="foo">
+						<input type="text" name="start_date" id="start" class="form-control date-picker" placeholder="Depature">
+						<input type="text" name="end_date" id="end" class="form-control date-picker" placeholder="Arrival">
+					</div>
+				</div>
 				
 			
-			<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
-				<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
-        : <span id="totalQuantity">0</span>
-    </span></button>
-					<div class="count-table" id="popup">
-						<div class="pass-count" >
-							<h4>Adult</h4> 
-							<div class="adder qty-container">
-								<input type='button' value='-' class='qtyminus' field='quantity' />
-								<input type='text' name='quantity' value='0' class='qty' />
-								<input type='button' value='+' class='qtyplus' field='quantity' />
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+					<input type="hidden" name="seat_count" id="seatCount">
+					<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
+						: <span id="totalQuantity">0</span>
+							</span></button>
+						<div class="count-table" id="popup">
+							<div class="pass-count" >
+								<h4>Adult</h4> 
+								<div class="adder qty-container">
+									<input type='button' value='-' class='qtyminus' field='quantity' />
+									<input type='text' name='quantity' value='0' class='qty' />
+									<input type='button' value='+' class='qtyplus' field='quantity' />
+								</div>
+							</div>
+							<div class="pass-count">
+								<h4>Child</h4> 
+								<div class="adder qty-container">
+									<input type='button' value='-' class='qtyminus' field='quantity' />
+									<input type='text' name='quantity' value='0' class='qty' />
+									<input type='button' value='+' class='qtyplus' field='quantity' />
+								</div>
+							</div>
+							<div class="pass-count">
+								<h4>Infant</h4> 
+								<div class="adder qty-container">
+									<input type='button' value='-' class='qtyminus' field='quantity' />
+									<input type='text' name='quantity' value='0' class='qty' />
+									<input type='button' value='+' class='qtyplus' field='quantity' />
+								</div>
 							</div>
 						</div>
-						<div class="pass-count">
-							<h4>Child</h4> 
-							<div class="adder qty-container">
-								<input type='button' value='-' class='qtyminus' field='quantity' />
-								<input type='text' name='quantity' value='0' class='qty' />
-								<input type='button' value='+' class='qtyplus' field='quantity' />
-							</div>
-						</div>
-						<div class="pass-count">
-							<h4>Infant</h4> 
-							<div class="adder qty-container">
-								<input type='button' value='-' class='qtyminus' field='quantity' />
-								<input type='text' name='quantity' value='0' class='qty' />
-								<input type='button' value='+' class='qtyplus' field='quantity' />
-							</div>
-						</div>
-					</div>
 
-			</div>
-			<div class="col-lg-1 col-md-4 col-sm-6 col-12">
-				
-				<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
-			</div>
+				</div>
+				<div class="col-lg-1 col-md-4 col-sm-6 col-12">
+					
+					<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
+				</div>
 			
 			</div>
 			</form>
