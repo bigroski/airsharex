@@ -1,5 +1,5 @@
 <!-- ======= CTA Section ======= -->
-<section id="cta" class="cta header-image light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="100" data-image-src="{{ $featured_image }}">
+<section id="cta" class="cta header-image light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="100" data-image-src="{{ asset($featured_image) }}">
 	
 	<div class="cta-content">
 		<div class="container">

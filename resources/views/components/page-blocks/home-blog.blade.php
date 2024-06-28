@@ -7,13 +7,13 @@
 			$first = $posts->first();
 			
 			$slice = $posts->slice(1);
-		@endphpphp
+		@endphp
 		<div class="col-lg-6 col-md-12">
 
 		
 
 			<div class="blog featured-blog">
-				<div class="background-img" style="background-image: url('{{ $first->featured_image }}')"></div>
+				<div class="background-img" style="background-image: url('{{ asset($first->featured_image) }}')"></div>
 				<div class="post__text inverse-text">
 					<div class="post__text-wrap">
 						<div class="post__text-inner">

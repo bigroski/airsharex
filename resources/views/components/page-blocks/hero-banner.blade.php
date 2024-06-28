@@ -1,4 +1,4 @@
-<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ $featured_image }}">
+<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset($featured_image) }}">
 	
 	<div class="hero-content">
 		<div class="container">

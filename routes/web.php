@@ -36,7 +36,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 // DONE
-Route::get('/home', [StaticController::class, 'home']);
+// Route::get('/home', [StaticController::class, 'home']);
 Route::get('/about-static', [StaticController::class, 'about']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact-static', [StaticController::class, 'contact']);
@@ -55,8 +55,8 @@ Route::post('/account/update', [StaticController::class, 'updateAccount'])->name
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 
 Route::get('/services', [StaticController::class, 'services']);
-Route::get('/signup', [StaticController::class, 'signup']);
-Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
+Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::get('/checkout', [StaticController::class, 'checkout']);

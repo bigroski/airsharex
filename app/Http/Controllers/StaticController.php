@@ -32,7 +32,7 @@ class StaticController extends Controller
 	public function home(){
 		
 		$response = $this->apiService->authenticate();
-		dd($response);
+		// dd($response);
 		$city = $this->apiService->getCity();
 		return view('html.testPage');
 	}

@@ -51,7 +51,7 @@ class ApiService
 
     public function getCity()
     {
-
+        // return [];
         try {
             $response = $this->client->get('/v1/MYCommon/GetCity', [
                 'headers' => [
@@ -97,6 +97,7 @@ class ApiService
     }
     public function getNationality()
     {
+        // return [];
         try {
 
             $response = $this->client->get('/v1/MYCommon/GetNationality', [
