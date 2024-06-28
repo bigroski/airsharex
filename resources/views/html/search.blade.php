@@ -1,3 +1,9 @@
+
+<script>
+        function redirectToCheckout(mastersearchId) {
+            window.location.href = '/checkout?flight_search_id='+mastersearchId;
+        }
+    </script>
 <x-airshare-layout>
 <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0" >
 		<div class="container">
@@ -308,7 +314,7 @@
                                                                     </div>
                                                                     <div class="flight-booking-detail-price">
                                                                          <h6 class="flight-booking-detail-price-title">Total (2 Traveler)</h6>
-                                                                         <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger" value="Book Now">Book Now</button>
+                                                                         <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger"onclick="redirectToCheckout($data['SearchMasterId'])"  value="Book Now">Book Now</button>
                                                                     </div>
                                                                </div>
                                                           </div>

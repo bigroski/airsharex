@@ -115,7 +115,7 @@
 				</div>
 				<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 					
-					<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
+					<button type="submit" class="btn btn-danger mb-3" id="filghtSearchButton"><i class="lni lni-search"></i></button>
 				</div>
 			
 			</div>

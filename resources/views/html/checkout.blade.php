@@ -22,7 +22,7 @@
                                                                <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
                                                                
                                                           </div>
-                                                          <h5 class="flight-airline-name">Prabhu</h5>
+                                                          <h5 class="flight-airline-name">{{$flightData['MYOperatorName']}}</h5>
                                                      </div>
                                                      <div class="flight-booking-time">
                                                           <div class="start-time">
@@ -30,8 +30,8 @@
                                                                     <i class="fal fa-plane-departure"></i>
                                                                </div>
                                                                <div class="start-time-info">
-                                                                    <h6 class="start-time-text">07:30</h6>
-                                                                    <span class="flight-destination">KTM</span>
+                                                                    <h6 class="start-time-text">{{$flightData['DepartureTime']}}</h6>
+                                                                    <span class="flight-destination">{{$flightData['DepartureCity']}}</span>
                                                                </div>
                                                           </div>
                                                           <div class="flight-stop">
@@ -43,8 +43,8 @@
                                                                     <i class="fal fa-plane-arrival"></i>
                                                                </div>
                                                                <div class="start-time-info">
-                                                                    <h6 class="end-time-text">08:35</h6>
-                                                                    <span class="flight-destination">POK</span>
+                                                                    <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
+                                                                    <span class="flight-destination">{{$flightData['ArrivalCity']}}</span>
                                                                </div>
                                                           </div>
                                                      </div>
@@ -57,7 +57,7 @@
                                            <i class="lni lni-close"></i>
                                                 <div class="price-info">
                                                      
-                                                     <span class="price-amount">Rs 4,548</span>
+                                                     <span class="price-amount">Rs {{$flightData['TicketSellingRate']}}</span>
                                                 </div>
                                                 <a class="btn btn-danger" href="#flight-booking-collapse1" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="flight-booking-collapse1">Flight Details </a>
                                            </div>
@@ -230,12 +230,12 @@
          
         </div>
         <div class="form-floating mb-3">
-          <input type="text" name="name" class="form-control" id="floatingName" placeholder="Address">
+          <input type="text" name="address" class="form-control" id="floatingName" placeholder="Address">
           <label for="name">Address</label>
          
         </div>
         <div class="form-floating mb-3">
-          <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="city">
+          <input type="email" name="city" class="form-control" id="floatingEmail" placeholder="city">
           <label for="email">City</label>
         </div>
         <div class="form-floating mb-3">
