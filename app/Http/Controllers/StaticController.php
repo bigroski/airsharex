@@ -17,6 +17,8 @@ use App\Services\FlightSearchService;
 use Http;
 use Mail;
 use Auth;
+use Carbon\Carbon;
+
 class StaticController extends Controller
 {
     //
@@ -35,7 +37,7 @@ class StaticController extends Controller
 	public function home(){
 		
 		$response = $this->apiService->authenticate();
-		dd($response);
+		// dd($response);
 		$city = $this->apiService->getCity();
 		return view('html.testPage');
 	}
@@ -110,36 +112,49 @@ class StaticController extends Controller
 		$toCity = $request['to'];
         
         $toCityParts = explode(' - ', $toCity);
-        
+		// {
+        //     "fromCityId": 1,
+        //     "fromCity": "Kathamndu",
+        //     "toCityId": 2,
+        //     "toCity": "Pokhara",
+        //     "tripDate": "2024-06-30",
+        //     "nationalityCode": "NP",
+        //     "seatCount": 1,           
+        //     "serviceTypeId":1,
+        //     "pageNumber": 1,
+        //     "pageSize": 10,
+        //     "PartnerClientId": "test"
+        //   }
+
+        $tripDate = new Carbon($request['start_date']);
         $toCityId = $toCityParts[0];
         $toCityName = $toCityParts[1];
 			$data = [
-				"FromCityId"=> $fromCityId,
-				"FromCity"=> $fromCityName,
-				"ToCityId"=> $toCityId ,
-				"ToCity"=> $toCityName,
-				"DepartureDate"=> $request['start_date'],
-				"NationalityCode"=>$request['nationality'],
-				"SeatCount"=> $request['seat_count'],
+				"fromCityId"=> $fromCityId,
+				"fromCity"=> $fromCityName,
+				"toCityId"=> $toCityId ,
+				"toCity"=> $toCityName,
+				"tripDate"=> $tripDate->format('yy-m-d') ,
+				"serviceTypeId"=>(int) $request['heliServiceType'],
+				"nationalityCode"=>$request['nationality'],
+				"seatCount"=> $request['seat_count'],
 				"pageNumber"=> isset($request['pageNumber'])?$request['pageNumber']:1,
 				"pageSize"=> isset($request['pageSize'])?$request['pageSize']:10,];
-
-		$data["heliOperatorId"]= 0;
-		$data["heliOperator"]= "200013";  
-		$data["PartnerClientId"]= "1";
+		
 		$serchData = $this->apiService->serchTrip($data);
-		$returnData = isset($serchData['ResultData']['MYDHTripSearch']['TripSearchResult'])?$serchData['ResultData']['MYDHTripSearch']['TripSearchResult']:[];
-		// print_r($serchData['ResultData']['MYDHTripSearch']['TripSearchResult']);
-		// dd('here serach',$returnData,$serchData);
-		// $returnData = $this->searchData();
-		dispatch(new FlightSearchStore($returnData));
+		// dd($data,$serchData);
+		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
+		
+		dispatch(new FlightSearchStore($returnData,$request['seat_count']));
 		// dd($returnData);
 		return view('html.search',compact('returnData'));
 	}
 	public function checkout(Request $request){
 
 		$searchId = $request['flight_search_id'];
-		$flightData = $this->flightSearchService->getFLightSearchData($searchId)->data;
+		$data = $this->flightSearchService->getFLightSearchData($searchId);
+		$flightData = $data?$data->data:[];
+		// dd($flightData);
 		return view('html.checkout',compact('flightData') );
 	}
 	public function news(){

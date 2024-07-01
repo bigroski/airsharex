@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('flight_search_details', function (Blueprint $table) {
             $table->id();
+            $table->string("trip_id");
             $table->string("search_master_id");
             $table->string("queue_id");
             $table->string("queue_date");
+            $table->integer('requested_seats');
             $table->json("data");
             $table->timestamps();
         });

@@ -506,12 +506,12 @@ $(document).ready(function() {
 // counter
 
 $(".counter").countTo();
-$(".counts").appear(
-  function () {
-      $(".counter").countTo();
-  },
-  { accY: -100 }
-);
+// $(".counts").appear(
+//   function () {
+//       $(".counter").countTo();
+//   },
+//   { accY: -100 }
+// );
 // pricerange
 
 $(function () {

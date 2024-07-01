@@ -11,8 +11,8 @@ class FlightSearchService
     {
         return FlightSearchDetail::create($data);
     }
-    public function getFLightSearchData($masterSearchId)
+    public function getFLightSearchData($tripId)
     {
-       return  FlightSearchDetail::where('search_master_id',$masterSearchId)->first();
+       return  FlightSearchDetail::where('trip_id',$tripId)->first();
     }
 }

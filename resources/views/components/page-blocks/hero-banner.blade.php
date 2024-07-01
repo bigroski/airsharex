@@ -1,4 +1,4 @@
-<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ $featured_image }}">
+<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset($featured_image) }}">
 	
 	<div class="hero-content">
 		<div class="container">
@@ -68,6 +68,14 @@
 						<!-- <option >POK</option> -->
 						@foreach ($nationalities as $nationality)
 						<option value="{{ $nationality['NationalityCode'] }}">{{ $nationality['Nationality']}}</option>
+					@endforeach
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+					<select name = "heliServiceType" class="test_skill form-control " placeholder="to">
+						<!-- <option >Select Heli service Type</option> -->
+						@foreach ($heliServiceTypes as $heliServicdType)
+						<option value="{{ $heliServicdType['ServiceTypeId'] }}">{{ $heliServicdType['ServiceType']}}</option>
 					@endforeach
 					</select>
 				</div>

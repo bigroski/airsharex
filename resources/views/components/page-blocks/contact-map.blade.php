@@ -30,7 +30,7 @@
                         @if(is_array($feature))
                             @foreach($feature as $key => $image)
                                 @if(property_exists($image, 'featured_image'))
-                                <img src="{{ $image->featured_image }}" class="abt-img{{$key+1}}" />
+                                <img src="{{ asset($image->featured_image) }}" class="abt-img{{$key+1}}" />
                                 @endif
                             @endforeach
                         @endif

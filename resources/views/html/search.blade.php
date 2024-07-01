@@ -148,10 +148,10 @@
                                                 <div class="flight-booking-content">
                                                      <div class="flight-booking-airline">
                                                           <div class="flight-airline-img">
-                                                               <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
+                                                               <img src="{{$data['OperatorLogo'] }}" alt>
                                                                
                                                           </div>
-                                                          <h5 class="flight-airline-name">{{$data['MYOperatorName']}}</h5>
+                                                          <h5 class="flight-airline-name">{{$data['OperatorName']}}</h5>
                                                      </div>
                                                      <div class="flight-booking-time">
                                                           <div class="start-time">
@@ -178,7 +178,7 @@
                                                           </div>
                                                      </div>
                                                      <div class="flight-booking-duration">
-                                                          <span class="duration-text">1h 30m</span>
+                                                          <span class="duration-text">{{$data['ExpectedTravelDuration']}}h</span>
                                                      </div>
                                                 </div>
                                            </div>
@@ -207,10 +207,10 @@
                                                                               <div class="flight-booking-detail-info">
                                                                                    <div class="flight-booking-airline">
                                                                                         <div class="flight-airline-img">
-                                                                                        <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
+                                                                                        <img src="{{$data['OperatorLogo'] }}" alt>
                                                                                         </div>
                                                                                         <div class="flight-airline-info flex-grow-1">
-                                                                                             <h5 class="flight-airline-name">Prabhu Airline</h5>
+                                                                                             <h5 class="flight-airline-name">{{$data['OperatorName']}}</h5>
                                                                                              <span class="flight-airline-model">SG 143 | AT7</span>
                                                                                         </div>
                                                                                         <p class="flight-airline-class">( Economy )</p>

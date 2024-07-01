@@ -26,8 +26,8 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="abt-img">
-                        <img src="{{ $featured_image }}" class="abt-img1" />
-                        <img src="{{ $second_featured_image }}" class="abt-img2" />
+                        <img src="{{ asset($featured_image) }}" class="abt-img1" />
+                        <img src="{{ asset($second_featured_image) }}" class="abt-img2" />
                     </div>
                 </div>
                

@@ -2,7 +2,7 @@
 
 namespace App\Classes\Repositories;
 
-use App\Models\Customer;
+use Bigroski\Tukicms\App\Models\Customer;;
 use Bigroski\Tukicms\App\Classes\Repositories\Repository;
 use Auth;
 

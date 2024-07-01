@@ -11,7 +11,7 @@
             <div class="swiper-slide">
 			<a href="{{$location->url}}">
 				@if(property_exists($location, 'featured_image'))
-				<img src="{{ $location->featured_image }}" class="img-fluid" alt="">
+				<img src="{{ asset($location->featured_image) }}" class="img-fluid" alt="">
 				@endif
 				<label>{{$location->title}}</label></a>
 			</div>

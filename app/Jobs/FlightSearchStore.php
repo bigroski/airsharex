@@ -16,7 +16,7 @@ class FlightSearchStore implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private $searchData)
+    public function __construct(private $searchData,private $requestedSeats)
     {
         //
     }
@@ -31,8 +31,9 @@ class FlightSearchStore implements ShouldQueue
         foreach($this->searchData as $data){
             $storeData = [
                "search_master_id"=>$data['SearchMasterId'],
-                "queue_id"=>$data['MYQueueId'],
-                "queue_date"=>$data['MYQueueDate'],
+                "queue_id"=>$data['TripId'],
+                "queue_date"=>$data['TripDate'],
+                "requested_seats"=>$this->requestedSeats,
                 // "search_master_id"=>"A98B48B9-38A5-4744-9986-C11EB0EC65BF",
                 // "queue_id"=> "F0B5BE4E-72A1-4244-9E87-2B14FB0BD80B",
                 // "queue_date"=> "2024-06-30",

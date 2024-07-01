@@ -51,7 +51,7 @@ class ApiService
 
     public function getCity()
     {
-
+        // return [];
         try {
             $response = $this->client->get('/v1/MYCommon/GetCity', [
                 'headers' => [
@@ -120,6 +120,7 @@ class ApiService
     }
     public function getNationality()
     {
+        // return [];
         try {
 
             $response = $this->client->get('/v1/MYCommon/GetNationality', [
@@ -365,6 +366,30 @@ class ApiService
             $result = $response->getBody()->getContents();
 
             return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+
+    public function getHeliServiceTypes()
+    {
+        try {
+
+            $response = $this->client->get('/v1/MYCommon/GetHeliServiceType', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+
+            $result =json_decode( $response->getBody()->getContents(),true);
+
+            return $result['ResultData']['Nationality'] ?? $result['ResultData']['HeliServiceType'];
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {

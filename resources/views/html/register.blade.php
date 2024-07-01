@@ -62,7 +62,7 @@
               <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
                 <label class="form-check-label" for="rememberPasswordCheck">
-                  I accept <a href="">term & conditions</a> and <a href="">privacy policy</a>.
+                  I accept <a href="/disclaimer">term & conditions</a> and <a href="/privacypolicy">privacy policy</a>.
                 </label>
               </div>
               <div class="d-grid gap-4">
