@@ -8,6 +8,7 @@
 		</div>
 </section>
 <section class=" checkout">
+<section class=" checkout">
 <div class="container">
 
           
@@ -27,7 +28,7 @@
                                                      <div class="flight-booking-airline justify-between ">
                                                        <div class="d-flex items-center gap-2 max-sm-flex-col">
                                                             <div class="flight-airline-img">
-                                                               <img src="{{ $flightData['OperatorLogo']}}" alt>
+                                                               <img src="{{$flightData['OperatorLogo']}}" alt>
                                                                
                                                             </div>
                                                           <h5 class="flight-airline-name">{{$flightData['OperatorName']}}</h5></div>
@@ -37,7 +38,7 @@
                                          
                                                                  <div class="price-info">
                                                                       
-                                                                      <span class="price-amount">Rs {{$flightData['TicketSellingRate']}}</span>
+                                                                      <span class="price-amount">{{$flightData['TicketSellingRate']}}</span>
                                                                  </div>
                                                             </div>
                                                      </div>
