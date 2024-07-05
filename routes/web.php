@@ -16,6 +16,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OnlineBookingController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
@@ -113,7 +114,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    
 });
+
+Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
+    Route::post('', 'bookFlight')->name('book.flight');    
+});
+
+
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);

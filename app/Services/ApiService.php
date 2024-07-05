@@ -95,6 +95,29 @@ class ApiService
             throw new \Exception('Unable to complete the request');
         }
     }
+    public function getHeliOperator()
+    {
+        try {
+
+            $response = $this->client->get('/v1/MYCommon/GetHeliOperator', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+
+            $result =json_decode( $response->getBody()->getContents(),true);
+
+            return $result['ResultData']['HeliOperator'] ?? $result['ResultData']['HeliOperator'];
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
     public function getNationality()
     {
         // return [];
@@ -258,4 +281,122 @@ class ApiService
             throw new \Exception('Unable to complete the request');
         }
     }
+    public function bookTrip($data)
+    {
+        try {
+
+            if (!session()->has('asx_api_token')) {
+              
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+
+            $response = $this->client->post('/BookTrip', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);         
+            $result = $response->getBody()->getContents();
+
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+    public function GetTicket($data)
+    {
+
+        try {
+
+            if (!session()->has('asx_api_token')) {
+              
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+
+            $response = $this->client->post('/GetTicket', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);         
+            $result = $response->getBody()->getContents();
+
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+    public function ConfirmBooking($data)
+    {
+
+        try {
+
+            if (!session()->has('asx_api_token')) {
+              
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+
+            $response = $this->client->post('/ConfirmBooking', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);          
+
+            $result = $response->getBody()->getContents();
+
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+
+    public function getHeliServiceTypes()
+    {
+        try {
+
+            $response = $this->client->get('/v1/MYCommon/GetHeliServiceType', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+
+            $result =json_decode( $response->getBody()->getContents(),true);
+
+            return $result['ResultData']['Nationality'] ?? $result['ResultData']['HeliServiceType'];
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+    
 }

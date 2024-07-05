@@ -71,6 +71,14 @@
 					@endforeach
 					</select>
 				</div>
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+					<select name = "heliServiceType" class="test_skill form-control " placeholder="to">
+						<!-- <option >Select Heli service Type</option> -->
+						@foreach ($heliServiceTypes as $heliServicdType)
+						<option value="{{ $heliServicdType['ServiceTypeId'] }}">{{ $heliServicdType['ServiceType']}}</option>
+					@endforeach
+					</select>
+				</div>
 			</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
 					<div id="foo">
@@ -115,7 +123,7 @@
 				</div>
 				<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 					
-					<button type="submit" class="btn btn-danger mb-3"><i class="lni lni-search"></i></button>
+					<button type="submit" class="btn btn-danger mb-3" id="filghtSearchButton"><i class="lni lni-search"></i></button>
 				</div>
 			
 			</div>

@@ -8,6 +8,7 @@
 		</div>
 </section>
 <section class=" checkout">
+<section class=" checkout">
 <div class="container">
 
           
@@ -27,17 +28,17 @@
                                                      <div class="flight-booking-airline justify-between ">
                                                        <div class="d-flex items-center gap-2 max-sm-flex-col">
                                                             <div class="flight-airline-img">
-                                                               <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
+                                                               <img src="{{$flightData['OperatorLogo']}}" alt>
                                                                
                                                             </div>
-                                                          <h5 class="flight-airline-name">Prabhu</h5></div>
+                                                          <h5 class="flight-airline-name">{{$flightData['OperatorName']}}</h5></div>
                                                           
 
                                                           <div class="flight-booking-price-1">
                                          
                                                                  <div class="price-info">
                                                                       
-                                                                      <span class="price-amount">Rs 4,548</span>
+                                                                      <span class="price-amount">{{$flightData['TicketSellingRate']}}</span>
                                                                  </div>
                                                             </div>
                                                      </div>
@@ -51,8 +52,8 @@
                                                                     <i class="fal fa-plane-departure"></i>
                                                                </div>
                                                                <div class="start-time-info">
-                                                                    <h6 class="start-time-text">07:30</h6>
-                                                                    <span class="flight-destination">KTM</span>
+                                                                    <h6 class="start-time-text">{{$flightData['DepartureTime']}}</h6>
+                                                                    <span class="flight-destination"> {{$flightData['DepartureCity']}}</span>
                                                                </div>
                                                           </div>
                                                           <div class="flight-stop">
@@ -64,13 +65,13 @@
                                                                     <i class="fal fa-plane-arrival"></i>
                                                                </div>
                                                                <div class="start-time-info">
-                                                                    <h6 class="end-time-text">08:35</h6>
-                                                                    <span class="flight-destination">POK</span>
+                                                                    <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
+                                                                    <span class="flight-destination"> {{$flightData['ArrivalCity']}}</span>
                                                                </div>
                                                           </div>
                                                      </div>
                                                      <div class="flight-booking-duration">
-                                                          <span class="duration-text">1h 05m</span>
+                                                          <span class="duration-text">{{$flightData['ExpectedTravelDuration']}}h</span>
                                                      </div>
                                                      </div>
                                            </div>
@@ -92,9 +93,10 @@
   <div class="card border-0 shadow rounded-3 ">
     <div class="card-body p-4 p-sm-5">
       <h5 class="card-title text-center mb-5  fs-5">Checkout</h5>
-      <form action="" method="POST" id="checkoutForm" novalidate>
-       
+      <form action="/book-flight" method="POST" id="checkoutForm" novalidate>
+       @csrf
         <div class="form-floating mb-3">
+        <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
           <input type="text" name="name" class="form-control" id="floatingName" placeholder="Full Name">
           <label for="name">Full Name</label>
          
@@ -109,16 +111,16 @@
          
         </div>
         <div class="form-floating mb-3">
-          <input type="text" name="name" class="form-control" id="floatingName" placeholder="Address">
+          <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
           <label for="name">Address</label>
          
         </div>
         <div class="form-floating mb-3">
-          <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="city">
+          <input type="email" name="city" class="form-control" id="floatingCity" placeholder="city">
           <label for="email">City</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" name="state" class="form-control" id="floatingPhone" placeholder="state">
+          <input type="text" name="state" class="form-control" id="floatingState" placeholder="state">
           <label for="phone">State</label>
          
         </div>

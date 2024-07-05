@@ -1,3 +1,9 @@
+
+<script>
+        function redirectToCheckout(mastersearchId) {
+            window.location.href = '/checkout?flight_search_id='+mastersearchId;
+        }
+    </script>
 <x-airshare-layout>
 <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0" >
 		<div class="container">
@@ -142,10 +148,10 @@
                                                 <div class="flight-booking-content">
                                                      <div class="flight-booking-airline">
                                                           <div class="flight-airline-img">
-                                                               <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
+                                                               <img src="{{$data['OperatorLogo'] }}" alt>
                                                                
                                                           </div>
-                                                          <h5 class="flight-airline-name">{{$data['MYOperatorName']}}</h5>
+                                                          <h5 class="flight-airline-name">{{$data['OperatorName']}}</h5>
                                                      </div>
                                                      <div class="flight-booking-time">
                                                           <div class="start-time">
@@ -172,7 +178,7 @@
                                                           </div>
                                                      </div>
                                                      <div class="flight-booking-duration">
-                                                          <span class="duration-text">1h 30m</span>
+                                                          <span class="duration-text">{{$data['ExpectedTravelDuration']}}h</span>
                                                      </div>
                                                 </div>
                                            </div>
@@ -201,10 +207,10 @@
                                                                               <div class="flight-booking-detail-info">
                                                                                    <div class="flight-booking-airline">
                                                                                         <div class="flight-airline-img">
-                                                                                        <img src="{{ asset('vendor/airsharex/assets/img/prabhutv.jpg') }}" alt>
+                                                                                        <img src="{{$data['OperatorLogo'] }}" alt>
                                                                                         </div>
                                                                                         <div class="flight-airline-info flex-grow-1">
-                                                                                             <h5 class="flight-airline-name">Prabhu Airline</h5>
+                                                                                             <h5 class="flight-airline-name">{{$data['OperatorName']}}</h5>
                                                                                              <span class="flight-airline-model">SG 143 | AT7</span>
                                                                                         </div>
                                                                                         <p class="flight-airline-class">( Economy )</p>
@@ -308,7 +314,7 @@
                                                                     </div>
                                                                     <div class="flight-booking-detail-price">
                                                                          <h6 class="flight-booking-detail-price-title">Total (2 Traveler)</h6>
-                                                                         <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger" value="Book Now">Book Now</button>
+                                                                         <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger"onclick="redirectToCheckout($data['SearchMasterId'])"  value="Book Now">Book Now</button>
                                                                     </div>
                                                                </div>
                                                           </div>
