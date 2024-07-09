@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("trip_id");
             $table->string("search_master_id");
-            $table->string("queue_id");
             $table->string("queue_date");
             $table->integer('requested_seats');
             $table->json("data");

@@ -178,7 +178,7 @@
                                                           </div>
                                                      </div>
                                                      <div class="flight-booking-duration">
-                                                          <span class="duration-text">{{$data['ExpectedTravelDuration']}}h</span>
+                                                          <span class="duration-text">{{$data['ExpectedTravelDuration']}} h</span>
                                                      </div>
                                                 </div>
                                            </div>
@@ -199,7 +199,7 @@
                                                                <div class="flight-booking-detail-left">
                                                                     <ul class="nav nav-tabs" id="flTab1" role="tablist">
                                                                          <li class="nav-item" role="presentation">
-                                                                              <button class="nav-link active" id="fl-tab1" data-bs-toggle="tab" data-bs-target="#fl-tab-pane1" type="button" role="tab" aria-controls="fl-tab-pane1" aria-selected="true">KTM - POK</button>
+                                                                              <button class="nav-link active" id="fl-tab1" data-bs-toggle="tab" data-bs-target="#fl-tab-pane1" type="button" role="tab" aria-controls="fl-tab-pane1" aria-selected="true">{{ $data['DepartureCity']}} - {{ $data['ArrivalCity']}}</button>
                                                                          </li>
                                                                     </ul>
                                                                     <div class="tab-content" id="flTabContent1">
@@ -221,16 +221,16 @@
                                                                                                   <i class="fal fa-plane-departure"></i>
                                                                                              </div>
                                                                                              <div class="start-time-info">
-                                                                                                  <h6 class="start-time-text">07:30</h6>
-                                                                                                  <p class="flight-full-date">Sat, 22 Oct, 2024</p>
-                                                                                                  <span class="flight-destination">KTM</span>
+                                                                                                  <h6 class="start-time-text">{{$data['DepartureTime']}}</h6>
+                                                                                                  <p class="flight-full-date">{{$data['TripDate']}}</p>
+                                                                                                  <span class="flight-destination">{{ $data['DepartureCity']}}</span>
                                                                                              </div>
                                                                                         </div>
                                                                                         <div class="flight-stop">
                                                                                              <span class="flight-stop-number">Non Stop</span>
                                                                                              <div class="flight-stop-arrow"></div>
                                                                                              <div class="flight-booking-duration">
-                                                                                                  <span class="duration-text">1h 05m</span>
+                                                                                                  <span class="duration-text">{{$data['ExpectedTravelDuration']}} h</span>
                                                                                              </div>
                                                                                         </div>
                                                                                         <div class="end-time">
@@ -238,9 +238,9 @@
                                                                                                   <i class="fal fa-plane-arrival"></i>
                                                                                              </div>
                                                                                              <div class="start-time-info">
-                                                                                                  <h6 class="end-time-text">08:35</h6>
-                                                                                                  <p class="flight-full-date">Sat, 25 Oct, 2024</p>
-                                                                                                  <span class="flight-destination">POK</span>
+                                                                                                  <h6 class="end-time-text">{{$data['ArrivalTime']}}</h6>
+                                                                                                  <p class="flight-full-date">{{$data['TripDate']}}</p>
+                                                                                                  <span class="flight-destination">{{ $data['ArrivalCity']}}</span>
                                                                                              </div>
                                                                                         </div>
                                                                                    </div>
@@ -272,7 +272,7 @@
                                                                                              <th>Check In</th>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                             <td>KTM - POK</td>
+                                                                                             <td>{{ $data['DepartureCity']}} - {{ $data['ArrivalCity']}}</td>
                                                                                              <td>7 Kilograms</td>
                                                                                              <td>20 Kilograms</td>
                                                                                         </tr>
@@ -289,13 +289,13 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                              <td>Adult x 1</td>
-                                                                                             <td>$5,423</td>
-                                                                                             <td>$1,000</td>
+                                                                                     <td>Rs {{$data['TicketSellingRate']}}</td>
+                                                                                             <td>-</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                              <td>Child x 1</td>
-                                                                                             <td>$3,423</td>
-                                                                                             <td>$1,000</td>
+                                                                                             <td>-</td>
+                                                                                             <td>-</td>
                                                                                         </tr>
                                                                                    </table>
                                                                               </div>
@@ -313,9 +313,18 @@
                                                                          </div>
                                                                     </div>
                                                                     <div class="flight-booking-detail-price">
-                                                                         <h6 class="flight-booking-detail-price-title">Total (2 Traveler)</h6>
+                                                                    <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get">
+                                                                    <input type="hidden" name="SearchMasterId" id="SearchMasterId" value="{{$data['SearchMasterId']}}}">
+                                                                    <input type="hidden" name="TripId" id="TripId" value = "{{$data['TripId']}}">
+                                                                    <input type="hidden" name="TotalSeat" id="TotalSeat" value={{$seatCount}}>
+                                                                    <input type="hidden" name="TransactionRefId" id="TransactionRefId" value={{$TransactionRefId}}>
+                                                                    
+                                                                    <input type="hidden" name="TxnRefId" id="TxnRefId">
+                                                                         <h6 class="flight-booking-detail-price-title">Total ({{$seatCount}} Traveler)</h6>
                                                                          <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger"onclick="redirectToCheckout($data['SearchMasterId'])"  value="Book Now">Book Now</button>
-                                                                    </div>
+                                                                    
+                                                                      </form>  
+                                                                 </div>
                                                                </div>
                                                           </div>
                                                      </div>

@@ -1,4 +1,4 @@
-<script>
+
     $(document).ready(function() {
         console.log("validation here");
         $(function() {
@@ -28,4 +28,3 @@
           })
     
 });
-</script>

@@ -12,10 +12,10 @@ class FlightSearchDetail extends Model
         "id",
         "trip_id",
         "search_master_id",
-        "queue_id",
         "queue_date",
         "data",
-        "requested_seats"
+        "requested_seats",
+        "transaction_ref_id"
     ];
     protected $casts = [
         'id' => 'integer',

@@ -31,7 +31,7 @@
         <!-- <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
  -->
-        <script  href="{{asset('/js/validation/flightSearchValidation.js')}}" crossorigin="anonymous"></script>
+        <script  src="{{asset('js/validation/flightSearchValidation.js')}}" crossorigin="anonymous"></script>
 
         
     </head>
