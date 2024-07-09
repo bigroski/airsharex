@@ -20,6 +20,8 @@ class ApiService
 
     public function authenticate()
     {
+        session(['asx_api_token' =>`832BA342-2813-47B7-A326-403ADAA6F776-959F003E-8975-4A6F-B5BB-E8D074130803`]);
+        return;
         try {
             $data =  [
                 "UserName" => config('api.asx.username'),
@@ -28,7 +30,7 @@ class ApiService
                 "RequestedBy" => config('api.asx.requested_by'),
             ];
 
-            $response = $this->client->post('/v1/Authenticate/Authenticate', [
+            $response = $this->client->post('/api/v1/auth/Authenticate', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -36,6 +38,7 @@ class ApiService
                 ],
                 'json' => $data
             ]);
+            logger('auth data response',[$response]);
             $responseData = json_decode($response->getBody()->getContents(), true);
             session(['asx_api_token' => $responseData['ResultData']['AccessToken']]);
 
@@ -53,19 +56,20 @@ class ApiService
     {
         // return [];
         try {
-            $response = $this->client->get('/v1/MYCommon/GetCity', [
+            $response = $this->client->get('/api/v1/common/GetCity', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
                     'Accept'    => 'application/json',
                 ]
             ]);
-
+// logger( $response);
             $result = json_decode($response->getBody()->getContents(), true);
-            // dd($result->ResultData->City);
+            // dd($result['ResultData']['City']);
             return $result['ResultData']['City']?? $result['ResultData']['City'];
         } catch (RequestException $e) {
 
+logger("Get city error messAGE".$e->getMessage());
             if ($e->hasResponse()) {
                 throw new Exception($e->getResponse()->getBody()->getContents());
             }
@@ -76,7 +80,7 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/MYCommon/GetSalutation', [
+            $response = $this->client->get('/v1/common/GetSalutation', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -99,7 +103,7 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/MYCommon/GetHeliOperator', [
+            $response = $this->client->get('/v1/common/GetHeliOperator', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -111,6 +115,7 @@ class ApiService
 
             return $result['ResultData']['HeliOperator'] ?? $result['ResultData']['HeliOperator'];
         } catch (RequestException $e) {
+           
 
             if ($e->hasResponse()) {
                 throw new Exception($e->getResponse()->getBody()->getContents());
@@ -123,7 +128,7 @@ class ApiService
         // return [];
         try {
 
-            $response = $this->client->get('/v1/MYCommon/GetNationality', [
+            $response = $this->client->get('/api/v1/common/GetNationality', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -132,10 +137,10 @@ class ApiService
             ]);
 
             $result =json_decode( $response->getBody()->getContents(),true);
-
+// dd($result);
             return $result['ResultData']['Nationality'] ?? $result['ResultData']['Nationality'];
         } catch (RequestException $e) {
-
+           
             if ($e->hasResponse()) {
                 throw new Exception($e->getResponse()->getBody()->getContents());
             }
@@ -146,7 +151,7 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/MYCommon/GetSalutation', [
+            $response = $this->client->get('/v1/common/GetSalutation', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -178,7 +183,7 @@ class ApiService
             }
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/SearchTrip', [
+            $response = $this->client->post('/api/v1/trips/SearchTrip', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -379,7 +384,7 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/MYCommon/GetHeliServiceType', [
+            $response = $this->client->get('/api/v1/common/GetHeliServiceType', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),

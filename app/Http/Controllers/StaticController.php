@@ -134,7 +134,7 @@ class StaticController extends Controller
 				"fromCity"=> $fromCityName,
 				"toCityId"=> $toCityId ,
 				"toCity"=> $toCityName,
-				"tripDate"=> $tripDate->format('yy-m-d') ,
+				"tripDate"=> $tripDate->format('Y-m-d') ,
 				"serviceTypeId"=>(int) $request['heliServiceType'],
 				"nationalityCode"=>$request['nationality'],
 				"seatCount"=> $request['seat_count'],
@@ -144,17 +144,18 @@ class StaticController extends Controller
 		$serchData = $this->apiService->serchTrip($data);
 		// dd($data,$serchData);
 		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
+		$transactionRefId = $serchData['TransactionRefId'];
+		dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
 		
-		dispatch(new FlightSearchStore($returnData,$request['seat_count']));
-		// dd($returnData);
-		return view('html.search',compact('returnData'));
+			$seatCount = $request['seat_count'];
+		$TransactionRefId = $serchData['TransactionRefId'];
+		return view('html.search',compact('returnData','seatCount','TransactionRefId'));
 	}
 	public function checkout(Request $request){
 
 		$searchId = $request['flight_search_id'];
 		$data = $this->flightSearchService->getFLightSearchData($searchId);
 		$flightData = $data?$data->data:[];
-		// dd($flightData);
 		return view('html.checkout',compact('flightData') );
 	}
 	public function news(){
