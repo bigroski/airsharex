@@ -34,7 +34,7 @@
 			<div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
 				<form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
 				<!-- @csrf -->
-			<div class="my-3">
+			<!-- <div class="my-3">
 			<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="filght_type" id="inlineRadio1" value="oneway">
 			<label class="form-check-label" for="inlineRadio1">One way</label>
@@ -43,11 +43,12 @@
 			<input class="form-check-input" type="radio" name="filght_type" id="inlineRadio2" value="twoway">
 			<label class="form-check-label" for="inlineRadio2">Two way</label>
 			</div>
-			</div>
+			</div> -->
 			
 			<div class="row g-3">
 			<div class="row g-3">
 				<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
+					<label for="from">From</label>
 					<select name = "from" class="test_skill form-control" placeholder="From">
 						<!-- <option >KTM</option> -->
 						@foreach ($cities as $city)
@@ -56,6 +57,8 @@
 					</select>
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<label for="to">To</label>
+
 					<select name = "to" class="test_skill form-control " placeholder="to">
 						<!-- <option >POK</option> -->
 						@foreach ($cities as $city)
@@ -64,6 +67,8 @@
 					</select>
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<label for="nationality">Nationality</label>
+
 					<select name = "nationality" class="test_skill form-control " placeholder="to">
 						<!-- <option >POK</option> -->
 						@foreach ($nationalities as $nationality)
@@ -72,6 +77,8 @@
 					</select>
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<label for="heliServiceType">Heli Service Type</label>
+
 					<select name = "heliServiceType" class="test_skill form-control " placeholder="to">
 						<!-- <option >Select Heli service Type</option> -->
 						@foreach ($heliServiceTypes as $heliServicdType)
@@ -81,14 +88,19 @@
 				</div>
 			</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+					
 					<div id="foo">
+					<label for="start_date">Departure Date</label>
+
 						<input type="text" name="start_date" id="start" class="form-control date-picker" placeholder="Depature">
+						<label for="end_date">Arriaval Date</label>
 						<input type="text" name="end_date" id="end" class="form-control date-picker" placeholder="Arrival">
 					</div>
 				</div>
 				
 			
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+				<label for="seatCount">Number of Seats</label>
 					<input type="hidden" name="seat_count" id="seatCount">
 					<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
 						: <span id="totalQuantity">0</span>

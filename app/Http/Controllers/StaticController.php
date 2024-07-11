@@ -142,18 +142,20 @@ class StaticController extends Controller
 				"pageSize"=> isset($request['pageSize'])?$request['pageSize']:10,];
 		
 		$serchData = $this->apiService->serchTrip($data);
-		// dd($data,$serchData);
 		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
 		$transactionRefId = $serchData['TransactionRefId'];
 		dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
 		
 			$seatCount = $request['seat_count'];
 		$TransactionRefId = $serchData['TransactionRefId'];
-		return view('html.search',compact('returnData','seatCount','TransactionRefId'));
+		$cities = $this->apiService->getCity();
+        $nationalities = $this->apiService->getNationality();
+        $heliServiceTypes = $this->apiService->getHeliServiceTypes();
+		return view('html.search',compact('returnData','seatCount','TransactionRefId','cities','nationalities','heliServiceTypes'));
 	}
 	public function checkout(Request $request){
 
-		$searchId = $request['flight_search_id'];
+		$searchId = $request['trip_id'];
 		$data = $this->flightSearchService->getFLightSearchData($searchId);
 		$flightData = $data?$data->data:[];
 		return view('html.checkout',compact('flightData') );

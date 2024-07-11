@@ -111,6 +111,11 @@
          
         </div>
         <div class="form-floating mb-3">
+          <input type="text" name="emergency_contact_number" class="form-control" id="floatingPhone" placeholder="Phone Number">
+          <label for="phone">Emergency Contact Number</label>
+         
+        </div>
+        <div class="form-floating mb-3">
           <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
           <label for="name">Address</label>
          

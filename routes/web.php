@@ -60,7 +60,15 @@ Route::get('/signup', [StaticController::class, 'signup'])->name('public.login')
 Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
+Route::middleware(
+    [
+    'auth:web',
+    // config('jetstream.auth_session'),
+    // 'verified'
+    ]
+)->group( function () {
 Route::get('/checkout', [StaticController::class, 'checkout']);
+});
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
