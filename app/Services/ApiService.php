@@ -20,8 +20,6 @@ class ApiService
 
     public function authenticate()
     {
-        session(['asx_api_token' =>`832BA342-2813-47B7-A326-403ADAA6F776-959F003E-8975-4A6F-B5BB-E8D074130803`]);
-        return;
         try {
             $data =  [
                 "UserName" => config('api.asx.username'),
@@ -204,6 +202,33 @@ logger("Get city error messAGE".$e->getMessage());
             throw new \Exception('Unable to complete the request');
         }
     }
+    public function tripDetails($data)
+    {
+        try {
+            if (session()->has('asx_api_token')) {
+            } else {
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+            $response = $this->client->post('/api/v1/booking/GetTripDetail', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);
+            $result = $response->getBody()->getContents();
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
     public function GetRoute($data)
     {
 
@@ -242,6 +267,32 @@ logger("Get city error messAGE".$e->getMessage());
                 'json' => $data
             ]);
 
+            $result = $response->getBody()->getContents();
+
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new Exception($e->getResponse()->getBody()->getContents());
+            }
+            throw new \Exception('Unable to complete the request');
+        }
+    }
+    
+    public function registerCustomer($data)
+    {
+        try {
+
+            $response = $this->client->post('/api/v1/customers/Register', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);
+
+            logger('Register cutomer api response',[$response]);
             $result = $response->getBody()->getContents();
 
             return json_decode($result, true);

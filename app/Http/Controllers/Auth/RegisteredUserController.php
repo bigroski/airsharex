@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Classes\Services\MailingListService;
 use App\Http\Controllers\Controller;
+use App\Jobs\RegisterCustomer;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -66,5 +67,23 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function createCutomer(Request $request){
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'type'=>"Customer"]);
+            $user->assignRole('Customer');
+            $data = [                
+                "Country"=>$request->country,
+                "City"=> $request->city,
+                "Address"=> $request->address,
+                'name' => $request->name,
+                'Email' => $request->email,
+                'PhoneNumber' => $request->phone,
+                'type'=>"Customer"];
+            dispatch(new RegisterCustomer($data,$user->id) );
     }
 }

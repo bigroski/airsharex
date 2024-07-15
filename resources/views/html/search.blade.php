@@ -352,12 +352,10 @@
                                                                            </div>
                                                                            <div class="flight-booking-detail-price">
                                                                                 <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get">
-                                                                                     <!-- <input type="hidden" name="SearchMasterId" id="SearchMasterId" value="{{$data['SearchMasterId']}}}"> -->
                                                                                      <input type="hidden" name="trip_id" id="TripId" value="{{$data['TripId']}}">
                                                                                      <input type="hidden" name="total_seat" id="TotalSeat" value={{$seatCount}}>
-                                                                                     <!-- <input type="hidden" name="TransactionRefId" id="TransactionRefId" value={{$TransactionRefId}}> -->
 
-                                                                                     <input type="hidden" name="TxnRefId" id="TxnRefId">
+                                                                                     <input type="hidden" name="TxnRefId" id="TxnRefId"  value={{$TransactionRefId}}>
                                                                                      <h6 class="flight-booking-detail-price-title">Total ({{$seatCount}} Traveler)</h6>
                                                                                      <div class="flight-detail-price-amount"> Rs 10,846 </div><button class="btn btn-danger" onclick="redirectToCheckout($data['SearchMasterId'])" value="Book Now">Book Now</button>
 

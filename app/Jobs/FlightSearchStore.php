@@ -27,10 +27,11 @@ class FlightSearchStore implements ShouldQueue
     public function handle(FlightSearchService $flightSearchService): void
     {
        
-        logger('flight store search');
         foreach($this->searchData as $data){
+            logger('flight store search',[$this->searchData]);
+
             $storeData = [
-               "search_master_id"=>$data['SearchMasterId'],
+               "search_master_id"=>$data['TripId'],
                 "trip_id"=>$data['TripId'],
                 "queue_date"=>$data['TripDate'],
                 "requested_seats"=>$this->requestedSeats,

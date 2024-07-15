@@ -144,9 +144,9 @@ class StaticController extends Controller
 		$serchData = $this->apiService->serchTrip($data);
 		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
 		$transactionRefId = $serchData['TransactionRefId'];
-		dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
+		// dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
 		
-			$seatCount = $request['seat_count'];
+			$seatCount = $request['seat_count']??1;
 		$TransactionRefId = $serchData['TransactionRefId'];
 		$cities = $this->apiService->getCity();
         $nationalities = $this->apiService->getNationality();
@@ -155,10 +155,16 @@ class StaticController extends Controller
 	}
 	public function checkout(Request $request){
 
-		$searchId = $request['trip_id'];
-		$data = $this->flightSearchService->getFLightSearchData($searchId);
-		$flightData = $data?$data->data:[];
-		return view('html.checkout',compact('flightData') );
+		$tripId = $request['trip_id'];
+		$seatCount = $request['total_seat'];
+		$tripData = ['TripId'=>$tripId];
+		$resultData = $this->apiService->tripDetails($tripData);
+		$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"])?$resultData["ResultData"]["TripSearch"]["TripSearchResult"]:[];
+		dispatch(new FlightSearchStore($flightResultData,$seatCount,$tripId));		
+		// $data = $this->flightSearchService->getFLightSearchData($tripId);
+		// $flightData = $data?$data->data:[];
+		$flightData=$flightResultData[0];
+		return view('html.checkout',compact('flightData'));
 	}
 	public function news(){
 		$posts = $this->postService->paginatePosts();
