@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Classes\Services\CustomerService;
 use App\Classes\Services\MailingListService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRrequest;
 use App\Jobs\RegisterCustomer;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Services\ApiService;
+use Bigroski\Tukicms\App\Models\Customer;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    public function __construct(protected MailingListService $mailingListService)
+    public function __construct(
+        protected MailingListService $mailingListService,
+    private CustomerService $customerService,
+    private ApiService $apiService,
+    )
     {
        
     }
@@ -69,13 +79,17 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function createCutomer(Request $request){
+    public function createCutomer(CustomerRrequest $request){
+        DB::beginTransaction();
+        try{
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'type'=>"Customer"]);
             $user->assignRole('Customer');
+
+        $customer =  $this->customerService->makeCustomer($request->all());  
             $data = [                
                 "Country"=>$request->country,
                 "City"=> $request->city,
@@ -84,6 +98,22 @@ class RegisteredUserController extends Controller
                 'Email' => $request->email,
                 'PhoneNumber' => $request->phone,
                 'type'=>"Customer"];
-            dispatch(new RegisterCustomer($data,$user->id) );
+            // dispatch(new RegisterCustomer($data,$customer->id) );
+            $airCustomer  = $this->apiService->registerCustomer($data);
+            $customer = Customer::where('id',$customer->id)->first();
+            $customer->api_customer_id = $airCustomer->id;
+            $customer->save();
+            DB::commit();
+            $booking = [];
+            // return view('booking')->with('result', $booking);
+
+        }catch(Exception $e){
+        DB::rollBack();
+        $error = 'An error occurred: ' . $e->getMessage();
+        logger($error);
+        // return view('booking')->with('error', $error);
+
+
+        }
     }
 }

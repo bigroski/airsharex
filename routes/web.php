@@ -68,6 +68,7 @@ Route::middleware(
     ]
 )->group( function () {
 Route::get('/checkout', [StaticController::class, 'checkout']);
+Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
 });
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
