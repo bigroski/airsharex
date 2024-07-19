@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Customer;
+use Bigroski\Tukicms\App\Models\Customer;;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -34,7 +34,7 @@ class CustomerDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Customer $model
+     * @param \Bigroski\Tukicms\App\Models\Customer $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Customer $model): QueryBuilder

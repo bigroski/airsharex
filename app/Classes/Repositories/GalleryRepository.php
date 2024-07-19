@@ -14,4 +14,11 @@ class GalleryRepository extends Repository{
 	public function __construct(Gallery $model){
 		$this->model = $model;
 	}
+
+	public function getAllData(){
+
+		return  Gallery::orderBy('ordering', 'asc')
+		->orderBy('created_at', 'desc')
+		->get();
+	}
 }

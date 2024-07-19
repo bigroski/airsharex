@@ -431,6 +431,8 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function () {
   const containers = document.querySelectorAll('.qty-container');
   const totalQuantitySpan = document.getElementById('totalQuantity');
+  const totalSeatInput = document.getElementById('seatCount');
+
 
   function updateTotalQuantity() {
       let total = 0;
@@ -438,6 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
           total += parseInt(input.value);
       });
       totalQuantitySpan.textContent = total;
+      totalSeatInput.value=total;
   }
 
   containers.forEach(container => {
@@ -494,15 +497,21 @@ function toggleInputs() {
   endInput.disabled = isOneWay;
 }
 
+// checkout cose button
+$(document).ready(function() {
+  $('.lni-close').on('click', function() {
+      $(this).closest('.flight-booking').hide();
+  });
+});
 // counter
 
 $(".counter").countTo();
-$(".counts").appear(
-  function () {
-      $(".counter").countTo();
-  },
-  { accY: -100 }
-);
+// $(".counts").appear(
+//   function () {
+//       $(".counter").countTo();
+//   },
+//   { accY: -100 }
+// );
 // pricerange
 
 $(function () {

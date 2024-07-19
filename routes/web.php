@@ -16,6 +16,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OnlineBookingController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
@@ -37,7 +38,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 // DONE
-Route::get('/home', [StaticController::class, 'home']);
+// Route::get('/home', [StaticController::class, 'home']);
 Route::get('/about-static', [StaticController::class, 'about']);
 Route::get('/ourstory', [StaticController::class, 'ourstory']);
 Route::get('/contact-static', [StaticController::class, 'contact']);
@@ -56,14 +57,25 @@ Route::post('/account/update', [StaticController::class, 'updateAccount'])->name
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 
 Route::get('/services', [StaticController::class, 'services']);
-Route::get('/signup', [StaticController::class, 'signup']);
-Route::get('/htmlregister', [StaticController::class, 'register']);
+Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
+Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
+Route::middleware(
+    [
+    'auth:web',
+    // config('jetstream.auth_session'),
+    // 'verified'
+    ]
+)->group( function () {
+Route::get('/checkout', [StaticController::class, 'checkout']);
+});
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
+Route::post('/search', [StaticController::class, 'search'])->name('site.search');
 Route::get('/search', [StaticController::class, 'search'])->name('site.search');
+
 Route::get('/search/news', [StaticController::class, 'newsSearch'])->name('news.search');
 Route::prefix("admin")->middleware(
     [
@@ -86,6 +98,8 @@ Route::resource('citizenship', CitizenshipController::class, ['as' => 'web']);
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
 Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
+Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('user.register');
+
 Route::prefix("admin")->middleware(
     [
         'web',
@@ -111,7 +125,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    
 });
+
+Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
+    Route::post('', 'bookFlight')->name('book.flight');    
+});
+
+
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);

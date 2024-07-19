@@ -8,9 +8,14 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
 use Bigroski\Tukicms\App\Traits\HasListableTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Gallery extends Model
+implements HasMedia
 {
+    use InteractsWithMedia;
+
     use HasFactory;
     // UI Trait for form creation
     use HasUiTraits;
@@ -109,6 +114,13 @@ class Gallery extends Model
             'span' => 'col-md-12',
             'required' => true,
         ],
+        'featured_image' => [
+            'label' => 'Gallery File',
+            'type' => 'file',
+            'placeholder' => 'Enter tag name',
+            'required' => true,
+            'span' => 'col-md-9'
+        ],
     ];
 
     protected static function boot()
@@ -118,7 +130,14 @@ class Gallery extends Model
         // static::addGlobalScope(new ScopeName);
     }
 
+    public function getFeaturedImageAttribute(){
+        $images = $this->getMedia('featured_image');
+        if($images->count() > 0){
 
+            return $images[0]->getFullUrl();
+        }
+        return '';
+    }
     public function getActivitylogOptions(): LogOptions
     {
         $logOption = new LogOptions();

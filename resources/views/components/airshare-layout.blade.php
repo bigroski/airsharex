@@ -28,6 +28,11 @@
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
+        <!-- <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+ -->
+        <script  src="{{asset('js/validation/flightSearchValidation.js')}}" crossorigin="anonymous"></script>
+
         
     </head>
     <body class="antialiased">
@@ -38,6 +43,7 @@
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{{$appearanceSetting->logo}}" alt="">
         <!-- <h1>HeroBiz<span>.</span></h1> -->
+        
       </a>
 
       <nav id="navbar" class="navbar">
@@ -88,10 +94,13 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
-
-      <!-- <div class="nav-right"> <a class="login" href="index.html#about">Login</a>  <a class="signup" href="index.html#about">Signup</a> </div> -->
-      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> Profile</a> </div>
-
+      @if(Auth::user())
+      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> {{Auth::user()->name}}</a> </div>
+      @else
+      <div class="nav-right"> 
+          <a class="login" href="{{route('public.login')}}">Login</a>  
+          <a class="signup" href="{{route('public.register')}}">Signup</a> </div>
+      @endif
     </div>
   </header><!-- End Header -->
         @include('partials.flash')
@@ -171,9 +180,10 @@
                           <div class="footer-widget">
                                   <h4>Newsletter Module</h4>
                                   <p>Signup to our Newsletter to receive latest updates</p>
-                                  <form>
+                                  <form method="POST" action="{{ route('web.mailing-list.store') }}">
+                                  @csrf
                                   <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
                                     <label for="floatingInput">Email address</label>
                                   </div>
                                   <div class="d-flex">
