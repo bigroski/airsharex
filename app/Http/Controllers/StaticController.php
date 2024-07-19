@@ -106,8 +106,12 @@ class StaticController extends Controller
         
         $fromCityParts = explode(' - ', $fromCity);
         
-        $fromCityId = $fromCityParts[0];
-        $fromCityName = $fromCityParts[1];
+        // $fromCityId = $fromCityParts[0];
+        // $fromCityName = $fromCityParts[1];
+
+        $fromCityId = '123';
+        $fromCityName = 'abc';
+
 
 		$toCity = $request['to'];
         
@@ -127,8 +131,9 @@ class StaticController extends Controller
         //   }
 
         $tripDate = new Carbon($request['start_date']);
-        $toCityId = $toCityParts[0];
-        $toCityName = $toCityParts[1];
+        $toCityId = '';
+        $toCityName = '';
+
 			$data = [
 				"fromCityId"=> $fromCityId,
 				"fromCity"=> $fromCityName,
@@ -143,11 +148,13 @@ class StaticController extends Controller
 		
 		$serchData = $this->apiService->serchTrip($data);
 		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
-		$transactionRefId = $serchData['TransactionRefId'];
+		// $transactionRefId = $serchData['TransactionRefId'];
+		$transactionRefId = 'xx';
 		// dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
 		
 			$seatCount = $request['seat_count']??1;
-		$TransactionRefId = $serchData['TransactionRefId'];
+		// $TransactionRefId = $serchData['TransactionRefId'];
+		$TransactionRefId = '';
 		$cities = $this->apiService->getCity();
         $nationalities = $this->apiService->getNationality();
         $heliServiceTypes = $this->apiService->getHeliServiceTypes();

@@ -171,7 +171,7 @@ logger("Get city error messAGE".$e->getMessage());
     //search trip
     public function serchTrip($data)
     {
-
+        return [];
         try {
             if (session()->has('asx_api_token')) {
                 // Key exists, do something with the value
