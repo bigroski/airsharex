@@ -52,7 +52,7 @@ class ApiService
 
     public function getCity()
     {
-        // return [];
+        return [];
         try {
             $response = $this->client->get('/api/v1/common/GetCity', [
                 'headers' => [
@@ -123,7 +123,7 @@ logger("Get city error messAGE".$e->getMessage());
     }
     public function getNationality()
     {
-        // return [];
+        return [];
         try {
 
             $response = $this->client->get('/api/v1/common/GetNationality', [
@@ -433,6 +433,7 @@ logger("Get city error messAGE".$e->getMessage());
 
     public function getHeliServiceTypes()
     {
+        return [];
         try {
 
             $response = $this->client->get('/api/v1/common/GetHeliServiceType', [
