@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ApiErrorException;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -298,10 +299,11 @@ logger("Get city error messAGE".$e->getMessage());
             return json_decode($result, true);
         } catch (RequestException $e) {
 
+            logger('erorr in api',[$e]);
             if ($e->hasResponse()) {
-                throw new Exception($e->getResponse()->getBody()->getContents());
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
             }
-            throw new \Exception('Unable to complete the request');
+            throw new ApiErrorException('Unable to complete the request');
         }
     }
     /**

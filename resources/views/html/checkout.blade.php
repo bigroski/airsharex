@@ -173,7 +173,6 @@
 
                   </div>
                   
-                  <!-- <input type="hidden" name="trip_id" value={{$flightData["trip_id"]}}> -->
                 </form>
               </div>
             </div>

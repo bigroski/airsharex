@@ -7,6 +7,7 @@ use App\Http\Requests\FlightBookigRequest;
 use App\Services\ApiService;
 use App\Services\FlightBookingService;
 use App\Services\FlightSearchService;
+use Bigroski\Tukicms\App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,22 @@ class BookingController extends Controller
            
            $customer =  $this->customerService->createFlightBookigCustomer($customerData);
         //    dd($customer);
+
+        $customer =  $this->customerService->makeCustomer($request->all());  
+            $data = [                
+                "Country"=>$request->country,
+                "City"=> $request->city,
+                "Address"=> $request->address,
+                'name' => $request->name,
+                'Email' => $request->email,
+                'PhoneNumber' => $request->phone,
+                'type'=>"Customer"];
+            // dispatch(new RegisterCustomer($data,$customer->id) );
+            $airCustomer  = $this->apiService->registerCustomer($data);
+            dd($airCustomer);
+            $customer = Customer::where('id',$customer->id)->first();
+            $customer->api_customer_id = $airCustomer->id;
+            $customer->save();
            $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
            $bookingData = [
             "TxnRefId"=> "string",

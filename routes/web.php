@@ -98,7 +98,7 @@ Route::prefix("admin")->middleware(
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
 Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
-Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('user.register');
+Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('customer.register');
 
 Route::prefix("admin")->middleware(
     [
