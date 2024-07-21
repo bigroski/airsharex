@@ -48,7 +48,7 @@
 			<div class="row g-3">
 			<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
 				<select class="test_skill form-control" placeholder="From">
-					<option >KTM</option>
+					<option >BKT</option>
 				</select>
 			</div>
 			<div class="col-lg-2 col-md-4 col-sm-6 col-12">

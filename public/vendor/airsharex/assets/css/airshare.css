@@ -3612,3 +3612,16 @@ div#v-pills-tabContent {
 
 
 /*  */
+
+div#foo .form-control {
+  width: 300px;
+  max-width: 100%;
+}
+
+button#filghtSearchButton {
+  display: flex;
+  text-align: center;
+  align-self: center;
+  align-items: center;
+  gap: 10px;
+}

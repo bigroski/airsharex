@@ -44,11 +44,9 @@
 			<label class="form-check-label" for="inlineRadio2">Two way</label>
 			</div>
 			</div> -->
-			
 			<div class="row g-3">
-			<div class="row g-3">
-				<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
-					<label for="from">From</label>
+				<div class="col-lg-3 col-md-4 ol-sm-6 col-12">
+					<label for="from">From </label>
 					<select name = "from" class="test_skill form-control" placeholder="From">
 						<!-- <option >KTM</option> -->
 						@foreach ($cities as $city)
@@ -56,7 +54,7 @@
 					@endforeach
 					</select>
 				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 				<label for="to">To</label>
 
 					<select name = "to" class="test_skill form-control " placeholder="to">
@@ -66,7 +64,7 @@
 					@endforeach
 					</select>
 				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 				<label for="nationality">Nationality</label>
 
 					<select name = "nationality" class="test_skill form-control " placeholder="to">
@@ -76,7 +74,7 @@
 					@endforeach
 					</select>
 				</div>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 				<label for="heliServiceType">Heli Service Type</label>
 
 					<select name = "heliServiceType" class="test_skill form-control " placeholder="to">
@@ -86,20 +84,21 @@
 					@endforeach
 					</select>
 				</div>
-			</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-					
+			
+			
+				<div class="col-lg-6 col-md-4 col-sm-6 col-12">
+				
 					<div id="foo">
-					<label for="start_date">Departure Date</label>
-
-						<input type="text" name="start_date" id="start" class="form-control date-picker" placeholder="Depature">
-						<label for="end_date">Arriaval Date</label>
-						<input type="text" name="end_date" id="end" class="form-control date-picker" placeholder="Arrival">
+						<span><label for="start_date">Departure Date</label>
+						<input type="text" name="start_date" id="start" class="form-control date-picker" placeholder="Depature"></span>
+						
+						<span><label for="end_date">Arriaval Date</label>
+						<input type="text" name="end_date" id="end" class="form-control date-picker" placeholder="Arrival"></span>
 					</div>
 				</div>
 				
 			
-				<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12 passanger-card">
 				<label for="seatCount">Number of Seats</label>
 					<input type="hidden" name="seat_count" id="seatCount">
 					<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
@@ -133,9 +132,9 @@
 						</div>
 
 				</div>
-				<div class="col-lg-1 col-md-4 col-sm-6 col-12">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 					
-					<button type="submit" class="btn btn-danger mb-3" id="filghtSearchButton"><i class="lni lni-search"></i></button>
+					<button type="submit" class="btn btn-danger mt-4" id="filghtSearchButton"><i class="lni lni-search"></i> Search Now</button>
 				</div>
 			
 			</div>
