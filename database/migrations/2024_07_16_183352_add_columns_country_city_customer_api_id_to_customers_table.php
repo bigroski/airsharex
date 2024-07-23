@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('city')->nullable()->default(null);
             $table->string('api_customer_id')->nullable()->default(null);
             $table->string('emergency_contact_number')->nullable();
-            $table->boolean('toc_accepted')->default(false);
+            $table->boolean('toc_accepted')->nullable()->default(false);
 
 
         });

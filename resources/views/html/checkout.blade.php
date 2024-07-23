@@ -94,7 +94,12 @@
             <div class="card border-0 shadow rounded-3 ">
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5  fs-5">Checkout</h5>
-                <form action="/book-flight" method="POST" id="checkoutForm" novalidate>
+                <!-- <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get"> -->
+<span>error section</span>
+                @foreach($errors as $error)
+                <h5>{{$error}}</h5>
+                @endforeach
+                <form name="flight-customer-form" action="{{ route('book.flight') }}" method="POST" id="checkoutForm">
                   @csrf
                   <div class="form-floating mb-3">
                     <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">

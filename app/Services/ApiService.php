@@ -76,16 +76,19 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/common/GetSalutation', [
+            $response = $this->client->get('/api/v1/common/GetSalutation', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
                     'Accept'    => 'application/json',
                 ]
             ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            return $result['ResultData']['Salutation'] ?? $result['ResultData']['Salutation'];
 
             $result = json_decode($response->getBody()->getContents());
-
+dd($result);
             return $result;
         } catch (RequestException $e) {
 
@@ -147,7 +150,7 @@ class ApiService
     {
         try {
 
-            $response = $this->client->get('/v1/common/GetSalutation', [
+            $response = $this->client->get('/api/v1/common/GetGender', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -155,9 +158,10 @@ class ApiService
                 ]
             ]);
 
-            $result = $response->getBody()->getContents();
+            $result = json_decode($response->getBody()->getContents(), true);
 
-            return json_decode($result, true);
+            return $result['ResultData']['Gender'] ?? $result['ResultData']['Gender'];
+
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -208,6 +212,7 @@ class ApiService
                 $this->authenticate();
             }
             $apiToken = session()->get('asx_api_token');
+            logger('token'.$apiToken);
             $response = $this->client->post('/api/v1/booking/GetTripDetail', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
@@ -219,7 +224,7 @@ class ApiService
             ]);
             $result = $response->getBody()->getContents();
             return json_decode($result, true);
-        } catch (ExceptionRequest $e) {
+        } catch (RequestException $e) {
 
             logger($e);
             if ($e->hasResponse()) {
@@ -282,10 +287,19 @@ class ApiService
     {
         try {
 
+
+            if (session()->has('asx_api_token')) {
+            } else {
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+            logger('token'.$apiToken);
+           
             $response = $this->client->post('/api/v1/customers/Register', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
-                    'agentCode' => config('api.asx.agent_code'),
+                    'agentCode' => config('api.asx.agent_code'),                    
+                    'authentication-token' => $apiToken,
                     'Accept'    => 'application/json',
                 ],
                 'json' => $data
@@ -341,13 +355,13 @@ class ApiService
     {
         try {
 
-            if (!session()->has('asx_api_token')) {
+            // if (!session()->has('asx_api_token')) {
 
                 $this->authenticate();
-            }
+            // }
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/BookTrip', [
+            $response = $this->client->post('/api/v1/booking/BookTrip', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),

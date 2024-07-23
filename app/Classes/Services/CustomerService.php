@@ -43,7 +43,6 @@ class CustomerService extends BaseService{
 	}
 
 	public function updateCustomer($data, $model){
-		$data = $request->all();
 		$this->customerRepository->update($data, $model);
 		addFeaturedImage($model, request());
 		return $model;
