@@ -4,7 +4,8 @@
 	
 	<div class="hero-content">
 		<div class="container">
-			<h5></h5>
+			<h2>{{$code}}</h2>
+			<h5>{{$message}}</h5>
 		</div>
 	
 	</div>
