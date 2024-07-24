@@ -207,10 +207,10 @@ dd($result);
     public function tripDetails($data)
     {
         try {
-            if (session()->has('asx_api_token')) {
-            } else {
+            // if (session()->has('asx_api_token')) {
+            // } else {
                 $this->authenticate();
-            }
+            // }
             $apiToken = session()->get('asx_api_token');
             logger('token'.$apiToken);
             $response = $this->client->post('/api/v1/booking/GetTripDetail', [

@@ -62,7 +62,7 @@ class BookingController extends Controller
            $bookingData = [
             "TxnRefId"=> "1234566",
             "TotalSeat"=> $fligtSearchData->requested_seats,
-            "SearchMasterId"=>"6FD9ADBA-8496-4813-A377-E5EE20A988B6",//$fligtSearchData->search_master_id,
+            // "SearchMasterId"=>"6FD9ADBA-8496-4813-A377-E5EE20A988B6",//$fligtSearchData->search_master_id,
             "TripId"=> $tripId,
             "CustomerId"=> $customer->id,
         ];

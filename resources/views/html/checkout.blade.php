@@ -103,40 +103,40 @@
                   @csrf
                   <div class="form-floating mb-3">
                     <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
-                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Full Name">
+                    <input type="text" name="name" class="form-control" id="floatingName" value="{{ $user->name}}" placeholder="Full Name">
                     <label for="name">Full Name</label>
 
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                    <input type="email" name="email" class="form-control" id="floatingEmail" value="{{ $user->email}}" placeholder="name@example.com">
                     <label for="email">Email address</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" name="phone" class="form-control" id="floatingPhone" placeholder="Phone Number">
+                    <input type="text" name="phone" class="form-control" id="floatingPhone" value="{{ $user->phone}}" placeholder="Phone Number">
                     <label for="phone">Phone Number</label>
 
                   </div>
-                  <div class="form-floating mb-3">
+                  <!-- <div class="form-floating mb-3">
                     <input type="text" name="emergency_contact_number" class="form-control" id="floatingPhone" placeholder="Phone Number">
                     <label for="phone">Emergency Contact Number</label>
 
-                  </div>
-                  <div class="form-floating mb-3">
+                  </div> -->
+                  <!-- <div class="form-floating mb-3">
                     <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
                     <label for="name">Country</label>
 
-                  </div>
+                  </div> -->
 
                   <div class="form-floating mb-3">
-                    <input type="text" name="state" class="form-control" id="floatingState" placeholder="state">
+                    <input type="text" name="state" class="form-control" id="floatingState" value="{{ $user->state}}"  placeholder="state">
                     <label for="phone">State</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="email" name="city" class="form-control" id="floatingCity" placeholder="city">
-                    <label for="email">City</label>
+                    <input type="text" name="city" value="{{ $user->city}}" class="form-control" id="floatingCity" placeholder="city">
+                    <label for="city">City</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
+                    <input type="text" name="address" class="form-control" value="{{ $user->address_one}}" id="floatingAddress" placeholder="Address">
                     <label for="name">Address</label>
 
                   </div>

@@ -165,7 +165,9 @@ class StaticController extends Controller
 		dispatch(new FlightSearchStore($flightResultData,$seatCount,$tripId));		
 		
 		$flightData=$flightResultData[0];
-		return view('html.checkout',compact('flightData'));
+		$user = $request->user();
+		// dd($user);
+		return view('html.checkout',compact('flightData','user'));
 		}else{
 			logger('api fetch error',$resultData['ResultData']);
 			throw new ApiErrorException("Error on fetching trip details ".$resultData['ResultData']['Error'][0]["ErrorMessage"],$resultData['ResultCode']);
