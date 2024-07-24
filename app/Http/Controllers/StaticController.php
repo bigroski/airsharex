@@ -145,6 +145,7 @@ class StaticController extends Controller
 		$serchData = $this->apiService->serchTrip($data);
 		$returnData = isset($serchData['ResultData']['TripSearch']['TripSearchResult'])?$serchData['ResultData']['TripSearch']['TripSearchResult']:[];
 		$transactionRefId = $serchData['TransactionRefId'];
+		$searchMasterId = $serchData['ResultData']['TripSearch']['SearchMasterId'];
 		// dispatch(new FlightSearchStore($returnData,$request['seat_count'],$transactionRefId));
 		
 			$seatCount = $request['seat_count']??1;
@@ -152,17 +153,19 @@ class StaticController extends Controller
 		$cities = $this->apiService->getCity();
         $nationalities = $this->apiService->getNationality();
         $heliServiceTypes = $this->apiService->getHeliServiceTypes();
-		return view('html.search',compact('returnData','seatCount','TransactionRefId','cities','nationalities','heliServiceTypes'));
+		return view('html.search',compact('returnData','seatCount','TransactionRefId','cities','nationalities','heliServiceTypes','searchMasterId'));
 	}
 	public function checkout(Request $request){
 
 		$tripId = $request['trip_id'];
 		$seatCount = $request['total_seat'];
+		$transactionRefId= $request['TxnRefId'];
+		$masterSerarchId = $request['masterSerarchId'];
 		$tripData =  ['TripId'=>$tripId];
 		$resultData = $this->apiService->tripDetails($tripData);
 		if($resultData['ResultCode']===200)
 		{$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"])?$resultData["ResultData"]["TripSearch"]["TripSearchResult"]:[];
-		dispatch(new FlightSearchStore($flightResultData,$seatCount,$tripId));		
+		dispatch(new FlightSearchStore($flightResultData,$seatCount,$transactionRefId,$masterSerarchId));		
 		
 		$flightData=$flightResultData[0];
 		$user = $request->user();

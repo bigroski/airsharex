@@ -95,77 +95,59 @@
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5  fs-5">Checkout</h5>
                 <!-- <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get"> -->
-<span>error section</span>
-                @foreach($errors as $error)
-                <h5>{{$error}}</h5>
-                @endforeach
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
+
                 <form name="flight-customer-form" action="{{ route('book.flight') }}" method="POST" id="checkoutForm">
                   @csrf
                   <div class="form-floating mb-3">
                     <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
                     <input type="text" name="name" class="form-control" id="floatingName" value="{{ $user->name}}" placeholder="Full Name">
                     <label for="name">Full Name</label>
-
+                    @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                    @endif
                   </div>
                   <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control" id="floatingEmail" value="{{ $user->email}}" placeholder="name@example.com">
                     <label for="email">Email address</label>
+                    @if ($errors->has('email'))
+                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                    @endif
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" name="phone" class="form-control" id="floatingPhone" value="{{ $user->phone}}" placeholder="Phone Number">
                     <label for="phone">Phone Number</label>
+                    @if ($errors->has('phone'))
+                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                    @endif
 
                   </div>
-                  <!-- <div class="form-floating mb-3">
-                    <input type="text" name="emergency_contact_number" class="form-control" id="floatingPhone" placeholder="Phone Number">
-                    <label for="phone">Emergency Contact Number</label>
 
-                  </div> -->
-                  <!-- <div class="form-floating mb-3">
-                    <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
-                    <label for="name">Country</label>
-
-                  </div> -->
 
                   <div class="form-floating mb-3">
-                    <input type="text" name="state" class="form-control" id="floatingState" value="{{ $user->state}}"  placeholder="state">
+                    <input type="text" name="state" class="form-control" id="floatingState" value="{{ $user->state}}" placeholder="state">
                     <label for="phone">State</label>
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" name="city" value="{{ $user->city}}" class="form-control" id="floatingCity" placeholder="city">
                     <label for="city">City</label>
+                    @if ($errors->has('city'))
+                    <span class="text-danger">{{ $errors->first('city') }}</span>
+                    @endif
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" name="address" class="form-control" value="{{ $user->address_one}}" id="floatingAddress" placeholder="Address">
                     <label for="name">Address</label>
 
                   </div>
-                  <!-- <div class="form-floating mb-3">
-                    <h5>Payment Mode</h5>
-                    <div class="row">
-
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="payment_method" value="cod" checked="">
-                          <label class="form-check-label" for="payment_method">
-                            Cash On Delivery
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="payment_method" value="esewa">
-                          <label class="form-check-label" for="payment_method">
-                            Esewa
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div> -->
-
-
 
                   <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" name="toc_accepted" value="" id="rememberPasswordCheck">
@@ -177,7 +159,7 @@
                     <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Checkout</button>
 
                   </div>
-                  
+
                 </form>
               </div>
             </div>

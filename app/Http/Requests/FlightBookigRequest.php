@@ -25,7 +25,6 @@ class FlightBookigRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:150'],
             'trip_id' => ['required', 'string'],
             'email' => ['required', 'string', 'min:4', 'max:50','email'],
-            'payment_method'=>['required'],
             'phone' => ['required']      
         ];
     }
