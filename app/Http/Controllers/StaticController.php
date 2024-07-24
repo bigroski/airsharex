@@ -10,6 +10,7 @@ use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
 use Bigroski\Tukicms\App\Classes\Services\CommentService;
 use App\Classes\Services\ServiceService;
+use App\Exceptions\ApiErrorException;
 use App\Jobs\FlightSearchStore;
 use App\Mail\ContactForm;
 use App\Services\ApiService;
@@ -157,14 +158,18 @@ class StaticController extends Controller
 
 		$tripId = $request['trip_id'];
 		$seatCount = $request['total_seat'];
-		$tripData = ['TripId'=>$tripId];
+		$tripData =  ['TripId'=>$tripId];
 		$resultData = $this->apiService->tripDetails($tripData);
-		$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"])?$resultData["ResultData"]["TripSearch"]["TripSearchResult"]:[];
+		if($resultData['ResultCode']===200)
+		{$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"])?$resultData["ResultData"]["TripSearch"]["TripSearchResult"]:[];
 		dispatch(new FlightSearchStore($flightResultData,$seatCount,$tripId));		
-		// $data = $this->flightSearchService->getFLightSearchData($tripId);
-		// $flightData = $data?$data->data:[];
+		
 		$flightData=$flightResultData[0];
 		return view('html.checkout',compact('flightData'));
+		}else{
+			logger('api fetch error',$resultData['ResultData']);
+			throw new ApiErrorException("Error on fetching trip details ".$resultData['ResultData']['Error'][0]["ErrorMessage"],$resultData['ResultCode']);
+		}
 	}
 	public function news(){
 		$posts = $this->postService->paginatePosts();

@@ -68,6 +68,7 @@ Route::middleware(
     ]
 )->group( function () {
 Route::get('/checkout', [StaticController::class, 'checkout']);
+Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
 });
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
@@ -97,7 +98,7 @@ Route::prefix("admin")->middleware(
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
 Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
-Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('user.register');
+Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('customer.register');
 
 Route::prefix("admin")->middleware(
     [
@@ -128,7 +129,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
-    Route::post('', 'bookFlight')->name('book.flight');    
+    Route::post('', 'bookFlight')->name('book.flight');  
+    Route::get('/test', 'test')->name('book.test');    
+  
 });
 
 

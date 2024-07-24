@@ -2213,7 +2213,7 @@ section#clients{
 
 .select2.select2-container .select2-selection {
   display: block;
-  height: 45px;
+  height: 58px;
   width: 100%;
   padding: .375rem .75rem;
   font-size: 1rem;
@@ -2239,9 +2239,9 @@ section#clients{
 }
 .select2.select2-container .select2-selection .select2-selection__rendered {
   color: #333;
-  line-height: 2;
-  padding-right: 33px;
-  height : 45px;
+    line-height: 1.5;
+    padding: 0.55rem .15rem;
+    height: 45px;
 }
 
 .select2.select2-container .select2-selection .select2-selection__arrow {
@@ -2658,7 +2658,8 @@ div#v-pills-tabContent {
   .flight-booking-content {
     display: flex;
     align-items: center;
-    gap: 50px
+    gap: 20px
+
   }
   .flight-booking-airline {
     display: flex;
@@ -2694,10 +2695,15 @@ div#v-pills-tabContent {
 }
 .start-time-icon {
   font-size: 25px;
-  color: #4f4b8b
+  color: #4f4b8bp
 }
 .flight-stop {
   text-align: center
+  
+}
+
+@media all and (max-width:1399.9px) { 
+    .flight-stop .flight-stop-number,.flight-stop .flight-stop-arrow { display: none;}
 }
 .flight-stop-number {
   color: #4f4b8b;
@@ -2771,8 +2777,15 @@ div#v-pills-tabContent {
 }
 
 }
-
-
+h5.flight-airline-name {
+  margin: 0;
+}
+.flight-booking-duration{
+  width:75px
+}
+.price-info {
+  width: 125px;
+}
 
 .flight-booking-detail {
  
@@ -3628,3 +3641,29 @@ button#filghtSearchButton {
   width: 100%;
   justify-content: center;
 }
+
+
+/* background images */
+.bg-theme{
+  color: #fff;
+  background: rgb(0, 0, 0);
+}
+.bg-slate-50	{background-color: rgb(248 250 252);}
+.bg-slate-100	{background-color: rgb(241 245 249);}
+.bg-slate-200	{	background-color: rgb(226 232 240);}
+
+
+.booking-details .card-body {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+}
+.booking-details .card-body p{
+  margin: 0;
+  padding: 0;
+}
+
+.bg-slate-50 .card-body p {
+  margin-bottom: 5px;
+}
+
