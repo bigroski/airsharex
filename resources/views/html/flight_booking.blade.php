@@ -11,9 +11,6 @@
         <section class=" checkout">
             <div class="container">
 
-
-
-
                 <div class="row">
                     <form name="flight-customer-form" action="{{ route('book.flight') }}" method="POST" id="checkoutForm">
                         @csrf

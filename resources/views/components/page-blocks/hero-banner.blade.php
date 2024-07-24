@@ -45,65 +45,96 @@
 			</div>
 			</div> -->
 			
+			
+			@if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
 			<div class="row g-3">
 			<div class="row g-3">
 				<div class="col-lg-2 col-md-4 ol-sm-6 col-12">
-					<label for="from">From</label>
-					<select name = "from" class="test_skill form-control" placeholder="From">
-						<!-- <option >KTM</option> -->
-						@foreach ($cities as $city)
-						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}">{{ $city['CityName'] }}</option>
+					<label for="from">Departure {{ old('from')}}</label>
+					<select name = "from" class="form-control" placeholder="From">
+					<option value="" >Select Departure</option>
+					@foreach ($cities as $city)
+					@php
+    // Combine city ID and name with a delimiter
+    $combinedCity = $city['CityId'] . ' - ' . $city['CityName'];
+@endphp
+						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}" {{ old('from') == $combinedCity  ? 'selected' : '' }} ">{{ $city['CityName'] }}</option>
 					@endforeach
 					</select>
+					@if ($errors->has('from'))
+                    <span class="text-danger">{{ $errors->first('from') }}</span>
+                    @endif
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
-				<label for="to">To</label>
+				<label for="to">Destination</label>
 
-					<select name = "to" class="test_skill form-control " placeholder="to">
-						<!-- <option >POK</option> -->
+					<select name = "to" class="form-control " placeholder="to">
+					<option value="" >Select Destination</option>
+
 						@foreach ($cities as $city)
-						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}">{{ $city['CityName'] }}</option>
+						@php
+    // Combine city ID and name with a delimiter
+    $combinedCity = $city['CityId'] . ' - ' . $city['CityName'];
+@endphp
+						<option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}" {{ old("to") == $combinedCity? 'selected' : '' }}>{{ $city['CityName'] }}</option>
 					@endforeach
 					</select>
+					@if ($errors->has('to'))
+                    <span class="text-danger">{{ $errors->first('to') }}</span>
+                    @endif
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
 				<label for="nationality">Nationality</label>
 
-					<select name = "nationality" class="test_skill form-control " placeholder="to">
-						<!-- <option >POK</option> -->
+					<select name = "nationality" class="form-control " placeholder="to">
+						<option value="" >Select Nationality</option>
 						@foreach ($nationalities as $nationality)
-						<option value="{{ $nationality['NationalityCode'] }}">{{ $nationality['Nationality']}}</option>
+						<option value="{{ $nationality['NationalityCode'] }}" {{ old("nationality") == $nationality['NationalityCode'] ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
 					@endforeach
 					</select>
+					@if ($errors->has('nationality'))
+                    <span class="text-danger">{{ $errors->first('nationality') }}</span>
+                    @endif
 				</div>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12">
 				<label for="heliServiceType">Heli Service Type</label>
 
-					<select name = "heliServiceType" class="test_skill form-control " placeholder="to">
-						<!-- <option >Select Heli service Type</option> -->
+					<select name = "heliServiceType" class="form-control " placeholder="to">
+						<option value="" >Select Heli Service Type</option>
 						@foreach ($heliServiceTypes as $heliServicdType)
-						<option value="{{ $heliServicdType['ServiceTypeId'] }}">{{ $heliServicdType['ServiceType']}}</option>
+						<option value="{{ $heliServicdType['ServiceTypeId'] }}"  {{ old("heliServiceType") == $heliServicdType['ServiceTypeId'] ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
 					@endforeach
 					</select>
+					@if ($errors->has('heliServiceType'))
+                    <span class="text-danger">{{ $errors->first('heliServiceType') }}</span>
+                    @endif
 				</div>
 			</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
 					
-					<div id="foo">
 					<label for="start_date">Departure Date</label>
 
-						<input type="text" name="start_date" id="start" class="form-control date-picker" placeholder="Depature">
-						<label for="end_date">Arriaval Date</label>
-						<input type="text" name="end_date" id="end" class="form-control date-picker" placeholder="Arrival">
+						<input type="text" name="start_date" value="{{old('start_date')}}" id="start" class="form-control date-picker" placeholder="Depature">
+						@if ($errors->has('start_date'))
+                    <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                    @endif
 					</div>
-				</div>
 				
 			
 				<div class="col-lg-2 col-md-4 col-sm-6 col-12 passanger-card">
 				<label for="seatCount">Number of Seats</label>
 					<input type="hidden" name="seat_count" id="seatCount">
+					
 					<button type="button" id="toggleButton" class="form-control passanger-popup" >passenger<span id="totalContainer">
-						: <span id="totalQuantity">0</span>
+						: <span id="totalQuantity">{{old('start_date')??0}}</span>
 							</span></button>
 						<div class="count-table" id="popup">
 							<div class="pass-count" >
@@ -132,7 +163,11 @@
 							</div>
 						</div>
 
-				</div>
+						@if ($errors->has('seat_count'))
+                    <span class="text-danger">{{ $errors->first('seat_count') }}</span>
+                    @endif
+					</div>
+				
 				<div class="col-lg-1 col-md-4 col-sm-6 col-12">
 					
 					<button type="submit" class="btn btn-danger mb-3" id="filghtSearchButton"><i class="lni lni-search"></i></button>
