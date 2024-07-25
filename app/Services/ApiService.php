@@ -55,6 +55,7 @@ class ApiService
     {
         try {
             $response = $this->client->get('/api/v1/common/GetCity', [
+                'verify' => false,
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),

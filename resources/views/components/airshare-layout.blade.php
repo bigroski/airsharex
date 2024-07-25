@@ -25,9 +25,10 @@
         <link href="{{asset('vendor/airsharex/assets/css/select2.min.css')}}" rel="stylesheet" />
         <!-- Styles -->
         <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/airsharex/assets/css/all-fontawesome.min.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script> -->
         <!-- <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
  -->
