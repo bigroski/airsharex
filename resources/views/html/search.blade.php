@@ -511,6 +511,15 @@
                                                                                                                <input type="hidden"
                                                                                                                      name="TxnRefId" id="TxnRefId"
                                                                                                                      value={{$TransactionRefId}}>
+                                                                                                                     <input type="hidden"
+                                                                                                                     name="TxnRefId" id="TxnRefId"
+                                                                                                                     value={{$TransactionRefId}}>
+                                                                                                                     <input type="hidden"
+                                                                                                                     name="TxnRefId" id="TxnRefId"
+                                                                                                                     value={{$TransactionRefId}}>
+                                                                                                                     <input type="hidden"
+                                                                                                                     name="masterSerarchId" id="masterSerarchId"
+                                                                                                                     value={{$searchMasterId}}>
 
                                                                                                                      <div class="flight-booking-detail-price">
                                                                                                                      <div class="book-btn">

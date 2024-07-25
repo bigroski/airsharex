@@ -34,19 +34,9 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
                     <form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
-                        <!-- @csrf -->
-                        <!-- <div class="my-3">
-            <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="filght_type" id="inlineRadio1" value="oneway">
-            <label class="form-check-label" for="inlineRadio1">One way</label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="filght_type" id="inlineRadio2" value="twoway">
-            <label class="form-check-label" for="inlineRadio2">Two way</label>
-            </div>
-            </div> -->
+                        
 
-                        @if ($errors->any())
+                        <!-- @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -54,7 +44,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @endif
+                        @endif -->
 
                         <div class="row g-3">
                             <div class="col-lg-3 col-md-4 ol-sm-6 col-12">

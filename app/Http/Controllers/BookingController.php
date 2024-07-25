@@ -75,68 +75,67 @@ class BookingController extends Controller
     }
 
     public function confirmBooking(Request $request)
-    { 
-            $user = $request->user();
-            $bookingData = [
-                "NationalityCode" => "NP",
-                "Nationality" => "Nepalese",
-                "EmailId" => $user->email,
-                "ContactNo" => $user->mobile,
-                "EmergencyContactNo" => $request["emargency_contact_number"],
-                "BookingName" => $request["bookinf_name"],
-                "SpecialInstruction" => "test",
-                "ReceivedAmount" => $request["ReceivedAmount"],
-                "TotalAmount" => $request["TotalAmount"],
-                "TicketBookingNo" => $request["TicketBookingNo"],
-                "CustomerId" => $request["CustomerId"],
-            ];
+    {
+        $user = $request->user();
+        $bookingData = [
+            "NationalityCode" => "NP",
+            "Nationality" => "Nepalese",
+            "EmailId" => $user->email,
+            "ContactNo" => $user->mobile,
+            "EmergencyContactNo" => $request["emargency_contact_number"],
+            "BookingName" => $request["bookinf_name"],
+            "SpecialInstruction" => "test",
+            "ReceivedAmount" => $request["ReceivedAmount"],
+            "TotalAmount" => $request["TotalAmount"],
+            "TicketBookingNo" => $request["TicketBookingNo"],
+            "CustomerId" => $request["CustomerId"],
+        ];
 
-            //     "PaymentDetail": {
-            //       "paymentReferenceId": "string",
-            //       "paymentMethodId": "string",
-            //       "paymentMethod": "string",
-            //       "totalAmount": 0,
-            //       "receivedAmount": 0,
-            //       "cardTypeId": "string",
-            //       "cardType": "string",
-            //       "cardNumber": "string",
-            //       "cardHolderName": "string",
-            //       "cardBankId": "string",
-            //       "cardBank": "string",
-            //       "cardExpiryDate": "string",
-            //       "cardAuthorizeBy": "string",
-            //       "bankId": "string",
-            //       "bankName": "string",
-            //       "walletId": "string",
-            //       "walletName": "string",
-            //       "voucherCode": "string",
-            //       "customerId": "string"
-            //     },
-            //     "NationalityCode": "string",
-            //     "Nationality": "string",
-            //     "EmailId": "string",
-            //     "ContactNo": "string",
-            //     "EmergencyContactNo": "string",
-            //     "BookingName": "string",
-            //     "PassengerDetail": [
-            //       {
-            //         "SalutationId": 0,
-            //         "Salutation": "string",
-            //         "PassengerName": "string",
-            //         "Age": 0,
-            //         "GenderId": 0,
-            //         "Gender": "string",
-            //         "MobileNo": "string",
-            //         "EmergencyContactNo": "string",
-            //         "EmailId": "string"
-            //       }
-            //     ],
-            //     "SpecialInstruction": "string",
-            //     "ReceivedAmount": 0,
-            //     "TotalAmount": 0,
-            //     "TicketBookingNo": "string",
-            //     "CustomerId": "string"
-            //}
-        }
+        //     "PaymentDetail": {
+        //       "paymentReferenceId": "string",
+        //       "paymentMethodId": "string",
+        //       "paymentMethod": "string",
+        //       "totalAmount": 0,
+        //       "receivedAmount": 0,
+        //       "cardTypeId": "string",
+        //       "cardType": "string",
+        //       "cardNumber": "string",
+        //       "cardHolderName": "string",
+        //       "cardBankId": "string",
+        //       "cardBank": "string",
+        //       "cardExpiryDate": "string",
+        //       "cardAuthorizeBy": "string",
+        //       "bankId": "string",
+        //       "bankName": "string",
+        //       "walletId": "string",
+        //       "walletName": "string",
+        //       "voucherCode": "string",
+        //       "customerId": "string"
+        //     },
+        //     "NationalityCode": "string",
+        //     "Nationality": "string",
+        //     "EmailId": "string",
+        //     "ContactNo": "string",
+        //     "EmergencyContactNo": "string",
+        //     "BookingName": "string",
+        //     "PassengerDetail": [
+        //       {
+        //         "SalutationId": 0,
+        //         "Salutation": "string",
+        //         "PassengerName": "string",
+        //         "Age": 0,
+        //         "GenderId": 0,
+        //         "Gender": "string",
+        //         "MobileNo": "string",
+        //         "EmergencyContactNo": "string",
+        //         "EmailId": "string"
+        //       }
+        //     ],
+        //     "SpecialInstruction": "string",
+        //     "ReceivedAmount": 0,
+        //     "TotalAmount": 0,
+        //     "TicketBookingNo": "string",
+        //     "CustomerId": "string"
+        //}
     }
 }
