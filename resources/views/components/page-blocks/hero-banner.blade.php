@@ -19,7 +19,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true"><i class="lni lni-plane"></i> Book A Flight</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Schedule Flight</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
-                </li>
+                </li> -->
                 <!-- Add more items as needed -->
             </ul>
 
@@ -124,7 +124,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 passanger-card">
                                 <label for="seatCount">Number of Seats</label>
                                 <input type="hidden" name="seat_count" id="seatCount">
-                                <button type="button" id="toggleButton" class="form-control passanger-popup">passenger<span id="totalContainer">
+                                <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
                                         : <span id="totalQuantity">0</span>
                                     </span></button>
                                 <div class="count-table" id="popup">
@@ -165,129 +165,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-                    <form action="{{route('site.search')}}" method="get">
-                        <div class="my-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">One way</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Two way</label>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="From">
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="To">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-1 col-sm-6 col-12">
-
-                                <input type="number" class="form-control">
-                            </div>
-
-                            <div class="col-md-1 col-sm-6 col-12">
-                                <button type="submit" class="btn btn-danger mb-3">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="rescue" role="tabpanel" aria-labelledby="rescue-tab">
-                    <form action="{{route('site.search')}}" method="get">
-                        <div class="my-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">One way</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Two way</label>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="From">
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="To">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-1 col-sm-6 col-12">
-
-                                <input type="number" class="form-control">
-                            </div>
-
-                            <div class="col-md-1 col-sm-6 col-12">
-                                <button type="submit" class="btn btn-danger mb-3">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="sharing" role="tabpanel" aria-labelledby="sharing-tab">
-                    <form action="{{route('site.search')}}" method="get">
-                        <div class="my-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">One way</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Two way</label>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="From">
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-12">
-
-                                <input type="text" class="form-control" placeholder="To">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-12">
-
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col-md-1 col-sm-6 col-12">
-
-                                <input type="number" class="form-control">
-                            </div>
-
-                            <div class="col-md-1 col-sm-6 col-12">
-                                <button type="submit" class="btn btn-danger mb-3">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
+                
             </div>
         </div>
 
