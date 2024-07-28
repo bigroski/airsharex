@@ -140,7 +140,7 @@ class StaticController extends Controller
 			return back()->withErrors($validator)->withInput();
 		}
 		$data = $request->all();
-
+		$searchData = $data;
 		$fromCity = $request['from'];
 
 		$fromCityParts = explode(' - ', $fromCity);
@@ -176,7 +176,7 @@ class StaticController extends Controller
 			$cities = $this->apiService->getCity();
 			$nationalities = $this->apiService->getNationality();
 			$heliServiceTypes = $this->apiService->getHeliServiceTypes();
-			return view('html.search', compact('returnData', 'seatCount', 'TransactionRefId', 'cities', 'nationalities', 'heliServiceTypes', 'searchMasterId'));
+			return view('html.search', compact('returnData', 'seatCount', 'TransactionRefId', 'cities', 'nationalities', 'heliServiceTypes', 'searchMasterId', 'searchData'));
 		} else {
 			logger('api fetch error', $serchData['ResultData']);
 			throw new ApiErrorException("Error on fetching trip search " . $serchData['ResultData']['Error'][0]["ErrorMessage"], $serchData['ResultCode']);

@@ -39,7 +39,7 @@
 
                               <div class="price-info">
 
-                                <span class="price-amount">{{$flightData['TicketSellingRate']}}</span>
+                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate']}}</span>
                               </div>
                             </div>
                           </div>
@@ -58,7 +58,7 @@
                               </div>
                             </div>
                             <div class="flight-stop">
-                              <span class="flight-stop-number">Non Stop</span>
+                              <span class="flight-stop-number">{{$flightData['ExpectedTravelDuration']}}h</span>
                               <div class="flight-stop-arrow"></div>
                             </div>
                             <div class="end-time">
@@ -71,9 +71,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="flight-booking-duration">
-                            <span class="duration-text">{{$flightData['ExpectedTravelDuration']}}h</span>
-                          </div>
+                          
                         </div>
                       </div>
 
@@ -88,6 +86,140 @@
               </div>
 
             </div>
+
+            <div class="flight-booking-detail-wrapper">
+                 <div class="row">
+                     <div class="col-lg-12 col-xl-12">
+                           <div class="flight-booking-detail-right">
+                                 <ul class="nav nav-tabs" id="frTab1"
+                                        role="tablist">
+                                        <li class="nav-item"
+                                              role="presentation">
+                                              <button class="nav-link active"
+                                                    id="fr-tab1"
+                                                    data-bs-toggle="tab"
+                                                    data-bs-target="#fr-tab-pane1"
+                                                    type="button" role="tab"
+                                                    aria-controls="fr-tab-pane1"
+                                                    aria-selected="true">Baggage</button>
+                                        </li>
+                                        <li class="nav-item"
+                                              role="presentation">
+                                              <button class="nav-link"
+                                                    id="fr-tab2"
+                                                    data-bs-toggle="tab"
+                                                    data-bs-target="#fr-tab-pane2"
+                                                    type="button" role="tab"
+                                                    aria-controls="fr-tab-pane2"
+                                                    aria-selected="false">Fare</button>
+                                        </li>
+                                        <li class="nav-item"
+                                              role="presentation">
+                                              <button class="nav-link"
+                                                    id="fr-tab3"
+                                                    data-bs-toggle="tab"
+                                                    data-bs-target="#fr-tab-pane3"
+                                                    type="button" role="tab"
+                                                    aria-controls="fr-tab-pane3"
+                                                    aria-selected="false">Policy</button>
+                                        </li>
+                                 </ul>
+                                 <div class="tab-content" id="frTabContent1">
+                                        <div class="tab-pane fade show active"
+                                              id="fr-tab-pane1" role="tabpanel"
+                                              aria-labelledby="fr-tab1"
+                                              tabindex="0">
+                                              <div
+                                                    class="flight-booking-detail-info">
+                                                    <table
+                                                          class="table table-borderless">
+                                                          <tr>
+                                                                 <th>Flight</th>
+                                                                 <th>Cabin</th>
+                                                                 <th>Check In</th>
+                                                          </tr>
+                                                          <tr>
+                                                                 <td>{{ $flightData['DepartureCity']}}
+                                                                       -
+                                                                       {{ $flightData['ArrivalCity']}}
+                                                                 </td>
+                                                                 <td>7 KG</td>
+                                                                 <td>20 KG
+                                                                 </td>
+                                                          </tr>
+                                                    </table>
+                                              </div>
+                                        </div>
+                                        <div class="tab-pane fade"
+                                              id="fr-tab-pane2" role="tabpanel"
+                                              aria-labelledby="fr-tab2"
+                                              tabindex="0">
+                                              <div
+                                                    class="flight-booking-detail-info">
+                                                    <table
+                                                          class="table table-borderless">
+                                                          <tr>
+                                                                 <th>Fare Summary
+                                                                 </th>
+                                                                 <th>Base Fare</th>
+                                                                 <th>Tax</th>
+                                                          </tr>
+                                                          <tr>
+                                                                 <td>Adult x 1</td>
+                                                                 <td>Rs
+                                                                       {{$flightData['TicketSellingRate']}}
+                                                                 </td>
+                                                                 <td>-</td>
+                                                          </tr>
+                                                          <tr>
+                                                                 <td>Child x 1</td>
+                                                                 <td>-</td>
+                                                                 <td>-</td>
+                                                          </tr>
+                                                    </table>
+                                              </div>
+                                        </div>
+                                        <div class="tab-pane fade"
+                                              id="fr-tab-pane3" role="tabpanel"
+                                              aria-labelledby="fr-tab3"
+                                              tabindex="0">
+                                              <div
+                                                    class="flight-booking-detail-info">
+                                                    <div
+                                                          class="flight-booking-policy">
+                                                          <ul>
+                                                                 <li> 1. Refund and
+                                                                       Date Change are
+                                                                       done as per the
+                                                                       following
+                                                                       policies. </li>
+                                                                 <li> 2. Refund
+                                                                       Amount= Refund
+                                                                       Charge (as per
+                                                                       airline policy
+                                                                       + ShareTrip
+                                                                       Convenience
+                                                                       Fee). </li>
+                                                                 <li> 3. Date Change
+                                                                       Amount= Date
+                                                                       Change Fee (as
+                                                                       per Airline
+                                                                       Policy +
+                                                                       ShareTrip
+                                                                       Convenience
+                                                                       Fee). </li>
+                                                          </ul>
+                                                    </div>
+                                              </div>
+                                        </div>
+                                 </div>
+                                 <div class="flight-booking-detail-price-outer">
+                                        
+                                 </div>
+                           </div>
+                     </div>
+                 </div>
+              </div>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-5">
 
