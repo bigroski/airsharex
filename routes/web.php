@@ -16,6 +16,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OnlineBookingController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
@@ -59,7 +60,16 @@ Route::get('/signup', [StaticController::class, 'signup'])->name('public.login')
 Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
+Route::middleware(
+    [
+    'auth:web',
+    // config('jetstream.auth_session'),
+    // 'verified'
+    ]
+)->group( function () {
 Route::get('/checkout', [StaticController::class, 'checkout']);
+Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
+});
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
@@ -88,6 +98,8 @@ Route::prefix("admin")->middleware(
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
 Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
+Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('customer.register');
+
 Route::prefix("admin")->middleware(
     [
         'web',
@@ -113,7 +125,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    
 });
+
+Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
+    Route::post('', 'bookFlight')->name('book.flight');  
+    Route::get('/test', 'test')->name('book.test');    
+  
+});
+
+
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);

@@ -64,8 +64,8 @@ class HeroBanner extends Component
        
         $cities = $apiService->getCity();
         $nationalities = $apiService->getNationality();
-        // dd($nationalities);
-        return view('components.page-blocks.hero-banner',compact('cities','nationalities'))->with($this->getValues());
+        $heliServiceTypes = $apiService->getHeliServiceTypes();
+        return view('components.page-blocks.hero-banner',compact('cities','nationalities','heliServiceTypes'))->with($this->getValues());
     }
 
 

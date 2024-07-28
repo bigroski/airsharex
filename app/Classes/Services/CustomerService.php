@@ -5,7 +5,7 @@ use Bigroski\Tukicms\App\Classes\Services\BaseService;
 use App\Classes\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Customer;
+use Bigroski\Tukicms\App\Models\Customer;;
 use Illuminate\Validation\Rules;
 
 class CustomerService extends BaseService{
@@ -43,12 +43,17 @@ class CustomerService extends BaseService{
 	}
 
 	public function updateCustomer($data, $model){
-		$data = $request->all();
 		$this->customerRepository->update($data, $model);
 		addFeaturedImage($model, request());
 		return $model;
 	}
 	public function deleteCustomer($id){
+
+	}
+
+	public function createFlightBookigCustomer($data){
+		
+		return $this->customerRepository->create($data);
 
 	}
 }
