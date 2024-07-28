@@ -130,7 +130,9 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
     Route::post('', 'bookFlight')->name('book.flight');  
-    Route::get('/test', 'test')->name('book.test');    
+    Route::get('/test', 'test')->name('book.test');
+    Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
+        
   
 });
 

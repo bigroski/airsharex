@@ -63,7 +63,8 @@ class BookingController extends Controller
                 $salutations = $this->apiService->getSalutation();
                 $genders = $this->apiService->getGender();
                 $nationalities = $this->apiService->getNationality();
-                return view('html.flight_booking', compact('bookingDetails', 'salutations', 'genders', 'nationalities'));
+                $user = $request->user();
+                return view('html.flight_booking', compact('bookingDetails', 'salutations', 'genders', 'nationalities','user'));
             } else {
                 logger('api fetch error', $resultData['ResultData']);
                 throw new ApiErrorException("Error on fetching trip details " . $resultData['ResultData']['Error'][0]["ErrorMessage"], $resultData['ResultCode']);
@@ -76,66 +77,81 @@ class BookingController extends Controller
 
     public function confirmBooking(Request $request)
     {
-        $user = $request->user();
+
+// dd($request->all()) ;      
+ $user = $request->user();
         $bookingData = [
             "NationalityCode" => "NP",
             "Nationality" => "Nepalese",
             "EmailId" => $user->email,
-            "ContactNo" => $user->mobile,
-            "EmergencyContactNo" => $request["emargency_contact_number"],
-            "BookingName" => $request["bookinf_name"],
+            "ContactNo" => $user->mobile ??"9878787878",
+            "EmergencyContactNo" => $request["emergency_contact_number"],
+            "BookingName" => $request["booking_name"],
             "SpecialInstruction" => "test",
-            "ReceivedAmount" => $request["ReceivedAmount"],
-            "TotalAmount" => $request["TotalAmount"],
-            "TicketBookingNo" => $request["TicketBookingNo"],
-            "CustomerId" => $request["CustomerId"],
+            "ReceivedAmount" => $request["total_amount"],
+            "TotalAmount" => $request["total_amount"],
+            "TicketBookingNo" => $request["ticket_booking_number"],
+            "CustomerId" => 19,
+           
+           "PaymentDetail"=> [
+                      "paymentReferenceId"=> "123er",
+                      "paymentMethodId"=> "1",
+                      "paymentMethod"=> "card",
+                      "totalAmount"=> $request["total_amount"],
+                      "receivedAmount"=> $request["total_amount"],
+                      "cardTypeId"=> "1",
+                      "cardType"=> $request['card_type'],
+                      "cardNumber"=> $request['card_number'],
+                      "cardHolderName"=> $request['card_holders_name'],
+                      "cardBankId"=> "234",
+                      "cardBank"=> "himalayan bank",
+                      "cardExpiryDate"=>  $request['card_expiry_date'],
+                      "cardAuthorizeBy"=> "string",
+                      "bankId"=> "1234",
+                      "bankName"=> "Himalayan bank",
+                      "walletId"=> "234",
+                      "walletName"=> "himilayan",
+                      "voucherCode"=> "avg12",
+                      "customerId"=> "17"
+           ],
         ];
 
-        //     "PaymentDetail": {
-        //       "paymentReferenceId": "string",
-        //       "paymentMethodId": "string",
-        //       "paymentMethod": "string",
-        //       "totalAmount": 0,
-        //       "receivedAmount": 0,
-        //       "cardTypeId": "string",
-        //       "cardType": "string",
-        //       "cardNumber": "string",
-        //       "cardHolderName": "string",
-        //       "cardBankId": "string",
-        //       "cardBank": "string",
-        //       "cardExpiryDate": "string",
-        //       "cardAuthorizeBy": "string",
-        //       "bankId": "string",
-        //       "bankName": "string",
-        //       "walletId": "string",
-        //       "walletName": "string",
-        //       "voucherCode": "string",
-        //       "customerId": "string"
-        //     },
-        //     "NationalityCode": "string",
-        //     "Nationality": "string",
-        //     "EmailId": "string",
-        //     "ContactNo": "string",
-        //     "EmergencyContactNo": "string",
-        //     "BookingName": "string",
-        //     "PassengerDetail": [
-        //       {
-        //         "SalutationId": 0,
-        //         "Salutation": "string",
-        //         "PassengerName": "string",
-        //         "Age": 0,
-        //         "GenderId": 0,
-        //         "Gender": "string",
-        //         "MobileNo": "string",
-        //         "EmergencyContactNo": "string",
-        //         "EmailId": "string"
-        //       }
-        //     ],
-        //     "SpecialInstruction": "string",
-        //     "ReceivedAmount": 0,
-        //     "TotalAmount": 0,
-        //     "TicketBookingNo": "string",
-        //     "CustomerId": "string"
-        //}
+        $passengers = $request->get('PassengerDetail');
+        // dd($passengers);
+        $passengerDetail = [];
+        foreach($passengers as $passenger){
+        $requestSalutation = $passenger['salutation'];
+        $salutation = explode(' - ', $requestSalutation);
+		$salutationId = $salutation[0];
+		$salutationName = $salutation[1];
+        $requestGender = $passenger['gender'];
+        $gender = explode(' - ', $requestGender);
+		$genderId = $gender[0];
+		$genderName = $gender[1];
+        // dd($passenger);
+        $passengerDetail[] = [
+
+            "SalutationId"=> $salutationId ,
+                "Salutation"=> $salutationName,
+                "PassengerName"=> $passenger['name'],
+                "Age"=> $passenger['age'],
+                "GenderId"=> $genderId,
+                "Gender"=> $genderName,
+                "MobileNo"=> $passenger['phone'],
+                "EmergencyContactNo"=> $passenger['emergency_contact_number'],
+                "EmailId"=> $passenger['email']
+        ];
+
+
+
+        }
+        $bookingData['PassengerDetail']=$passengerDetail;
+        $confirmBooking =  $this->apiService->ConfirmBooking($bookingData);
+        // dd($bookingData,$confirmBooking);
+        return view('html.flight_ticket');
+ 
+
+        
+        
     }
 }

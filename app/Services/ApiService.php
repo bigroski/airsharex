@@ -208,10 +208,8 @@ dd($result);
     public function tripDetails($data)
     {
         try {
-            // if (session()->has('asx_api_token')) {
-            // } else {
-                $this->authenticate();
-            // }
+            
+                $this->authenticate();           
             $apiToken = session()->get('asx_api_token');
             logger('token'.$apiToken);
             $response = $this->client->post('/api/v1/booking/GetTripDetail', [
@@ -424,7 +422,7 @@ dd($result);
             }
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/ConfirmBooking', [
+            $response = $this->client->post('/api/v1/booking/ConfirmBooking', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
