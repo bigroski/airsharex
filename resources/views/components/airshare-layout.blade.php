@@ -95,7 +95,7 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
       @if(Auth::user())
-      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> {{Auth::user()->name}}</a> </div>
+      <div class="nav-right">   <a class="signup" href="{{url('/profile')}}"><i class="lni lni-user"></i> {{Auth::user()->name}}</a> </div>
       @else
       <div class="nav-right"> 
           <a class="login" href="{{route('public.login')}}">Login</a>  
