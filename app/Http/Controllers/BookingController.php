@@ -148,10 +148,21 @@ class BookingController extends Controller
         $bookingData['PassengerDetail']=$passengerDetail;
         $confirmBooking =  $this->apiService->ConfirmBooking($bookingData);
         // dd($bookingData,$confirmBooking);
-        return view('html.flight_ticket');
- 
-
-        
+        return view('html.flight_ticket');       
         
     }
+    public function getTicketDetail(Request $request){
+        $ticketNo = $request->get('ticketNo');
+
+        $data = [
+            "TicketBookingNo"=> "F1DE9866-C4DC-4C68-B472-537B3F881093",
+            "CustomerId"=> "18"
+        ];
+       $data =  $this->apiService->getTicketByTicketNo($data);
+
+        return view('html.flight_ticket',compact('data'));       
+  
+    }
+
+    
 }

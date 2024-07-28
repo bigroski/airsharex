@@ -132,6 +132,9 @@ Route::controller(BookingController::class)->prefix('book-flight')->group(functi
     Route::post('', 'bookFlight')->name('book.flight');  
     Route::get('/test', 'test')->name('book.test');
     Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
+    Route::get('/ticket', 'getTicketDetail')->name('flight.ticket');
+
+    
         
   
 });

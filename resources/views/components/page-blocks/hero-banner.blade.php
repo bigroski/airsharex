@@ -90,7 +90,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('heliServiceType'))
-                                <span class="text-danger">{{ $errors->first('heliServiceType') }}</span>
+                                <span class="text-danger">{{ $errors->first('nationality') }}</span>
                                 @endif
 
                             </div>

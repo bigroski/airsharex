@@ -467,4 +467,36 @@ dd($result);
             throw new ApiErrorException('Unable to complete the request');
         }
     }
+
+    public function getTicketByTicketNo($data){
+        
+        try {           
+
+                $this->authenticate();
+            $apiToken = session()->get('asx_api_token');
+
+            $response = $this->client->post('/api/v1/booking/GetTicket', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);
+
+
+            $result = json_decode($response->getBody()->getContents(), true);
+            // dd($result['ResultData']['TicketDetailResult']);
+
+            return $result['ResultData']['TicketDetailResult'] ?? $result['ResultData']['TicketDetailResult'];
+                        
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
 }
