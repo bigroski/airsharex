@@ -67,69 +67,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card border-1 shadow rounded-3 mb-2">
-                                    <div class="card-body p-3 p-sm-3">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2">
-                                                <div class="form-floating mb-3">
-                                                    <select name="salutation" class="test_skill form-control" placeholder="Salutation">
-                                                        @foreach ($salutations as $salutation)
-                                                        <option value="{{ $salutation['SalutationId'] }} - {{ $salutation['Salutation'] }}">
-                                                            {{ $salutation['Salutation'] }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 col-10">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Full Name">
-                                                    <label for="name">Passanger Name</label>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <!-- <label for="from">From</label> -->
-                                                    <select name="gender" class="test_skill form-control" placeholder="Salutation">
-                                                        @foreach ($genders as $gender)
-                                                        <option value="{{ $gender['GenderId'] }} - {{ $gender['Gender'] }}">
-                                                            {{ $gender['Gender'] }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-2 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="address" class="form-control" id="floatingAddress" placeholder="Address">
-                                                    <label for="name">Age</label>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-                                                    <label for="email">Email address</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="phone" class="form-control" id="floatingPhone" placeholder="Phone Number">
-                                                    <label for="phone">Phone Number</label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-                                </div>
+                               
                                 @for ($i = 0; $i < $bookingDetails['TotalSeat']; $i++) <div class="card border-1 shadow rounded-3 mb-2">
                                     <div class="card-body p-3 p-sm-3">
                                         <div class="row">

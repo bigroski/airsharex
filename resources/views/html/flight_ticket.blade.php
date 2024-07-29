@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="card border-1 shadow rounded-3 mb-2">
 
-                    <h4 class="pt-2">Flight Details</h4>
+                    <h5 class="pt-2">Flight Details</h5>
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr class="booking-details">
@@ -94,18 +94,19 @@
 
                             <td>{{$data['DHTripDetail']['CarriageNumberRef']}}</td>
                             <td> 5800</td>
-                            <td>{{$data['DHTripDetail']['DepartureStation']}}</td>
-                            <td>{{$data['DHTripDetail']['ArrivalStation']}}</td>
-                            <td>{{$data['DHTripDetail']['ExpectedTravelDuration']}}</td>
+                            <td>{{$data['DHTripDetail']['DepartureStation']?? 'N/A'}}</td>
+                            <td>{{$data['DHTripDetail']['ArrivalStation'] ?? 'N/A'}}</td>
+                            <td>{{$data['DHTripDetail']['ExpectedTravelDuration'] ?? 'N/A' }}</td>
 
                         </tr>
                     </table>
                 </div>
-<div class="flex">
-                 <h5>Passanger Info</h5>
-                 <p> (   Total no of passanger: {{$data['TotalSeat']}})</p>
-</div>
+
                 <div class="card border-1 shadow rounded-3 mb-2">
+                <div class="flex pt-2">
+                 <h5>Passanger Info</h5>
+                 <p> (   Total no of passanger(s): {{$data['TotalSeat']}})</p>
+</div>
                     <table class="table table-bordered">
 
                     <thead class="thead-dark">
@@ -130,9 +131,9 @@
                                 $passanger['PaxName']}}</td>
                                 
                             <td>{{$passanger['EmailId']}}</td>
-                            <td>{{$passanger['ContactNumber'] ??'N/A'}}</td>
-                            <td>{{$passanger['PickingPoint']??'N/A'}}</td>
-                            <td>{{$passanger['DropingPoint']??'N/A'}}</td>
+                            <td>{{$passanger['ContactNumber'] ?? 'N/A'}}</td>
+                            <td>{{$passanger['PickingPoint'] ?? 'N/A'}}</td>
+                            <td>{{$passanger['DropingPoint'] ?? 'N/A'}}</td>
 
                         </tr>
                         @empty

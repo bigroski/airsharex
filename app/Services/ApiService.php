@@ -416,10 +416,8 @@ dd($result);
 
         try {
 
-            if (!session()->has('asx_api_token')) {
-
-                $this->authenticate();
-            }
+             $this->authenticate();
+            
             $apiToken = session()->get('asx_api_token');
 
             $response = $this->client->post('/api/v1/booking/ConfirmBooking', [
