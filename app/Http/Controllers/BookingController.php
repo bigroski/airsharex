@@ -26,7 +26,11 @@ class BookingController extends Controller
 
     public function bookFlight(FlightBookigRequest $request)
     {
-        
+        // dump($request->all());
+        $flightData = [
+            'trip_id' => $request->trip_id,
+
+        ];
         try {
             $tripId = $request['trip_id'];
             $customerData = [
@@ -51,6 +55,7 @@ class BookingController extends Controller
             ];
             $user = $request->user();
             $airCustomer  = $this->apiService->registerCustomer($data);
+            // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()) ,
@@ -59,8 +64,22 @@ class BookingController extends Controller
                 "TripId" => $tripId,
                 "CustomerId" => $user->id,
             ];
+            // dd($fligtSearchData);
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+            // Storing Oof Flight Booking Data
+            $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
+            $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
+            $flightData['search_master_id'] = $fligtSearchData->search_master_id;
+            $flightData['customer_id'] = $user->id;
+            $flightData['payment_method'] = '';
+            $flightData['requested_seats'] = $fligtSearchData->requested_seats;
+            $flightData['flight_data'] = json_encode($resultData['ResultData']);
+            $flightData['flight_date'] = $fligtSearchData->queue_date;
+            $this->flightSearchService->storeFlightticketDetails($flightData);
+            // End store of flight booking data
+            // dump($flightData);
+            // dd($resultData);
             // dd($bookingData, $resultData );
             if ($resultData['ResultCode'] == 200) {
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
@@ -79,6 +98,23 @@ class BookingController extends Controller
         }
     }
 
+    public function getResponseData($result, $key){
+        $detail = $result['DHTicketBookingResult']; 
+        
+        return $detail[$key];
+    }
+
+    public function redirectToPayment(Request $request){
+        $ticket_number = $request->get('ticket_booking_number');
+        dump($ticket_number);
+        $user = $request->user();
+        $ticket =  $this->apiService->getTicketByTicketNo([
+            "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
+            "CustomerId" => $user->id
+        ]);
+
+        dd($ticket);
+    }
     public function confirmBooking(Request $request)
     {
 
@@ -161,6 +197,7 @@ class BookingController extends Controller
             throw new ApiErrorException("Error on fetching trip search " . $ResultData['ResultData']['Error'][0]["ErrorMessage"], $ResultData['ResultCode']);
         }
     }
+
     public function getTicketDetail(Request $request, $ticketNo)
     {
 
@@ -169,6 +206,7 @@ class BookingController extends Controller
             "TicketBookingNo" => $ticketNo, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
             "CustomerId" => $user->id
         ];
+        $apiToken = session()->get('asx_api_token');
         $data =  $this->apiService->getTicketByTicketNo($data);
 
         return view('html.flight_ticket', compact('data'));

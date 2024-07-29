@@ -12,7 +12,8 @@
     <section class=" checkout">
         <section class=" checkout">
             <div class="container">
-                <form name="flight-customer-form" action="{{ route('confirm.booking-flight') }}" method="POST" id="confirmBookingForm">
+                <!-- <form name="flight-customer-form" action="{{ route('confirm.booking-flight') }}" method="POST" id="confirmBookingForm"> -->
+                <form name="flight-customer-form" action="{{ route('confirm.process-payment') }}" method="POST" id="confirmBookingForm">
                     @csrf
 
                     <div class="row">
@@ -178,7 +179,7 @@
                         <div class="card border-1 shadow rounded-3 mb-5">
 
                             <div class="card-body p-3 p-sm-3">
-                                <h5 class="card-title mb-3">Payamnt Details</h5>
+                                <h5 class="card-title mb-3">Payment Mode</h5>
                                 <div class="form-floating mb-3">
                                     <label for="floatingPaymentMethd">Payment Method</label>
                                     <input type="text" name="payment_method" class="form-control" value="{{old('payment_method')}}" id="floatingPaymentMethd" placeholder="Payment Method">

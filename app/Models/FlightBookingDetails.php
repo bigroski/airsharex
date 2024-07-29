@@ -18,7 +18,13 @@ class FlightBookingDetails extends Model
         "payment_method",
         "payment_ref_id",
         "flight_data",
-    "requested_seats"
+        "requested_seats",
+        "search_master_id",
+        'ticket_number',
+        'total_seats',
+        'total_amount',
+        'payment_method',
+        'search_master_id',
     ];
     protected $casts = [
         'id' => 'integer',
