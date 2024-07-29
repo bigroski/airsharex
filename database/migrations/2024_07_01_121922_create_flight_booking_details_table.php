@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("trip_id");
             $table->string("booking_reference_id")->nullable();
-            $table->string("search_master_id");
+           
             $table->string("payment_method");
             $table->unsignedBigInteger("customer_id");
             $table->string("payment_ref_id")->nullable();

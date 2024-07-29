@@ -16,8 +16,13 @@ class StoreFlightTicketDetail implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private $data,private $userId,private $requestedSeats)
-    {
+    public function __construct(
+        private $data,
+        private $userId,
+        private $ticketBookingNo,
+        private $paymentType,
+        private $paymentRefId
+    ) {
         //
     }
 
@@ -27,17 +32,19 @@ class StoreFlightTicketDetail implements ShouldQueue
     public function handle(FlightSearchService $flightSearchService): void
     {
 
-        logger($this->data);
-        $storeData = [
-            // "search_master_id"=>$this->masterSerarchId,
-             "trip_id"=>$this->data['DHTripDetail']['TripId'],
-             "queue_date"=>$this->data['DHTripDetail']['TripDate'],
-             "requested_seats"=>$this->requestedSeats,
-             'customer_id'=>$this->userId,
-            //  "transaction_ref_id"=>$this->transactionRefId,
-             "data"=>$this->data
-         ];
-         $flightSearchService->storeFlightticketDetails($storeData); 
+        logger('StoreFlightTicketDetail called',$this->data);
 
+
+        $storeData = [
+            "payment_method" => $this->paymentType,
+            "payment_ref_id" => $this->paymentRefId,
+            "trip_id" => $this->data['DHTripDetail']['TripId'],
+            "flight_date" => $this->data['DHTripDetail']['TripDate'],
+            "requested_seats" => $this->data['TotalSeat'],
+            'customer_id' => $this->userId,
+            "flight_data" => $this->data,
+            "booking_reference_id" => $this->ticketBookingNo,
+        ];
+        $flightSearchService->storeFlightticketDetails($storeData);
     }
 }

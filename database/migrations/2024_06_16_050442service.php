@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable()->default(NULL);
-            $table->string('slug')->nullable()->default(NULL);
-            $table->string('short_description')->nullable()->default(NULL);
-            $table->string('description')->nullable()->default(NULL);
-            $table->boolean('is_featured')->nullable()->default(false);
-            $table->string('icon')->nullable()->default(NULL);
-            $table->string('extras')->nullable()->default(NULL);
-            $table->timestamps();
-        });
+        // Schema::create('services', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name')->nullable()->default(NULL);
+        //     $table->string('slug')->nullable()->default(NULL);
+        //     $table->string('short_description')->nullable()->default(NULL);
+        //     $table->string('description')->nullable()->default(NULL);
+        //     $table->boolean('is_featured')->nullable()->default(false);
+        //     $table->string('icon')->nullable()->default(NULL);
+        //     $table->string('extras')->nullable()->default(NULL);
+        //     $table->timestamps();
+        // });
     }
 
     /**

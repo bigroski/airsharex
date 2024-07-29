@@ -11,21 +11,19 @@ class FlightBookingDetails extends Model
 
     protected $fillable = [
         "id",
-        "search_master_id",
         "trip_id",
         "flight_date",
         "customer_id",
         "booking_reference_id",
-        "customer_data",
         "payment_method",
         "payment_ref_id",
-        "flight_data"
+        "flight_data",
+    "requested_seats"
     ];
     protected $casts = [
         'id' => 'integer',
         'customer_id'=>'integer',
         'flight_date' => 'date',
-        'customer_data' => 'array',
          "flight_data"=>'array'
     ];
 }

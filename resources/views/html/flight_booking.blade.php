@@ -24,9 +24,11 @@
 
                                         <p><strong>Ticket booking No. : </strong> {{$bookingDetails['TicketBookingNumber']}}
                                             <!-- 91A80447-0A94-49DE-AF66-8B9E1B8B25D2 -->
-                                             <input type="hidden" name = "ticket_booking_number" value=" {{$bookingDetails['TicketBookingNumber']}}">
+                                             <input type="hidden" name = "ticket_booking_number" value="{{$bookingDetails['TicketBookingNumber']}}">
                                         </p>
                                         <p><strong>Total Seat: </strong> {{$bookingDetails['TotalSeat']}}</p>
+                                        
+                                        <input type="hidden" name = "total_seats" value="$bookingDetails['TotalSeat']">
 
                                         <p><strong>Amount: </strong>Rs. {{$bookingDetails['TotalAmount']}}</p>
 

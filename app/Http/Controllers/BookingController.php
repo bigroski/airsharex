@@ -61,7 +61,7 @@ class BookingController extends Controller
             ];
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
-            dd($bookingData, $resultData );
+            // dd($bookingData, $resultData );
             if ($resultData['ResultCode'] == 200) {
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();
@@ -115,7 +115,7 @@ class BookingController extends Controller
                 "walletId" => "234",
                 "walletName" => "himilayan",
                 "voucherCode" => "avg12",
-                "customerId" => "17"
+                "customerId" => $user->id,
             ],
         ];
 
@@ -144,14 +144,21 @@ class BookingController extends Controller
             ];
         }
         $bookingData['PassengerDetail'] = $passengerDetail;
-        $data =  $this->apiService->ConfirmBooking($bookingData);
-        if ($data["ResultCode"] == 200) {
-            dispatch(new StoreFlightTicketDetail($data, $user->id, $request["ticket_booking_number"]));            
+        $ResultData =  $this->apiService->ConfirmBooking($bookingData);
+       
+        if ($ResultData["ResultCode"] == 200) {
+            $data = $ResultData['ResultData']['TicketDetailResult'];
+            dispatch(new StoreFlightTicketDetail(
+                $data, 
+                $user->id,                 
+                $request["ticket_booking_number"],
+                $bookingData['PaymentDetail']['paymentMethod'],
+                $bookingData['PaymentDetail']['paymentReferenceId']));            
             return view('html.flight_ticket', compact('data'));
         } else {
             // dd($bookingData,$data);
-            logger('api fetch error', $data['ResultData']);
-            throw new ApiErrorException("Error on fetching trip search " . $data['ResultData']['Error'][0]["ErrorMessage"], $data['ResultCode']);
+            logger('api fetch error', $ResultData['ResultData']);
+            throw new ApiErrorException("Error on fetching trip search " . $ResultData['ResultData']['Error'][0]["ErrorMessage"], $ResultData['ResultCode']);
         }
     }
     public function getTicketDetail(Request $request, $ticketNo)
