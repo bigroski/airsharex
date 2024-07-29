@@ -25,9 +25,10 @@
         <link href="{{asset('vendor/airsharex/assets/css/select2.min.css')}}" rel="stylesheet" />
         <!-- Styles -->
         <link href="{{asset('vendor/airsharex/assets/css/lineicons.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/airsharex/assets/css/all-fontawesome.min.css')}}" rel="stylesheet">
         <link href="{{asset('vendor/airsharex/assets/css/variables.css')}}" rel="stylesheet">
         <link href="{{asset('/vendor/airsharex/assets/css/airshare.css')}}" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/6feba47ccd.js" crossorigin="anonymous"></script> -->
         <!-- <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
  -->
@@ -95,7 +96,7 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
       @if(Auth::user())
-      <div class="nav-right">   <a class="signup" href="index.html#about"><i class="lni lni-user"></i> {{Auth::user()->name}}</a> </div>
+      <div class="nav-right">   <a class="signup" href="{{url('/profile')}}"><i class="lni lni-user"></i> {{Auth::user()->name}}</a> </div>
       @else
       <div class="nav-right"> 
           <a class="login" href="{{route('public.login')}}">Login</a>  

@@ -16,7 +16,7 @@ class FlightSearchStore implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private $searchData,private $requestedSeats,private $transactionRefId)
+    public function __construct(private $searchData,private $requestedSeats,private $transactionRefId,private $masterSerarchId)
     {
         //
     }
@@ -31,7 +31,7 @@ class FlightSearchStore implements ShouldQueue
             logger('flight store search',[$this->searchData]);
 
             $storeData = [
-               "search_master_id"=>$data['TripId'],
+               "search_master_id"=>$this->masterSerarchId,
                 "trip_id"=>$data['TripId'],
                 "queue_date"=>$data['TripDate'],
                 "requested_seats"=>$this->requestedSeats,

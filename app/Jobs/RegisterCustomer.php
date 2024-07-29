@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\User;
 use App\Services\ApiService;
+use Bigroski\Tukicms\App\Models\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -28,10 +29,9 @@ class RegisterCustomer implements ShouldQueue
     public function handle(ApiService $apiService): void
     {
         $airCustomer  = $apiService->registerCustomer($this->data);
-        $user = User::where('id',$this->customerId)->first();
-        $user->api_customer_id = $airCustomer->id;
-        $user->save();
-
+        $customer = Customer::where('id',$this->customerId)->first();
+        $customer->api_customer_id = $airCustomer->id;
+        $customer->save();
         
     }
 }
