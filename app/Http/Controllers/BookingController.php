@@ -49,6 +49,7 @@ class BookingController extends Controller
             ];
             $airCustomer  = $this->apiService->registerCustomer($data);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
+            // dd($fligtSearchData);
             $bookingData = [
                 "TxnRefId" =>  Carbon::now()->toDateString(),
                 "TotalSeat" => $fligtSearchData->requested_seats,
@@ -58,6 +59,7 @@ class BookingController extends Controller
             ];
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+            // dd($resultData);
             if ($resultData['ResultCode'] == 200) {
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();

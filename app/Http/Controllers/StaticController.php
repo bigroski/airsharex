@@ -117,6 +117,7 @@ class StaticController extends Controller
 	}
 	public function search(Request $request)
 	{
+		// dump($request->all());
 		$customMessage = [
 			'from.required' => 'The Departure field is required.',
 			'to.required' => 'The Destination field is required.',

@@ -125,7 +125,6 @@ dd($result);
     }
     public function getNationality()
     {
-        return [];
         try {
 
             $response = $this->client->get('/api/v1/common/GetNationality', [
@@ -361,7 +360,7 @@ dd($result);
                 $this->authenticate();
             // }
             $apiToken = session()->get('asx_api_token');
-
+            // dump($data);
             $response = $this->client->post('/api/v1/booking/BookTrip', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
@@ -448,7 +447,6 @@ dd($result);
 
     public function getHeliServiceTypes()
     {
-        return [];
         try {
 
             $response = $this->client->get('/api/v1/common/GetHeliServiceType', [
