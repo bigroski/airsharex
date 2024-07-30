@@ -11,21 +11,36 @@ class FlightBookingDetails extends Model
 
     protected $fillable = [
         "id",
-        "search_master_id",
         "trip_id",
         "flight_date",
         "customer_id",
         "booking_reference_id",
-        "customer_data",
         "payment_method",
         "payment_ref_id",
-        "flight_data"
+        "flight_data",
+        "requested_seats",
+        "search_master_id",
+        'ticket_number',
+        'total_seats',
+        'total_amount',
+        'payment_method',
+        'search_master_id',
     ];
     protected $casts = [
         'id' => 'integer',
         'customer_id'=>'integer',
         'flight_date' => 'date',
-        'customer_data' => 'array',
          "flight_data"=>'array'
     ];
+    public function passengers(){
+        return $this->hasMany(Passenger::class, 'flight_booking_detail_id');
+    }
+    public function search(){
+        return $this->belongsTo(FlightSearchDetail::class,'search_master_id', 'search_master_id');
+    }
+    public function getSearchDetailAttribute(){
+        $search = $this->search;
+        $detail = $search->data;
+        return $detail;
+    }
 }

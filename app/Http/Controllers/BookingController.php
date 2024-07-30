@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classes\Services\CustomerService;
 use App\Exceptions\ApiErrorException;
 use App\Http\Requests\FlightBookigRequest;
+use App\Jobs\StoreFlightTicketDetail;
 use App\Services\ApiService;
 use App\Services\FlightBookingService;
 use App\Services\FlightSearchService;
@@ -20,11 +21,17 @@ class BookingController extends Controller
         private CustomerService $customerService,
         private FlightSearchService $flightSearchService,
         private FlightBookingService $flightBookingService
+        // private PassengerService $passengerService
     ) {
     }
 
     public function bookFlight(FlightBookigRequest $request)
     {
+        // dump($request->all());
+        $flightData = [
+            'trip_id' => $request->trip_id,
+
+        ];
         try {
             $tripId = $request['trip_id'];
             $customerData = [
@@ -47,23 +54,41 @@ class BookingController extends Controller
                 'PhoneNumber' => $request->phone,
                 'type' => "Customer"
             ];
+            $user = $request->user();
             $airCustomer  = $this->apiService->registerCustomer($data);
+            // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
-                "TxnRefId" =>  Carbon::now()->toDateString(),
+                "TxnRefId" => md5(Carbon::now()->toDateString() . rand()) ,
                 "TotalSeat" => $fligtSearchData->requested_seats,
                 "SearchMasterId" => $fligtSearchData->search_master_id,
                 "TripId" => $tripId,
-                "CustomerId" => $customer->id,
+                "CustomerId" => $user->id,
             ];
+            // dd($fligtSearchData);
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+            // Storing Oof Flight Booking Data
+            $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
+            $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
+            $flightData['search_master_id'] = $fligtSearchData->search_master_id;
+            $flightData['customer_id'] = $user->id;
+            $flightData['payment_method'] = '';
+            $flightData['requested_seats'] = $fligtSearchData->requested_seats;
+            $flightData['flight_data'] = json_encode($resultData['ResultData']);
+            $flightData['flight_date'] = $fligtSearchData->queue_date;
+            $this->flightSearchService->storeFlightticketDetails($flightData);
+            // End store of flight booking data
+            // dump($flightData);
+            // dd($resultData);
+            // dd($bookingData, $resultData );
             if ($resultData['ResultCode'] == 200) {
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();
                 $genders = $this->apiService->getGender();
                 $nationalities = $this->apiService->getNationality();
-                return view('html.flight_booking', compact('bookingDetails', 'salutations', 'genders', 'nationalities'));
+                $user = $request->user();
+                return view('html.flight_booking', compact('bookingDetails', 'salutations', 'genders', 'nationalities', 'user'));
             } else {
                 logger('api fetch error', $resultData['ResultData']);
                 throw new ApiErrorException("Error on fetching trip details " . $resultData['ResultData']['Error'][0]["ErrorMessage"], $resultData['ResultCode']);
@@ -74,68 +99,125 @@ class BookingController extends Controller
         }
     }
 
+    public function getResponseData($result, $key){
+        $detail = $result['DHTicketBookingResult']; 
+        
+        return $detail[$key];
+    }
+
+    public function redirectToPayment(Request $request){
+        $passengers = $request->get('PassengerDetail');
+        $ticket_number = $request->get('ticket_booking_number');
+        $user = $request->user();
+        $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
+        $this->flightBookingService->createBookingPassenger($localTicket, $passengers);
+        // $ticket =  $this->apiService->getTicketByTicketNo([
+        //     "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
+        //     "CustomerId" => $user->id
+        // ]);
+        $flightData = json_decode($localTicket->flight_data);
+        $paymentData = [
+
+        ];
+        $request->session()->flash('success', 'Thank you for booking with Us');
+        return redirect()->route('profile.edit');
+        dd($flightData);
+    }
+
     public function confirmBooking(Request $request)
     {
+
         $user = $request->user();
         $bookingData = [
             "NationalityCode" => "NP",
             "Nationality" => "Nepalese",
             "EmailId" => $user->email,
-            "ContactNo" => $user->mobile,
-            "EmergencyContactNo" => $request["emargency_contact_number"],
-            "BookingName" => $request["bookinf_name"],
+            "ContactNo" => $user->mobile ?? "9878787878",
+            "EmergencyContactNo" => $request["emergency_contact_number"],
+            "BookingName" => $request["booking_name"],
             "SpecialInstruction" => "test",
-            "ReceivedAmount" => $request["ReceivedAmount"],
-            "TotalAmount" => $request["TotalAmount"],
-            "TicketBookingNo" => $request["TicketBookingNo"],
-            "CustomerId" => $request["CustomerId"],
+            "ReceivedAmount" => $request["total_amount"],
+            "TotalAmount" => $request["total_amount"],
+            "TicketBookingNo" => $request["ticket_booking_number"],
+            "CustomerId" => $user->id,
+
+            "PaymentDetail" => [
+                "paymentReferenceId" => "123er",
+                "paymentMethodId" => "1",
+                "paymentMethod" => "card",
+                "totalAmount" => $request["total_amount"],
+                "receivedAmount" => $request["total_amount"],
+                "cardTypeId" => "1",
+                "cardType" => $request['card_type'],
+                "cardNumber" => $request['card_number'],
+                "cardHolderName" => $request['card_holders_name'],
+                "cardBankId" => "234",
+                "cardBank" => "himalayan bank",
+                "cardExpiryDate" =>  $request['card_expiry_date'],
+                "cardAuthorizeBy" => "string",
+                "bankId" => "1234",
+                "bankName" => "Himalayan bank",
+                "walletId" => "234",
+                "walletName" => "himilayan",
+                "voucherCode" => "avg12",
+                "customerId" => $user->id,
+            ],
         ];
 
-        //     "PaymentDetail": {
-        //       "paymentReferenceId": "string",
-        //       "paymentMethodId": "string",
-        //       "paymentMethod": "string",
-        //       "totalAmount": 0,
-        //       "receivedAmount": 0,
-        //       "cardTypeId": "string",
-        //       "cardType": "string",
-        //       "cardNumber": "string",
-        //       "cardHolderName": "string",
-        //       "cardBankId": "string",
-        //       "cardBank": "string",
-        //       "cardExpiryDate": "string",
-        //       "cardAuthorizeBy": "string",
-        //       "bankId": "string",
-        //       "bankName": "string",
-        //       "walletId": "string",
-        //       "walletName": "string",
-        //       "voucherCode": "string",
-        //       "customerId": "string"
-        //     },
-        //     "NationalityCode": "string",
-        //     "Nationality": "string",
-        //     "EmailId": "string",
-        //     "ContactNo": "string",
-        //     "EmergencyContactNo": "string",
-        //     "BookingName": "string",
-        //     "PassengerDetail": [
-        //       {
-        //         "SalutationId": 0,
-        //         "Salutation": "string",
-        //         "PassengerName": "string",
-        //         "Age": 0,
-        //         "GenderId": 0,
-        //         "Gender": "string",
-        //         "MobileNo": "string",
-        //         "EmergencyContactNo": "string",
-        //         "EmailId": "string"
-        //       }
-        //     ],
-        //     "SpecialInstruction": "string",
-        //     "ReceivedAmount": 0,
-        //     "TotalAmount": 0,
-        //     "TicketBookingNo": "string",
-        //     "CustomerId": "string"
-        //}
+        $passengers = $request->get('PassengerDetail');
+        $passengerDetail = [];
+        foreach ($passengers as $passenger) {
+            $requestSalutation = $passenger['salutation'];
+            $salutation = explode(' - ', $requestSalutation);
+            $salutationId = $salutation[0];
+            $salutationName = $salutation[1];
+            $requestGender = $passenger['gender'];
+            $gender = explode(' - ', $requestGender);
+            $genderId = $gender[0];
+            $genderName = $gender[1];
+            $passengerDetail[] = [
+
+                "SalutationId" => $salutationId,
+                "Salutation" => $salutationName,
+                "PassengerName" => $passenger['name'],
+                "Age" => $passenger['age'],
+                "GenderId" => $genderId,
+                "Gender" => $genderName,
+                "MobileNo" => $passenger['phone'],
+                "EmergencyContactNo" => $passenger['emergency_contact_number'],
+                "EmailId" => $passenger['email']
+            ];
+        }
+        $bookingData['PassengerDetail'] = $passengerDetail;
+        $ResultData =  $this->apiService->ConfirmBooking($bookingData);
+       
+        if ($ResultData["ResultCode"] == 200) {
+            $data = $ResultData['ResultData']['TicketDetailResult'];
+            dispatch(new StoreFlightTicketDetail(
+                $data, 
+                $user->id,                 
+                $request["ticket_booking_number"],
+                $bookingData['PaymentDetail']['paymentMethod'],
+                $bookingData['PaymentDetail']['paymentReferenceId']));            
+            return view('html.flight_ticket', compact('data'));
+        } else {
+            // dd($bookingData,$data);
+            logger('api fetch error', $ResultData['ResultData']);
+            throw new ApiErrorException("Error on fetching trip search " . $ResultData['ResultData']['Error'][0]["ErrorMessage"], $ResultData['ResultCode']);
+        }
+    }
+
+    public function getTicketDetail(Request $request, $ticketNo)
+    {
+
+        $user = $request->user();
+        $data = [
+            "TicketBookingNo" => $ticketNo, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
+            "CustomerId" => $user->id
+        ];
+        $apiToken = session()->get('asx_api_token');
+        $data =  $this->apiService->getTicketByTicketNo($data);
+
+        return view('html.flight_ticket', compact('data'));
     }
 }
