@@ -67,7 +67,7 @@ Route::middleware(
     // 'verified'
     ]
 )->group( function () {
-Route::get('/checkout', [StaticController::class, 'checkout']);
+Route::get('/checkout', [StaticController::class, 'checkout'])->name('search.checkout');
 Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
 });
 
