@@ -29,7 +29,7 @@
                                         </p>
                                         <p><strong>Total Seat: </strong> {{$bookingDetails['TotalSeat']}}</p>
                                         
-                                        <input type="hidden" name = "total_seats" value="$bookingDetails['TotalSeat']">
+                                        <input type="hidden" name = "total_seats" value="{{$bookingDetails['TotalSeat']}}">
 
                                         <p><strong>Amount: </strong>Rs. {{$bookingDetails['TotalAmount']}}</p>
 
@@ -176,7 +176,7 @@
 
 
 
-                        <div class="card border-1 shadow rounded-3 mb-5">
+                        <div class="card border-1 shadow rounded-3 mb-5" style="display:none;">
 
                             <div class="card-body p-3 p-sm-3">
                                 <h5 class="card-title mb-3">Payment Mode</h5>

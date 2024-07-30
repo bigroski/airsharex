@@ -17,7 +17,11 @@ class Passenger extends Model
        'date_of_birth',
        'salutation',
        'phone',
-       'email'
+       'email',
+       'age',
+       'flight_booking_detail_id',
+       'emergency_contact_number',
+       'name'
     ];
     protected $casts = [
         'id' => 'integer',

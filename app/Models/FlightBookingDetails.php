@@ -32,4 +32,15 @@ class FlightBookingDetails extends Model
         'flight_date' => 'date',
          "flight_data"=>'array'
     ];
+    public function passengers(){
+        return $this->hasMany(Passenger::class, 'flight_booking_detail_id');
+    }
+    public function search(){
+        return $this->belongsTo(FlightSearchDetail::class,'search_master_id', 'search_master_id');
+    }
+    public function getSearchDetailAttribute(){
+        $search = $this->search;
+        $detail = $search->data;
+        return $detail;
+    }
 }

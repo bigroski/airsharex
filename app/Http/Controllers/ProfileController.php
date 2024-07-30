@@ -22,6 +22,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'tickets' => $request->user()->tickets
         ]);
     }
 

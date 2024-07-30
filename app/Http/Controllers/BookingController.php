@@ -21,6 +21,7 @@ class BookingController extends Controller
         private CustomerService $customerService,
         private FlightSearchService $flightSearchService,
         private FlightBookingService $flightBookingService
+        // private PassengerService $passengerService
     ) {
     }
 
@@ -105,16 +106,24 @@ class BookingController extends Controller
     }
 
     public function redirectToPayment(Request $request){
+        $passengers = $request->get('PassengerDetail');
         $ticket_number = $request->get('ticket_booking_number');
-        dump($ticket_number);
         $user = $request->user();
-        $ticket =  $this->apiService->getTicketByTicketNo([
-            "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
-            "CustomerId" => $user->id
-        ]);
+        $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
+        $this->flightBookingService->createBookingPassenger($localTicket, $passengers);
+        // $ticket =  $this->apiService->getTicketByTicketNo([
+        //     "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
+        //     "CustomerId" => $user->id
+        // ]);
+        $flightData = json_decode($localTicket->flight_data);
+        $paymentData = [
 
-        dd($ticket);
+        ];
+        $request->session()->flash('success', 'Thank you for booking with Us');
+        return redirect()->route('profile.edit');
+        dd($flightData);
     }
+
     public function confirmBooking(Request $request)
     {
 
