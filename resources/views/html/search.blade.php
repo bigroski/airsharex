@@ -342,7 +342,7 @@
                                                                                    <div class="flight-booking-detail-price-outer">
                                                                                           <form name="flight-book-form"
                                                                                                 id="filghtBookForm"
-                                                                                                action="/checkout" method="get">
+                                                                                                action="{{route('search.checkout')}}" method="get">
                                                                                                 <input type="hidden" name="trip_id"
                                                                                                       id="TripId"
                                                                                                       value="{{$data['TripId']}}">
@@ -368,7 +368,7 @@
                                                                                                       <div class="book-btn">
                                                                                                       <div
                                                                                                             class="flight-detail-price-amount">
-                                                                                                            Rs 10,846 </div>
+                                                                                                           Rs. {{$data['TicketSellingRate']}} </div>
 
                                                                                                       <h6
                                                                                                             class="flight-booking-detail-price-title">
