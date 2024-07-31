@@ -21,7 +21,7 @@
                                         <div class="booking-item">
                                              <h4 class="booking-title">Search</h4>
                                              
-                                             <div class="col-lg-12 col-md-4 ol-sm-6 col-12">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="from">From City</label>
                                                   <select name="from" class="test_skill form-control" placeholder="From">
                                                        <!-- <option >KTM</option> -->
@@ -34,7 +34,7 @@
                                                     <span class="text-danger">{{ $errors->first('from') }}</span>
                                                   @endif
                                              </div>
-                                             <div class="col-lg-12 col-md-4 col-sm-6 col-12">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="to">To City</label>
 
                                                   <select name="to" class="test_skill form-control " placeholder="to">
@@ -48,7 +48,7 @@
                                                     <span class="text-danger">{{ $errors->first('to') }}</span>
                                                   @endif
                                              </div>
-                                             <div class="col-lg-12 col-md-4 col-sm-6 col-12 pt-2">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="nationality">Nationality</label>
 
                                                   <select name="nationality" class="test_skill form-control "
@@ -63,7 +63,7 @@
                                                     <span class="text-danger">{{ $errors->first('nationality') }}</span>
                                                   @endif
                                              </div>
-                                             <div class="col-lg-12 col-md-4 col-sm-6 col-12">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="heliServiceType">Heli Service Type</label>
 
                                                   <select name="heliServiceType" class="test_skill form-control "

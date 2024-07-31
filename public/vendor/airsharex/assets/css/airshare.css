@@ -1001,7 +1001,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
  section.component-filter.filter {
   margin-top: -150px;
   position: relative;
-  z-index: 999;
+  z-index: 99;
   overflow: visible;
   /* background: #fff; */
 }
@@ -1066,6 +1066,9 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
     .form-control{
       height: 45px;
     }
+    label {
+      color: #797979;
+  }
    
 }
  
@@ -2637,7 +2640,9 @@ div#v-pills-tabContent {
       padding-bottom: 20px
   }
   .booking-sort-box {
-      width: 100%
+      width: 100%;
+      text-align: center;
+      
   }
 }
 
@@ -2667,7 +2672,7 @@ div#v-pills-tabContent {
     gap: 15px
   }
   .flight-airline-img {
-    width: 90px;
+    width: 140px;
     padding: 5px;
     border-radius: 4px;
     text-align: center;
@@ -2695,7 +2700,7 @@ div#v-pills-tabContent {
 }
 .start-time-icon {
   font-size: 25px;
-  color: #4f4b8bp
+  color: #4f4b8b;
 }
 .flight-stop {
   text-align: center
@@ -2755,7 +2760,7 @@ div#v-pills-tabContent {
 }
 
 .price-info {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   .price-amount {
     color: #f96768;
     font-weight: 600;
@@ -2765,6 +2770,12 @@ div#v-pills-tabContent {
     margin-right: 5px;
     color: #4f4b8b
   }
+}
+.date {
+  display: flex;
+  gap: 10px;
+  justify-content: right;
+  margin-bottom: 10px;
 }
 
 .flight-booking-price {
@@ -2784,7 +2795,7 @@ h5.flight-airline-name {
   width:75px
 }
 .price-info {
-  width: 125px;
+  width: 140px;
 }
 
 .flight-booking-detail {
@@ -2858,7 +2869,6 @@ h5.flight-airline-name {
 .flight-booking-detail-right {
   position: relative;
   height: 100%;
-  padding-bottom: 65px
 }
 
 .flight-booking-detail-info {
@@ -2869,16 +2879,19 @@ h5.flight-airline-name {
   color: #4f4b8b
 }
 
+
+.flight-booking-detail-price-outer{
+  display: block;
+  width: 100%;
+}
+
 .flight-booking-detail-price {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
   width: 100%;
   background: rgba(113, 103, 255, .1);
   border-radius: 0 0 5px 0;
-  left: 0;
-  bottom: 0;
   padding: 8px 18px;
   border-radius: 7px
 }
@@ -3666,4 +3679,14 @@ button#filghtSearchButton {
 .bg-slate-50 .card-body p {
   margin-bottom: 5px;
 }
+.nav-pills form a {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
 
+.alert.alert-primary {
+  position: absolute;
+  top: 140px;
+  right: 20px;
+}
