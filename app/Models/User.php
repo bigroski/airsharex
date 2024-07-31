@@ -67,4 +67,8 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasOne(Customer::class);
     }
+
+    public function tickets(){
+        return $this->hasMany(FlightBookingDetails::class, 'customer_id');
+    }
 }

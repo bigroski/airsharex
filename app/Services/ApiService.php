@@ -207,10 +207,8 @@ dd($result);
     public function tripDetails($data)
     {
         try {
-            // if (session()->has('asx_api_token')) {
-            // } else {
-                $this->authenticate();
-            // }
+            
+                $this->authenticate();           
             $apiToken = session()->get('asx_api_token');
             logger('token'.$apiToken);
             $response = $this->client->post('/api/v1/booking/GetTripDetail', [
@@ -417,13 +415,11 @@ dd($result);
 
         try {
 
-            if (!session()->has('asx_api_token')) {
-
-                $this->authenticate();
-            }
+             $this->authenticate();
+            
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/ConfirmBooking', [
+            $response = $this->client->post('/api/v1/booking/ConfirmBooking', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -460,6 +456,41 @@ dd($result);
             $result = json_decode($response->getBody()->getContents(), true);
 
             return $result['ResultData']['Nationality'] ?? $result['ResultData']['HeliServiceType'];
+        } catch (RequestException $e) {
+
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
+
+    public function getTicketByTicketNo($data){
+        
+        try {           
+
+                $this->authenticate();
+            $apiToken = session()->get('asx_api_token');
+
+            $response = $this->client->post('/api/v1/booking/GetTicket', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $data
+            ]);
+
+
+            $result = json_decode($response->getBody()->getContents(), true);
+            // return [];
+            // dd($result);
+            
+            // return $result['ResultData']['TicketDetailResult'] ?? $result['ResultData']['TicketDetailResult'];
+            
+            return array_key_exists('TicketDetailResult', $result['ResultData']) ? $result['ResultData']['TicketDetailResult']: $result['ResultData'];
+                        
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
