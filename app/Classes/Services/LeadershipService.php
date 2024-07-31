@@ -42,8 +42,9 @@ class LeadershipService extends BaseService{
 		return $this->leadershipRepository->findById($id);
 	}
 
-	public function updateLeadership($data, $model){
+	public function updateLeadership($request, $model){
 		$data = $request->all();
+		$model = $this->leadershipRepository->findById($model);
 		$this->leadershipRepository->update($data, $model);
 		addFeaturedImage($model, request());
 		return $model;
