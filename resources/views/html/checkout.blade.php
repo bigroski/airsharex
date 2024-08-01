@@ -220,9 +220,9 @@
           </div>
           <div class="col-sm-12 col-md-12 col-lg-4">
 
-            <div class="card border-0 shadow rounded-3 ">
+            <div class="card border-0 shadow rounded-3 bg-red">
               <div class="card-body p-4 p-sm-5">
-                <h5 class="card-title text-center mb-5  fs-5">Checkout</h5>
+                <h5 class="card-title text-center mb-5 text-white fs-5">Checkout</h5>
                 <!-- <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get"> -->
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -280,12 +280,12 @@
 
                   <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" name="toc_accepted" value="" id="rememberPasswordCheck">
-                    <label class="form-check-label" for="rememberPasswordCheck">
+                    <label class="form-check-label text-white" for="rememberPasswordCheck">
                       I accept <a href="">term & conditions</a> and <a href="">privacy policy</a>.
                     </label>
                   </div>
                   <div class="d-grid gap-4">
-                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Checkout</button>
+                    <button class="btn btn-black btn-login text-uppercase fw-bold" type="submit">Checkout</button>
 
                   </div>
 
