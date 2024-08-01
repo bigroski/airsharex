@@ -14,7 +14,7 @@
     <!-- About -->
     <section class="about-section">
         <div class="container">
-            @if({{$storeData['status']}}==200)
+            @if($storeData['status']==200)
             <div class="booking-details">
                 <div class="row">
                     <div class="card border-1 shadow rounded-3 mb-5  p-3 col-sm-6">
@@ -52,7 +52,7 @@
                         <p><strong>Unable to process request </strong> {{$storeData['status_message']}}</p>    
                     </div>
                 </div>
-            @if
+            @endif
         </div>
     </section>
 
