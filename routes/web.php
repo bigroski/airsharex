@@ -66,9 +66,9 @@ Route::middleware(
         // config('jetstream.auth_session'),
         // 'verified'
     ]
-)->group(function () {
-    Route::get('/checkout', [StaticController::class, 'checkout']);
-    Route::post('/customerCraete', [RegisteredUserController::class, 'createCutomer']);
+)->group( function () {
+Route::get('/checkout', [StaticController::class, 'checkout'])->name('search.checkout');
+Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
 });
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
@@ -136,6 +136,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/{ticketNo}/ticket', 'getTicketDetail')->name('flight.ticket');
         Route::get('/on-demand', 'flightOnDemand')->name('booking.ondemand');
         Route::post('/on-demand-store', 'flightOnDemandStore')->name('store.booking.ondemand');
+        Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
+    Route::post('/confirm-payment', 'redirectToPayment')->name('confirm.process-payment');
+
     });
 });
 

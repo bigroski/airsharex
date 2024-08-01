@@ -483,9 +483,12 @@ dd($result);
             ]);
 
             $result = json_decode($response->getBody()->getContents(), true);
-            // dd($result['ResultData']['TicketDetailResult']);
-
-            return $result['ResultData']['TicketDetailResult'] ?? $result['ResultData']['TicketDetailResult'];
+            // return [];
+            // dd($result);
+            
+            // return $result['ResultData']['TicketDetailResult'] ?? $result['ResultData']['TicketDetailResult'];
+            
+            return array_key_exists('TicketDetailResult', $result['ResultData']) ? $result['ResultData']['TicketDetailResult']: $result['ResultData'];
                         
         } catch (RequestException $e) {
 

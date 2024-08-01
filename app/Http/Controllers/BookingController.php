@@ -24,6 +24,7 @@ class BookingController extends Controller
         private CustomerService $customerService,
         private FlightSearchService $flightSearchService,
         private FlightBookingService $flightBookingService
+        // private PassengerService $passengerService
     ) {
     }
 
@@ -54,6 +55,7 @@ class BookingController extends Controller
             ];
             $user = $request->user();
             $airCustomer  = $this->apiService->registerCustomer($data);
+            // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
@@ -62,8 +64,22 @@ class BookingController extends Controller
                 "TripId" => $tripId,
                 "CustomerId" => $user->id,
             ];
+            // dd($fligtSearchData);
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+            // Storing Oof Flight Booking Data
+            $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
+            $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
+            $flightData['search_master_id'] = $fligtSearchData->search_master_id;
+            $flightData['customer_id'] = $user->id;
+            $flightData['payment_method'] = '';
+            $flightData['requested_seats'] = $fligtSearchData->requested_seats;
+            $flightData['flight_data'] = json_encode($resultData['ResultData']);
+            $flightData['flight_date'] = $fligtSearchData->queue_date;
+            $this->flightSearchService->storeFlightticketDetails($flightData);
+            // End store of flight booking data
+            // dump($flightData);
+            // dd($resultData);
             // dd($bookingData, $resultData );
             if ($resultData['ResultCode'] == 200) {
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
@@ -80,6 +96,31 @@ class BookingController extends Controller
             logger("book flight" . $e->getMessage());
             return back()->withErrors($e->getMessage())->withInput();
         }
+    }
+
+    public function getResponseData($result, $key){
+        $detail = $result['DHTicketBookingResult']; 
+        
+        return $detail[$key];
+    }
+
+    public function redirectToPayment(Request $request){
+        $passengers = $request->get('PassengerDetail');
+        $ticket_number = $request->get('ticket_booking_number');
+        $user = $request->user();
+        $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
+        $this->flightBookingService->createBookingPassenger($localTicket, $passengers);
+        // $ticket =  $this->apiService->getTicketByTicketNo([
+        //     "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
+        //     "CustomerId" => $user->id
+        // ]);
+        $flightData = json_decode($localTicket->flight_data);
+        $paymentData = [
+
+        ];
+        $request->session()->flash('success', 'Thank you for booking with Us');
+        return redirect()->route('profile.edit');
+        dd($flightData);
     }
 
     public function confirmBooking(Request $request)
@@ -165,6 +206,7 @@ class BookingController extends Controller
             throw new ApiErrorException("Error on fetching trip search " . $ResultData['ResultData']['Error'][0]["ErrorMessage"], $ResultData['ResultCode']);
         }
     }
+
     public function getTicketDetail(Request $request, $ticketNo)
     {
 
@@ -173,6 +215,7 @@ class BookingController extends Controller
             "TicketBookingNo" => $ticketNo, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
             "CustomerId" => $user->id
         ];
+        $apiToken = session()->get('asx_api_token');
         $data =  $this->apiService->getTicketByTicketNo($data);
 
         return view('html.flight_ticket', compact('data'));
