@@ -46,10 +46,10 @@ Route::post('/comment/save', [StaticController::class, 'processComment'])->name(
 
 Route::get('/policy', [StaticController::class, 'policy']);
 Route::get('/disclaimer-static', [StaticController::class, 'disclaimer']);
-Route::get('/news',[StaticController::class,'news']);
-Route::get('/news/{id}',[StaticController::class,'newsdetail'])->name('site.news-detail');
-Route::get('/news/category/{slug}',[StaticController::class,'category'])->name('site.news-category');
-Route::get('/news/tag/{slug}',[StaticController::class,'tag'])->name('site.news-tag');
+Route::get('/news', [StaticController::class, 'news']);
+Route::get('/news/{id}', [StaticController::class, 'newsdetail'])->name('site.news-detail');
+Route::get('/news/category/{slug}', [StaticController::class, 'category'])->name('site.news-category');
+Route::get('/news/tag/{slug}', [StaticController::class, 'tag'])->name('site.news-tag');
 Route::get('/history-static', [StaticController::class, 'history']);
 Route::post('/account/update', [StaticController::class, 'updateAccount'])->name('site.post.account');
 // Route::get('/blog', [StaticController::class, 'blog']);
@@ -62,13 +62,13 @@ Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::middleware(
     [
-    'auth:web',
-    // config('jetstream.auth_session'),
-    // 'verified'
+        'auth:web',
+        // config('jetstream.auth_session'),
+        // 'verified'
     ]
-)->group( function () {
-Route::get('/checkout', [StaticController::class, 'checkout']);
-Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
+)->group(function () {
+    Route::get('/checkout', [StaticController::class, 'checkout']);
+    Route::post('/customerCraete', [RegisteredUserController::class, 'createCutomer']);
 });
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
@@ -82,22 +82,22 @@ Route::prefix("admin")->middleware(
         'web',
         'auth',
         TukiAccessMiddleware::class
-    // 'auth:web',
-    // config('jetstream.auth_session'),
-    // 'verified'
+        // 'auth:web',
+        // config('jetstream.auth_session'),
+        // 'verified'
     ]
-)->group( function () {
+)->group(function () {
     // Route::resource('onlineBooking', OnlineBookingController::class, ['as' => 'web']);
     // Route::resource('book', BookController::class, ['as' => 'web']);
     // Route::resource('pen', PenController::class, ['as' => 'web']);
-	// Route::resource('device', DeviceController::class, ['as' => 'web']);
+    // Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
 
 //Register User
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');
-Route::post('user/login',[AuthenticatedSessionController::class,'store'])->name('user.login');
+Route::post('user/login', [AuthenticatedSessionController::class, 'store'])->name('user.login');
 Route::post('/customer/register', [RegisteredUserController::class, 'createCutomer'])->name('customer.register');
 
 Route::prefix("admin")->middleware(
@@ -125,20 +125,18 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
-    
 });
 Route::middleware('auth')->group(function () {
 
 
-Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
-    Route::post('', 'bookFlight')->name('book.flight');  
-    Route::get('/test', 'test')->name('book.test');
-    Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
-    Route::get('/{ticketNo}/ticket', 'getTicketDetail')->name('flight.ticket');
-
-    
-        
-}); 
+    Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
+        Route::post('', 'bookFlight')->name('book.flight');
+        Route::get('/test', 'test')->name('book.test');
+        Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
+        Route::get('/{ticketNo}/ticket', 'getTicketDetail')->name('flight.ticket');
+        Route::get('/on-demand', 'flightOnDemand')->name('booking.ondemand');
+        Route::post('/on-demand-store', 'flightOnDemandStore')->name('store.booking.ondemand');
+    });
 });
 
 

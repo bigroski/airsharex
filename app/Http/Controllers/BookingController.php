@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Classes\Services\CustomerService;
 use App\Exceptions\ApiErrorException;
+use App\Http\Requests\BookingOnDemandRequest;
 use App\Http\Requests\FlightBookigRequest;
+use App\Jobs\StoreBookingOnDemandData;
 use App\Jobs\StoreFlightTicketDetail;
 use App\Services\ApiService;
 use App\Services\FlightBookingService;
@@ -13,6 +15,7 @@ use Bigroski\Tukicms\App\Models\Customer;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class BookingController extends Controller
 {
@@ -26,7 +29,7 @@ class BookingController extends Controller
 
     public function bookFlight(FlightBookigRequest $request)
     {
-        
+
         try {
             $tripId = $request['trip_id'];
             $customerData = [
@@ -53,7 +56,7 @@ class BookingController extends Controller
             $airCustomer  = $this->apiService->registerCustomer($data);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
-                "TxnRefId" => md5(Carbon::now()->toDateString() . rand()) ,
+                "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
                 "TotalSeat" => $fligtSearchData->requested_seats,
                 "SearchMasterId" => $fligtSearchData->search_master_id,
                 "TripId" => $tripId,
@@ -145,15 +148,16 @@ class BookingController extends Controller
         }
         $bookingData['PassengerDetail'] = $passengerDetail;
         $ResultData =  $this->apiService->ConfirmBooking($bookingData);
-       
+
         if ($ResultData["ResultCode"] == 200) {
             $data = $ResultData['ResultData']['TicketDetailResult'];
             dispatch(new StoreFlightTicketDetail(
-                $data, 
-                $user->id,                 
+                $data,
+                $user->id,
                 $request["ticket_booking_number"],
                 $bookingData['PaymentDetail']['paymentMethod'],
-                $bookingData['PaymentDetail']['paymentReferenceId']));            
+                $bookingData['PaymentDetail']['paymentReferenceId']
+            ));
             return view('html.flight_ticket', compact('data'));
         } else {
             // dd($bookingData,$data);
@@ -172,5 +176,56 @@ class BookingController extends Controller
         $data =  $this->apiService->getTicketByTicketNo($data);
 
         return view('html.flight_ticket', compact('data'));
+    }
+
+    public function flightOnDemand(Request $request)
+    {
+
+        $cities = $this->apiService->getCity();
+        // $nationalities = $this->apiService->getNationality();
+        $heliServiceTypes = $this->apiService->getHeliServiceTypes();
+        return view('html.flight_ondemand', compact('cities', 'heliServiceTypes'));
+    }
+    public function flightOnDemandStore(BookingOnDemandRequest $request)
+    {
+            $total_passanger= $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
+           $date = Carbon::now();
+            $bookingId = strtotime($date);
+            $serviceType = $request['service_type'];
+		$serviceParts = explode(' - ',$serviceType);
+
+		$serviceId = $serviceParts[0];
+		$serviceName = $serviceParts[1];
+            $requestData = [
+                "BookingID" =>$bookingId,
+                "ArrivalDate" => $request['arrival_date'],
+                "ReturnDated" => $request['return_date'],
+                "ServiceTypeId" => $serviceId ,
+                "ServiceType" => $serviceName,
+                "BookingName" => $request['booking_name'],
+                "EmailId" => $request['email'],
+                "ContactNumber" => $request['contact_number'],
+                "DestinationFrom" => $request['destination_from'],
+                "DestinationTo" => $request['destination_to'],
+                "TotalPax" =>  $total_passanger,
+                "AdultPax" => $request['adult_passanger'],
+                "ChildPax" => $request['child_passanger'],
+                "InfantPax" => $request['infant_passanger'],
+                "PickupLocation" => $request['pickup_location'],
+                "BookingNotes" => $request['booking_notes']
+            ];
+            $response = $this->apiService->bookingOnDemand($requestData);
+            $storeData = $request->all();
+            $storeData['total_passanger']=$total_passanger;
+            $storeData['booking_id']=$bookingId;            
+            $storeData["status"]=  $response["ResultCode"];
+            $storeData['transaction_ref_id'] = $response["TransactionRefId"];
+            // dd($response["ResultData"]["Error"]);
+             $storeData["status_message"]=$response["ResultData"]["Error"][0]["ErrorMessage"];
+            //  dd($response);
+            dispatch(new StoreBookingOnDemandData($request->all()));
+            $storeData['service_type'] = $serviceName;
+            return view('html.flight_ondemand_detail', compact('storeData')); 
+        
     }
 }
