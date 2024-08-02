@@ -34,7 +34,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
                     <form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
-                        
+
 
                         <!-- @if ($errors->any())
                         <div class="alert alert-danger">
@@ -57,12 +57,12 @@
                                     $combinedCity = $city['CityId'] . ' - ' . $city['CityName'];
                                     @endphp
                                     <option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}" {{ old('from') == $combinedCity  ? 'selected' : '' }} ">{{ $city['CityName'] }}</option>
-					@endforeach
+                                    @endforeach
 
-                    </select>
-                    @if ($errors->has('from'))
+                                    </select>
+                                    @if ($errors->has('from'))
 									<span class=" text-danger">{{ $errors->first('from') }}</span>
-                                        @endif
+                                    @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <label for="to">Destination</label>
@@ -89,7 +89,7 @@
                                     <option value="{{ $nationality['NationalityCode'] }}" {{ old("nationality") == $nationality['NationalityCode'] ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('heliServiceType'))
+                                @if ($errors->has('nationality'))
                                 <span class="text-danger">{{ $errors->first('nationality') }}</span>
                                 @endif
 
@@ -98,26 +98,26 @@
                                 <label for="heliServiceType">Heli Service Type</label>
 
                                 <select name="heliServiceType" class="form-control " placeholder="Heli Service Type">
-                                    <option value="" >Select Heli Service Type</option>
+                                    <option value="">Select Heli Service Type</option>
                                     @foreach ($heliServiceTypes as $heliServicdType)
                                     <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ old("heliServiceType") == $heliServicdType['ServiceTypeId'] ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('heliServiceType'))
-									<span class="text-danger">{{ $errors->first('heliServiceType') }}</span>
-									@endif
+                                <span class="text-danger">{{ $errors->first('heliServiceType') }}</span>
+                                @endif
                             </div>
 
 
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                               
-                                    <span><label for="start_date">Departure Date</label>
-                                        <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Depature Date"></span>
-                                        @if ($errors->has('start_date'))
-								<span class="text-danger">{{ $errors->first('start_date') }}</span>
-								@endif
- 
+
+                                <span><label for="start_date">Departure Date</label>
+                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Depature Date"></span>
+                                @if ($errors->has('start_date'))
+                                <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                @endif
+
                             </div>
 
 
@@ -154,8 +154,8 @@
                                     </div>
                                 </div>
                                 @if ($errors->has('seat_count'))
-								<span class="text-danger">{{ $errors->first('seat_count') }}</span>
-								@endif
+                                <span class="text-danger">{{ $errors->first('seat_count') }}</span>
+                                @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
@@ -165,7 +165,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
 
