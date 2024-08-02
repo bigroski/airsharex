@@ -3685,8 +3685,53 @@ button#filghtSearchButton {
   text-align: center;
 }
 
-.alert.alert-primary {
-  position: absolute;
+.alert {
+  position: fixed;
   top: 140px;
   right: 20px;
+  z-index: 999;
+}
+
+.alert.alert-primary.theme-alert {
+  color: #fff;
+  background: #000;
+  border: none;
+}
+.alert.alert-danger.theme-alert {
+  color: #fff;
+  background: #f00;
+  border: none;
+}
+.alert.alert-danger.theme-alert {
+  color: #fff;
+  background: #FFA500;
+  border: none;
+}
+
+button.btn-black {
+  color: #fff;
+  background: #000;
+  padding: 15px 25px;
+  &:hover{
+    border:1px solid #fff
+  }
+}
+button.btn-red {
+  background: #f00;
+  padding: 15px 25px;
+  color: #fff;
+  &:hover{
+    border:1px solid #000
+  }
+}
+label.form-check-label a {
+  color: #fff;
+  text-decoration: underline;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.passanger-details .form-floating>select.form-control:not(:placeholder-shown) {
+  padding: 1rem .75rem !important;
 }

@@ -12,34 +12,36 @@
     <section class=" checkout">
         <section class=" checkout">
             <div class="container">
+
+            
                 <!-- <form name="flight-customer-form" action="{{ route('confirm.booking-flight') }}" method="POST" id="confirmBookingForm"> -->
                 <form name="flight-customer-form" action="{{ route('confirm.process-payment') }}" method="POST" id="confirmBookingForm">
                     @csrf
+                    <div class="booking-details">
 
+<div class="bg-theme card border-1 shadow rounded-3 mb-5">
+    <div class="card-body p-3 p-sm-3">
+
+        <p><strong>Ticket booking No. : </strong> {{$bookingDetails['TicketBookingNumber']}}
+            <!-- 91A80447-0A94-49DE-AF66-8B9E1B8B25D2 -->
+             <input type="hidden" name = "ticket_booking_number" value="{{$bookingDetails['TicketBookingNumber']}}">
+        </p>
+        <p><strong>Total Seat: </strong> {{$bookingDetails['TotalSeat']}}</p>
+        
+        <input type="hidden" name = "total_seats" value="{{$bookingDetails['TotalSeat']}}">
+
+        <p><strong>Amount: </strong>Rs. {{$bookingDetails['TotalAmount']}}</p>
+
+    </div>
+</div>
+
+
+
+
+</div>
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
-                            <div class="booking-details">
-
-                                <div class="bg-theme card border-1 shadow rounded-3 mb-5">
-                                    <div class="card-body p-3 p-sm-3">
-
-                                        <p><strong>Ticket booking No. : </strong> {{$bookingDetails['TicketBookingNumber']}}
-                                            <!-- 91A80447-0A94-49DE-AF66-8B9E1B8B25D2 -->
-                                             <input type="hidden" name = "ticket_booking_number" value="{{$bookingDetails['TicketBookingNumber']}}">
-                                        </p>
-                                        <p><strong>Total Seat: </strong> {{$bookingDetails['TotalSeat']}}</p>
-                                        
-                                        <input type="hidden" name = "total_seats" value="{{$bookingDetails['TotalSeat']}}">
-
-                                        <p><strong>Amount: </strong>Rs. {{$bookingDetails['TotalAmount']}}</p>
-
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
+                           
 
                             <div class="passanger-details">
 
@@ -155,7 +157,7 @@
                                     </label>
                                 </div> -->
                             <div class="col-sm-12 col-md-12 col-lg-12 pt-5">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Confirm Booking</button>
+                                <button class="btn btn-red btn-login text-uppercase fw-bold" type="submit">Confirm Booking</button>
                             </div>
                         </div>
                     </div>
