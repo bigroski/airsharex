@@ -9,7 +9,7 @@
             </div>
         </div>
     </section>
-    <section class=" checkout">
+   
         <section class=" checkout">
             <div class="container">
             <!-- @if ($errors->any())
@@ -26,15 +26,16 @@
 
                     <div class="col-md-12 col-sm-12">
                         <div class="customer-details">
-                            <div class="bg-slate-50 card border-1 shadow rounded-3 mb-5">
+                            <div class="bg-slate-50 card border-1 shadow rounded-3 mb-5 p-6">
 
-                                <div class="card-body p-3 p-sm-3">
-                                    <h3>Flight On Demand </h3>
+                                <div class="card-body ">
+                                 
                                     <div class="row">
+                                    <div class=" col-12"><h6>Flight Details</h6></div>
+                                        <div class="col-md-4 col-12">
 
-                                        <div class="col-md-6 col-12">
-                                            <!-- <div class="form-floating mb-3"> -->
-                                            <label for="from">Departure </label>
+                                             <div class=" mb-3">
+                                          
                                             <select name="destination_from" class="form-control" placeholder="From">
                                                 <!-- <option >KTM</option> -->
                                                 <option value="">Select Departure</option>
@@ -49,10 +50,11 @@
                                                 @if ($errors->has('destination_from'))
                                                     <span class=" text-danger">{{ $errors->first('destination_from') }}</span>
                                                     @endif
-                                                    <!-- </div> -->
+                                                    </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <label for="from">Destination </label>
+                                        <div class="col-md-4 col-12">
+                                        <div class="  mb-3">
+                                           
                                             <select name="destination_to" class="form-control" placeholder="From">
                                                 <!-- <option >KTM</option> -->
                                                 <option value="">Select Destination</option>
@@ -68,8 +70,10 @@
                                                     <span class=" text-danger">{{ $errors->first('destination_from') }}</span>
                                                     @endif
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <label for="from">Service Type </label>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                        <div class=" mb-3">
+                                           
                                             <select name="service_type" class="form-control" placeholder="service Type">
                                                 <!-- <option >KTM</option> -->
                                                 <option value="">Select Service Type</option>
@@ -84,30 +88,71 @@
                                             @if ($errors->has('service_type'))
                                             <span class=" text-danger">{{ $errors->first('service_type') }}</span>
                                             @endif
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-floating mb-3">
+                                        <div class="col-md-4 col-12">
+                                            <div class=" mb-3">
                                                 <span>
-                                                    <label for="arrival_date">Arrival Date </label>
+                                                   
                                                     <input type="text" name="arrival_date" id="start" value="{{old('arrival_date')}}" class="form-control date-picker" placeholder="Arrival Date"></span>
                                                 @if ($errors->has('arrival_date'))
                                                 <span class="text-danger">{{ $errors->first('arrival_date') }}</span>
                                                 @endif
 
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-floating mb-3">
+                                        </div>  
+                                        <div class="col-md-4 col-12">
+                                            <div class=" mb-3">
                                                 <span>
-                                                    <label for="return_date">Return Date </label>
-                                                    <input type="text" name="return_date" id="start" value="{{old('return_date')}}" class="form-control date-picker" placeholder="Return Date"></span>
+                                                  
+                                                    <input type="text" name="return_date" id="end" value="{{old('return_date')}}" class="form-control date-picker" placeholder="Return Date"></span>
                                                 @if ($errors->has('return_date'))
                                                 <span class="text-danger">{{ $errors->first('return_date') }}</span>
                                                 @endif
 
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
+
+                                        <div class="col-md-4 col-12">
+                                        <div class="passanger-card mb-3">
+                                              
+                                               <input type="hidden" name="seat_count" id="seatCount" value="0">
+                                               <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
+                                                       : <span id="totalQuantity"></span>
+                                                   </span></button>
+                                               <div class="count-table" id="popup">
+                                                   <div class="pass-count">
+                                                       <h4>Adult</h4>
+                                                       <div class="adder qty-container">
+                                                           <input type='button' value='-' class='qtyminus' field='quantity' />
+                                                           <input type='text' name='quantity' value='0' class='qty' />
+                                                           <input type='button' value='+' class='qtyplus' field='quantity' />
+                                                       </div>
+                                                   </div>
+                                                   <div class="pass-count">
+                                                       <h4>Child</h4>
+                                                       <div class="adder qty-container">
+                                                           <input type='button' value='-' class='qtyminus' field='quantity' />
+                                                           <input type='text' name='quantity' value='0' class='qty' />
+                                                           <input type='button' value='+' class='qtyplus' field='quantity' />
+                                                       </div>
+                                                   </div>
+                                                   <div class="pass-count">
+                                                       <h4>Infant</h4>
+                                                       <div class="adder qty-container">
+                                                           <input type='button' value='-' class='qtyminus' field='quantity' />
+                                                           <input type='text' name='quantity' value='0' class='qty' />
+                                                           <input type='button' value='+' class='qtyplus' field='quantity' />
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               @if ($errors->has('seat_count'))
+                                                       <span class="text-danger">{{ $errors->first('seat_count') }}</span>
+                                                       @endif
+                                           </div>
+                                        </div>
+                                        <div class=" col-12"><h6>Customer Details</h6></div>
+                                        <div class="col-md-12 col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" name="booking_name" class="form-control" value="{{old('booking_name')}}" id="floatingBookingName" placeholder="Booking Name">
                                                 <label for="Booking Name">Booking Name</label>
@@ -116,7 +161,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" name="contact_number" value="{{old('contact_number')}}" class="form-control" id="floatingContactNumber" placeholder="Contact Number">
                                                 <label for="floatingContactNumber"> Contact Number</label>
@@ -126,7 +171,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" name="email" value="{{old('email')}}" class="form-control" id="floatingEmail" placeholder="Email">
                                                 <label for="floatingEmail"> Eamil</label>
@@ -136,7 +181,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" name="pickup_location"  value="{{old('pickup_location')}}" class="form-control" id="floatingPickupLocation" placeholder="Contact Number">
                                                 <label for="floatingPickupLocation"> Pickup Location</label>
@@ -146,7 +191,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6 col-12">
+                                        <!-- <div class="col-md-6 col-12">
 
                                             <div class="form-floating mb-3">
                                             <input type="number" name="adult_passanger" value="{{old('adult_passanger')}}" class="form-control" id="floatinAdultPassanger" placeholder="No Of Seats(Adult)">
@@ -174,9 +219,9 @@
 
                                             </div>
 
-                                        </div>
+                                        </div>   -->
                                         
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-12 col-12">
                                             <div class="form-floating mb-3">
                                                 <textarea type="text" name="booking_notes" value="{{old('booking_notes')}}" class="form-control" id="floatingBookingNotes" placeholder="Contact Number">
                                                 </textarea><label for="floatingBookingNotes"> Booking Notes</label>
@@ -188,7 +233,7 @@
                                         </div>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                <button type="submit" class="btn btn-danger mt-4" id="filghtSearchButton">Submit</button>
+                                <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton">Submit</button>
                             </div>
                                     </div>
                                 </div>

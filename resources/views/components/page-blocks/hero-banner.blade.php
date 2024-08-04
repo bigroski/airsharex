@@ -19,7 +19,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true"><i class="lni lni-plane"></i> Book A Flight</button>
                 </li>
-                <!-- <li class="nav-item" role="presentation">
+           <!--     <li class="nav-item" role="presentation">
                     <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Schedule Flight</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -29,7 +29,7 @@
                     <button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
                 </li> -->
                 <!-- Add more items as needed -->
-            </ul>
+            </ul> 
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
@@ -46,9 +46,9 @@
                         </div>
                         @endif -->
 
-                        <div class="row g-3">
+                        <div class="row g-3 justify-center">
                             <div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-                                <label for="from">Departure </label>
+                               
                                 <select name="from" class="form-control" placeholder="From">
                                     <!-- <option >KTM</option> -->
                                     <option value="">Select Departure</option>
@@ -65,7 +65,7 @@
                                     @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <label for="to">Destination</label>
+                              
 
                                 <select name="to" class="form-control " placeholder="to">
                                     <option value="">Select Destination</option>
@@ -81,8 +81,7 @@
                                 @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <label for="nationality">Nationality</label>
-
+                               
                                 <select name="nationality" class="form-control " placeholder="to">
                                     <option value="">Select Nationality</option>
                                     @foreach ($nationalities as $nationality)
@@ -95,7 +94,7 @@
 
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <label for="heliServiceType">Heli Service Type</label>
+                               
 
                                 <select name="heliServiceType" class="form-control " placeholder="Heli Service Type">
                                     <option value="">Select Heli Service Type</option>
@@ -112,7 +111,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
 
-                                <span><label for="start_date">Departure Date</label>
+                                <span>
                                     <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Depature Date"></span>
                                 @if ($errors->has('start_date'))
                                 <span class="text-danger">{{ $errors->first('start_date') }}</span>
@@ -122,7 +121,7 @@
 
 
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 passanger-card">
-                                <label for="seatCount">Number of Seats</label>
+                               
                                 <input type="hidden" name="seat_count" id="seatCount">
                                 <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
                                         : <span id="totalQuantity">0</span>
@@ -159,7 +158,7 @@
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                <button type="submit" class="btn btn-danger mt-4" id="filghtSearchButton"><i class="lni lni-search"></i> Search Now</button>
+                                <button type="submit" class="btn btn-danger " id="filghtSearchButton"><i class="lni lni-search"></i> Search Flight</button>
                             </div>
 
                         </div>
