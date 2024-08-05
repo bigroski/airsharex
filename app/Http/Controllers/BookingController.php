@@ -229,8 +229,20 @@ class BookingController extends Controller
         $heliServiceTypes = $this->apiService->getHeliServiceTypes();
         return view('html.flight_ondemand', compact('cities', 'heliServiceTypes'));
     }
-    public function flightOnDemandStore(BookingOnDemandRequest $request)
+    public function flightOnDemandStore(Request $request)
     {
+        // $request->validate([
+        //     'arrival_date' => ['required','date'],
+        //     'return_date' => ['required','date'],
+        //     'booking_name' => ['required', 'min:3', 'max:150'],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+        //     'contact_number' => ['required', 'numeric'],
+        //     'destination_from' => ['required'],
+        //     'destination_to' => ['required'],
+        //     'adult_passanger' => ['required', 'min:1'],
+        //     'pickup_location' => ['required'],
+        //     'booking_notes' => ['required']
+        // ]);
             $total_passanger= $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
            $date = Carbon::now();
             $bookingId = strtotime($date);
@@ -268,7 +280,9 @@ class BookingController extends Controller
             //  dd($response);
             dispatch(new StoreBookingOnDemandData($request->all()));
             $storeData['service_type'] = $serviceName;
-            return view('html.flight_ondemand_detail', compact('storeData')); 
+            $request->session()->flash('error', 'On Demand Request Sent');
+            return redirect()->back();
+            // return view('html.flight_ondemand_detail', compact('storeData')); 
         
     }
 }
