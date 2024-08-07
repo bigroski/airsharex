@@ -379,6 +379,7 @@
 <div class="container">
 <div class="title d-flex">Tickets in offers</div>
 <div class="swiper grideSwiper">
+
     <div class="swiper-wrapper">
 	<div class="swiper-slide">
 				<div class="ticket-card">
@@ -541,6 +542,7 @@
 				</div>
 			</div>
     </div>
+	
     <div class="swiper-pagination"></div>
   </div>
 </div>
