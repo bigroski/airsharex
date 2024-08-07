@@ -174,7 +174,7 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" name="email" value="{{old('email')}}" class="form-control" id="floatingEmail" placeholder="Email">
-                                                <label for="floatingEmail"> Eamil</label>
+                                                <label for="floatingEmail"> Email</label>
                                                 @if ($errors->has('email'))
                                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 @endif
@@ -223,8 +223,7 @@
                                         
                                         <div class="col-md-12 col-12">
                                             <div class="form-floating mb-3">
-                                                <textarea type="text" name="booking_notes" value="{{old('booking_notes')}}" class="form-control" id="floatingBookingNotes" placeholder="Contact Number">
-                                                </textarea><label for="floatingBookingNotes"> Booking Notes</label>
+                                                <textarea type="text" name="booking_notes" value="{{old('booking_notes')}}" class="form-control" id="floatingBookingNotes" placeholder="Contact Number"></textarea><label for="floatingBookingNotes"> Booking Notes</label>
                                                 @if ($errors->has('booking_notes'))
                                                 <span class="text-danger">{{ $errors->first('booking_notes') }}</span>
                                                 @endif
