@@ -56,4 +56,9 @@ class CustomerService extends BaseService{
 		return $this->customerRepository->create($data);
 
 	}
+
+	public function findBy($column,$value){
+		return $this->customerRepository->findBy($column,$value);
+
+	}
 }

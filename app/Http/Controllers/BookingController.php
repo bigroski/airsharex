@@ -25,14 +25,14 @@ class BookingController extends Controller
         private FlightSearchService $flightSearchService,
         private FlightBookingService $flightBookingService
         // private PassengerService $passengerService
-    ) {
-    }
+    ) {}
 
     public function bookFlight(FlightBookigRequest $request)
     {
 
         try {
             $tripId = $request['trip_id'];
+            $user = $request->user();
             $customerData = [
                 "name" => $request['name'],
                 "email" => $request['email'],
@@ -40,9 +40,10 @@ class BookingController extends Controller
                 "address" => $request['address'],
                 "city" => $request['city'],
                 "state" => $request['state'],
+                "user_id" => $user->id,
             ];
-            $customer =  $this->customerService->createFlightBookigCustomer($customerData);
-            $customer =  $this->customerService->makeCustomer($request);
+            $customer =  $this->customerService->findBy('user_id', $user->id) ?? $this->customerService->createFlightBookigCustomer($customerData);
+            // $customer =  $this->customerService->makeCustomer($request);
             $data = [
                 "CustomerMapId" => $customer->id,
                 "Country" => $request->country,
@@ -51,10 +52,25 @@ class BookingController extends Controller
                 'name' => $request->name,
                 'Email' => $request->email,
                 'PhoneNumber' => $request->phone,
-                'type' => "Customer"
+                'type' => "Customer",
             ];
-            $user = $request->user();
-            $airCustomer  = $this->apiService->registerCustomer($data);
+            if (!$customer->api_customer_id) {
+                $airCustomerId = null;
+                $airCustomer = $this->apiService->getCustomer($data);
+
+                if ($airCustomer['ResultCode'] != 200) {
+                    $newAirCustomer  = $this->apiService->registerCustomer($data);
+                    if ($newAirCustomer['ResultCode'] === 200) {
+                        $airCustomerId = $newAirCustomer['ResultData']['CustomerDetails']['CustomerId'];
+                        // dd('if ' . $airCustomerId, $newAirCustomer);
+                    }
+                } else {
+                    $airCustomerId = $airCustomer['ResultData']['CustomerDetails']['CustomerId'];
+                    // dd('else ' . $airCustomerId, $airCustomerId);
+                }
+                $customer->api_customer_id = $airCustomerId;
+                $customer->save();
+            }
             // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
@@ -67,26 +83,26 @@ class BookingController extends Controller
             // dd($fligtSearchData);
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
-            // Storing Oof Flight Booking Data
-            $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
-            $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
-            $flightData['search_master_id'] = $fligtSearchData->search_master_id;
-            $flightData['customer_id'] = $user->id;
-            $flightData['payment_method'] = '';
-            $flightData['requested_seats'] = $fligtSearchData->requested_seats;
-            $flightData['flight_data'] = json_encode($resultData['ResultData']);
-            $flightData['flight_date'] = $fligtSearchData->queue_date;
-            $this->flightSearchService->storeFlightticketDetails($flightData);
-            // End store of flight booking data
-            // dump($flightData);
-            // dd($resultData);
-            // dd($bookingData, $resultData );
+            // Storing Oof Flight Booking Data          
+
             if ($resultData['ResultCode'] == 200) {
+                $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
+                $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
+                $flightData['search_master_id'] = $fligtSearchData->search_master_id;
+                $flightData['customer_id'] = $user->id;
+                $flightData['payment_method'] = 'COD';
+                $flightData['requested_seats'] = $fligtSearchData->requested_seats;
+                $flightData['flight_data'] = json_encode($resultData['ResultData']);
+                $flightData['flight_date'] = $fligtSearchData->queue_date;
+                $flightData['trip_id'] = $tripId;
+                $this->flightSearchService->storeFlightticketDetails($flightData);
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();
                 $genders = $this->apiService->getGender();
                 $nationalities = $this->apiService->getNationality();
                 $user = $request->user();
+                $user->phone = $user->phone ?? $request->phone;
+                $user->save();
                 return view('html.flight_booking', compact('bookingDetails', 'salutations', 'genders', 'nationalities', 'user'));
             } else {
                 logger('api fetch error', $resultData['ResultData']);
@@ -98,13 +114,15 @@ class BookingController extends Controller
         }
     }
 
-    public function getResponseData($result, $key){
-        $detail = $result['DHTicketBookingResult']; 
-        
+    public function getResponseData($result, $key)
+    {
+        $detail = $result['DHTicketBookingResult'];
+
         return $detail[$key];
     }
 
-    public function redirectToPayment(Request $request){
+    public function redirectToPayment(Request $request)
+    {
         $passengers = $request->get('PassengerDetail');
         $ticket_number = $request->get('ticket_booking_number');
         $user = $request->user();
@@ -115,9 +133,7 @@ class BookingController extends Controller
         //     "CustomerId" => $user->id
         // ]);
         $flightData = json_decode($localTicket->flight_data);
-        $paymentData = [
-
-        ];
+        $paymentData = [];
         $request->session()->flash('success', 'Thank you for booking with Us');
         return redirect()->route('profile.edit');
         dd($flightData);
@@ -229,60 +245,45 @@ class BookingController extends Controller
         $heliServiceTypes = $this->apiService->getHeliServiceTypes();
         return view('html.flight_ondemand', compact('cities', 'heliServiceTypes'));
     }
-    public function flightOnDemandStore(Request $request)
+    public function flightOnDemandStore(BookingOnDemandRequest $request)
     {
-        // $request->validate([
-        //     'arrival_date' => ['required','date'],
-        //     'return_date' => ['required','date'],
-        //     'booking_name' => ['required', 'min:3', 'max:150'],
-        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-        //     'contact_number' => ['required', 'numeric'],
-        //     'destination_from' => ['required'],
-        //     'destination_to' => ['required'],
-        //     'adult_passanger' => ['required', 'min:1'],
-        //     'pickup_location' => ['required'],
-        //     'booking_notes' => ['required']
-        // ]);
-            $total_passanger= $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
-           $date = Carbon::now();
-            $bookingId = strtotime($date);
-            $serviceType = $request['service_type'];
-		$serviceParts = explode(' - ',$serviceType);
+        $total_passanger = $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
+        $date = Carbon::now();
+        $bookingId = strtotime($date);
+        $serviceType = $request['service_type'];
+        $serviceParts = explode(' - ', $serviceType);
 
-		$serviceId = $serviceParts[0];
-		$serviceName = $serviceParts[1];
-            $requestData = [
-                "BookingID" =>$bookingId,
-                "ArrivalDate" => $request['arrival_date'],
-                "ReturnDated" => $request['return_date'],
-                "ServiceTypeId" => $serviceId ,
-                "ServiceType" => $serviceName,
-                "BookingName" => $request['booking_name'],
-                "EmailId" => $request['email'],
-                "ContactNumber" => $request['contact_number'],
-                "DestinationFrom" => $request['destination_from'],
-                "DestinationTo" => $request['destination_to'],
-                "TotalPax" =>  $total_passanger,
-                "AdultPax" => $request['adult_passanger'],
-                "ChildPax" => $request['child_passanger'],
-                "InfantPax" => $request['infant_passanger'],
-                "PickupLocation" => $request['pickup_location'],
-                "BookingNotes" => $request['booking_notes']
-            ];
-            $response = $this->apiService->bookingOnDemand($requestData);
-            $storeData = $request->all();
-            $storeData['total_passanger']=$total_passanger;
-            $storeData['booking_id']=$bookingId;            
-            $storeData["status"]=  $response["ResultCode"];
-            $storeData['transaction_ref_id'] = $response["TransactionRefId"];
-            // dd($response["ResultData"]["Error"]);
-             $storeData["status_message"]=$response["ResultData"]["Error"][0]["ErrorMessage"];
-            //  dd($response);
-            dispatch(new StoreBookingOnDemandData($request->all()));
-            $storeData['service_type'] = $serviceName;
-            $request->session()->flash('error', 'On Demand Request Sent');
-            return redirect()->back();
-            // return view('html.flight_ondemand_detail', compact('storeData')); 
-        
+        $serviceId = $serviceParts[0];
+        $serviceName = $serviceParts[1];
+        $requestData = [
+            "BookingID" => $bookingId,
+            "ArrivalDate" => $request['arrival_date'],
+            "ReturnDated" => $request['return_date'],
+            "ServiceTypeId" => $serviceId,
+            "ServiceType" => $serviceName,
+            "BookingName" => $request['booking_name'],
+            "EmailId" => $request['email'],
+            "ContactNumber" => $request['contact_number'],
+            "DestinationFrom" => $request['destination_from'],
+            "DestinationTo" => $request['destination_to'],
+            "TotalPax" =>  $total_passanger,
+            "AdultPax" => $request['adult_passanger'],
+            "ChildPax" => $request['child_passanger'],
+            "InfantPax" => $request['infant_passanger'],
+            "PickupLocation" => $request['pickup_location'],
+            "BookingNotes" => $request['booking_notes']
+        ];
+        $response = $this->apiService->bookingOnDemand($requestData);
+        $storeData = $request->all();
+        $storeData['total_passanger'] = $total_passanger;
+        $storeData['booking_id'] = $bookingId;
+        $storeData["status"] =  $response["ResultCode"];
+        $storeData['transaction_ref_id'] = $response["TransactionRefId"];
+        // dd($response["ResultData"]["Error"]);
+        $storeData["status_message"] = $response["ResultData"]["Error"][0]["ErrorMessage"];
+        //  dd($response);
+        dispatch(new StoreBookingOnDemandData($request->all()));
+        $storeData['service_type'] = $serviceName;
+        return view('html.flight_ondemand_detail', compact('storeData'));
     }
 }
