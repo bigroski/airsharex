@@ -14,4 +14,8 @@ class CustomerRepository extends Repository{
 	public function __construct(Customer $model){
 		$this->model = $model;
 	}
+
+	public function findBy($column,$value){
+		return $this->model->where($column,$value)->first();
+	}
 }
