@@ -63,7 +63,7 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasOne(Vendor::class);
     }
-    public function customer()
+    public function Customer()
     {
         return $this->hasOne(Customer::class);
     }

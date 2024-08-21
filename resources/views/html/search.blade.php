@@ -15,7 +15,7 @@
           <div class="flight-booking flight-list py-120">
                <div class="container">
                     <div class="row">
-                         <div class="col-lg-4 col-xl-3 mb-4">
+                         <div class="col-lg-4 col-xl-3 mb-4 order-md-1 order-2">
                               <div class="booking-sidebar">
                                    <form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
                                         <div class="booking-item">
@@ -130,7 +130,7 @@
                                    </form>
                               </div>
                          </div>
-                         <div class="col-lg-8 col-xl-9">
+                         <div class="col-lg-8 col-xl-9 order-md-2 order-1">
                               <div class="col-md-12">
                                    <div class="booking-sort">
                                         <h5 class="card-title mb-0 fw-light fs-5">{{count($returnData)}} Results Found

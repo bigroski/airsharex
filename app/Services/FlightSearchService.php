@@ -18,6 +18,7 @@ class FlightSearchService
     }
 
     public function storeFlightticketDetails($data){
+        // dd($data);
         return FlightBookingDetails::create($data);
     }
 }

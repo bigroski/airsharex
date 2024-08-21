@@ -10,7 +10,7 @@
                     <div class="row gy-4">
                       @if(is_array($counters))
                         @foreach($counters as $counter)
-                      <div class="col-xl-4 col-md-6 d-flex aos-init aos-animate" data-aos="zoom-out">
+                      <div class="col-xl-4 col-md-4 col-4 d-flex aos-init aos-animate" data-aos="zoom-out">
                         <div class="count-item position-relative">
                           <div class="counts">
                           <span class="counter" data-count="+" data-to="{{$counter->url}}" data-speed="3000">{{$counter->url}}</span>

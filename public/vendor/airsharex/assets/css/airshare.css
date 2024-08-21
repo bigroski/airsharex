@@ -1257,6 +1257,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
   }
   .btn-link {
     text-decoration: none;
+    margin: 0.5rem 0;
     @media screen and (max-width: 767px) {
       justify-content: flex-start !important;
     }
@@ -1602,7 +1603,7 @@ section.breadcrumbs {
   padding: 65px 0;
   
   .count-item {
-    padding: 30px;
+    padding: 1rem;
     transition: all ease-in-out 0.4s;
     background: var(--color-white);
     height: 100%;
@@ -1775,6 +1776,7 @@ section.testimonials-section{
       box-shadow: 0 1px 4px rgba(24, 26, 32, .07);
       margin-bottom: 15px;
       padding: 30px 10px 30px 30px;
+      flex: 1;
       .thumb{
         h6{
           color: rgba(var(--color-default-rgb), 0.8)
@@ -2998,7 +3000,14 @@ h5.flight-airline-name {
     gap: 30px;
   }
 }
-
+@media all and (max-width:480px) {
+  .price-info {
+    width: initial;
+    margin-bottom: 10px !important;
+}
+.flight-booking-item .flight-booking-price {
+  flex-direction: column;
+}}
 .flight-booking-detail-wrapper{
   .nav .nav-link.active {
     
@@ -3224,10 +3233,14 @@ h5.flight-airline-name {
 }
 
 .widget .recent-post-img img {
-  width: 120px;
-  border-radius: 7px
+  width: 110px;
+  height: 110px;
+  border-radius: 7px;
+  object-fit: cover;
 }
-
+.widget .recent-post-bio {
+  flex: 1;
+}
 .widget .recent-post-bio h6 {
   font-size: 18px
 }
@@ -3745,4 +3758,33 @@ div#ui-datepicker-div {
 }
 .checkout .form-control{
   height: 50px;
+}
+.cta-details table.table{
+  margin-bottom: 0;
+  td,th{
+    padding: 0.75rem;
+  }
+  th{background: #f5f5f5;}
+
+  p {
+    margin: 0;
+  }
+}
+
+.card {
+  overflow: hidden;
+}
+
+div#social-links ul li {
+  display: inline-flex;
+  margin: 0 6px;
+  span{
+    font-size: 20px;
+  }
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto; 
+  width: 100%;
 }
