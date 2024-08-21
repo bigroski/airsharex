@@ -21,6 +21,7 @@ use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,8 +69,8 @@ Route::middleware(
     ]
 )->group( function () {
 Route::get('/checkout', [StaticController::class, 'checkout'])->name('search.checkout');
-Route::post('/customerCraete',[RegisteredUserController::class,'createCutomer']);
-Route::get('/ticket', [StaticController::class, 'checkout'])->name('ticket.search');
+Route::post('/customerCreate',[RegisteredUserController::class,'createCutomer']);
+Route::get('/ticket', [TicketController::class, 'getTicket'])->name('ticket.search');
 
 });
 
