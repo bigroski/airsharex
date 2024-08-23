@@ -411,7 +411,7 @@ class ApiService
             throw new ApiErrorException('Unable to complete the request');
         }
     }
-    public function GetTicket($data)
+    public function getTicket($data)
     {
 
         try {
@@ -422,7 +422,7 @@ class ApiService
             }
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/GetTicket', [
+            $response = $this->client->post('/api/v1/booking/GetTicket', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
