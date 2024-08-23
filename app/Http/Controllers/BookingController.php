@@ -62,16 +62,13 @@ class BookingController extends Controller
                     $newAirCustomer  = $this->apiService->registerCustomer($data);
                     if ($newAirCustomer['ResultCode'] === 200) {
                         $airCustomerId = $newAirCustomer['ResultData']['CustomerDetails']['CustomerId'];
-                        // dd('if ' . $airCustomerId, $newAirCustomer);
                     }
                 } else {
                     $airCustomerId = $airCustomer['ResultData']['CustomerDetails']['CustomerId'];
-                    // dd('else ' . $airCustomerId, $airCustomerId);
                 }
                 $customer->api_customer_id = $airCustomerId;
                 $customer->save();
             }
-            // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
