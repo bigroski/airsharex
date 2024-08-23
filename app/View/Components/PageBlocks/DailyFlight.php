@@ -2,12 +2,11 @@
 
 namespace App\View\Components\PageBlocks;
 
-
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-
+use App\Services\ApiService;
 
 class DailyFlight extends Component
 
@@ -54,7 +53,10 @@ class DailyFlight extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.page-blocks.daily-flight')->with($this->getValues());
+        $apiService = app(ApiService::class);
+        $popular = $apiService->getPopularTrips();
+        // dd($popular);
+        return view('components.page-blocks.daily-flight', compact('popular'))->with($this->getValues());
     }
 
 

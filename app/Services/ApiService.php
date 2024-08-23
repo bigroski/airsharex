@@ -50,7 +50,56 @@ class ApiService
         }
     }
 
+    public function getRouteDetail($route_id){
+        try {
+            $response = $this->client->post('/api/v1/trips/GetTrip', [
+                'verify' => false,
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ],
+                'json' => [
+                    'routeId' => $route_id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            // dd($result);
+            return $result['ResultData']['MYTrips'] ?? $result['ResultData']['MYTrips'];
+            // return $result['ResultData']['RouteList'] ?? $result['ResultData']['City'];
+        } catch (RequestException $e) {
 
+            logger("Get city error messAGE" . $e->getMessage());
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
+
+    public function getPopularTrips()
+    {
+        try {
+            $response = $this->client->get('/api/v1/trips/GetPopularTrip', [
+                'verify' => false,
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['ResultData']['RouteList'] ?? $result['ResultData']['RouteList'];
+            // return $result['ResultData']['RouteList'] ?? $result['ResultData']['City'];
+        } catch (RequestException $e) {
+
+            logger("Get city error messAGE" . $e->getMessage());
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
     public function getCity()
     {
         try {
