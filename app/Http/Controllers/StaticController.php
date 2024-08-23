@@ -338,6 +338,13 @@ class StaticController extends Controller
 	{
 	}
 
+	public function popularRoute(Request $request, $routeID){
+		$returnData = $this->apiService->getRouteDetail($routeID);
+		$title = $request->get('name');
+		return view('html.popular', compact('returnData', 'title'));
+
+	}
+
 	private function  searchData()
 	{
 		return $data = json_decode(

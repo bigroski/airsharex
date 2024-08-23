@@ -90,7 +90,8 @@ class RegisteredUserController extends Controller
             $user->assignRole('Customer');
 
         $customer =  $this->customerService->makeCustomer($request->all());  
-            $data = [                
+            $data = [     
+                "user_id"=>$user->id,           
                 "Country"=>$request->country,
                 "City"=> $request->city,
                 "Address"=> $request->address,

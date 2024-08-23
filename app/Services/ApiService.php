@@ -50,7 +50,56 @@ class ApiService
         }
     }
 
+    public function getRouteDetail($route_id){
+        try {
+            $response = $this->client->post('/api/v1/trips/GetTrip', [
+                'verify' => false,
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ],
+                'json' => [
+                    'routeId' => $route_id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            // dd($result);
+            return $result['ResultData']['MYTrips'] ?? $result['ResultData']['MYTrips'];
+            // return $result['ResultData']['RouteList'] ?? $result['ResultData']['City'];
+        } catch (RequestException $e) {
 
+            logger("Get city error messAGE" . $e->getMessage());
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
+
+    public function getPopularTrips()
+    {
+        try {
+            $response = $this->client->get('/api/v1/trips/GetPopularTrip', [
+                'verify' => false,
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['ResultData']['RouteList'] ?? $result['ResultData']['RouteList'];
+            // return $result['ResultData']['RouteList'] ?? $result['ResultData']['City'];
+        } catch (RequestException $e) {
+
+            logger("Get city error messAGE" . $e->getMessage());
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
     public function getCity()
     {
         try {
@@ -89,7 +138,7 @@ class ApiService
             return $result['ResultData']['Salutation'] ?? $result['ResultData']['Salutation'];
 
             $result = json_decode($response->getBody()->getContents());
-dd($result);
+            dd($result);
             return $result;
         } catch (RequestException $e) {
 
@@ -162,7 +211,6 @@ dd($result);
             $result = json_decode($response->getBody()->getContents(), true);
 
             return $result['ResultData']['Gender'] ?? $result['ResultData']['Gender'];
-
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -208,10 +256,10 @@ dd($result);
     public function tripDetails($data)
     {
         try {
-            
-                $this->authenticate();           
+
+            $this->authenticate();
             $apiToken = session()->get('asx_api_token');
-            logger('token'.$apiToken);
+            logger('token' . $apiToken);
             $response = $this->client->post('/api/v1/booking/GetTripDetail', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
@@ -286,18 +334,18 @@ dd($result);
     {
         try {
 
-
+            $customer = $this->getCustomer($data);
             if (session()->has('asx_api_token')) {
             } else {
                 $this->authenticate();
             }
             $apiToken = session()->get('asx_api_token');
-            logger('token'.$apiToken);
-           
+            logger('token' . $apiToken);
+
             $response = $this->client->post('/api/v1/customers/Register', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
-                    'agentCode' => config('api.asx.agent_code'),                    
+                    'agentCode' => config('api.asx.agent_code'),
                     'authentication-token' => $apiToken,
                     'Accept'    => 'application/json',
                 ],
@@ -311,6 +359,38 @@ dd($result);
         } catch (RequestException $e) {
 
             logger('erorr in api', [$e]);
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
+    public function getCustomer($data)
+    {
+        $customerData = [
+            'Email' => $data['Email'],
+            'CustomerId' => $data['CustomerMapId']
+        ];
+        try {
+            if (session()->has('asx_api_token')) {
+            } else {
+                $this->authenticate();
+            }
+            $apiToken = session()->get('asx_api_token');
+            $response = $this->client->post('/api/v1/customers/GetCustomerDetail', [
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'authentication-token' => $apiToken,
+                    'Accept'    => 'application/json',
+                ],
+                'json' => $customerData
+            ]);
+            logger('Get cutomer api response', [$response]);
+            $result = $response->getBody()->getContents();
+            return json_decode($result, true);
+        } catch (RequestException $e) {
+            logger('erorr in api get customer', [$e]);
             if ($e->hasResponse()) {
                 throw new ApiErrorException($e->getResponse()->getBody()->getContents());
             }
@@ -356,7 +436,7 @@ dd($result);
 
             // if (!session()->has('asx_api_token')) {
 
-                $this->authenticate();
+            $this->authenticate();
             // }
             $apiToken = session()->get('asx_api_token');
 
@@ -380,7 +460,7 @@ dd($result);
             throw new ApiErrorException('Unable to complete the request');
         }
     }
-    public function GetTicket($data)
+    public function getTicket($data)
     {
 
         try {
@@ -391,7 +471,7 @@ dd($result);
             }
             $apiToken = session()->get('asx_api_token');
 
-            $response = $this->client->post('/GetTicket', [
+            $response = $this->client->post('/api/v1/booking/GetTicket', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
                     'agentCode' => config('api.asx.agent_code'),
@@ -416,8 +496,8 @@ dd($result);
 
         try {
 
-             $this->authenticate();
-            
+            $this->authenticate();
+
             $apiToken = session()->get('asx_api_token');
 
             $response = $this->client->post('/api/v1/booking/ConfirmBooking', [
@@ -466,8 +546,9 @@ dd($result);
         }
     }
 
-    public function getTicketByTicketNo($data){        
-        try {       
+    public function getTicketByTicketNo($data)
+    {
+        try {
 
             $this->authenticate();
             $apiToken = session()->get('asx_api_token');
@@ -485,11 +566,10 @@ dd($result);
             $result = json_decode($response->getBody()->getContents(), true);
             // return [];
             // dd($result);
-            
+
             // return $result['ResultData']['TicketDetailResult'] ?? $result['ResultData']['TicketDetailResult'];
-            
-            return array_key_exists('TicketDetailResult', $result['ResultData']) ? $result['ResultData']['TicketDetailResult']: $result['ResultData'];
-                        
+
+            return array_key_exists('TicketDetailResult', $result['ResultData']) ? $result['ResultData']['TicketDetailResult'] : $result['ResultData'];
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {
@@ -499,9 +579,10 @@ dd($result);
         }
     }
 
-    public function bookingOnDemand($data){
-        try{
-        $this->authenticate();
+    public function bookingOnDemand($data)
+    {
+        try {
+            $this->authenticate();
             $apiToken = session()->get('asx_api_token');
 
             $response = $this->client->post('/api/v1/booking/BookTripOnDemand', [
@@ -514,7 +595,6 @@ dd($result);
                 'json' => $data
             ]);
             return  json_decode($response->getBody()->getContents(), true);
-              
         } catch (RequestException $e) {
 
             if ($e->hasResponse()) {

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->text('ticket_number')->nullable()->default(NULL);
             $table->text('total_seats')->nullable()->default(NULL);
             $table->text('total_amount')->nullable()->default(NULL);
-            $table->string('payment_method')->nullable()->default(NULL)->change();
-            $table->string('search_master_id')->nullable()->default(NULL)->change();
+            // $table->string('payment_method')->nullable()->default(NULL);
+            $table->string('search_master_id')->nullable()->default(NULL);
         });
     }
 
@@ -27,7 +27,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('flight_booking_details', function (Blueprint $table) {
-            //
+            $table->dropColumn('ticket_number');
+            $table->dropColumn('total_seats');
+            $table->dropColumn('total_amount');
+            $table->dropColumn('payment_method');
+            $table->dropColumn('search_master_id');
+
         });
     }
 };

@@ -16,39 +16,22 @@
 							<div class="cta-details ">
 								<div class="table-responsive">
 									<table class="table">
+										<thead>
+											<tr>
+												<th>
+													<p><strong>Popular Routes&nbsp;</strong></p>
+												</th>
+											</tr>
+										</thead>
 										<tbody>
-											<tr>
-												<th>
-													<p><strong>Airlines&nbsp;</strong></p>
-												</th>
-												<th>
-													<p><strong>Departure time | Arrival Time&nbsp;</strong></p>
-												</th>
-											</tr>
+											
+											@foreach($popular as $popularItem)
 											<tr>
 												<td>
-													<p>Buddha Airlines&nbsp;</p>
-												</td>
-												<td>
-													<p>06:15 am -- 07:15 am every day&nbsp;</p>
+													<a href="{{route('site.popularRoute', [$popularItem['RouteId'], 'name' => $popularItem['RouteName']])}}">{{$popularItem['RouteName']}}</a>
 												</td>
 											</tr>
-											<tr>
-												<td>
-													<p>Yeti Airlines&nbsp;</p>
-												</td>
-												<td>
-													<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<p>Shree Airlines&nbsp;</p>
-												</td>
-												<td>
-													<p>06:30 am -- 07:30 am&nbsp; every day&nbsp;</p>
-												</td>
-											</tr>
+											@endforeach
 										</tbody>
 									</table>
 								</div>
