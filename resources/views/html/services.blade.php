@@ -4,7 +4,7 @@
 		<div class="container">
             <div class="breadcrumb-content">
                 <h1 class="text-white">Services</h1>
-                <p class="text-white">Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
+                <p class="text-white">Discover our exceptional range of services designed to deliver unmatched convenience and luxury. From streamlined booking processes to personalized experiences, we are committed to providing you with the highest level of comfort and efficiency in every journey.</p>
             </div>
 		</div>
 </section>
