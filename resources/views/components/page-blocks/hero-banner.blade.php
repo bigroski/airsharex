@@ -112,7 +112,7 @@
 
 
                                 <span>
-                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Depature Date"></span>
+                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Departure Date" autocomplete="off"></span>
                                 @if ($errors->has('start_date'))
                                 <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                 @endif

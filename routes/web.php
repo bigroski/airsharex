@@ -120,6 +120,7 @@ Route::prefix("admin")->middleware(
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
         Route::resource('leadership', LeadershipController::class, ['as' => 'web']);
+        Route::post('gallery/delete-image', [GalleryController::class, 'deleteImage']);
     }
 );
 Route::resource('mailing-list', MailingListController::class, ['as' => 'web']);
