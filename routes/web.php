@@ -21,6 +21,7 @@ use App\Http\Controllers\PenController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CitizenshipController;
 use App\Http\Controllers\TicketController;
 
 /*
@@ -98,7 +99,7 @@ Route::prefix("admin")->middleware(
     // Route::resource('device', DeviceController::class, ['as' => 'web']);
 });
 
-
+Route::resource('citizenship', CitizenshipController::class, ['as' => 'web']);
 //Register User
 
 Route::post('/user/register', [RegisteredUserController::class, 'store'])->name('user.register');

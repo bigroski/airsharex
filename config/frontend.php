@@ -95,6 +95,13 @@ return [
                             'permission-name' => 'web.booking.create',
 
                         ],
+                        [
+                            'name' => 'Citizenship',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.citizenship.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
                         
                         
                         // [

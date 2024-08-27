@@ -72,6 +72,7 @@ class BookingController extends Controller
                 $customer->save();
             }
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
+            // dd($fligtSearchData);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
                 "TotalSeat" => $fligtSearchData->requested_seats,
@@ -82,6 +83,24 @@ class BookingController extends Controller
             // dd($fligtSearchData);
             logger('booking data', $bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+<<<<<<< HEAD
+
+            // Storing Oof Flight Booking Data
+            $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
+            $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
+            $flightData['search_master_id'] = $fligtSearchData->search_master_id;
+            $flightData['customer_id'] = $user->id;
+            $flightData['payment_method'] = '';
+            $flightData['requested_seats'] = $fligtSearchData->requested_seats;
+            $flightData['flight_data'] = json_encode($resultData['ResultData']);
+            $flightData['flight_date'] = $fligtSearchData->queue_date;
+            $this->flightSearchService->storeFlightticketDetails($flightData);
+            // End store of flight booking data
+            // dump($flightData);
+            // dd($resultData);
+            // dd($bookingData, $resultData );
+           if ($resultData['ResultCode'] == 200) {
+=======
             // Storing Oof Flight Booking Data          
 
             if ($resultData['ResultCode'] == 200) {
@@ -95,6 +114,7 @@ class BookingController extends Controller
                 $flightData['flight_date'] = $fligtSearchData->queue_date;
                 $flightData['trip_id'] = $tripId;
                 $this->flightSearchService->storeFlightticketDetails($flightData);
+>>>>>>> 9d4c6c50afa4413f8a2f349e8c9b42c50446a7cd
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();
                 $genders = $this->apiService->getGender();

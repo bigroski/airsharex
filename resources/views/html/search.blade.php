@@ -15,7 +15,7 @@
                     <div class="row">
                          <div class="col-lg-4 col-xl-3 mb-4 order-md-1 order-2">
                               <div class="booking-sidebar">
-                                   <form name="flight-search-form" id="filghtSearchForm" action="{{route('site.search')}}" method="get">
+                                   <form name="flight-search-form" id="filghtSearchForm" action="{{url('/search')}}" method="get">
                                         <div class="booking-item">
                                              <h4 class="booking-title">Search</h4>
                                              
@@ -28,6 +28,9 @@
                                                                {{ $city['CityName'] }}</option>
                                                     @endforeach
                                                   </select>
+                                                  @if ($errors->has('from'))
+                                                    <span class="text-danger">{{ $errors->first('from') }}</span>
+                                                  @endif
                                              </div>
                                              <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="to">To City</label>
@@ -39,6 +42,9 @@
                                                                     {{ $city['CityName'] }}</option>
                                                        @endforeach
                                                   </select>
+                                                  @if ($errors->has('to'))
+                                                    <span class="text-danger">{{ $errors->first('to') }}</span>
+                                                  @endif
                                              </div>
                                              <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="nationality">Nationality</label>
@@ -51,6 +57,9 @@
                                                                {{ $nationality['Nationality']}}</option>
                                                       @endforeach
                                                   </select>
+                                                  @if ($errors->has('nationality'))
+                                                    <span class="text-danger">{{ $errors->first('nationality') }}</span>
+                                                  @endif
                                              </div>
                                              <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-2">
                                                   <label for="heliServiceType">Heli Service Type</label>
@@ -69,8 +78,11 @@
                                              <h4 class="booking-title">Flight Date</h4>
                                              <div class="flight-time">
                                                   <label>Departure</label>
-                                                  <input class="form-control date-picker mb-2" name="date" type="text"
+                                                  <input class="form-control date-picker mb-2" name="start_date" type="text"
                                                        value="@if($searchData['start_date']){{$searchData['start_date']}}@endif">
+                                                  @if ($errors->has('start_date'))
+                                                    <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                                  @endif
                                              </div>
                                         </div>
                                         <div class="booking-item">

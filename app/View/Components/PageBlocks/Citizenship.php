@@ -7,13 +7,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-use App\Services\ApiService;
 
-class Offer extends Component
+
+class Citizenship extends Component
 
 {
     use TukiComponents;
-    public $componentName = 'Offers';
+    public $componentName = 'Citizenship';
     // defines if this component is laravel component or tuki component
     public $container = 'laravel';
         public $fields = [
@@ -23,7 +23,21 @@ class Offer extends Component
             'type' => 'text',
             'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'value' => ''
-        ]
+        ],
+        'description' => [
+            'label' => 'Block Description',
+            'name' =>'description',
+            'type' => 'textarea',
+            'default' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            // 'placeHolder' => 'Enter your Hero title',
+            'value' => ''
+        ],
+        'featured_image' => [
+            'label' => 'Featured Image',
+            'name' => 'featured_image',
+            'type' => 'file',
+            'value' => ''
+        ],
     ];
 
     /**
@@ -39,10 +53,7 @@ class Offer extends Component
      */
     public function render(): View|Closure|string
     {
-        $apiService = app(ApiService::class);
-        $offers = $apiService->getOffers();
-        // dump($offers);
-        return view('components.page-blocks.offer', compact('offers'))->with($this->getValues());
+        return view('components.page-blocks.citizenship')->with($this->getValues());
     }
 
 

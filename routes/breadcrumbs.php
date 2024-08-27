@@ -69,6 +69,7 @@ Breadcrumbs::resource('airports', 'Airports');
 Breadcrumbs::resource('passengers', 'Passengers');
 Breadcrumbs::resource('testimonials', 'Testimonials');
 Breadcrumbs::resource('gallery', 'Gallery');
+Breadcrumbs::resource('citizenship', 'Citizenship');
 Breadcrumbs::resource('leadership', 'Leadership');
 Breadcrumbs::resource('service', 'Service');
 Breadcrumbs::for('web.setting.system', function (BreadcrumbTrail $trail){
