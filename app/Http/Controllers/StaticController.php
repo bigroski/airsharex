@@ -56,6 +56,11 @@ class StaticController extends Controller
 			'services' => $allServices
 		]);
 	}
+	public function servicesdetail()
+	{
+		return view('html.servicesdetail');
+	}
+	
 	public function blog()
 	{
 		$posts = Post::all();

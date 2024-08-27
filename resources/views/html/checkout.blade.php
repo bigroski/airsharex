@@ -3,7 +3,7 @@
     <div class="container">
       <div class="breadcrumb-content text-white">
         <h1>Checkout </h1>
-        <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio volutpat maximus</p>
+        <p>Check details, select payment methods, and confirm your flight in a few clicks to quickly and easily complete your helicopter reservation with AirshareX.</p>
       </div>
     </div>
   </section>
