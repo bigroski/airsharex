@@ -236,8 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
       disableOnInteraction: false
     },
     navigation: {
-      nextEl: ".arrow-left",
-      prevEl: ".arrow-right",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
     slidesPerView: 'auto',
     breakpoints: {
@@ -269,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   new Swiper('.grideSwiper', {
     // slidesPerView: 2.5,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
     breakpoints: {
       320: {
         slidesPerView: 1,
@@ -309,6 +313,10 @@ document.addEventListener('DOMContentLoaded', () => {
       delay: 6000,
       disableOnInteraction: false
     },
+    navigation: {
+      nextEl: ".arrow-left",
+      prevEl: ".arrow-right",
+    },
     slidesPerView: 'auto',
     breakpoints: {
       320: {
@@ -339,6 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
     autoplay: {
       delay: 9000,
       disableOnInteraction: false
+    },
+    navigation: {
+      nextEl: ".arrow-left",
+      prevEl: ".arrow-right",
     },
     slidesPerView: 'auto',
     breakpoints: {
@@ -508,7 +520,7 @@ $(document).ready(function() {
 $(".counter").countTo();
 // $(".counts").appear(
 //   function () {
-//       $(".counter").countTo();
+//       $(".counter").countTo();grideSwiper
 //   },
 //   { accY: -100 }
 // );

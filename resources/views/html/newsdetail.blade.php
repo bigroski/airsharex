@@ -111,7 +111,7 @@
                                                        </div>
                                                        <div id="recaptcha"></div>
                                                        <input type="hidden" name="post_id" value="{{$post->id}}">
-                                                       <button type="submit" class="theme-btn">Post Comment <i class="far fa-paper-plane"></i>
+                                                       <button type="submit" class="btn btn-lg btn-danger mt-3">Post Comment <i class="far fa-paper-plane"></i>
                                                        </button>
                                                   </div>
                                              </div>
