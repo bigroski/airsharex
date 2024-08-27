@@ -602,4 +602,27 @@ class ApiService
             throw new ApiErrorException('Unable to complete the request');
         }
     }
+    public function getOffers()
+    {
+        try {
+            $response = $this->client->get('/api/v1/trips/GetOfferTrip', [
+                'verify' => false,
+                'headers' => [
+                    'api-key'   => config('api.asx.api_key'),
+                    'agentCode' => config('api.asx.agent_code'),
+                    'Accept'    => 'application/json',
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['ResultData']['MYTrips'] ?? $result['ResultData']['MYTrips'];
+            // return $result['ResultData']['RouteList'] ?? $result['ResultData']['City'];
+        } catch (RequestException $e) {
+
+            logger("Get offer error messAGE" . $e->getMessage());
+            if ($e->hasResponse()) {
+                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+            }
+            throw new ApiErrorException('Unable to complete the request');
+        }
+    }
 }

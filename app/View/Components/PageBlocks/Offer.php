@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Bigroski\Tukicms\App\Traits\TukiComponents;
-
+use App\Services\ApiService;
 
 class Offer extends Component
 
@@ -39,7 +39,10 @@ class Offer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.page-blocks.offer')->with($this->getValues());
+        $apiService = app(ApiService::class);
+        $offers = $apiService->getOffers();
+        // dump($offers);
+        return view('components.page-blocks.offer', compact('offers'))->with($this->getValues());
     }
 
 
