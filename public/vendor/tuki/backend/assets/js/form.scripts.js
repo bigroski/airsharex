@@ -486,5 +486,27 @@ function recalculateHomeDeliver(){
 	$('input[name=cash_handling_charge]').val(branchCashHandlingCharge);
 }
 
+$(document).on('click', '.removeImage', function(){
+	var element = $(this).parent();
+	var imageId = $(this).data('remove');
+	$.ajaxSetup({
+	    headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    }
+	});
+	$.ajax({
+			url: BASE_URL+'/admin/gallery/delete-image',
+			data: {
+				imageId: imageId
+			},
+			method: 'POST',
+			type: 'json',
+			success: function(r){
+				if(r.deleted == 'yes'){
+					element.remove();
+				}
+			}
+	});
+});
 
 // $('#manifest_receiving_branch').on('')

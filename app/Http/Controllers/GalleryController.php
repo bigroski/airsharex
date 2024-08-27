@@ -7,6 +7,7 @@ use App\Models\Gallery;
 use App\Classes\Services\GalleryService;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
 use App\DataTables\GalleryDataTable;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class GalleryController extends Controller
 {
     use HasUiTraits;
@@ -105,5 +106,17 @@ class GalleryController extends Controller
         $this->galleryService->delete($id);
         $request->session()->flash('success', 'Successfully Updated');
         return redirect()->route('web.gallery.index');
+    }
+
+    public function deleteImage(Request $request){
+        $imageId = $request->get('imageId'); 
+        $media = Media::find($imageId);
+        if($media->delete() == true){
+            return response()->json(['deleted' => 'yes']);
+        }else{
+            return response()->json(['deleted' => 'no']);
+
+        }
+        
     }
 }

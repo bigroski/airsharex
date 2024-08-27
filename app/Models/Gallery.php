@@ -96,27 +96,35 @@ implements HasMedia
         'description' => [
             'label' => 'Description',
             'placeholder' => 'Enter Description',
-            'type' => 'text',
+            'type' => 'textarea',
             'span' => 'col-md-12',
             'required' => true,
         ],
-        'file_path' => [
-            'label' => 'FilePath',
-            'placeholder' => 'Enter FilePath',
-            'type' => 'text',
-            'span' => 'col-md-12',
-            'required' => true,
-        ],
-        'tags' => [
-            'label' => 'tags',
-            'placeholder' => 'Enter Tags',
-            'type' => 'text',
-            'span' => 'col-md-12',
-            'required' => true,
-        ],
+        // 'file_path' => [
+        //     'label' => 'FilePath',
+        //     'placeholder' => 'Enter FilePath',
+        //     'type' => 'text',
+        //     'span' => 'col-md-12',
+        //     'required' => true,
+        // ],
+        // 'tags' => [
+        //     'label' => 'tags',
+        //     'placeholder' => 'Enter Tags',
+        //     'type' => 'text',
+        //     'span' => 'col-md-12',
+        //     'required' => true,
+        // ],
         'featured_image' => [
-            'label' => 'Gallery File',
+            'label' => 'Featured Image',
             'type' => 'file',
+            'placeholder' => 'Enter tag name',
+            'required' => true,
+            'span' => 'col-md-9'
+        ],
+        'gallery_images' => [
+            'label' => 'Images',
+            'type' => 'file',
+            'multiple' => true,
             'placeholder' => 'Enter tag name',
             'required' => true,
             'span' => 'col-md-9'

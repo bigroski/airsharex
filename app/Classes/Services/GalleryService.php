@@ -35,7 +35,7 @@ class GalleryService extends BaseService{
 		$data = $request->all();
 		$model = $this->galleryRepository->create($data);
 		addFeaturedImage($model, request());
-		
+		addGalleryObject($model, request());		
 		return $model;
 
 	}
@@ -50,8 +50,10 @@ class GalleryService extends BaseService{
 
 	public function updateGallery($request, $model){
 		$data = $request->all();
+		
 		$this->galleryRepository->update($data, $model);
 		addFeaturedImage($model, request());
+		addGalleryObject($model, request());		
 		return $model;
 	}
 	public function deleteGallery($id){

@@ -1,7 +1,7 @@
 <!-- ======= Offered tickets ======= -->
 <section id="tickets" class="tickets ">
 	<div class="container">
-	<div class="title d-flex">{{$title}}</div>
+	<div class="title d-flex mb-0">{{$title}}</div>
 	<div class="swiper grideSwiper">
 	    <div class="swiper-wrapper">
 		<div class="swiper-slide">

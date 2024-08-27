@@ -19,17 +19,17 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true"><i class="lni lni-plane"></i> Book A Flight</button>
                 </li>
-           <!--     <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Schedule Flight</button>
-                </li>
                 <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="getTicket-tab" data-bs-toggle="tab" data-bs-target="#getTicket" type="button" role="tab" aria-controls="getTicket" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Search Ticket</button>
+                </li>
+                <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" id="rescue-tab" data-bs-toggle="tab" data-bs-target="#rescue" type="button" role="tab" aria-controls="rescue" aria-selected="false" tabindex="-1"><i class="lni lni-first-aid"></i> Rescue</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="sharing-tab" data-bs-toggle="tab" data-bs-target="#sharing" type="button" role="tab" aria-controls="sharing" aria-selected="false" tabindex="-1"><i class="lni lni-users"></i> Sharing</button>
                 </li> -->
                 <!-- Add more items as needed -->
-            </ul> 
+            </ul>
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
@@ -48,7 +48,7 @@
 
                         <div class="row g-3 justify-center">
                             <div class="col-lg-3 col-md-4 ol-sm-6 col-12">
-                               
+
                                 <select name="from" class="form-control" placeholder="From">
                                     <!-- <option >KTM</option> -->
                                     <option value="">Select Departure</option>
@@ -62,10 +62,10 @@
                                     </select>
                                     @if ($errors->has('from'))
 									<span class=" text-danger">{{ $errors->first('from') }}</span>
-                                    @endif
+                                        @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                              
+
 
                                 <select name="to" class="form-control " placeholder="to">
                                     <option value="">Select Destination</option>
@@ -81,7 +81,7 @@
                                 @endif
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                               
+
                                 <select name="nationality" class="form-control " placeholder="to">
                                     <option value="">Select Nationality</option>
                                     @foreach ($nationalities as $nationality)
@@ -94,7 +94,7 @@
 
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                               
+
 
                                 <select name="heliServiceType" class="form-control " placeholder="Heli Service Type">
                                     <option value="">Select Heli Service Type</option>
@@ -112,7 +112,7 @@
 
 
                                 <span>
-                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Depature Date"></span>
+                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Departure Date" autocomplete="off"></span>
                                 @if ($errors->has('start_date'))
                                 <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                 @endif
@@ -121,7 +121,7 @@
 
 
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 passanger-card">
-                               
+
                                 <input type="hidden" name="seat_count" id="seatCount">
                                 <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
                                         : <span id="totalQuantity">0</span>
@@ -164,6 +164,23 @@
                         </div>
                     </form>
                 </div>
+                <div class="tab-pane fade" id="getTicket" role="tabpanel" aria-labelledby="getTicket-tab">
+
+                    <form name="flight-search-form" id="filghtSearchForm" action="{{route('ticket.search')}}" method="get">
+
+                        <div class="row g-3 justify-center">
+
+
+                            <div class="col-lg-5 col-md-4 col-sm-6 col-12">
+                                <input name="ticket_no" class="form-control" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+
+                                <button type="submit" class="btn btn-danger " id="filghtSearchButton"><i class="lni lni-search"></i> Search Ticket</button>
+                            </div>
+                        </div>
+                </div>
+                </form>
 
             </div>
         </div>

@@ -30,6 +30,7 @@ class BookingController extends Controller
     public function bookFlight(FlightBookigRequest $request)
     {
 
+                // dd($request);
         try {
             $tripId = $request['trip_id'];
             $user = $request->user();
@@ -42,7 +43,9 @@ class BookingController extends Controller
                 "state" => $request['state'],
                 "user_id" => $user->id,
             ];
+            // dd($customerData);
             $customer =  $this->customerService->findBy('user_id', $user->id) ?? $this->customerService->createFlightBookigCustomer($customerData);
+            // dd($customer);
             // $customer =  $this->customerService->makeCustomer($request);
             $data = [
                 "CustomerMapId" => $customer->id,
@@ -57,21 +60,17 @@ class BookingController extends Controller
             if (!$customer->api_customer_id) {
                 $airCustomerId = null;
                 $airCustomer = $this->apiService->getCustomer($data);
-
                 if ($airCustomer['ResultCode'] != 200) {
                     $newAirCustomer  = $this->apiService->registerCustomer($data);
                     if ($newAirCustomer['ResultCode'] === 200) {
                         $airCustomerId = $newAirCustomer['ResultData']['CustomerDetails']['CustomerId'];
-                        // dd('if ' . $airCustomerId, $newAirCustomer);
                     }
                 } else {
                     $airCustomerId = $airCustomer['ResultData']['CustomerDetails']['CustomerId'];
-                    // dd('else ' . $airCustomerId, $airCustomerId);
                 }
                 $customer->api_customer_id = $airCustomerId;
                 $customer->save();
             }
-            // dd($airCustomer);
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
             // dd($fligtSearchData);
             $bookingData = [

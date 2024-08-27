@@ -3751,7 +3751,7 @@ label.form-check-label a {
 }
 
 div#ui-datepicker-div {
-  z-index: 3 !important; 
+  z-index: 100 !important; 
 }
 .checkout textarea.form-control {
   height: 120px !important;
@@ -3787,4 +3787,37 @@ div#social-links ul li {
   max-width: 100%;
   height: auto; 
   width: 100%;
+}
+
+.swiper.grideSwiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+  padding-top: 50px;
+}
+
+.swiper-button-prev{
+  top: 30px;
+    right: 50px !important;
+    left: auto;
+}
+.swiper-button-next {
+  top: 30px;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+  content: 'next';
+  font-size: 20px;
+  color: #f00;
+  padding: 5px 10px;
+  border: 1px solid #f00;
+  margin: 10px !important;
+  background: #f5f5f5;box-shadow: 1px 1px 2px #777;
+}
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+  content: 'prev';
+  font-size: 20px;
+  color: #f00;
+  padding: 5px 10px;
+  border: 1px solid #f00;
+  margin: 10px !important;
+  background: #f5f5f5;
+  box-shadow: 1px 1px 2px #777;
 }
