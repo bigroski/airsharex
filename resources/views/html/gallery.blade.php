@@ -21,23 +21,20 @@
     @if($galleries->isEmpty())
         <p>No gallery data available.</p>
     @else
-    @foreach($galleries as $gallery)
+    @foreach($galleries as $key => $gallery)
                
       <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-        <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" alt="Album Feature" class="feature-image" onclick="openAlbum()">
-    
-        <div id="albumContainer" style="display:none;">
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a> 
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a> 
-        <a href="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
-          <img src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" class="img-fluid" alt="">
-        </a> 
-        <!-- Add more child images as needed -->
-    </div>
+        <img src="{{ $gallery->getFeaturedImageAttribute()}}" alt="Album Feature" class="{{$gallery->name}}" onclick="openAlbum('albumContainer-{{$key}}')">
+        <h2>{{$gallery->name}}</h2>
+        <p>{{$gallery->description}}</p>
+        <div id="albumContainer-{{$key}}" class="lightbox-cont" style="display:none;">
+            @foreach($gallery->allGalleryImages as $images)
+            <a href="{{ $images->getFullUrl() }}" title="" data-gallery="portfolio-gallery" class="glightbox preview-link">
+              <img src="{{ $images->getFullUrl() }}" class="img-fluid" alt="">
+            </a> 
+            @endforeach
+            <!-- Add more child images as needed -->
+      </div>
         <!-- <a href="{{ $gallery->getFeaturedImageAttribute()}}" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link">
           <img src="{{ $gallery->getFeaturedImageAttribute()}}" class="img-fluid" alt="">
         </a> 
@@ -58,14 +55,20 @@
 </section><!-- End Portfolio Section -->
 
 <script>
-function openAlbum() {
-    document.getElementById("albumContainer").style.display = "block";
-    document.querySelector('#albumContainer a').click();
-    document.addEventListener('lightbox:close', hideAlbumContainer, { once: true });
+function openAlbum(galleryID) {
+    alert(galleryID);
+
+    document.getElementById(galleryID).style.display = "block";
+    document.querySelector('#'+galleryID+' a').click();
+    document.addEventListener('lightbox:close', function(){
+      hideAlbumContainer(galleryID);
+      $('.lightbox-cont').hide();
+    });
 }
 
-function hideAlbumContainer() {
-    document.getElementById("albumContainer").style.display = "none";
+function hideAlbumContainer(galleryID) {
+  // alert(galleryId);
+    document.getElementById(galleryID).style.display = "none";
 }
 
 const observer = new MutationObserver(function(mutations) {
