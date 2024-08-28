@@ -58,6 +58,7 @@ Route::post('/account/update', [StaticController::class, 'updateAccount'])->name
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 
 Route::get('/services', [StaticController::class, 'services']);
+Route::get('/service-detail', [StaticController::class, 'servicesdetail']);
 Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
 Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
 Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
