@@ -5,9 +5,7 @@
           <div class="container">
                <div class="breadcrumb-content text-white">
                     <h1>Search Widget</h1>
-                    <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat
-                         vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio
-                         volutpat maximus</p>
+                    <p>With AirshareX, you can quickly search for and reserve your next helicopter trip, personalize your itinerary, and select the ideal flight choice to suit your requirements.</p>
                </div>
           </div>
      </section>
