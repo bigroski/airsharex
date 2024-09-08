@@ -72,7 +72,7 @@ class BookingController extends Controller
                 $customer->save();
             }
             $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
-            // dd($fligtSearchData);
+            // dump($fligtSearchData);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
                 "TotalSeat" => $fligtSearchData->requested_seats,
@@ -81,11 +81,12 @@ class BookingController extends Controller
                 "TripId" => $tripId,
                 "CustomerId" => $user->email,
             ];
-            // dd($bookingData);
+            dump($bookingData);
             // dd($fligtSearchData);
             logger('booking data', $bookingData);
             // dd($bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
+            dump($resultData);
             // Storing Oof Flight Booking Data          
 
             if ($resultData['ResultCode'] == 200) {
@@ -214,12 +215,16 @@ class BookingController extends Controller
                 ];
             }
             $bookingData['PassengerDetail'] = $passengerDetail;
+            // dd($bookingData);
             $resultData =  $this->apiService->ConfirmBooking($bookingData);
-            // dd($resultData);
             if($resultData['ResultMessage'] == 'Success'){
                 $this->flightBookingService->markAsConfirmed($localTicket);
                 $request->session()->flash('success', 'Thank you for Booking has been verified');
             }else{
+            
+                dump($bookingData);
+                dd($resultData);
+
                 $request->session()->flash('success', 'Unable to proceed');
 
                 // return back()->withErrors("Unable to Proceed, Data Mismatch");

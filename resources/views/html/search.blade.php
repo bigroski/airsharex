@@ -208,7 +208,7 @@
                                                           <div class="price-info">
 
                                                                  <span class="price-amount">Rs
-                                                                       {{$data['TicketSellingRate']}}</span>
+                                                                       {{$data['TicketSellingRate'] * $seatCount}}</span>
                                                           </div>
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
@@ -362,12 +362,6 @@
                                                                                                       id="TotalSeat"
                                                                                                       value={{$seatCount}}>
 
-                                                                                                <input type="hidden"
-                                                                                                      name="TxnRefId" id="TxnRefId"
-                                                                                                      value={{$TransactionRefId}}>
-                                                                                                      <input type="hidden"
-                                                                                                      name="TxnRefId" id="TxnRefId"
-                                                                                                      value={{$TransactionRefId}}>
                                                                                                       <input type="hidden"
                                                                                                       name="TxnRefId" id="TxnRefId"
                                                                                                       value={{$TransactionRefId}}>
@@ -379,7 +373,7 @@
                                                                                                       <div class="book-btn">
                                                                                                       <div
                                                                                                             class="flight-detail-price-amount">
-                                                                                                           Rs. {{$data['TicketSellingRate']}} </div>
+                                                                                                           Rs. {{$data['TicketSellingRate'] * $seatCount}} </div>
 
                                                                                                       <h6
                                                                                                             class="flight-booking-detail-price-title">

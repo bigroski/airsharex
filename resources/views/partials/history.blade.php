@@ -1,4 +1,4 @@
-<!-- flight history -->
+<!--flight history -->
             <div class="flight-booking flight-list py-120">
               <div class="container">
                 <h5 class="card-title mb-1 fw-light fs-5">Purchase History</h5>
@@ -34,7 +34,7 @@
                     @foreach($tickets as $ticket)
                       <?php 
                       $data = $ticket->searchDetail;
-                        // dump($ticket->searchDetail);
+                        // dump($ticket);
                       ?>
                     <div class="col-lg-12">
                       <div class="flight-booking-item">
@@ -85,7 +85,7 @@
                                                           <div class="price-info">
 
                                                                  <span class="price-amount">Rs
-                                                                       {{$data['TicketSellingRate']}}</span>
+                                                                       {{$data['TicketSellingRate'] * $ticket->requested_seats}}</span>
                                                           </div>
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
@@ -99,7 +99,7 @@
                                                           @endif
                                                     </div>
                                               </div>
-                                              <div class="flight-booking-detail" style="display: none;">
+                                              <div class="flight-booking-detail" style="">
 
                                                     <div class="collapse" id="flight-booking-collapse1">
                                                           <div class="flight-booking-detail-wrapper">
@@ -127,9 +127,9 @@
                                                                                                       data-bs-target="#fr-tab-pane2"
                                                                                                       type="button" role="tab"
                                                                                                       aria-controls="fr-tab-pane2"
-                                                                                                      aria-selected="false">Fare</button>
+                                                                                                      aria-selected="false">Pax</button>
                                                                                           </li>
-                                                                                          <li class="nav-item"
+                                                                                          <!-- <li class="nav-item"
                                                                                                 role="presentation">
                                                                                                 <button class="nav-link"
                                                                                                       id="fr-tab3"
@@ -138,7 +138,7 @@
                                                                                                       type="button" role="tab"
                                                                                                       aria-controls="fr-tab-pane3"
                                                                                                       aria-selected="false">Policy</button>
-                                                                                          </li>
+                                                                                          </li> -->
                                                                                    </ul>
                                                                                    <div class="tab-content" id="frTabContent1">
                                                                                           <div class="tab-pane fade show active"
@@ -175,27 +175,23 @@
                                                                                                       <table
                                                                                                             class="table table-borderless">
                                                                                                             <tr>
-                                                                                                                   <th>Fare Summary
-                                                                                                                   </th>
-                                                                                                                   <th>Base Fare</th>
-                                                                                                                   <th>Tax</th>
+                                                                                                                   <th>Passenger Name</th>
+                                                                                                                   <th>Gender</th>
+                                                                                                                   <th>Age</th>
                                                                                                             </tr>
+                                                                                                            @foreach($ticket->passengers as $passenger)
+                                                                                                            
                                                                                                             <tr>
-                                                                                                                   <td>Adult x 1</td>
-                                                                                                                   <td>Rs
-                                                                                                                         {{$data['TicketSellingRate']}}
-                                                                                                                   </td>
-                                                                                                                   <td>-</td>
+                                                                                                                   <td>{{$passenger->friendlySalutation}}. {{$passenger->name}}</td>
+                                                                                                                   <td>{{$passenger->friendlyGender}}</td>
+                                                                                                                   <td>{{$passenger->age}}</td>
                                                                                                             </tr>
-                                                                                                            <tr>
-                                                                                                                   <td>Child x 1</td>
-                                                                                                                   <td>-</td>
-                                                                                                                   <td>-</td>
-                                                                                                            </tr>
+                                                                                                            @endforeach
+                                                                                                            
                                                                                                       </table>
                                                                                                 </div>
                                                                                           </div>
-                                                                                          <div class="tab-pane fade"
+                                                                                          <!-- <div class="tab-pane fade"
                                                                                                 id="fr-tab-pane3" role="tabpanel"
                                                                                                 aria-labelledby="fr-tab3"
                                                                                                 tabindex="0">
@@ -227,7 +223,7 @@
                                                                                                             </ul>
                                                                                                       </div>
                                                                                                 </div>
-                                                                                          </div>
+                                                                                          </div> -->
                                                                                    </div>
                                                                                    <div class="flight-booking-detail-price-outer">
                                                                                           
@@ -284,4 +280,4 @@
                 </div>
               </div>
             </div>
-            <!-- flight history -->
+            <!-- flight history

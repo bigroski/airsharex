@@ -84,7 +84,7 @@
                                                           <div class="price-info">
 
                                                                  <span class="price-amount">Rs
-                                                                       {{$data['TicketSellingRate']}}</span>
+                                                                       {{$data['TicketSellingRate']}} (Per Pax)</span>
                                                           </div>
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
@@ -221,12 +221,46 @@
                                                                                                       <div class="book-btn">
                                                                                                       <div
                                                                                                             class="flight-detail-price-amount">
-                                                                                                           Rs. {{$data['TicketSellingRate']}} </div>
-
+                                                                                                           Rs. {{$data['TicketSellingRate']  * $data['AvailableSeat'] }} </div>
                                                                                                       <h6
                                                                                                             class="flight-booking-detail-price-title">
                                                                                                             Total ({{$data['AvailableSeat']}}
                                                                                                             Traveler)</h6>
+                                                                                                </div>
+                                                                                                <button class="btn btn-danger"
+                                                                                                      onclick="redirectToCheckout($data['SearchMasterId'])"
+                                                                                                      value="Book Now">Book
+                                                                                                      Now</button>
+                                                                                                      </div>
+                                                                                                
+
+                                                                                          </form>
+                                                                                   </div>
+                                                                                   <div class="flight-booking-detail-price-outer" style="margin-top: 15px;">
+                                                                                          <form name="flight-book-form"
+                                                                                                id=""
+                                                                                                action="{{route('search.checkout')}}" method="get">
+                                                                                                <input type="hidden" name="trip_id"
+                                                                                                      id="TripId"
+                                                                                                      value="{{$data['TripId']}}">
+                                                                                                <input type="hidden" name="referenc" value="route-{{$routeID}}-{{$data['TripId']}}">
+
+
+                                                                                                <div class="flight-booking-detail-price">
+                                                                                                      <div class="book-btn">
+                                                                                                      <div
+                                                                                                            class="flight-detail-price-amount">
+                                                                                                           Rs. {{$data['TicketSellingRate']  }} </div>
+                                                                                                      <h6
+                                                                                                            class="flight-booking-detail-price-title">
+                                                                                                            Passengers 
+<input type="text"
+                                                                                                      class="form-control" 
+                                                                                                      name="total_seat"
+                                                                                                      max={{$data['AvailableSeat']}}
+                                                                                                      placeholder="Enter Number of Passenger" 
+                                                                                                      >
+                                                                                                          </h6>
                                                                                                 </div>
                                                                                                 <button class="btn btn-danger"
                                                                                                       onclick="redirectToCheckout($data['SearchMasterId'])"
