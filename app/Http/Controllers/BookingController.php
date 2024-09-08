@@ -76,14 +76,16 @@ class BookingController extends Controller
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
                 "TotalSeat" => $fligtSearchData->requested_seats,
+                // "TotalSeat" => $fligtSearchData->requested_seats,
                 "SearchMasterId" => $fligtSearchData->search_master_id,
                 "TripId" => $tripId,
-                "CustomerId" => $user->id,
+                "CustomerId" => $user->email,
             ];
+            // dd($bookingData);
             // dd($fligtSearchData);
             logger('booking data', $bookingData);
+            // dd($bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
-
             // Storing Oof Flight Booking Data          
 
             if ($resultData['ResultCode'] == 200) {
@@ -128,6 +130,7 @@ class BookingController extends Controller
         $ticket_number = $request->get('ticket_booking_number');
         $user = $request->user();
         $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
+        $this->flightBookingService->setBookingCustomer($localTicket, $request);
         $this->flightBookingService->createBookingPassenger($localTicket, $passengers);
         // $ticket =  $this->apiService->getTicketByTicketNo([
         //     "TicketBookingNo" => $ticket_number, //"F1DE9866-C4DC-4C68-B472-537B3F881093",
@@ -136,10 +139,99 @@ class BookingController extends Controller
         $flightData = json_decode($localTicket->flight_data);
         $paymentData = [];
         $request->session()->flash('success', 'Thank you for booking with Us');
-        return redirect()->route('profile.edit');
-        dd($flightData);
+        return redirect()->route('verify.ticket', $ticket_number);
+        // return redirect()->route('profile.edit');
+        // dd($flightData);
     }
 
+    public function verifyAndConfirm(Request $request, $ticket_number){
+        // dd($request->user());
+        try{
+            $user = $request->user();
+            $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
+            $flightData = json_decode($localTicket->flight_data);
+            $apiTicket = $this->apiService->getTicketByTicketNo(['TicketBookingNo' => $ticket_number, 'CustomerId' => $request->user()->email]);
+            
+            $bookingData = [
+                "NationalityCode" => $apiTicket['NationalityCode'] ?? 'NP',
+                "Nationality" => $apiTicket['Nationality']??"Nepalese",
+                "EmailId" => $user->email,
+                "ContactNo" => $user->phone ?? "9878787878",
+                "EmergencyContactNo" => $localTicket->booking_emergency_contact,
+                "BookingName" => $localTicket->booking_name,
+                "SpecialInstruction" => "N/A",
+                "ReceivedAmount" => $flightData->DHTicketBookingResult->TotalAmount,
+                "TotalAmount" => $flightData->DHTicketBookingResult->TotalAmount,
+                "TicketBookingNo" => $flightData->DHTicketBookingResult->TicketBookingNumber,
+                "CustomerId" => $user->id,
+
+                "PaymentDetail" => [
+                    "paymentReferenceId" => "123er",
+                    "paymentMethodId" => "1",
+                    "paymentMethod" => "card",
+                    "totalAmount" => $flightData->DHTicketBookingResult->TotalAmount,
+                    "receivedAmount" => $flightData->DHTicketBookingResult->TotalAmount,
+                    "cardTypeId" => "1",
+                    "cardType" => "DEBIT",
+                    "cardNumber" => '5399330000012640',
+                    "cardHolderName" => 'SUJAN TEST',
+                    "cardBankId" => "234",
+                    "cardBank" => "himalayan bank",
+                    "cardExpiryDate" =>  '04/2027',
+                    "cardAuthorizeBy" => "string",
+                    "bankId" => "1234",
+                    "bankName" => "Himalayan bank",
+                    "walletId" => "234",
+                    "walletName" => "himilayan",
+                    "voucherCode" => "avg12",
+                    "customerId" => $user->id,
+                ],
+            ];
+
+            $passengers = $localTicket->passengers;
+            // dd($passengers);
+            $passengerDetail = [];
+            foreach ($passengers as $passenger) {
+                $requestSalutation = $passenger['salutation'];
+                $salutation = explode(' - ', $requestSalutation);
+                $salutationId = $salutation[0];
+                $salutationName = $salutation[1];
+                $requestGender = $passenger['gender'];
+                $gender = explode(' - ', $requestGender);
+                $genderId = $gender[0];
+                $genderName = $gender[1];
+                $passengerDetail[] = [
+
+                    "SalutationId" => $salutationId,
+                    "Salutation" => $salutationName,
+                    "PassengerName" => $passenger->name,
+                    "Age" => $passenger->age,
+                    "GenderId" => $genderId,
+                    "Gender" => $genderName,
+                    "MobileNo" => $passenger->phone,
+                    "EmergencyContactNo" => $passenger->emergency_contact_number,
+                    "EmailId" => $passenger->email
+                ];
+            }
+            $bookingData['PassengerDetail'] = $passengerDetail;
+            $resultData =  $this->apiService->ConfirmBooking($bookingData);
+            // dd($resultData);
+            if($resultData['ResultMessage'] == 'Success'){
+                $this->flightBookingService->markAsConfirmed($localTicket);
+                $request->session()->flash('success', 'Thank you for Booking has been verified');
+            }else{
+                $request->session()->flash('success', 'Unable to proceed');
+
+                // return back()->withErrors("Unable to Proceed, Data Mismatch");
+
+            }
+            return redirect()->route('profile.edit');
+        } catch (Exception $e) {
+            logger("book flight" . $e->getMessage());
+            return back()->withErrors($e->getMessage())->withInput();
+        }    
+    }
+    
     public function confirmBooking(Request $request)
     {
 

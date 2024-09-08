@@ -40,6 +40,7 @@
                       <div class="flight-booking-item">
                                               <div class="flight-booking-wrapper">
                                                     <div class="flight-booking-info">
+                                                      Ticket No: {{$ticket->booking_reference_id}}
                                                           <div class="flight-booking-content">
                                                                  <div class="flight-booking-airline">
                                                                        <div class="flight-airline-img">
@@ -93,9 +94,12 @@
                                                                  data-bs-toggle="collapse" role="button"
                                                                  aria-expanded="false"
                                                                  aria-controls="flight-booking-collapse1">Flight Details </a>
+                                                          @if($ticket->payment_status != 'paid')
+                                                          <a href="{{route('verify.ticket', $ticket->ticket_number)}}">Confirm Payment</a>
+                                                          @endif
                                                     </div>
                                               </div>
-                                              <div class="flight-booking-detail">
+                                              <div class="flight-booking-detail" style="display: none;">
 
                                                     <div class="collapse" id="flight-booking-collapse1">
                                                           <div class="flight-booking-detail-wrapper">

@@ -199,14 +199,16 @@ class StaticController extends Controller
 		$tripId = $request['trip_id'];
 		$seatCount = $request['total_seat'];
 		$transactionRefId = $request['TxnRefId'];
-		$masterSerarchId = $request['masterSerarchId'];
+		$masterSerarchId = $request['masterSerarchId']??$request['referenc'];
 		$tripData =  ['TripId' => $tripId];
 		$resultData = $this->apiService->tripDetails($tripData);
+		
 		if ($resultData['ResultCode'] === 200) {
 			$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"]) ? $resultData["ResultData"]["TripSearch"]["TripSearchResult"] : [];
 			dispatch(new FlightSearchStore($flightResultData, $seatCount, $transactionRefId, $masterSerarchId));
 
 			$flightData = $flightResultData[0];
+			// dump($flightData);
 			$user = $request->user();
 			// dd($user);
 			return view('html.checkout', compact('flightData', 'user'));
@@ -352,7 +354,7 @@ class StaticController extends Controller
 	public function popularRoute(Request $request, $routeID){
 		$returnData = $this->apiService->getRouteDetail($routeID);
 		$title = $request->get('name');
-		return view('html.popular', compact('returnData', 'title'));
+		return view('html.popular', compact('returnData', 'title', 'routeID'));
 
 	}
 

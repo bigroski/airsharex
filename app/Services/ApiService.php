@@ -464,12 +464,12 @@ class ApiService
 
         try {
 
-            if (!session()->has('asx_api_token')) {
+            // if (!session()->has('asx_api_token')) {
 
+            // }
                 $this->authenticate();
-            }
             $apiToken = session()->get('asx_api_token');
-
+            // dd($apiToken);
             $response = $this->client->post('/api/v1/booking/GetTicket', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
@@ -479,6 +479,7 @@ class ApiService
                 ],
                 'json' => $data
             ]);
+            
             $result = $response->getBody()->getContents();
 
             return json_decode($result, true);
@@ -492,6 +493,7 @@ class ApiService
     }
     public function ConfirmBooking($data)
     {
+        // dd($data);
 
         try {
 

@@ -146,7 +146,7 @@
                                         <h5 class="card-title mb-0 fw-light fs-5">{{count($returnData)}} Results Found
                                         </h5>
 
-                                        <div class="col-md-3 booking-sort-box">
+                                        <div class="col-md-3 booking-sort-box" style="display: none;">
                                              <select class="select">
                                                   <option value="1">Sort By Default</option>
                                                   <option value="2">Sort By Popular</option>
@@ -301,7 +301,7 @@
                                                                                                                    <th>Tax</th>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                   <td>Adult x 1</td>
+                                                                                                                   <td>PAX x {{$searchData['seat_count']}}</td>
                                                                                                                    <td>Rs
                                                                                                                          {{$data['TicketSellingRate']}}
                                                                                                                    </td>
@@ -323,7 +323,8 @@
                                                                                                       class="flight-booking-detail-info">
                                                                                                       <div
                                                                                                             class="flight-booking-policy">
-                                                                                                            <ul>
+                                                                                                            {{$data['BookingPolicy']}}
+                                                                                                            <!-- <ul>
                                                                                                                    <li> 1. Refund and
                                                                                                                          Date Change are
                                                                                                                          done as per the
@@ -344,7 +345,7 @@
                                                                                                                          ShareTrip
                                                                                                                          Convenience
                                                                                                                          Fee). </li>
-                                                                                                            </ul>
+                                                                                                            </ul> -->
                                                                                                       </div>
                                                                                                 </div>
                                                                                           </div>
