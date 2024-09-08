@@ -146,6 +146,9 @@ implements HasMedia
         }
         return '';
     }
+    public function getAllGalleryImagesAttribute(){
+        return $this->getMedia('gallery');
+    }
     public function getActivitylogOptions(): LogOptions
     {
         $logOption = new LogOptions();

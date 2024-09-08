@@ -15,6 +15,7 @@ use App\Jobs\FlightSearchStore;
 use App\Mail\ContactForm;
 use App\Services\ApiService;
 use App\Services\FlightSearchService;
+use App\Models\Service;
 use Http;
 use Mail;
 use Auth;
@@ -56,9 +57,13 @@ class StaticController extends Controller
 			'services' => $allServices
 		]);
 	}
-	public function servicesdetail()
+	public function servicesdetail($service_id)
 	{
-		return view('html.servicesdetail');
+		$service = Service::find($service_id);
+		// dump($service);
+		return view('html.servicesdetail')->with([
+			'service' => $service
+		]);
 	}
 	
 	public function blog()

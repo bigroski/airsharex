@@ -132,25 +132,16 @@
                                   <h4>About AirshareX</h4>
                                   <ul>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i><a href=""> Home</a>
+                                      <i class="bi bi-chevron-right"></i><a href="{{url('/')}}"> Home</a>
                                       </Li>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">About us</a>
+                                      <i class="bi bi-chevron-right"></i> <a href="{{url('/about')}}">About us</a>
                                       </Li>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i>  <a href="">
-  Services
-  </a>
+                                      <i class="bi bi-chevron-right"></i>  <a href="{{url('/ourservice')}}">Services</a>
                                       </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">Terms of service
-  </a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i><a href="/privacypolicy">Privacy policy</a></Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i><a href="/disclaimer">Disclaimer</a>
-                                      </Li>
+                                      
+                                      
                                   </ul>
                               </div>
                           </div>
@@ -159,20 +150,14 @@
                                   <h4>Our Services</h4>
                                   <ul>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i><a href=""> Search Tickets</a>
+                                      <i class="bi bi-chevron-right"></i><a href="{{url('/home')}}"> Search Tickets</a>
                                       </Li>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">Flight Fare</a>
-                                      </Li>
+                                      <i class="bi bi-chevron-right"></i><a href="{{url('/privacypolicy')}}">Privacy policy</a></Li>
                                       <Li>
-                                      <i class="bi bi-chevron-right"></i><a href="">Termes of Service</a>
+                                      <i class="bi bi-chevron-right"></i><a href="{{url('/disclaimer')}}">Disclaimer</a>
                                       </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i><a href="">Vendor</a>
-                                      </Li>
-                                      <Li>
-                                      <i class="bi bi-chevron-right"></i> <a href="">Partnership</a>
-                                      </Li>
+                                      
                                   </ul>
                               </div>
                           </div>
