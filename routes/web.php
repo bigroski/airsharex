@@ -56,7 +56,7 @@ Route::get('/history-static', [StaticController::class, 'history']);
 Route::post('/account/update', [StaticController::class, 'updateAccount'])->name('site.post.account');
 // Route::get('/blog', [StaticController::class, 'blog']);
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
-
+Route::get('/thank-you', [StaticController::class, 'thankyou']);
 Route::get('/services', [StaticController::class, 'services']);
 Route::get('/service-detail', [StaticController::class, 'servicesdetail']);
 Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');

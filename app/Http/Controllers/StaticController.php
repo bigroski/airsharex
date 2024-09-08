@@ -423,4 +423,9 @@ class StaticController extends Controller
 				}]'
 		);
 	}
+
+	public function thankyou()
+	{
+		return view('html.thankyou');
+	}
 }
