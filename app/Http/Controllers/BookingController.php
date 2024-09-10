@@ -81,12 +81,12 @@ class BookingController extends Controller
                 "TripId" => $tripId,
                 "CustomerId" => $user->email,
             ];
-            dump($bookingData);
+            // dump($bookingData);
             // dd($fligtSearchData);
             logger('booking data', $bookingData);
             // dd($bookingData);
             $resultData = $this->apiService->bookTrip($bookingData);
-            dump($resultData);
+            // dump($resultData);
             // Storing Oof Flight Booking Data          
 
             if ($resultData['ResultCode'] == 200) {

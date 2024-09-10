@@ -208,7 +208,7 @@ class StaticController extends Controller
 		
 		if ($resultData['ResultCode'] === 200) {
 			$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"]) ? $resultData["ResultData"]["TripSearch"]["TripSearchResult"] : [];
-			dump($flightResultData);
+			// dump($flightResultData);
 
 			dispatch(new FlightSearchStore($flightResultData, $seatCount, $transactionRefId, $masterSerarchId));
 
