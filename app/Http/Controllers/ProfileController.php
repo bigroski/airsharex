@@ -20,9 +20,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        // dump($request->user()->tickets);
         return view('profile.edit', [
             'user' => $request->user(),
-            'tickets' => $request->user()->tickets
+            'tickets' => $request->user()->tickets()->orderBy('created_at', 'desc')->get()
         ]);
     }
 

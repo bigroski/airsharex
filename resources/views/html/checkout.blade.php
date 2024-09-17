@@ -39,7 +39,7 @@
 
                               <div class="price-info">
 
-                                <span class="price-amount">{{$flightData['TicketSellingRate']}}</span>
+                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
                               </div>
                             </div>
                           </div>

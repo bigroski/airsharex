@@ -19,7 +19,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true"><i class="lni lni-plane"></i> Book A Flight</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" style="display: none;">
                     <button class="nav-link" id="getTicket-tab" data-bs-toggle="tab" data-bs-target="#getTicket" type="button" role="tab" aria-controls="getTicket" aria-selected="false" tabindex="-1"><i class="lni lni-helicopter"></i> Search Ticket</button>
                 </li>
                 <!-- <li class="nav-item" role="presentation">
@@ -128,14 +128,14 @@
                                     </span></button>
                                 <div class="count-table" id="popup">
                                     <div class="pass-count">
-                                        <h4>Adult</h4>
+                                        <h4>Number of Pax</h4>
                                         <div class="adder qty-container">
                                             <input type='button' value='-' class='qtyminus' field='quantity' />
                                             <input type='text' name='quantity' value='0' class='qty' />
                                             <input type='button' value='+' class='qtyplus' field='quantity' />
                                         </div>
                                     </div>
-                                    <div class="pass-count">
+                                    <!-- <div class="pass-count">
                                         <h4>Child</h4>
                                         <div class="adder qty-container">
                                             <input type='button' value='-' class='qtyminus' field='quantity' />
@@ -150,7 +150,7 @@
                                             <input type='text' name='quantity' value='0' class='qty' />
                                             <input type='button' value='+' class='qtyplus' field='quantity' />
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 @if ($errors->has('seat_count'))
                                 <span class="text-danger">{{ $errors->first('seat_count') }}</span>

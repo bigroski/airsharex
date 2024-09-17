@@ -31,4 +31,15 @@ class FlightBookingService
         return BookingOnDemand::create($data);
         
     }
+
+    public function setBookingCustomer($localTicket, $request){
+        $localTicket->booking_name = $request->get('booking_name');
+        $localTicket->booking_emergency_contact = $request->get('emergency_contact_number');
+        $localTicket->save();
+    }
+    public function markAsConfirmed($localTicket){
+        $localTicket->payment_status = 'paid';
+        $localTicket->confirmation_status = 'confirmed';
+        $localTicket->save();
+    }
 }

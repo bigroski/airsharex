@@ -15,7 +15,9 @@ class FlightSearchDetail extends Model
         "queue_date",
         "data",
         "requested_seats",
-        "transaction_ref_id"
+        "transaction_ref_id",
+        'total_price',
+        'total_seat'
     ];
     protected $casts = [
         'id' => 'integer',

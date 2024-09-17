@@ -14,7 +14,7 @@
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-            <form action="/user/login" method="POST" id="registrationForm" novalidate>
+            <form action="{{route('login')}}" method="POST" id="registrationForm" novalidate>
               @csrf
               @method('post')
               <div class="form-floating mb-3">

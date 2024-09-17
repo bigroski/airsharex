@@ -4,10 +4,10 @@
           data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0">
           <div class="container">
                <div class="breadcrumb-content text-white">
-                    <h1>{{$title}}</h1>
-                    <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat
+                    <h1>Popular Trips for: <br />{{$title}}</h1>
+                    <!-- <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat
                          vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio
-                         volutpat maximus</p>
+                         volutpat maximus</p> -->
                </div>
           </div>
      </section>
@@ -22,14 +22,14 @@
                                         <h5 class="card-title mb-0 fw-light fs-5">{{count($returnData)}} Results Found
                                         </h5>
 
-                                        <div class="col-md-3 booking-sort-box">
+                                        <!-- <div class="col-md-3 booking-sort-box">
                                              <select class="select">
                                                   <option value="1">Sort By Default</option>
                                                   <option value="2">Sort By Popular</option>
                                                   <option value="3">Sort By Low Price</option>
                                                   <option value="4">Sort By High Price</option>
                                              </select>
-                                        </div>
+                                        </div> -->
                                    </div>
                               </div>
                               <div class="row">
@@ -84,7 +84,7 @@
                                                           <div class="price-info">
 
                                                                  <span class="price-amount">Rs
-                                                                       {{$data['TicketSellingRate']}}</span>
+                                                                       {{$data['TicketSellingRate']}} (Per Pax)</span>
                                                           </div>
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
@@ -147,17 +147,17 @@
                                                                                                             class="table table-borderless">
                                                                                                             <tr>
                                                                                                                    <th>Flight</th>
-                                                                                                                   <th>Cabin</th>
-                                                                                                                   <th>Check In</th>
+                                                                                                                   <!-- <th>Cabin</th>
+                                                                                                                   <th>Check In</th> -->
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                    <td>{{ $data['DepartureCity']}}
                                                                                                                          -
                                                                                                                          {{ $data['ArrivalCity']}}
                                                                                                                    </td>
-                                                                                                                   <td>7 KG</td>
+                                                                                                                   <!-- <td>7 KG</td>
                                                                                                                    <td>20 KG
-                                                                                                                   </td>
+                                                                                                                   </td> -->
                                                                                                             </tr>
                                                                                                       </table>
                                                                                                 </div>
@@ -199,28 +199,7 @@
                                                                                                       class="flight-booking-detail-info">
                                                                                                       <div
                                                                                                             class="flight-booking-policy">
-                                                                                                            <ul>
-                                                                                                                   <li> 1. Refund and
-                                                                                                                         Date Change are
-                                                                                                                         done as per the
-                                                                                                                         following
-                                                                                                                         policies. </li>
-                                                                                                                   <li> 2. Refund
-                                                                                                                         Amount= Refund
-                                                                                                                         Charge (as per
-                                                                                                                         airline policy
-                                                                                                                         + ShareTrip
-                                                                                                                         Convenience
-                                                                                                                         Fee). </li>
-                                                                                                                   <li> 3. Date Change
-                                                                                                                         Amount= Date
-                                                                                                                         Change Fee (as
-                                                                                                                         per Airline
-                                                                                                                         Policy +
-                                                                                                                         ShareTrip
-                                                                                                                         Convenience
-                                                                                                                         Fee). </li>
-                                                                                                            </ul>
+                                                                                                            {!! $data['BookingPolicy'] !!}
                                                                                                       </div>
                                                                                                 </div>
                                                                                           </div>
@@ -232,6 +211,7 @@
                                                                                                 <input type="hidden" name="trip_id"
                                                                                                       id="TripId"
                                                                                                       value="{{$data['TripId']}}">
+                                                                                                <input type="hidden" name="referenc" value="route-{{$routeID}}-{{$data['TripId']}}">
                                                                                                 <input type="hidden"
                                                                                                       name="total_seat"
                                                                                                       id="TotalSeat"
@@ -241,12 +221,46 @@
                                                                                                       <div class="book-btn">
                                                                                                       <div
                                                                                                             class="flight-detail-price-amount">
-                                                                                                           Rs. {{$data['TicketSellingRate']}} </div>
-
+                                                                                                           Rs. {{$data['TicketSellingRate']  * $data['AvailableSeat'] }} </div>
                                                                                                       <h6
                                                                                                             class="flight-booking-detail-price-title">
                                                                                                             Total ({{$data['AvailableSeat']}}
                                                                                                             Traveler)</h6>
+                                                                                                </div>
+                                                                                                <button class="btn btn-danger"
+                                                                                                      onclick="redirectToCheckout($data['SearchMasterId'])"
+                                                                                                      value="Book Now">Book
+                                                                                                      Now</button>
+                                                                                                      </div>
+                                                                                                
+
+                                                                                          </form>
+                                                                                   </div>
+                                                                                   <div class="flight-booking-detail-price-outer" style="margin-top: 15px;">
+                                                                                          <form name="flight-book-form"
+                                                                                                id=""
+                                                                                                action="{{route('search.checkout')}}" method="get">
+                                                                                                <input type="hidden" name="trip_id"
+                                                                                                      id="TripId"
+                                                                                                      value="{{$data['TripId']}}">
+                                                                                                <input type="hidden" name="referenc" value="route-{{$routeID}}-{{$data['TripId']}}">
+
+
+                                                                                                <div class="flight-booking-detail-price">
+                                                                                                      <div class="book-btn">
+                                                                                                      <div
+                                                                                                            class="flight-detail-price-amount">
+                                                                                                           Rs. {{$data['TicketSellingRate']  }} </div>
+                                                                                                      <h6
+                                                                                                            class="flight-booking-detail-price-title">
+                                                                                                            Passengers 
+<input type="text"
+                                                                                                      class="form-control" 
+                                                                                                      name="total_seat"
+                                                                                                      max={{$data['AvailableSeat']}}
+                                                                                                      placeholder="Enter Number of Passenger" 
+                                                                                                      >
+                                                                                                          </h6>
                                                                                                 </div>
                                                                                                 <button class="btn btn-danger"
                                                                                                       onclick="redirectToCheckout($data['SearchMasterId'])"
