@@ -3846,3 +3846,7 @@ section.thankyou-blog {
     margin: 0 auto;
 }
 }
+
+form#registrationForm label.form-check-label a {
+  color: #f00;
+}
