@@ -23,7 +23,7 @@ use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CitizenshipController;
 use App\Http\Controllers\TicketController;
-
+use App\Http\Controllers\BookingOnDemandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,7 +56,7 @@ Route::get('/history-static', [StaticController::class, 'history']);
 Route::post('/account/update', [StaticController::class, 'updateAccount'])->name('site.post.account');
 // Route::get('/blog', [StaticController::class, 'blog']);
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
-Route::get('/thank-you', [StaticController::class, 'thankyou']);
+Route::get('/thank-you', [StaticController::class, 'thankyou'])->name('site.thankyou');
 Route::get('/services', [StaticController::class, 'services']);
 Route::get('/service-detail/{id}', [StaticController::class, 'servicesdetail'])->name('site.service-detail');
 Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
@@ -123,6 +123,7 @@ Route::prefix("admin")->middleware(
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
         Route::resource('leadership', LeadershipController::class, ['as' => 'web']);
         Route::post('gallery/delete-image', [GalleryController::class, 'deleteImage']);
+        Route::resource('bookingOnDemand', BookingOnDemandController::class, ['as' => 'web']);
     }
 );
 Route::resource('mailing-list', MailingListController::class, ['as' => 'web']);

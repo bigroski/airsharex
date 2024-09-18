@@ -31,7 +31,15 @@
                                 <div class="card-body ">
                                  
                                     <div class="row">
-                                    <div class=" col-12"><h6>Flight Details</h6></div>
+                                    <div class=" col-12">
+                                        <h6>Flight Details</h6>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div>
                                         <div class="col-md-4 col-12">
 
                                              <div class=" mb-3">
@@ -76,7 +84,7 @@
                                            
                                             <select name="service_type" class="form-control" placeholder="service Type" required>
                                                 <!-- <option >KTM</option> -->
-                                                <option value="">Select Service Type</option>
+                                                <option value="">Service Type</option>
                                                 @foreach ($heliServiceTypes as $heliServicdType)
                                                 @php
                                                 $combinedService = $heliServicdType['ServiceTypeId'] . ' - ' . $heliServicdType['ServiceType'];
@@ -230,10 +238,13 @@
                                             </div>
 
                                         </div>
+                                        <div class="col-md-12">
+                                          <div id="recaptcha"></div>
+                                        </div>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton">Submit</button>
-                            </div>
+                                            <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -251,5 +262,15 @@
 
 
         </section>
+        @section('page-scripts')
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+            <script type="text/javascript">
+                var onloadCallback = function() {
+                    grecaptcha.render('recaptcha', {
+                      'sitekey' : '6LekVwsTAAAAABjA9Aro5dm2mrl3kb6hMk6VsHhl'
+                    });
+                };
+            </script>
 
+        @endsection
 </x-airshare-layout>

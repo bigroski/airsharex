@@ -65,7 +65,6 @@
                             <textarea name="issues" class="form-control" id="iq" placeholder="Enter your Message" required></textarea>
                             </div>
                             <div id="recaptcha"></div>
-                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
                             <button type="submit" class="btn btn-lg btn-danger mt-3">Submit</button>
                         </form>
                   </div>

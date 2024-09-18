@@ -346,8 +346,7 @@ class BookingController extends Controller
     }
     public function flightOnDemandStore(Request $request)
     {
-        dd($request->all());
-
+        
         $total_passanger = $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
         $date = Carbon::now();
         $bookingId = strtotime($date);
@@ -394,6 +393,7 @@ class BookingController extends Controller
             $request->session()->flash('success', 'Unable to process Request');        
 
         }
-        return view('html.flight_ondemand_detail', compact('storeData'));
+        return redirect()->route('site.thankyou');
+        // return view('html.thankyou', compact('storeData'));
     }
 }
