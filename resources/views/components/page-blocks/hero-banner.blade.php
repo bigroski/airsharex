@@ -49,7 +49,7 @@
                         <div class="row g-3 justify-center">
                             <div class="col-lg-3 col-md-4 ol-sm-6 col-12">
 
-                                <select name="from" class="form-control" placeholder="From">
+                                <select name="from" class="form-control" placeholder="From" required>
                                     <!-- <option >KTM</option> -->
                                     <option value="">Select Departure</option>
                                     @foreach ($cities as $city)
@@ -67,7 +67,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
 
-                                <select name="to" class="form-control " placeholder="to">
+                                <select name="to" class="form-control " placeholder="to" required>
                                     <option value="">Select Destination</option>
                                     @foreach ($cities as $city)
                                     @php
@@ -82,10 +82,10 @@
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                <select name="nationality" class="form-control " placeholder="to">
+                                <select name="nationality" class="form-control " placeholder="to" required>
                                     <option value="">Select Nationality</option>
                                     @foreach ($nationalities as $nationality)
-                                    <option value="{{ $nationality['NationalityCode'] }}" {{ old("nationality") == $nationality['NationalityCode'] ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
+                                    <option value="{{ $nationality['NationalityCode'] }}" {{ $nationality['NationalityCode'] == 'NP' ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('nationality'))
@@ -96,8 +96,8 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
 
-                                <select name="heliServiceType" class="form-control " placeholder="Heli Service Type">
-                                    <option value="">Select Heli Service Type</option>
+                                <select name="heliServiceType" class="form-control " placeholder="Heli Service Type" required>
+                                    <option value="">Service Type</option>
                                     @foreach ($heliServiceTypes as $heliServicdType)
                                     <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ old("heliServiceType") == $heliServicdType['ServiceTypeId'] ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
                                     @endforeach
@@ -112,7 +112,7 @@
 
 
                                 <span>
-                                    <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Departure Date" autocomplete="off"></span>
+                                    <input type="text" name="start_date" id="start" value="{{date('Y-m-d')}}" class="form-control date-picker" placeholder="Departure Date" autocomplete="off" required></span>
                                 @if ($errors->has('start_date'))
                                 <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                 @endif

@@ -585,7 +585,7 @@ class ApiService
         try {
             $this->authenticate();
             $apiToken = session()->get('asx_api_token');
-
+            // dd($apiToken);
             $response = $this->client->post('/api/v1/booking/BookTripOnDemand', [
                 'headers' => [
                     'api-key'   => config('api.asx.api_key'),
@@ -595,13 +595,14 @@ class ApiService
                 ],
                 'json' => $data
             ]);
+            // dd($response->getBody()->getContents());
             return  json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
 
-            if ($e->hasResponse()) {
-                throw new ApiErrorException($e->getResponse()->getBody()->getContents());
-            }
-            throw new ApiErrorException('Unable to complete the request');
+        //     if ($e->hasResponse()) {
+        //         throw new ApiErrorException($e->getResponse()->getBody()->getContents());
+        //     }
+        //     throw new ApiErrorException('Unable to complete the request');
         }
     }
     public function getOffers()

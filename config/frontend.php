@@ -128,6 +128,42 @@ return [
 
         ],
         [
+            'name' => 'Bookings',
+            'routeName' => '',
+            'targetId' => 'kt_aside_tab_2',
+            'icon-class' => 'la la-cogs',
+            //Entity SubMenu
+            'sub_menus' => [
+                [
+                    'name' => 'Bookings',
+                    'routeName' => '',
+                    'icon-class' => 'flaticon2-box-1',
+                ],
+                [
+                    'name' => 'Booking',
+                    'sub_menus' => [
+                        [
+                            'name' => 'Regular Booking',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.vendors.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        [
+                            'name' => 'Booking On Demand',
+                            'icon-class' => 'fas fa-book-medical',
+                            'routeName' => 'web.bookingOnDemand.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
+                        
+                    ]
+                ],
+            ],
+            //Entity Submenu Ends
+
+        ],
+        [
             'name' => 'User Management',
             'routeName' => '',
             'targetId' => 'kt_aside_tab_2',
