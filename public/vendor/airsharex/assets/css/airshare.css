@@ -3830,3 +3830,19 @@ div#social-links ul li {
   background: #f5f5f5;
   box-shadow: 1px 1px 2px #777;
 }
+
+
+section.thankyou-blog {
+  padding: 120px 0 65px;
+  text-align: center;
+  img{
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+  }
+  .thankyou-wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+}
