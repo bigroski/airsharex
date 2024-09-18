@@ -141,8 +141,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/test', 'test')->name('book.test');
         Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
         Route::get('/{ticketNo}/ticket', 'getTicketDetail')->name('flight.ticket');
-        Route::get('/on-demand', 'flightOnDemand')->name('booking.ondemand');
-        Route::post('/on-demand-store', 'flightOnDemandStore')->name('store.booking.ondemand');
+        
         Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
         Route::post('/confirm-payment', 'redirectToPayment')->name('confirm.process-payment');
         Route::get('/verify/{ticket_number}', 'verifyAndConfirm')->name('verify.ticket');
@@ -150,7 +149,8 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-
+Route::get('/on-demand', [BookingController::class, 'flightOnDemand'])->name('booking.ondemand');
+Route::post('/on-demand-store', [BookingController::class, 'flightOnDemandStore'])->name('store.booking.ondemand');
 require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);

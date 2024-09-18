@@ -11,6 +11,7 @@ use App\Jobs\StoreFlightTicketDetail;
 use App\Services\ApiService;
 use App\Services\FlightBookingService;
 use App\Services\FlightSearchService;
+use App\Models\BookingOnDemand;
 use Bigroski\Tukicms\App\Models\Customer;
 use Carbon\Carbon;
 use Exception;
@@ -343,8 +344,10 @@ class BookingController extends Controller
         $heliServiceTypes = $this->apiService->getHeliServiceTypes();
         return view('html.flight_ondemand', compact('cities', 'heliServiceTypes'));
     }
-    public function flightOnDemandStore(BookingOnDemandRequest $request)
+    public function flightOnDemandStore(Request $request)
     {
+        dd($request->all());
+
         $total_passanger = $request['adult_passanger'] + $request['child_passanger'] ?? 0 + $request['infant_passanger'] ?? 0;
         $date = Carbon::now();
         $bookingId = strtotime($date);
@@ -371,17 +374,26 @@ class BookingController extends Controller
             "PickupLocation" => $request['pickup_location'],
             "BookingNotes" => $request['booking_notes']
         ];
+        // dd($requestData);
         $response = $this->apiService->bookingOnDemand($requestData);
-        $storeData = $request->all();
-        $storeData['total_passanger'] = $total_passanger;
-        $storeData['booking_id'] = $bookingId;
-        $storeData["status"] =  $response["ResultCode"];
-        $storeData['transaction_ref_id'] = $response["TransactionRefId"];
-        // dd($response["ResultData"]["Error"]);
-        $storeData["status_message"] = $response["ResultData"]["Error"][0]["ErrorMessage"];
-        //  dd($response);
-        dispatch(new StoreBookingOnDemandData($request->all()));
-        $storeData['service_type'] = $serviceName;
+        if($response['ResultMessage'] == 'Success'){
+
+            $storeData = $request->all();
+            $storeData['total_passanger'] = $total_passanger;
+            $storeData['booking_id'] = $bookingId;
+            $storeData["status"] =  $response["ResultCode"];
+            $storeData['transaction_ref_id'] = $response["TransactionRefId"];
+            $storeData["status_message"] = $response["ResultData"]["Error"][0]["ErrorMessage"];
+            
+            $storeData['service_type'] = $serviceName;
+            $demand = BookingOnDemand::create($storeData);
+            // dd($demand);
+            // dispatch(new StoreBookingOnDemandData($request->all()));
+            $request->session()->flash('success', 'Thank you . Your request is being processed.');        
+        }else{
+            $request->session()->flash('success', 'Unable to process Request');        
+
+        }
         return view('html.flight_ondemand_detail', compact('storeData'));
     }
 }
