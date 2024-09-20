@@ -79,7 +79,7 @@
                                             <div class="col-md-4 col-4">
                                                 <div class="form-floating mb-3">
                                                     <select name="PassengerDetail[{{ $i }}][salutation]" class="form-control" placeholder="Salutation" required>
-                                                    <option value="">Select Salutation</option>   
+                                                    <option value="">Salutation</option>   
 
                                                     @foreach ($salutations as $salutation)
                                                         <option value="{{ $salutation['SalutationId'] }} - {{ $salutation['Salutation'] }}">
@@ -100,7 +100,7 @@
                                                 <div class="form-floating mb-3">
                                                     <!-- <label for="from">From</label> -->
                                                     <select name="PassengerDetail[{{ $i }}][gender]" class="form-control" placeholder="Salutation" required>
-                                                    <option value="">Select Gender</option>   
+                                                    <option value="">Gender</option>   
                                                     @foreach ($genders as $gender)
                                                         @php
                                     $combinedGender = $gender['GenderId'] . ' - ' . $gender['Gender'];
@@ -114,7 +114,7 @@
                                             </div>
                                             <div class="col-md-3 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="number" name="PassengerDetail[{{ $i }}][age]" class="form-control" id="floatingAge" placeholder="Address" required>
+                                                    <input type="number" name="PassengerDetail[{{ $i }}][age]" class="form-control" id="floatingAge" placeholder="Address" required min="1">
                                                     <label for="floatingAge">Age</label>
 
                                                 </div>

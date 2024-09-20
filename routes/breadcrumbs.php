@@ -71,6 +71,7 @@ Breadcrumbs::resource('testimonials', 'Testimonials');
 Breadcrumbs::resource('gallery', 'Gallery');
 Breadcrumbs::resource('citizenship', 'Citizenship');
 Breadcrumbs::resource('leadership', 'Leadership');
+Breadcrumbs::resource('bookingOnDemand', 'BookingOnDemand');
 Breadcrumbs::resource('service', 'Service');
 Breadcrumbs::for('web.setting.system', function (BreadcrumbTrail $trail){
     $trail->push('System Setting');
