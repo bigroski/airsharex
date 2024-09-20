@@ -35,9 +35,7 @@ class FlightSearchStore implements ShouldQueue
                 "trip_id"=>$data['TripId'],
                 "queue_date"=>$data['TripDate'],
                 "requested_seats"=>$this->requestedSeats,
-                // "search_master_id"=>"A98B48B9-38A5-4744-9986-C11EB0EC65BF",
-                // "queue_id"=> "F0B5BE4E-72A1-4244-9E87-2B14FB0BD80B",
-                // "queue_date"=> "2024-06-30",
+                // 'total_price' => $data['TicketSellingRate'] * $this->requestedSeats,
                 "transaction_ref_id"=>$this->transactionRefId,
                 "data"=>$data
             ];

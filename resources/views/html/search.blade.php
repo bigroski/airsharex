@@ -94,14 +94,14 @@
                                                    </span></button>
                                                <div class="count-table" id="popup">
                                                    <div class="pass-count">
-                                                       <h4>Adult</h4>
+                                                       <h4>PAX</h4>
                                                        <div class="adder qty-container">
                                                            <input type='button' value='-' class='qtyminus' field='quantity' />
                                                            <input type='text' name='quantity' value='@if($searchData['seat_count']){{$searchData['seat_count']}}@else{{'0'}}@endif' class='qty' />
                                                            <input type='button' value='+' class='qtyplus' field='quantity' />
                                                        </div>
                                                    </div>
-                                                   <div class="pass-count">
+                                                   <!-- <div class="pass-count">
                                                        <h4>Child</h4>
                                                        <div class="adder qty-container">
                                                            <input type='button' value='-' class='qtyminus' field='quantity' />
@@ -116,7 +116,7 @@
                                                            <input type='text' name='quantity' value='0' class='qty' />
                                                            <input type='button' value='+' class='qtyplus' field='quantity' />
                                                        </div>
-                                                   </div>
+                                                   </div> -->
                                                </div>
                                                @if ($errors->has('seat_count'))
                                                        <span class="text-danger">{{ $errors->first('seat_count') }}</span>
@@ -146,7 +146,7 @@
                                         <h5 class="card-title mb-0 fw-light fs-5">{{count($returnData)}} Results Found
                                         </h5>
 
-                                        <div class="col-md-3 booking-sort-box">
+                                        <div class="col-md-3 booking-sort-box" style="display: none;">
                                              <select class="select">
                                                   <option value="1">Sort By Default</option>
                                                   <option value="2">Sort By Popular</option>
@@ -208,20 +208,26 @@
                                                           <div class="price-info">
 
                                                                  <span class="price-amount">Rs
-                                                                       {{$data['TicketSellingRate']}}</span>
+                                                                       {{$data['TicketSellingRate'] * $seatCount}}</span>
                                                           </div>
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
                                                           </div>
-                                                          <a class="btn btn-danger" href="#flight-booking-collapse1"
-                                                                 data-bs-toggle="collapse" role="button"
-                                                                 aria-expanded="false"
-                                                                 aria-controls="flight-booking-collapse1">Flight Details </a>
+                                                          <a class="btn btn-outline-dark " data-bs-toggle="modal" href="#exampleModalToggle" role="button" >Flight Details</a>
                                                     </div>
                                               </div>
-                                              <div class="flight-booking-detail">
+                                              
+                                              <div class="modal  fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered modal-lg">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Flight Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                          <div class="modal-body">
+                                          <div class="flight-booking-detail">
 
-                                                    <div class="collapse" id="flight-booking-collapse1">
+                                                  
                                                           <div class="flight-booking-detail-wrapper">
                                                                  <div class="row">
                                                                        
@@ -271,17 +277,16 @@
                                                                                                             class="table table-borderless">
                                                                                                             <tr>
                                                                                                                    <th>Flight</th>
-                                                                                                                   <th>Cabin</th>
-                                                                                                                   <th>Check In</th>
+                                                                                                                   <th>Pickup</th>
+                                                                                                                   <th>Dropoff</th>
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                    <td>{{ $data['DepartureCity']}}
                                                                                                                          -
                                                                                                                          {{ $data['ArrivalCity']}}
                                                                                                                    </td>
-                                                                                                                   <td>7 KG</td>
-                                                                                                                   <td>20 KG
-                                                                                                                   </td>
+                                                                                                                   <td>{{$data['PickupStation'][0]['StationName']}}</td>
+                                                                                                                   <td>{{$data['DropoffStation'][0]['StationName']}}</td>
                                                                                                             </tr>
                                                                                                       </table>
                                                                                                 </div>
@@ -298,20 +303,20 @@
                                                                                                                    <th>Fare Summary
                                                                                                                    </th>
                                                                                                                    <th>Base Fare</th>
-                                                                                                                   <th>Tax</th>
+                                                                                                                   <!-- <th>Tax</th> -->
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                   <td>Adult x 1</td>
+                                                                                                                   <td>PAX x {{$searchData['seat_count']}}</td>
                                                                                                                    <td>Rs
-                                                                                                                         {{$data['TicketSellingRate']}}
+                                                                                                                         {{$data['TicketSellingRate'] * $searchData['seat_count']}}
                                                                                                                    </td>
-                                                                                                                   <td>-</td>
+                                                                                                                   <!-- <td>-</td> -->
                                                                                                             </tr>
-                                                                                                            <tr>
+                                                                                                            <!-- <tr>
                                                                                                                    <td>Child x 1</td>
                                                                                                                    <td>-</td>
                                                                                                                    <td>-</td>
-                                                                                                            </tr>
+                                                                                                            </tr> -->
                                                                                                       </table>
                                                                                                 </div>
                                                                                           </div>
@@ -323,28 +328,7 @@
                                                                                                       class="flight-booking-detail-info">
                                                                                                       <div
                                                                                                             class="flight-booking-policy">
-                                                                                                            <ul>
-                                                                                                                   <li> 1. Refund and
-                                                                                                                         Date Change are
-                                                                                                                         done as per the
-                                                                                                                         following
-                                                                                                                         policies. </li>
-                                                                                                                   <li> 2. Refund
-                                                                                                                         Amount= Refund
-                                                                                                                         Charge (as per
-                                                                                                                         airline policy
-                                                                                                                         + ShareTrip
-                                                                                                                         Convenience
-                                                                                                                         Fee). </li>
-                                                                                                                   <li> 3. Date Change
-                                                                                                                         Amount= Date
-                                                                                                                         Change Fee (as
-                                                                                                                         per Airline
-                                                                                                                         Policy +
-                                                                                                                         ShareTrip
-                                                                                                                         Convenience
-                                                                                                                         Fee). </li>
-                                                                                                            </ul>
+                                                                                                            {!! $data['BookingPolicy'] !!}
                                                                                                       </div>
                                                                                                 </div>
                                                                                           </div>
@@ -361,12 +345,6 @@
                                                                                                       id="TotalSeat"
                                                                                                       value={{$seatCount}}>
 
-                                                                                                <input type="hidden"
-                                                                                                      name="TxnRefId" id="TxnRefId"
-                                                                                                      value={{$TransactionRefId}}>
-                                                                                                      <input type="hidden"
-                                                                                                      name="TxnRefId" id="TxnRefId"
-                                                                                                      value={{$TransactionRefId}}>
                                                                                                       <input type="hidden"
                                                                                                       name="TxnRefId" id="TxnRefId"
                                                                                                       value={{$TransactionRefId}}>
@@ -378,7 +356,7 @@
                                                                                                       <div class="book-btn">
                                                                                                       <div
                                                                                                             class="flight-detail-price-amount">
-                                                                                                           Rs. {{$data['TicketSellingRate']}} </div>
+                                                                                                           Rs. {{$data['TicketSellingRate'] * $seatCount}} </div>
 
                                                                                                       <h6
                                                                                                             class="flight-booking-detail-price-title">
@@ -398,8 +376,14 @@
                                                                        </div>
                                                                  </div>
                                                           </div>
-                                                    </div>
+                                                   
                                               </div>
+                                          </div>
+                                    
+                              </div>
+                              </div>
+                        </div>
+                                              
                                         </div>
                                  </div>
                                   @empty

@@ -18,7 +18,7 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>
+												<th colspan="2">
 													<p><strong>Popular Routes&nbsp;</strong></p>
 												</th>
 											</tr>
@@ -29,6 +29,9 @@
 											<tr>
 												<td>
 													<a href="{{route('site.popularRoute', [$popularItem['RouteId'], 'name' => $popularItem['RouteName']])}}">{{$popularItem['RouteName']}}</a>
+												</td>
+												<td>
+												<a class="btn btn-outline-dark btn-sm " href="{{route('site.popularRoute', [$popularItem['RouteId'], 'name' => $popularItem['RouteName']])}}">Search Flights</a>
 												</td>
 											</tr>
 											@endforeach
@@ -44,9 +47,7 @@
 						</div>
 					</div>
 
-					<div class="btn-link d-flex justify-content-end">
-								<a href="">Explore</a>
-							</div>
+					
 				</div>
 			</div>
 

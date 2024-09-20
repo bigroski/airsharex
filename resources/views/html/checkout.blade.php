@@ -39,7 +39,7 @@
 
                               <div class="price-info">
 
-                                <span class="price-amount">{{$flightData['TicketSellingRate']}}</span>
+                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
                               </div>
                             </div>
                           </div>
@@ -93,7 +93,7 @@
 
             <div class="card border-0 shadow rounded-3 bg-red">
               <div class="card-body p-4 p-sm-5">
-                <h5 class="card-title text-center mb-5 text-white fs-5">Checkout</h5>
+                <h5 class="card-title text-center mb-2 text-white fs-5">Checkout</h5>
                 <!-- <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get"> -->
               @if ($errors->any())
               <div class="alert alert-danger">

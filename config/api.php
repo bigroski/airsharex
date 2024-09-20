@@ -7,6 +7,8 @@ return [
 
     'asx' => [
         'api_base_url'=>env('ASX_API_BASE_URL','https://uatapi.airsharex.com'),
+        // 'api_base_url'=>env('ASX_API_BASE_URL','https://uat.api.airsharex.com/api'),
+        
         'username' => env('ASX_USERNAME'),
         'password' => env('ASX_PASSWORD'),
         'access_code' => env('ASX_ACCESSCODE'),

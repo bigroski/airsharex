@@ -144,7 +144,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/on-demand', 'flightOnDemand')->name('booking.ondemand');
         Route::post('/on-demand-store', 'flightOnDemandStore')->name('store.booking.ondemand');
         Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
-    Route::post('/confirm-payment', 'redirectToPayment')->name('confirm.process-payment');
+        Route::post('/confirm-payment', 'redirectToPayment')->name('confirm.process-payment');
+        Route::get('/verify/{ticket_number}', 'verifyAndConfirm')->name('verify.ticket');
 
     });
 });

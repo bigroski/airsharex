@@ -956,13 +956,14 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
     height: 60vh;
     position: relative;
     z-index: 9;
+    margin:45px 0;
     h1 {
-      font-size: 48px;
+      font-size: 38px;
       color: #f00;
       line-height: 1.2;
       font-weight: bold;
         @media screen and (min-width: 768px) {
-          font-size: 80px;
+          font-size: 60px;
           
           
           }
@@ -972,7 +973,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
         line-height: 1.2;
         margin-bottom: 10px;
         @media screen and (min-width: 768px) {
-        font-size: 62px;
+        font-size: 42px;
         
         }
       }
@@ -981,7 +982,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
         line-height: 1.2;
         margin-bottom: 10px;
         @media screen and (min-width: 768px) {
-        font-size: 32px;
+        font-size: 28px;
         
         }
     }
@@ -1010,14 +1011,19 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
   border-radius: 8px;
   box-shadow: 2px 2px 6px #bfbfbf;
   /* border:2px solid #f00; */
-
+  .btn-danger{
+    background-color: #f00;
+    &:hover{
+      background: #dc3545;
+    }
+  }
   .horizontal-scroll-tabs {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    background: #f5f5f5;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
+    background: #f00;
+    border-top-left-radius: 8px;
+    border-top-right-radius:8px;
     -webkit-overflow-scrolling: touch; /* Enable smooth scrolling for touch devices */
     display: flex;
     flex-wrap: nowrap;
@@ -1030,7 +1036,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
       border: none;
       .nav-link {
         border: none;
-        padding: 10px 15px;
+        padding: 0.875rem;
         font-size: 16px;
         line-height: 1.5;
         color: var(--color-secondary);
@@ -1039,19 +1045,19 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
         gap: 20px;
         align-items: center;
         &.active{
-          background-color: #fff;
-          color: #f00;
+          background-color: #f00;
+          color: rgb(255, 255, 255);
           i {
-            color: #f00;
+            color: rgb(255, 255, 255);
           }
         }
-        &:hover{
-          background-color: #fff;
-          color: #f00;
+        /* &:hover{
+          background-color: #f00;
+          color: #fff;
           i {
-            color: #f00;
+            color: rgb(252, 252, 252);
           }
-        }
+        } */
         
   
       }
@@ -1059,19 +1065,26 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
     .tab-content{
       padding: 20px;
       [type=button], [type=reset], [type=submit] {
-        height: 45px;
+        /* height: 45px; */
         display: block;
        }
     }
     .form-control{
-      height: 45px;
+      /* height: 45px; */
     }
     label {
       color: #797979;
   }
    
 }
- 
+ .form-control{
+  padding: .810rem .96rem;
+  background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+ }
 
 
 
@@ -1085,6 +1098,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
 
  section.scheduled-flight {
   padding: 65px 0;
+  background: #fff;
   .title{
     font-size: 36px;
     font-weight: bold;
@@ -2288,9 +2302,9 @@ div#foo {
 
 .count-table {
   display: none;
-  padding: 20px;
+  padding: .810rem .96rem;
   background: #fff;
-  width: 240px;
+  width: 280px;
   position: absolute;
   border: 1px solid #eee;
   overflow: hidden;
@@ -2305,7 +2319,7 @@ div#foo {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   h4 {
     font-size: 18px;
     width: 120px;
@@ -2344,7 +2358,7 @@ i.lni.lni-search {
 /* account page */
 section.component-account.account {
 .nav.flex-column.nav-pills {
-    width: 200px !important;
+    width: 240px !important;
 }
 
 
@@ -3676,6 +3690,7 @@ button#filghtSearchButton {
   gap: 10px;
   width: 100%;
   justify-content: center;
+  padding: .610rem .96rem;
 }
 
 
@@ -3778,6 +3793,16 @@ div#ui-datepicker-div {
   p {
     margin: 0;
   }
+  a{
+    color: #474747;
+    &.btn{
+      &:hover{
+        color:#fff;
+      }
+      
+    }
+  }
+  
 }
 
 .card {
@@ -3849,4 +3874,72 @@ section.thankyou-blog {
 
 form#registrationForm label.form-check-label a {
   color: #f00;
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  border: 1px solid #c5c5c5;
+  background: #fff;
+  font-weight: normal;
+  color: #454545;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: 1px solid #dc3545;
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.ui-widget-header {
+  border: 1px solid #ddd;
+  background: #dc3545;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.ui-widget-header .ui-icon {
+  background-image: url(images/ui-icons_444444_256x240.png);
+  filter: invert(100%);
+}
+
+.account .nav-link {
+ 
+    display: block;
+    padding: 0.75rem;
+    text-align: left;
+    background: #f5f5f5;
+    margin-bottom: 4px;
+
+  i{
+    padding-right: 4px;
+    font-size: 12px;
+  }
+}
+
+.account a.logout {
+  text-align: left !important;
+  padding: 0.75rem !important;
+  background: #f5f5f5;
+  border-radius: 6px;
+  i{
+    padding-right: 4px;
+    font-size: 12px;
+  }
+}
+
+section.component-account.account .price-info {
+  width: 100%;
+}
+
+.modal-body .flight-booking-detail-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
+}
+
+
+.customer-details p strong {
+  width: 100px;
+}
+.customer-details p {
+  display: flex;
 }

@@ -165,7 +165,21 @@ class Passenger extends Model
         
     ];
 
-    public function getListables(){
-return $this->listable;
+    public function getListables(){ 
+        return $this->listable;
+    }
+
+    public function getFriendlySalutationAttribute(){
+         $salutation = explode(' - ', $this->salutation);
+        $salutationId = $salutation[0];
+        $salutationName = $salutation[1];
+        return $salutationName;
+    }
+
+    public function getFriendlyGenderAttribute(){
+        $gender = explode(' - ', $this->gender);
+        $genderId = $gender[0];
+        $genderName = $gender[1];
+        return $genderName;
     }
 }

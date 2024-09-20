@@ -52,13 +52,13 @@
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" name="booking_name" class="form-control" id="floatingBookingName" placeholder="Booking Name">
+                                                    <input type="text" name="booking_name" class="form-control" id="floatingBookingName" placeholder="Booking Name" value="{{$user->name}}" required>
                                                     <label for="Booking Name">Booking Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" name="emergency_contact_number" class="form-control" id="floatingEmergContactNumber" placeholder="Emergency Contact Number">
+                                                    <input type="text" name="emergency_contact_number" class="form-control" id="floatingEmergContactNumber" placeholder="Emergency Contact Number" value="{{$user->phone}}" required>
                                                     <label for="floatingEmergContactNumber">Emergency Contact Number</label>
 
                                                 </div>
@@ -76,9 +76,9 @@
                                 @for ($i = 0; $i < $bookingDetails['TotalSeat']; $i++) <div class="card border-1 shadow rounded-3 mb-2">
                                     <div class="card-body p-3 p-sm-3">
                                         <div class="row">
-                                            <div class="col-md-2 col-2">
+                                            <div class="col-md-4 col-4">
                                                 <div class="form-floating mb-3">
-                                                    <select name="PassengerDetail[{{ $i }}][salutation]" class="form-control" placeholder="Salutation">
+                                                    <select name="PassengerDetail[{{ $i }}][salutation]" class="form-control" placeholder="Salutation" required>
                                                     <option value="">Select Salutation</option>   
 
                                                     @foreach ($salutations as $salutation)
@@ -89,17 +89,17 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-10">
+                                            <div class="col-md-8 col-8">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" name="PassengerDetail[{{ $i }}][name]" class="form-control" id="floatingName" placeholder="Full Name">
+                                                    <input type="text" name="PassengerDetail[{{ $i }}][name]" class="form-control" id="floatingName" placeholder="Full Name" required>
                                                     <label for="name">Passanger Name</label>
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 col-12">
+                                            <div class="col-md-3 col-12">
                                                 <div class="form-floating mb-3">
                                                     <!-- <label for="from">From</label> -->
-                                                    <select name="PassengerDetail[{{ $i }}][gender]" class="form-control" placeholder="Salutation">
+                                                    <select name="PassengerDetail[{{ $i }}][gender]" class="form-control" placeholder="Salutation" required>
                                                     <option value="">Select Gender</option>   
                                                     @foreach ($genders as $gender)
                                                         @php
@@ -112,31 +112,34 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 col-12">
+                                            <div class="col-md-3 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="number" name="PassengerDetail[{{ $i }}][age]" class="form-control" id="floatingAge" placeholder="Address">
+                                                    <input type="number" name="PassengerDetail[{{ $i }}][age]" class="form-control" id="floatingAge" placeholder="Address" required>
                                                     <label for="floatingAge">Age</label>
 
                                                 </div>
-                                        </div>
-
-                                        <div class="row">
-
-                                            
+                                        
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="email" name="PassengerDetail[{{ $i }}][email]" class="form-control" id="floatingEmail" placeholder="name@example.com">
                                                     <label for="email">Email address</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            </div>
+
+                                        <div class="row">
+
+                                            
+                                            
+                                           
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" name="PassengerDetail[{{ $i }}][phone]"  class="form-control" id="floatingPhone" placeholder="Phone Number">
+                                                    <input type="text" name="PassengerDetail[{{ $i }}][phone]"  class="form-control" id="floatingPhone" placeholder="Phone Number" required>
                                                     <label for="phone">Phone Number</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" name="PassengerDetail[{{ $i }}][emergency_contact_number]" class="form-control" id="floatingPhone" placeholder="Phone Number">
                                                     <label for="emergencyContactNumber">Emergency Contact Number</label>

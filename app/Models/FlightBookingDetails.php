@@ -25,6 +25,10 @@ class FlightBookingDetails extends Model
         'total_amount',
         'payment_method',
         'search_master_id',
+        'payment_status',
+        'confirmation_status',
+        'booking_name',
+        'emergency_contact_number'
     ];
     protected $casts = [
         'id' => 'integer',
@@ -38,9 +42,20 @@ class FlightBookingDetails extends Model
     public function search(){
         return $this->belongsTo(FlightSearchDetail::class,'search_master_id', 'search_master_id');
     }
+    public function detail(){
+        return $this->belongsTo(FlightSearchDetail::class,'trip_id', 'trip_id');
+
+    }
     public function getSearchDetailAttribute(){
         $search = $this->search;
-        $detail = $search->data;
-        return $detail;
+        if($search){
+
+            $detail = $search->data;
+            return $detail;
+        }else{
+            $search = $this->detail;
+            return $search->data;
+            // return null;
+        }
     }
 }
