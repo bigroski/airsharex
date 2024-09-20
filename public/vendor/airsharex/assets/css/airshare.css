@@ -544,6 +544,7 @@ section{
   transition: all 0.5s;
   z-index: 997;
   width: 100%;
+  background-color: #fff;
 }
 
 .header.sticked {
@@ -3942,4 +3943,9 @@ section.component-account.account .price-info {
 }
 .customer-details p {
   display: flex;
+}
+
+
+section.hero-section.light.ken-burn-center {
+  margin-top: 120px;
 }

@@ -1,4 +1,4 @@
-<section class=" light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset($featured_image) }}">
+<section class="hero-section light ken-burn-center" data-parallax="scroll" data-image-src="{{ asset($featured_image) }}">
 
     <div class="hero-content">
         <div class="container">
@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 ol-sm-12 col-12">
 
-                            <button type="submit" class="btn btn-danger " id="filghtSearchButton"><i class="lni lni-search"></i> Search Flight</button>
+                            <button type="submit" class="btn btn-dark " id="filghtSearchButton"><i class="lni lni-search"></i> Search Flight</button>
                         </div>
 
                     </div>
@@ -174,7 +174,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12">
 
-                            <button type="submit" class="btn btn-danger " id="filghtSearchButton"><i class="lni lni-search"></i> Search Ticket</button>
+                            <button type="submit" class="btn btn-dark " id="filghtSearchButton"><i class="lni lni-search"></i> Search Ticket</button>
                         </div>
                     </div>
             </div>
