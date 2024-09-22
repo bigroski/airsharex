@@ -46,7 +46,7 @@
                     @endif -->
 
                     <div class="row g-3 justify-center">
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
                             <select name="from" class="form-control" placeholder="From">
                                 <!-- <option >KTM</option> -->
@@ -59,11 +59,12 @@
                                 @endforeach
 
                                 </select>
+                                <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
                                 @if ($errors->has('from'))
                                 <span class=" text-danger">{{ $errors->first('from') }}</span>
                                     @endif
                         </div>
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
                             <select name="to" class="form-control " placeholder="to">
                                 <option value="">Select Destination</option>
@@ -74,11 +75,12 @@
                                 <option value="{{ $city['CityId'] }} - {{ $city['CityName'] }}" {{ old("to") == $combinedCity? 'selected' : '' }}>{{ $city['CityName'] }}</option>
                                 @endforeach
                             </select>
+                            <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
                             @if ($errors->has('to'))
                             <span class="text-danger">{{ $errors->first('to') }}</span>
                             @endif
                         </div>
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
                             <select name="nationality" class="form-control " placeholder="to">
                                 <option value="">Select Nationality</option>
@@ -86,31 +88,34 @@
                                 <option value="{{ $nationality['NationalityCode'] }}" {{ old("nationality") == $nationality['NationalityCode'] ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
                                 @endforeach
                             </select>
+                            <span class="icon-inside"><i class="fas fa-flag"></i></span>
                             @if ($errors->has('nationality'))
                             <span class="text-danger">{{ $errors->first('nationality') }}</span>
                             @endif
 
                         </div>
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
 
                             <select name="heliServiceType" class="form-control " placeholder="Heli Service Type">
-                                <option value="">Select Heli Service Type</option>
+                                <option value=""> Service Type</option>
                                 @foreach ($heliServiceTypes as $heliServicdType)
                                 <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ old("heliServiceType") == $heliServicdType['ServiceTypeId'] ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
                                 @endforeach
                             </select>
+                            <span class="icon-inside"><i class="fas fa-plane"></i></span>
                             @if ($errors->has('heliServiceType'))
                             <span class="text-danger">{{ $errors->first('heliServiceType') }}</span>
                             @endif
                         </div>
 
 
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
 
                             <span>
                                 <input type="text" name="start_date" id="start" value="{{old('start_date')}}" class="form-control date-picker" placeholder="Departure Date" autocomplete="off"></span>
+                                <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
                             @if ($errors->has('start_date'))
                             <span class="text-danger">{{ $errors->first('start_date') }}</span>
                             @endif
@@ -118,9 +123,10 @@
                         </div>
 
 
-                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12">
+                        <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
                             <input type="hidden" name="seat_count" id="seatCount">
+                            <span class="icon-inside"><i class="fas fa-user"></i></span>
                             <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
                                     : <span id="totalQuantity">0</span>
                                 </span></button>

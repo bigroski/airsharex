@@ -2676,10 +2676,10 @@ div#v-pills-tabContent {
 
 .flight-booking-item {
   background: #fff;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  padding: 20px 20px 15px;
-  box-shadow: 0 0 40px 5px rgb(0 0 0/5%);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 0 20px 5px rgb(0 0 0/5%);
 
 
   .flight-booking-wrapper {
@@ -2822,7 +2822,7 @@ h5.flight-airline-name {
   width:75px
 }
 .price-info {
-  width: 140px;
+  min-width: 140px;
 }
 
 .flight-booking-detail {
@@ -3948,4 +3948,48 @@ section.component-account.account .price-info {
 
 section.hero-section.light.ken-burn-center {
   margin-top: 120px;
+}
+.flight-booking-detail-price-1 {
+  padding: 10px;
+  background: #f5f5f5;
+}
+.flight-booking-detail-price-1 .book-details {
+  padding-bottom: 15px;
+    text-align: right;
+    .flight-seat-amount {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.1;
+      span{
+        font-size: 14px;
+        font-weight: 400;
+        display: block;
+        line-height: 1.1;
+      }
+  }
+  .flight-tickets-left {
+    color: #f00;
+    font-size: 14px;
+}
+}
+
+.flight-booking-detail-price-1  .book-btn {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  padding: 10px 0 0;
+  border-top: 2px solid #999;
+}
+.form-group {
+  position: relative;
+}
+.icon-inside {
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 11px);
+  pointer-events: none;
+  font-size: 18px;
+  font-size: 1.125rem;
+  color: #c4c3c3;
+  z-index: 3;
 }
