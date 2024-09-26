@@ -14,33 +14,37 @@
     <div class="container">
       <div class="d-flex align-items-start mbl-tab-wrapper">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</button>
-          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Booking History</button>
-          <button class="nav-link" id="v-pills-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-password" type="button" role="tab" aria-controls="v-pills-password" aria-selected="false">Password</button>
+          <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user"></i> Profile</button>
+
+          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-history"></i> Purchase History</button>
+
+          <button class="nav-link" id="v-pills-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-password" type="button" role="tab" aria-controls="v-pills-password" aria-selected="false"><i class="fas fa-key"></i> Password</button>
+
           <form method="POST" action="{{ route('logout') }}">
             @csrf
 
             <x-dropdown-link :href="route('logout')"
                     onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                {{ __('Log Out') }}
+              <i class="fas fa-lock"></i>  {{ __(' Log Out') }}
             </x-dropdown-link>
-        </form>
+          </form>
         </div>
-        <div class="tab-content mt-2" id="v-pills-tabContent">
+        <div class="tab-content mb-2" id="v-pills-tabContent">
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
             @include('partials.profile-information')
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-
             @include('partials.history') 
           </div>
-          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">Message content</div>
+          <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">Message content</div> -->
           <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab" tabindex="0">
             @include('partials.change-password')
           </div>
         </div>
+       
       </div>
+
     </div>
   </section>
   <!-- account -->

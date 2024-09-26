@@ -213,15 +213,21 @@
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
                                                           </div>
-                                                          <a class="btn btn-danger" href="#flight-booking-collapse1"
-                                                                 data-bs-toggle="collapse" role="button"
-                                                                 aria-expanded="false"
-                                                                 aria-controls="flight-booking-collapse1">Flight Details </a>
+                                                          <a class="btn btn-outline-dark " data-bs-toggle="modal" href="#exampleModalToggle" role="button" >Flight Details</a>
                                                     </div>
                                               </div>
-                                              <div class="flight-booking-detail">
+                                              
+                                              <div class="modal  fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered modal-lg">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Flight Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                          <div class="modal-body">
+                                          <div class="flight-booking-detail">
 
-                                                    <div class="collapse" id="flight-booking-collapse1">
+                                                  
                                                           <div class="flight-booking-detail-wrapper">
                                                                  <div class="row">
                                                                        
@@ -370,8 +376,14 @@
                                                                        </div>
                                                                  </div>
                                                           </div>
-                                                    </div>
+                                                   
                                               </div>
+                                          </div>
+                                    
+                              </div>
+                              </div>
+                        </div>
+                                              
                                         </div>
                                  </div>
                                   @empty

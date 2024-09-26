@@ -125,8 +125,9 @@
                                         <div class="passanger-card mb-3">
                                               
                                                <input type="hidden" name="seat_count" id="seatCount" value="0">
+                                               
                                                <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
-                                                       : <span id="totalQuantity"></span>
+                                                       : <span id="totalQuantity">0</span> (Adult:<span id="totalAdults">0</span>, Child:<span id="totalChildren">0</span>, Infant:<span id="totalInfants">0</span>)
                                                    </span></button>
                                                <div class="count-table" id="popup">
                                                    <div class="pass-count">
@@ -270,7 +271,11 @@
                       'sitekey' : '6LekVwsTAAAAABjA9Aro5dm2mrl3kb6hMk6VsHhl'
                     });
                 };
+
+
+                
             </script>
 
         @endsection
+   
 </x-airshare-layout>

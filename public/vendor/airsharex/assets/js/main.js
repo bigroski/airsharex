@@ -439,66 +439,53 @@ $(document).ready(function() {
 });
 
 
-// add-sub button
-document.addEventListener('DOMContentLoaded', function () {
-  const containers = document.querySelectorAll('.qty-container');
-  const totalQuantitySpan = document.getElementById('totalQuantity');
-  const totalSeatInput = document.getElementById('seatCount');
 
-
-  function updateTotalQuantity() {
-      let total = 0;
-      document.querySelectorAll('input[name="quantity"]').forEach(input => {
-          total += parseInt(input.value);
-      });
-      totalQuantitySpan.textContent = total;
-      totalSeatInput.value=total;
-  }
-
-  containers.forEach(container => {
-      const qtyMinusButton = container.querySelector('.qtyminus');
-      const qtyPlusButton = container.querySelector('.qtyplus');
-      const qtyInput = container.querySelector('input[name="quantity"]');
-
-      qtyMinusButton.addEventListener('click', function () {
-          let currentValue = parseInt(qtyInput.value);
-          if (currentValue > 0) {
-              qtyInput.value = currentValue - 1;
-              updateTotalQuantity();
-          }
-      });
-
-      qtyPlusButton.addEventListener('click', function () {
-          let currentValue = parseInt(qtyInput.value);
-          qtyInput.value = currentValue + 1;
-          updateTotalQuantity();
-      });
+$(document).ready(function() {
+  // Toggle the passenger count popup on button click
+  $('#toggleButton').click(function() {
+      $('#popup').toggle();
   });
 
-  // Initial calculation of total quantity
-  updateTotalQuantity();
-});
-
-
-// passenger popup
-document.addEventListener('DOMContentLoaded', function () {
-  const toggleButton = document.getElementById('toggleButton');
-  const popup = document.getElementById('popup');
-
-  toggleButton.addEventListener('click', function (event) {
-      popup.classList.toggle('show');
-      event.stopPropagation();  // Prevent the click event from propagating to the document
-  });
-
-  document.addEventListener('click', function () {
-      if (popup.classList.contains('show')) {
-          popup.classList.remove('show');
+  // Update passenger count on plus/minus button click
+  $('.qtyplus').click(function() {
+      var fieldName = $(this).attr('field');
+      var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+      if (!isNaN(currentVal)) {
+          $('input[name=' + fieldName + ']').val(currentVal + 1);
+      } else {
+          $('input[name=' + fieldName + ']').val(0);
       }
+      updateTotalPassengers();
   });
 
-  popup.addEventListener('click', function (event) {
-      event.stopPropagation();  // Prevent the click event from propagating to the document
+  $('.qtyminus').click(function() {
+      var fieldName = $(this).attr('field');
+      var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+      if (!isNaN(currentVal) && currentVal > 0) {
+          $('input[name=' + fieldName + ']').val(currentVal - 1);
+      } else {
+          $('input[name=' + fieldName + ']').val(0);
+      }
+      updateTotalPassengers();
   });
+
+  // Function to update the total passenger count
+  function updateTotalPassengers() {
+      var totalAdults = parseInt($('input[name="adult_passanger"]').val());
+      var totalChildren = parseInt($('input[name="child_passanger"]').val());
+      var totalInfants = parseInt($('input[name="infant_passanger"]').val());
+      
+      var totalPassengers = totalAdults + totalChildren + totalInfants;
+      
+      // Update the hidden seat count input
+      $('#seatCount').val(totalPassengers);
+      
+      // Update the total quantity display
+      $('#totalQuantity').text(totalPassengers);
+      $('#totalAdults').text(totalAdults);
+      $('#totalChildren').text(totalChildren);
+      $('#totalInfants').text(totalInfants);
+  }
 });
 
 

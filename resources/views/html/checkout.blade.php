@@ -7,7 +7,7 @@
       </div>
     </div>
   </section>
-  <section class=" checkout">
+  
     <section class=" checkout">
       <div class="container">
 
@@ -15,7 +15,7 @@
 
 
         <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-7">
+          <div class="col-sm-12 col-md-12 col-lg-8">
 
             <div class="flight-booking flight-list py-120">
 
@@ -89,11 +89,11 @@
 
             </div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-5">
+          <div class="col-sm-12 col-md-12 col-lg-4">
 
             <div class="card border-0 shadow rounded-3 bg-red">
-              <div class="card-body p-4 p-sm-5">
-                <h5 class="card-title text-center mb-5 text-white fs-5">Checkout</h5>
+              <div class="card-body p-2 p-sm-3">
+                <h5 class="card-title text-center mb-2 text-white fs-5">Checkout</h5>
                 <!-- <form name="flight-book-form" id="filghtBookForm" action="/checkout" method="get"> -->
               @if ($errors->any())
               <div class="alert alert-danger">

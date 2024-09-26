@@ -1,7 +1,7 @@
 <!--flight history -->
-            <div class="flight-booking flight-list py-120">
+<div class="flight-booking flight-list py-120">
               <div class="container">
-                <h5 class="card-title mb-1 fw-light fs-5">Purchase History</h5>
+                <h5 class="card-title mb-2 fw-light fs-5">Purchase History</h5>
                 <!-- <div class="row">
                   <div class="col-lg-12 col-xl-12">
                     <div class="flight-filter">
@@ -90,150 +90,167 @@
                                         <div class="date">
                                              <i class="fa fa-calendar"></i>{{$data['TripDate']}}
                                         </div>
-                                        <a class="btn btn-danger" href="#flight-booking-collapse1"
+                                        <!-- <a class="btn btn-outline-dark " href="#flight-booking-collapse1"
                                                data-bs-toggle="collapse" role="button"
                                                aria-expanded="false"
-                                               aria-controls="flight-booking-collapse1">Flight Details </a>
+                                               aria-controls="flight-booking-collapse1">Flight Details </a> -->
+                                               <a class="btn btn-outline-dark " data-bs-toggle="modal" href="#exampleModalToggle" role="button" >Flight Details</a>
+
                                         @if($ticket->payment_status != 'paid')
-                                        <a href="{{route('verify.ticket', $ticket->ticket_number)}}">Confirm Payment</a>
+                                        <a href="{{route('verify.ticket', $ticket->ticket_number)}}" class="btn btn-danger">Confirm Payment</a>
                                         @endif
                                   </div>
                             </div>
-                            <div class="flight-booking-detail" style="">
+                            
+                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Flight Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                          <div class="modal-body">
+                                          <div class="flight-booking-detail" style="">
 
-                                  <div class="collapse" id="flight-booking-collapse1">
-                                        <div class="flight-booking-detail-wrapper">
-                                               <div class="row">
-                                                     
-                                                     <div class="col-lg-12 col-xl-12">
-                                                           <div class="flight-booking-detail-right">
-                                                                 <ul class="nav nav-tabs" id="frTab1"
-                                                                        role="tablist">
-                                                                        <li class="nav-item"
-                                                                              role="presentation">
-                                                                              <button class="nav-link active"
-                                                                                    id="fr-tab1"
-                                                                                    data-bs-toggle="tab"
-                                                                                    data-bs-target="#fr-tab-pane-{{$key}}"
-                                                                                    type="button" role="tab"
-                                                                                    aria-controls="fr-tab-pane-{{$key}}"
-                                                                                    aria-selected="true">Baggage</button>
-                                                                        </li>
-                                                                        <li class="nav-item"
-                                                                              role="presentation">
-                                                                              <button class="nav-link"
-                                                                                    id="fr-tab2"
-                                                                                    data-bs-toggle="tab"
-                                                                                    data-bs-target="#fr-tab-pane-pax-{{$key}}"
-                                                                                    type="button" role="tab"
-                                                                                    aria-controls="fr-tab-pane-pax-{{$key}}"
-                                                                                    aria-selected="false">Pax</button>
-                                                                        </li>
-                                                                        <!-- <li class="nav-item"
-                                                                              role="presentation">
-                                                                              <button class="nav-link"
-                                                                                    id="fr-tab3"
-                                                                                    data-bs-toggle="tab"
-                                                                                    data-bs-target="#fr-tab-pane3"
-                                                                                    type="button" role="tab"
-                                                                                    aria-controls="fr-tab-pane3"
-                                                                                    aria-selected="false">Policy</button>
-                                                                        </li> -->
-                                                                 </ul>
-                                                                 <div class="tab-content" id="frTabContent1">
-                                                                        <div class="tab-pane fade show active"
-                                                                              id="fr-tab-pane-{{$key}}" role="tabpanel"
-                                                                              aria-labelledby="fr-tab1"
-                                                                              tabindex="0">
-                                                                              <div
-                                                                                    class="flight-booking-detail-info">
-                                                                                    <table
-                                                                                          class="table table-borderless">
-                                                                                          <tr>
-                                                                                                 <th>Flight</th>
-                                                                                                 <th>Cabin</th>
-                                                                                                 <th>Check In</th>
-                                                                                          </tr>
-                                                                                          <tr>
-                                                                                                 <td>{{ $data['DepartureCity']}}
-                                                                                                       -
-                                                                                                       {{ $data['ArrivalCity']}}
-                                                                                                 </td>
-                                                                                                 <td>7 KG</td>
-                                                                                                 <td>20 KG
-                                                                                                 </td>
-                                                                                          </tr>
-                                                                                    </table>
-                                                                              </div>
-                                                                        </div>
-                                                                        <div class="tab-pane fade"
-                                                                              id="fr-tab-pane-pax-{{$key}}" role="tabpanel"
-                                                                              aria-labelledby="fr-tab2"
-                                                                              tabindex="0">
-                                                                              <div
-                                                                                    class="flight-booking-detail-info">
-                                                                                    <table
-                                                                                          class="table table-borderless">
-                                                                                          <tr>
-                                                                                                 <th>Passenger Name</th>
-                                                                                                 <th>Gender</th>
-                                                                                                 <th>Age</th>
-                                                                                          </tr>
-                                                                                          @foreach($ticket->passengers as $passenger)
-                                                                                          
-                                                                                          <tr>
-                                                                                                 <td>{{$passenger->friendlySalutation}}. {{$passenger->name}}</td>
-                                                                                                 <td>{{$passenger->friendlyGender}}</td>
-                                                                                                 <td>{{$passenger->age}}</td>
-                                                                                          </tr>
-                                                                                          @endforeach
-                                                                                          
-                                                                                    </table>
-                                                                              </div>
-                                                                        </div>
-                                                                        <!-- <div class="tab-pane fade"
-                                                                              id="fr-tab-pane3" role="tabpanel"
-                                                                              aria-labelledby="fr-tab3"
-                                                                              tabindex="0">
-                                                                              <div
-                                                                                    class="flight-booking-detail-info">
+
+                                                <div class="flight-booking-detail-wrapper">
+                                                      <div class="row">
+                                                            
+                                                            <div class="col-lg-12 col-xl-12">
+                                                                  <div class="flight-booking-detail-right">
+                                                                        <ul class="nav nav-tabs" id="frTab1"
+                                                                              role="tablist">
+                                                                              <li class="nav-item"
+                                                                                    role="presentation">
+                                                                                    <button class="nav-link active"
+                                                                                          id="fr-tab1"
+                                                                                          data-bs-toggle="tab"
+                                                                                          data-bs-target="#fr-tab-pane-{{$key}}"
+                                                                                          type="button" role="tab"
+                                                                                          aria-controls="fr-tab-pane-{{$key}}"
+                                                                                          aria-selected="true">Baggage</button>
+                                                                              </li>
+                                                                              <li class="nav-item"
+                                                                                    role="presentation">
+                                                                                    <button class="nav-link"
+                                                                                          id="fr-tab2"
+                                                                                          data-bs-toggle="tab"
+                                                                                          data-bs-target="#fr-tab-pane-pax-{{$key}}"
+                                                                                          type="button" role="tab"
+                                                                                          aria-controls="fr-tab-pane-pax-{{$key}}"
+                                                                                          aria-selected="false">Pax</button>
+                                                                              </li>
+                                                                              <!-- <li class="nav-item"
+                                                                                    role="presentation">
+                                                                                    <button class="nav-link"
+                                                                                          id="fr-tab3"
+                                                                                          data-bs-toggle="tab"
+                                                                                          data-bs-target="#fr-tab-pane3"
+                                                                                          type="button" role="tab"
+                                                                                          aria-controls="fr-tab-pane3"
+                                                                                          aria-selected="false">Policy</button>
+                                                                              </li> -->
+                                                                        </ul>
+                                                                        <div class="tab-content" id="frTabContent1">
+                                                                              <div class="tab-pane fade show active"
+                                                                                    id="fr-tab-pane-{{$key}}" role="tabpanel"
+                                                                                    aria-labelledby="fr-tab1"
+                                                                                    tabindex="0">
                                                                                     <div
-                                                                                          class="flight-booking-policy">
-                                                                                          <ul>
-                                                                                                 <li> 1. Refund and
-                                                                                                       Date Change are
-                                                                                                       done as per the
-                                                                                                       following
-                                                                                                       policies. </li>
-                                                                                                 <li> 2. Refund
-                                                                                                       Amount= Refund
-                                                                                                       Charge (as per
-                                                                                                       airline policy
-                                                                                                       + ShareTrip
-                                                                                                       Convenience
-                                                                                                       Fee). </li>
-                                                                                                 <li> 3. Date Change
-                                                                                                       Amount= Date
-                                                                                                       Change Fee (as
-                                                                                                       per Airline
-                                                                                                       Policy +
-                                                                                                       ShareTrip
-                                                                                                       Convenience
-                                                                                                       Fee). </li>
-                                                                                          </ul>
+                                                                                          class="flight-booking-detail-info">
+                                                                                          <table
+                                                                                                class="table table-borderless">
+                                                                                                <tr>
+                                                                                                      <th>Flight</th>
+                                                                                                      <th>Cabin</th>
+                                                                                                      <th>Check In</th>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                      <td>{{ $data['DepartureCity']}}
+                                                                                                            -
+                                                                                                            {{ $data['ArrivalCity']}}
+                                                                                                      </td>
+                                                                                                      <td>7 KG</td>
+                                                                                                      <td>20 KG
+                                                                                                      </td>
+                                                                                                </tr>
+                                                                                          </table>
                                                                                     </div>
                                                                               </div>
-                                                                        </div> -->
-                                                                 </div>
-                                                                 <div class="flight-booking-detail-price-outer">
-                                                                        
-                                                                 </div>
-                                                           </div>
-                                                     </div>
-                                               </div>
-                                        </div>
-                                  </div>
-                            </div>
+                                                                              <div class="tab-pane fade"
+                                                                                    id="fr-tab-pane-pax-{{$key}}" role="tabpanel"
+                                                                                    aria-labelledby="fr-tab2"
+                                                                                    tabindex="0">
+                                                                                    <div
+                                                                                          class="flight-booking-detail-info">
+                                                                                          <table
+                                                                                                class="table table-borderless">
+                                                                                                <tr>
+                                                                                                      <th>Passenger Name</th>
+                                                                                                      <th>Gender</th>
+                                                                                                      <th>Age</th>
+                                                                                                </tr>
+                                                                                                @foreach($ticket->passengers as $passenger)
+                                                                                                
+                                                                                                <tr>
+                                                                                                      <td>{{$passenger->friendlySalutation}}. {{$passenger->name}}</td>
+                                                                                                      <td>{{$passenger->friendlyGender}}</td>
+                                                                                                      <td>{{$passenger->age}}</td>
+                                                                                                </tr>
+                                                                                                @endforeach
+                                                                                                
+                                                                                          </table>
+                                                                                    </div>
+                                                                              </div>
+                                                                              <!-- <div class="tab-pane fade"
+                                                                                    id="fr-tab-pane3" role="tabpanel"
+                                                                                    aria-labelledby="fr-tab3"
+                                                                                    tabindex="0">
+                                                                                    <div
+                                                                                          class="flight-booking-detail-info">
+                                                                                          <div
+                                                                                                class="flight-booking-policy">
+                                                                                                <ul>
+                                                                                                      <li> 1. Refund and
+                                                                                                            Date Change are
+                                                                                                            done as per the
+                                                                                                            following
+                                                                                                            policies. </li>
+                                                                                                      <li> 2. Refund
+                                                                                                            Amount= Refund
+                                                                                                            Charge (as per
+                                                                                                            airline policy
+                                                                                                            + ShareTrip
+                                                                                                            Convenience
+                                                                                                            Fee). </li>
+                                                                                                      <li> 3. Date Change
+                                                                                                            Amount= Date
+                                                                                                            Change Fee (as
+                                                                                                            per Airline
+                                                                                                            Policy +
+                                                                                                            ShareTrip
+                                                                                                            Convenience
+                                                                                                            Fee). </li>
+                                                                                                </ul>
+                                                                                          </div>
+                                                                                    </div>
+                                                                              </div> -->
+                                                                        </div>
+                                                                        <div class="flight-booking-detail-price-outer">
+                                                                              
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+
+                                          </div>
+                                          </div>
+                                    
+                              </div>
+                              </div>
+                        </div>
+
                       </div>
                       
                     </div>
@@ -280,4 +297,4 @@
                 </div>
               </div>
             </div>
-            <!-- flight history
+           
