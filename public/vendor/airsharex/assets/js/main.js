@@ -488,6 +488,33 @@ $(document).ready(function() {
   }
 });
 
+// for homepage
+$(document).ready(function() {
+ 
+  // Increment/Decrement quantity
+  $('.qtyplus01').click(function() {
+      var currentVal = parseInt($('.qty01').val());
+      if (!isNaN(currentVal)) {
+          $('.qty01').val(currentVal + 1);
+          updatePassengerCount();
+      }
+  });
+
+  $('.qtyminus01').click(function() {
+      var currentVal = parseInt($('.qty01').val());
+      if (!isNaN(currentVal) && currentVal > 0) {
+          $('.qty01').val(currentVal - 1);
+          updatePassengerCount();
+      }
+  });
+
+  // Function to update the passenger count
+  function updatePassengerCount() {
+      var total = $('.qty01').val();
+      $('#totalQuantity01').text(total);  // Update total in button
+      $('#seatCount01').val(total);  // Update hidden input value
+  }
+});
 
 // radio one/two way
 function toggleInputs() {
