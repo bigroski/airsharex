@@ -125,36 +125,21 @@
 
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
-                            <input type="hidden" name="seat_count" id="seatCount">
+                            <input type="hidden" name="seat_count" id="seatCount01">
                             <span class="icon-inside"><i class="fas fa-user"></i></span>
-                            <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
-                                    : <span id="totalQuantity">0</span>
+                            <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer01">
+                                    : <span id="totalQuantity01">0</span>
                                 </span></button>
                             <div class="count-table" id="popup">
                                 <div class="pass-count">
                                     <span>Number of Pax</span>
-                                    <div class="adder qty-container">
-                                        <input type='button' value='-' class='qtyminus' field='quantity' />
-                                        <input type='text' name='quantity' value='0' class='qty' />
-                                        <input type='button' value='+' class='qtyplus' field='quantity' />
+                                    <div class="adder qty-container01">
+                                        <input type='button' value='-' class='qtyminus01' field='quantity' />
+                                        <input type='text' name='quantity' value='0' class='qty01' />
+                                        <input type='button' value='+' class='qtyplus01' field='quantity' />
                                     </div>
                                 </div>
-                                <!-- <div class="pass-count">
-                                    <h4>Child</h4>
-                                    <div class="adder qty-container">
-                                        <input type='button' value='-' class='qtyminus' field='quantity' />
-                                        <input type='text' name='quantity' value='0' class='qty' />
-                                        <input type='button' value='+' class='qtyplus' field='quantity' />
-                                    </div>
-                                </div>
-                                <div class="pass-count">
-                                    <h4>Infant</h4>
-                                    <div class="adder qty-container">
-                                        <input type='button' value='-' class='qtyminus' field='quantity' />
-                                        <input type='text' name='quantity' value='0' class='qty' />
-                                        <input type='button' value='+' class='qtyplus' field='quantity' />
-                                    </div>
-                                </div> -->
+                              
                             </div>
                             @if ($errors->has('seat_count'))
                             <span class="text-danger">{{ $errors->first('seat_count') }}</span>
