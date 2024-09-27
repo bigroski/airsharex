@@ -3733,12 +3733,12 @@ button#filghtSearchButton {
 
 .alert.alert-primary.theme-alert {
   color: #fff;
-  background: #000;
+  background: #ff0000;
   border: none;
 }
 .alert.alert-danger.theme-alert {
   color: #fff;
-  background: #f00;
+  background: rgb(234, 45, 24);
   border: none;
 }
 .alert.alert-danger.theme-alert {
@@ -3992,4 +3992,8 @@ section.hero-section.light.ken-burn-center {
   font-size: 1.125rem;
   color: #c4c3c3;
   z-index: 3;
+}
+
+#filghtSearchForm .passanger-popup {
+  text-align: left;
 }
