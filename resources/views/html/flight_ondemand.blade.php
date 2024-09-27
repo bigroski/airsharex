@@ -126,7 +126,7 @@
                                               
                                                <input type="hidden" name="seat_count" id="seatCount" value="0">
                                                
-                                               <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
+                                               <button type="button" id="toggleButton" class="form-control passanger-popup text-start">Passenger<span id="totalContainer">
                                                        : <span id="totalQuantity">0</span> (Adult:<span id="totalAdults">0</span>, Child:<span id="totalChildren">0</span>, Infant:<span id="totalInfants">0</span>)
                                                    </span></button>
                                                <div class="count-table" id="popup">
@@ -244,7 +244,7 @@
                                         </div>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                            <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton">Submit</button>
+                                            <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton" style="background: black;">Submit</button>
                                         </div>
                                     </div>
                                 </div>
