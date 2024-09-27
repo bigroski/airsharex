@@ -89,7 +89,7 @@
                                              <div class="passanger-card">
                                                <label for="seatCount">Number of Seats</label>
                                                <input type="hidden" name="seat_count" id="seatCount" value="@if($searchData['seat_count']){{$searchData['seat_count']}}@endif">
-                                               <button type="button" id="toggleButton" class="form-control passanger-popup">Passenger<span id="totalContainer">
+                                               <button type="button" id="toggleButton" class="form-control passanger-popup text-start">Passenger<span id="totalContainer">
                                                        : <span id="totalQuantity">@if($searchData['seat_count']){{$searchData['seat_count']}}@else{{'0'}}@endif</span>
                                                    </span></button>
                                                <div class="count-table" id="popup">
@@ -135,7 +135,7 @@
                                                   </div>
                                              </div>
                                         </div>
-                                        <button type="submit" class="btn btn-danger mt-4" id="filghtSearchButton"><i class="lni lni-search"></i> Search Now</button>
+                                        <button type="submit" class="btn btn-danger mt-4" id="filghtSearchButton"><i class="lni lni-search"></i> Search </button>
 
                                    </form>
                               </div>
@@ -179,10 +179,9 @@
                                                                                    <i class="fal fa-plane-departure"></i>
                                                                              </div>
                                                                              <div class="start-time-info">
+                                                                                   <span class="flight-destination">{{$data['DepartureCity']}}</span>
                                                                                    <h6 class="start-time-text">
                                                                                           {{$data['DepartureTime']}}</h6>
-                                                                                   <span
-                                                                                          class="flight-destination">{{$data['DepartureCity']}}</span>
                                                                              </div>
                                                                        </div>
                                                                        <div class="flight-stop">
@@ -194,10 +193,9 @@
                                                                                    <i class="fal fa-plane-arrival"></i>
                                                                              </div>
                                                                              <div class="start-time-info">
+                                                                                   <span class="flight-destination">{{$data['ArrivalCity']}}</span>
                                                                                    <h6 class="end-time-text">
                                                                                           {{$data['ArrivalTime']}}</h6>
-                                                                                   <span
-                                                                                          class="flight-destination">{{$data['ArrivalCity']}}</span>
                                                                              </div>
                                                                        </div>
                                                                  </div>
@@ -243,7 +241,7 @@
                                                                                                       data-bs-target="#fr-tab-pane1"
                                                                                                       type="button" role="tab"
                                                                                                       aria-controls="fr-tab-pane1"
-                                                                                                      aria-selected="true">Baggage</button>
+                                                                                                      aria-selected="true">Flight Detail</button>
                                                                                           </li>
                                                                                           <li class="nav-item"
                                                                                                 role="presentation">

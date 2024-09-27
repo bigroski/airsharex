@@ -12,14 +12,18 @@ a:hover {
   color: var(--color-links-hover);
   text-decoration: none;
 }
+body, select, p, strong, b, div, i, button{
+  font-family: "Poppins", sans-serif;
 
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  /*font-family: var(--font-primary);*/
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   line-height: 1.4;
 }
@@ -1015,14 +1019,14 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
   .btn-danger{
     background-color: #f00;
     &:hover{
-      background: #dc3545;
+      background: #EE1E1F;
     }
   }
   .horizontal-scroll-tabs {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    background: #f00;
+    background: #EE1E1F;
     border-top-left-radius: 8px;
     border-top-right-radius:8px;
     -webkit-overflow-scrolling: touch; /* Enable smooth scrolling for touch devices */
@@ -1046,8 +1050,11 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
         gap: 20px;
         align-items: center;
         &.active{
-          background-color: #f00;
+          /*background-color: #f00;*/
+          background-color: #EE1E1F;
+
           color: rgb(255, 255, 255);
+          font-weight: bold;
           i {
             color: rgb(255, 255, 255);
           }
@@ -2565,6 +2572,7 @@ div#v-pills-tabContent {
 }
 
 .booking-sidebar .booking-title {
+  color: #4f4b8b;
   font-size: 19px;
   position: relative;
   margin-bottom: 15px;
@@ -2711,14 +2719,15 @@ div#v-pills-tabContent {
   align-items: center;
   gap: 12px
   }
-  flight-booking-time .start-time-text,
+  .flight-booking-time .start-time-text,
  .flight-booking-time .end-time-text {
-  color: #4f4b8b;
-  font-weight: 700
-}
+      font-size: 14px;
+      font-weight: 400;
+  }
 .flight-destination {
   color: #4f4b8b;
-  font-weight: 500
+  font-weight: 500;
+  font-size: 18px;
 }
 .flight-booking-time {
   display: flex;
@@ -2727,7 +2736,12 @@ div#v-pills-tabContent {
 }
 .start-time-icon {
   font-size: 25px;
-  color: #4f4b8b;
+  color: #f96768;
+  /*color: #4f4b8b;*/
+}
+.start-time-text, .end-time-text{
+    font-size: 14px;
+    font-weight: 400;
 }
 .flight-stop {
   text-align: center
@@ -3885,14 +3899,14 @@ form#registrationForm label.form-check-label a {
   color: #454545;
 }
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-  border: 1px solid #dc3545;
-  background: #dc3545;
+  border: 1px solid #EE1E1F;
+  background: #EE1E1F;
   color: #ffffff;
 }
 
 .ui-widget-header {
   border: 1px solid #ddd;
-  background: #dc3545;
+  background: #EE1E1F;
   color: #ffffff;
   font-weight: bold;
 }
@@ -3992,4 +4006,31 @@ section.hero-section.light.ken-burn-center {
   font-size: 1.125rem;
   color: #c4c3c3;
   z-index: 3;
+}
+#filghtSearchForm label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.modal-header{
+  background: #EE1E1F;
+
+}
+.modal-title{
+  color: white;
+}
+.seat-amount{
+    background: green;
+    padding: 8px;
+    color: white;
+    border-radius: 12px;
+    font-size: 13px;
+
+}
+.seat-amount i{
+  font-size: 1.5em;
+}
+.flight-checkout .flight-booking-content:first-child{
+  background: #f3f3f3;
+    padding: 10px;
 }

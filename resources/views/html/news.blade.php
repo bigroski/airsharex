@@ -1,4 +1,10 @@
 <x-airshare-layout>
+  @section('page_title', 'News | ')
+  
+  @section('meta')
+  <meta name="description" content="Latest news from airsharex" />
+
+  @endsection
   @php
     $banner_image = asset('vendor/airsharex/assets/img/banner.jpeg');
     if(isset($selectedCategory) && $selectedCategory->featured_image != ''){

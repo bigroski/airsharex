@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                   <div class="flight-booking-item">
                     <div class="flight-booking-wrapper">
-                      <div class="flight-booking-info">
+                      <div class="flight-booking-info flight-checkout">
                         <div class="flight-booking-content">
                           <div class="flight-booking-airline justify-between ">
                             <div class="d-flex items-center gap-2 max-sm-flex-col">
@@ -37,9 +37,10 @@
 
                             <div class="flight-booking-price-1">
 
-                              <div class="price-info">
+                              <div class="price-info text-end">
 
-                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
+                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span><br />
+                                <span class="seat-amount "> <i class="fal fa-seat-airline"></i> {{$seatCount}} pax</span>
                               </div>
                             </div>
                           </div>
@@ -53,12 +54,12 @@
                                 <i class="fal fa-plane-departure"></i>
                               </div>
                               <div class="start-time-info">
-                                <h6 class="start-time-text">{{$flightData['DepartureTime']}}</h6>
                                 <span class="flight-destination"> {{$flightData['DepartureCity']}}</span>
+                                <h6 class="start-time-text">{{$flightData['DepartureTime']}}</h6>
                               </div>
                             </div>
                             <div class="flight-stop">
-                              <span class="flight-stop-number">Non Stop</span>
+                              <span class="flight-stop-number">{{$flightData['ExpectedTravelDuration']}}h</span>
                               <div class="flight-stop-arrow"></div>
                             </div>
                             <div class="end-time">
@@ -66,13 +67,22 @@
                                 <i class="fal fa-plane-arrival"></i>
                               </div>
                               <div class="start-time-info">
-                                <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
                                 <span class="flight-destination"> {{$flightData['ArrivalCity']}}</span>
+                                <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
                               </div>
                             </div>
+                            <div class="end-time">
+                                 <div class="start-time-icon">
+                                       <i class="fal fa-calendar"></i>
+                                 </div>
+                                 <div class="start-time-info">
+                                       <span class="flight-destination">Date</span>
+                                       <h6 class="end-time-text">{{$flightData['TripDate']}}</h6>
+                                  </div>
+                           </div>
                           </div>
                           <div class="flight-booking-duration">
-                            <span class="duration-text">{{$flightData['ExpectedTravelDuration']}}h</span>
+                            <span class="duration-text"></span>
                           </div>
                         </div>
                       </div>
