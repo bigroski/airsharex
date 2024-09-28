@@ -210,14 +210,28 @@ class StaticController extends Controller
 		if ($resultData['ResultCode'] === 200) {
 			$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"]) ? $resultData["ResultData"]["TripSearch"]["TripSearchResult"] : [];
 			// dump($flightResultData);
+			foreach($flightResultData as $data){
+	            // logger('flight store search',[$this->searchData]);
 
-			dispatch(new FlightSearchStore($flightResultData, $seatCount, $transactionRefId, $masterSerarchId));
+	            $storeData = [
+	               "search_master_id"=>$masterSerarchId,
+	                "trip_id"=>$tripId,
+	                "queue_date"=>$data['TripDate'],
+	                "requested_seats"=>$seatCount,
+	                // 'total_price' => $data['TicketSellingRate'] * $this->requestedSeats,
+	                "transaction_ref_id"=>$transactionRefId,
+	                "data"=>$data
+	            ];
+	            $flightSearch = $this->flightSearchService->storeSerachData($storeData); 
+
+	        }
+			// dispatch(new FlightSearchStore($flightResultData, $seatCount, $transactionRefId, $masterSerarchId));
 
 			$flightData = $flightResultData[0];
 			// dump($flightData);
 			$user = $request->user();
 			// dd($user);
-			return view('html.checkout', compact('flightData', 'user', 'seatCount', 'salutations', 'genders'));
+			return view('html.checkout', compact('flightData', 'user', 'seatCount', 'salutations', 'genders', 'flightSearch'));
 		} else {
 			logger('api fetch error', $resultData['ResultData']);
 			throw new ApiErrorException("Error on fetching trip details " . $resultData['ResultData']['Error'][0]["ErrorMessage"], $resultData['ResultCode']);

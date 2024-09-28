@@ -32,7 +32,7 @@
                               </div>
                               <div class="row">
                                 
-                                   @forelse ($returnData as $data)
+                                   @forelse ($returnData as $key => $data)
 
 
                                  <div class="col-lg-12">
@@ -93,10 +93,10 @@
                                                           <div class="date">
                                                                <i class="fa fa-calendar"></i>{{$data['TripDate']}}
                                                           </div>
-                                                          <a class="btn btn-outline-dark " data-bs-toggle="modal" href="#exampleModalToggle" role="button" >Flight Details</a>
+                                                          <a class="btn btn-outline-dark " data-bs-toggle="modal" href="#exampleModalToggle-{{$key}}" role="button" >Flight Details</a>
                                                     </div>
                                               </div>
-                                              <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                              <div class="modal fade" id="exampleModalToggle-{{$key}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                                     <div class="modal-content">
                                                           <div class="modal-header">
@@ -274,6 +274,7 @@
                                                                                                                         name="total_seat"
                                                                                                                         max={{$data['AvailableSeat']}}
                                                                                                                         placeholder="No. of pax" 
+                                                                                                                        required
                                                                                                                         >
                                                                                                                   </div>
                                                                                                                 <button class="btn btn-danger" onclick="redirectToCheckout($data['SearchMasterId'])"

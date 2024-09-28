@@ -30,8 +30,9 @@ class BookingController extends Controller
 
     public function bookFlight(FlightBookigRequest $request)
     {
-
-                // dd($request->user());
+        $search_id = $request->flight_search_detail_id;
+        $fligtSearchData = $this->flightSearchService->getFlightDataById($search_id);
+        // dd($fligtSearchData);
         try {
             $tripId = $request['trip_id'];
             $user = $request->user();
@@ -72,7 +73,9 @@ class BookingController extends Controller
                 $customer->api_customer_id = $airCustomerId;
                 $customer->save();
             }
-            $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
+            // $fligtSearchData = $this->flightSearchService->getFLightSearchData($tripId);
+            
+
             // dd($fligtSearchData);
             $bookingData = [
                 "TxnRefId" => md5(Carbon::now()->toDateString() . rand()),
