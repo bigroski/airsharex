@@ -33,8 +33,9 @@ class FlightBookingService
     }
 
     public function setBookingCustomer($localTicket, $request){
-        $localTicket->booking_name = $request->get('booking_name');
-        $localTicket->booking_emergency_contact = $request->get('emergency_contact_number');
+        // dd($request->all());
+        $localTicket->booking_name = $request->get('name');
+        $localTicket->booking_emergency_contact = $request->get('phone');
         $localTicket->save();
     }
     public function markAsConfirmed($localTicket){

@@ -1,4 +1,14 @@
 <x-airshare-layout>
+
+@section('page_title', $post->title.' | ')
+  
+@section('meta')
+<meta property="og:title" content="{{$post->title}}" />
+<meta name="description" content="{{$post->short_description}}" />
+<meta property="og:url" content="{{route('site.news-detail', $post->slug)}}" />
+<meta property="og:image" content="{{ $post->featured_image }}" />
+@endsection
+  
 <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0" >
 		<div class="container">
             <div class="breadcrumb-content text-white">
@@ -77,12 +87,12 @@
                                         <div class="blog-comments-single">
                                              <div class="blog-comments-img">
                                              
-                                                  <img src="http://i.pravatar.cc/500?img=1" alt="thumb">
+                                                  <img src="{{asset('vendor/airsharex/assets/img/avatar.jpeg')}}" alt="thumb" style="width: 70px;">
                                              </div>
                                              <div class="blog-comments-content">
                                                   <h5>{{$comment->name}}</h5>
                                                   <span>
-                                                       <i class="bi bi-stopwatch"></i> {{$comment->created_at}} </span>
+                                                       <i class="bi bi-stopwatch"></i> {{$comment->created_at->toFormattedDateString()}} </span>
                                                   <p>{{$comment->description}}</p>
                                                   <!-- <a href="#">
                                                        <i class="far fa-reply"></i> Reply </a> -->
@@ -97,17 +107,17 @@
                                              <div class="row">
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Your Name*" name="name">
+                                                            <input type="text" class="form-control" placeholder="Your Name*" name="name" required>
                                                        </div>
                                                   </div>
                                                   <div class="col-md-6">
                                                        <div class="form-group">
-                                                            <input type="email" class="form-control" placeholder="Your Email*" name="email">
+                                                            <input type="email" class="form-control" placeholder="Your Email*" name="email" required>
                                                        </div>
                                                   </div>
                                                   <div class="col-md-12">
                                                        <div class="form-group">
-                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*" name="description"></textarea>
+                                                            <textarea class="form-control" rows="5" placeholder="Your Comment*" name="description" required></textarea>
                                                        </div>
                                                        <div id="recaptcha"></div>
                                                        <input type="hidden" name="post_id" value="{{$post->id}}">

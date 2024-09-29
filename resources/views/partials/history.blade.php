@@ -40,7 +40,10 @@
                       <div class="flight-booking-item">
                             <div class="flight-booking-wrapper">
                                   <div class="flight-booking-info">
-                                    Ticket No: {{$ticket->booking_reference_id}}
+                                    <h6 style="    background: #f3f3f3;padding: 13px;">
+                                      
+                                      Ticket No: {{$ticket->booking_reference_id}}
+                                    </h6>
                                         <div class="flight-booking-content">
                                                <div class="flight-booking-airline">
                                                      <div class="flight-airline-img">

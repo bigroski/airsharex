@@ -205,7 +205,8 @@ class StaticController extends Controller
 		$masterSerarchId = $request['masterSerarchId']??$request['referenc'];
 		$tripData =  ['TripId' => $tripId];
 		$resultData = $this->apiService->tripDetails($tripData);
-		
+		$salutations = $this->apiService->getSalutation();
+        $genders = $this->apiService->getGender();	
 		if ($resultData['ResultCode'] === 200) {
 			$flightResultData = isset($resultData["ResultData"]["TripSearch"]["TripSearchResult"]) ? $resultData["ResultData"]["TripSearch"]["TripSearchResult"] : [];
 			// dump($flightResultData);
@@ -216,7 +217,7 @@ class StaticController extends Controller
 			// dump($flightData);
 			$user = $request->user();
 			// dd($user);
-			return view('html.checkout', compact('flightData', 'user', 'seatCount'));
+			return view('html.checkout', compact('flightData', 'user', 'seatCount', 'salutations', 'genders'));
 		} else {
 			logger('api fetch error', $resultData['ResultData']);
 			throw new ApiErrorException("Error on fetching trip details " . $resultData['ResultData']['Error'][0]["ErrorMessage"], $resultData['ResultCode']);
