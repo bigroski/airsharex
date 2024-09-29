@@ -1,4 +1,5 @@
 <x-airshare-layout>
+  
   <section class="component breadcrumbs header-image ken-burn-center light" data-parallax="true" data-natural-height="1080" data-natural-width="1920" data-bleed="0" data-image-src="{{ asset('vendor/airsharex/assets/img/banner.jpeg') }}" data-offset="0">
     <div class="container">
       <div class="breadcrumb-content text-white">
@@ -253,6 +254,7 @@
                     </label>
                   </div>
                   <div class="d-grid gap-4">
+                    <input type="hidden" name="flight_search_detail_id" value="{{$flightSearch->id}}">
                     <button class="btn btn-black btn-login text-uppercase fw-bold" type="submit">Checkout</button>
 
                   </div>

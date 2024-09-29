@@ -12,6 +12,10 @@ class FlightSearchService
     {
         return FlightSearchDetail::create($data);
     }
+    public function getFlightDataById($id)
+    {
+       return  FlightSearchDetail::find($id);
+    }
     public function getFLightSearchData($tripId)
     {
        return  FlightSearchDetail::where('trip_id',$tripId)->first();

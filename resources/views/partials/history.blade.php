@@ -165,17 +165,16 @@
                                                                                                 class="table table-borderless">
                                                                                                 <tr>
                                                                                                       <th>Flight</th>
-                                                                                                      <th>Cabin</th>
-                                                                                                      <th>Check In</th>
+                                                                                                      <!-- <th>Cabin</th>
+                                                                                                      <th>Check In</th> -->
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                       <td>{{ $data['DepartureCity']}}
                                                                                                             -
                                                                                                             {{ $data['ArrivalCity']}}
                                                                                                       </td>
-                                                                                                      <td>7 KG</td>
-                                                                                                      <td>20 KG
-                                                                                                      </td>
+                                                                                                      <!-- <td>7 KG</td>
+                                                                                                      <td>20 KG</td> -->
                                                                                                 </tr>
                                                                                           </table>
                                                                                     </div>
