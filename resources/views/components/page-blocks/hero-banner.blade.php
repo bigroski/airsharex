@@ -100,7 +100,7 @@
                             <select name="heliServiceType" class="form-control " placeholder="Service Type" required>
                                 <option value=""> Service Type</option>
                                 @foreach ($heliServiceTypes as $heliServicdType)
-                                <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ old("heliServiceType") == $heliServicdType['ServiceTypeId'] ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
+                                <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ $heliServicdType['ServiceTypeId'] == 9 ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
                                 @endforeach
                             </select>
                             <span class="icon-inside"><i class="fas fa-plane"></i></span>
@@ -128,14 +128,14 @@
                             <input type="hidden" name="seat_count" id="seatCount01" required >
                             <span class="icon-inside"><i class="fas fa-user"></i></span>
                             <button type="button" id="toggleButton" class="form-control passanger-popup text-start">Passenger<span id="totalContainer01">
-                                    : <span id="totalQuantity01">0</span>
+                                    : <span id="totalQuantity01">1</span>
                                 </span></button>
                             <div class="count-table" id="popup">
                                 <div class="pass-count">
                                     <span>Number of Pax</span>
                                     <div class="adder qty-container01">
                                         <input type='button' value='-' class='qtyminus01' field='quantity' />
-                                        <input type='text' name='quantity' value='0' class='qty01' />
+                                        <input type='text' name='quantity' value='1' class='qty01' />
                                         <input type='button' value='+' class='qtyplus01' field='quantity' />
                                     </div>
                                 </div>

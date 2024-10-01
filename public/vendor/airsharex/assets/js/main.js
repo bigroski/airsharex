@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
    */
 
   if ($(".date-picker").length) {
-    $(".date-picker").datepicker();
-    }
+    $(".date-picker").datepicker({ dateFormat: "yy-mm-dd" });
+  }
     if ($(".time-picker").length) {
         $(function () {
             $(".time-picker").timepicker();
