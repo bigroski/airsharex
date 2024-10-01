@@ -64,6 +64,7 @@ trait HasUiTraits
      
         // dd($this->generateTableButtons($buttons, $except));
         if($this->adapter == 'simpleTable'){
+    dd('tehre');
 
 
             return view('tukicms::layouts.list')->with([
@@ -183,14 +184,14 @@ trait HasUiTraits
                 'parent' => $this->parentModel,
                 'routeId' => 'true'
             ],
-            // 'delete' => [
-            //     'name' => 'Delete',
-            //     'icon' => 'flaticon2-trash',
-            //     'class' => 'btn-danger',
-            //     'routeName' => $this->routeDestroy,
-            //     'parent' => $this->parentModel,
-            //     'routeId' => 'true'
-            // ]
+            'delete' => [
+                'name' => 'Delete',
+                'icon' => 'flaticon2-trash',
+                'class' => 'btn-danger',
+                'routeName' => $this->routeDestroy,
+                'parent' => $this->parentModel,
+                'routeId' => 'true'
+            ]
         ];
 
         if($except != null){

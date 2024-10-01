@@ -122,6 +122,7 @@ Route::prefix("admin")->middleware(
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
         Route::resource('leadership', LeadershipController::class, ['as' => 'web']);
+        Route::get('leadership/delete/{id}', [LeadershipController::class, 'destroy'])->name('web.leadership.delete');
         Route::post('gallery/delete-image', [GalleryController::class, 'deleteImage']);
         Route::resource('bookingOnDemand', BookingOnDemandController::class, ['as' => 'web']);
     }

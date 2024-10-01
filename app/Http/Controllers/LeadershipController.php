@@ -35,7 +35,17 @@ class LeadershipController extends Controller
         return $this->generateList(
             ['Leadership', 'List of all Leadership'],
             $this->leadershipService->getModelFields('leadership'),
-            $model
+            $model,
+            // [
+            //     'delete' => [
+            //         'name' => 'Delete',
+            //         'icon' => 'flaticon2-trash',
+            //         'class' => 'btn-danger',
+            //         'routeName' => 'web.leadership.delete',
+            //         // 'parent' => $this->parentModel,
+            //         'routeId' => 'true'
+            //     ]
+            // ]
         );
     }
 
@@ -100,7 +110,7 @@ class LeadershipController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        $this->leadershipService->delete($id);
+        $this->leadershipService->deleteLeadership($id);
         $request->session()->flash('success', 'Successfully Updated');
         return redirect()->route('web.leadership.index');
     }

@@ -60,13 +60,13 @@ return [
                             'permission-name' => 'web.booking.create',
 
                         ],
-                        [
-                            'name' => 'Airports',
-                            'icon-class' => 'fas fa-book-medical',
-                            'routeName' => 'web.airports.index',
-                            'permission-name' => 'web.booking.create',
+                        // [
+                        //     'name' => 'Airports',
+                        //     'icon-class' => 'fas fa-book-medical',
+                        //     'routeName' => 'web.airports.index',
+                        //     'permission-name' => 'web.booking.create',
 
-                        ],
+                        // ],
                         [
                             'name' => 'Testimonials',
                             'icon-class' => 'fas fa-book-medical',
@@ -95,13 +95,13 @@ return [
                             'permission-name' => 'web.booking.create',
 
                         ],
-                        [
-                            'name' => 'Citizenship',
-                            'icon-class' => 'fas fa-book-medical',
-                            'routeName' => 'web.citizenship.index',
-                            'permission-name' => 'web.booking.create',
+                        // [
+                        //     'name' => 'Citizenship',
+                        //     'icon-class' => 'fas fa-book-medical',
+                        //     'routeName' => 'web.citizenship.index',
+                        //     'permission-name' => 'web.booking.create',
 
-                        ],
+                        // ],
                         
                         
                         // [
