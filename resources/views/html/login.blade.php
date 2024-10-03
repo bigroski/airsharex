@@ -17,15 +17,17 @@
             <form action="{{route('login')}}" method="POST" id="registrationForm" novalidate>
               @csrf
               @method('post')
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 form-group">
                 <input type="email" name="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com">
+                <span class="icon-inside"><i class="fas fa-envelopes"></i></span>
                 <label for="floatingInputEmail">Email address</label>
                 @error('email')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-3 form-group">
                 <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <span class="icon-inside"><i class="fas fa-eye-slash"></i></span>
                 <label for="floatingPassword">Password</label>
                 @error('password')
                 <div class="invalid-feedback d-block">{{ $message }}</div>

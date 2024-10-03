@@ -72,7 +72,7 @@
                                 <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
                               </div>
                             </div>
-                            <div class="end-time">
+                            <div class="end-time-date">
                                  <div class="start-time-icon">
                                        <i class="fal fa-calendar"></i>
                                  </div>

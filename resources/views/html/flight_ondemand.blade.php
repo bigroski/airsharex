@@ -3,9 +3,7 @@
         <div class="container">
             <div class="breadcrumb-content text-white">
                 <h1>Flight On Demand </h1>
-                <p>Duis porttitor vulputate arcu, at hendrerit eros cursus accumsan. Donec a dui vitae velit feugiat
-                    vulputate. Aliquam erat volutpat. In quis leo nec urna iaculis luctus. Mauris ut lorem at odio
-                    volutpat maximus</p>
+                <p>Experience the convenience of booking flights tailored to your schedule. Our on-demand service offers flexibility and efficiency, ensuring you reach your destination when you need to. Enjoy personalized itineraries and exceptional service every step of the way.</p>
             </div>
         </div>
     </section>
@@ -33,16 +31,11 @@
                                     <div class="row">
                                     <div class=" col-12">
                                         <h6>Flight Details</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>Find essential information about your upcoming flight, including departure and arrival times, aircraft type, and any special instructions. Stay informed for a smooth and enjoyable travel experience.</p>
                                     </div>
                                         <div class="col-md-4 col-12">
 
-                                             <div class=" mb-3">
+                                             <div class=" mb-3 form-group">
                                           
                                             <select name="destination_from" class="form-control" placeholder="From" required>
                                                 <!-- <option >KTM</option> -->
@@ -55,13 +48,14 @@
                                                 @endforeach
 
                                             </select>
+                                            <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
                                                 @if ($errors->has('destination_from'))
                                                     <span class=" text-danger">{{ $errors->first('destination_from') }}</span>
                                                     @endif
                                                     </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                        <div class="  mb-3">
+                                        <div class="  mb-3 form-group">
                                            
                                             <select name="destination_to" class="form-control" placeholder="From" required>
                                                 <!-- <option >KTM</option> -->
@@ -74,13 +68,14 @@
                                                 @endforeach
 
                                             </select>
+                                            <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
                                                 @if ($errors->has('destination_from'))
                                                     <span class=" text-danger">{{ $errors->first('destination_from') }}</span>
                                                     @endif
                                         </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                        <div class=" mb-3">
+                                        <div class=" mb-3 form-group">
                                            
                                             <select name="service_type" class="form-control" placeholder="service Type" required>
                                                 <!-- <option >KTM</option> -->
@@ -93,16 +88,18 @@
                                                 @endforeach
 
                                             </select>
+                                            <span class="icon-inside"><i class="fas fa-plane"></i></span>
                                             @if ($errors->has('service_type'))
                                             <span class=" text-danger">{{ $errors->first('service_type') }}</span>
                                             @endif
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <div class=" mb-3">
+                                            <div class=" mb-3 form-group">
                                                 <span>
                                                    
                                                     <input type="text" name="arrival_date" id="start" value="{{old('arrival_date')}}" class="form-control date-picker" placeholder="Arrival Date" required></span>
+                                                    <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
                                                 @if ($errors->has('arrival_date'))
                                                 <span class="text-danger">{{ $errors->first('arrival_date') }}</span>
                                                 @endif
@@ -110,10 +107,11 @@
                                             </div>
                                         </div>  
                                         <div class="col-md-4 col-12">
-                                            <div class=" mb-3">
+                                            <div class=" mb-3 form-group">
                                                 <span>
                                                   
                                                     <input type="text" name="return_date" id="end" value="{{old('return_date')}}" class="form-control date-picker" placeholder="Return Date" required></span>
+                                                    <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
                                                 @if ($errors->has('return_date'))
                                                 <span class="text-danger">{{ $errors->first('return_date') }}</span>
                                                 @endif
@@ -122,10 +120,10 @@
                                         </div>
 
                                         <div class="col-md-4 col-12">
-                                        <div class="passanger-card mb-3">
+                                        <div class="passanger-card mb-3 form-group">
                                               
                                                <input type="hidden" name="seat_count" id="seatCount" value="0">
-                                               
+                                               <span class="icon-inside"><i class="fas fa-users"></i></span>
                                                <button type="button" id="toggleButton" class="form-control passanger-popup text-start">Passenger<span id="totalContainer">
                                                        : <span id="totalQuantity">0</span> (Adult:<span id="totalAdults">0</span>, Child:<span id="totalChildren">0</span>, Infant:<span id="totalInfants">0</span>)
                                                    </span></button>
@@ -162,8 +160,9 @@
                                         </div>
                                         <div class=" col-12"><h6>Customer Details</h6></div>
                                         <div class="col-md-12 col-12">
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 form-group">
                                                 <input type="text" name="booking_name" class="form-control" value="{{old('booking_name')}}" id="floatingBookingName" placeholder="Booking Name" required>
+                                                <span class="icon-inside"><i class="fas fa-user"></i></span>
                                                 <label for="Booking Name">Booking Name</label>
                                                 @if ($errors->has('booking_name'))
                                                 <span class="text-danger">{{ $errors->first('booking_name') }}</span>
@@ -171,8 +170,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 form-group">
                                                 <input type="text" name="contact_number" value="{{old('contact_number')}}" class="form-control" id="floatingContactNumber" placeholder="Contact Number" required>
+                                                <span class="icon-inside"><i class="fas fa-phone"></i></span>
                                                 <label for="floatingContactNumber"> Contact Number</label>
                                                 @if ($errors->has('contact_number'))
                                                 <span class="text-danger">{{ $errors->first('contact_number') }}</span>
@@ -181,8 +181,9 @@
 
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 form-group">
                                                 <input type="text" name="email" value="{{old('email')}}" class="form-control" id="floatingEmail" placeholder="Email" required>
+                                                <span class="icon-inside"><i class="fas fa-envelopes"></i></span>
                                                 <label for="floatingEmail"> Email</label>
                                                 @if ($errors->has('email'))
                                                 <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -191,8 +192,9 @@
 
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 form-group">
                                                 <input type="text" name="pickup_location"  value="{{old('pickup_location')}}" class="form-control" id="floatingPickupLocation" placeholder="Contact Number" required>
+                                                <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
                                                 <label for="floatingPickupLocation"> Pickup Location</label>
                                                 @if ($errors->has('pickup_location'))
                                                 <span class="text-danger">{{ $errors->first('pickup_location') }}</span>
@@ -231,8 +233,10 @@
                                         </div>   -->
                                         
                                         <div class="col-md-12 col-12">
-                                            <div class="form-floating mb-3">
-                                                <textarea type="text" name="booking_notes" value="{{old('booking_notes')}}" class="form-control" id="floatingBookingNotes" placeholder="Contact Number" required></textarea><label for="floatingBookingNotes"> Booking Notes</label>
+                                            <div class="form-floating mb-3 form-group">
+                                                <textarea type="text" name="booking_notes" value="{{old('booking_notes')}}" class="form-control" id="floatingBookingNotes" placeholder="Contact Number" required></textarea>
+                                               
+                                                <label for="floatingBookingNotes"> Booking Notes</label>
                                                 @if ($errors->has('booking_notes'))
                                                 <span class="text-danger">{{ $errors->first('booking_notes') }}</span>
                                                 @endif

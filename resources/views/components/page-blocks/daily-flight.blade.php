@@ -8,7 +8,7 @@
 				<div class="col-md-6 col-sm-12 col-12">
 					<h2><span>{{$title}}</span> {{$sub_title}}</h2>
 				</div>
-				<div class="col-md-6 col-sm-12 col-12 ">
+				<div class="col-md-5 col-sm-12 col-12 ">
 					<div class="card">
 						
 
