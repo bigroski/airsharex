@@ -4041,3 +4041,25 @@ section.hero-section.light.ken-burn-center {
 .swiper-slide{
   margin-top: 40px;
 }
+
+
+.ticket-card{
+  .card-details{
+    .flight-detail-price-amount {
+      font-size: 14px;
+  }
+  del {
+    font-size: 13px;
+}
+h6.flight-booking-detail-price-title {
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.flight-booking-detail-price{
+  padding: 4px 8px;
+}
+  }
+}
