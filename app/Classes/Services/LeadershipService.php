@@ -50,7 +50,9 @@ class LeadershipService extends BaseService{
 		return $model;
 	}
 	public function deleteLeadership($id){
-
+		$model = $this->leadershipRepository->findById($id);
+		$model->delete();
+		return;
 	}
 	public function all(){
 		return $this->leadershipRepository->getAll();
