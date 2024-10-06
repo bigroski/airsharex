@@ -9,17 +9,11 @@
     </div>
   </section>
   <form name="flight-customer-form" action="{{ route('book.flight') }}" method="POST" id="checkoutForm">
-    <section class=" checkout">
+    <section class=" checkout new-layout">
       <div class="container">
-
-
-
-
         <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-8">
-
+          <div class="col-sm-12 col-md-8 col-lg-8">
             <div class="flight-booking flight-list py-120">
-
               <div class="row">
                 <div class="col-lg-12">
                   <div class="flight-booking-item">
@@ -36,19 +30,20 @@
                             </div>
 
 
-                            <div class="flight-booking-price-1">
-
-                              <div class="price-info text-end">
-
-                                <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span><br />
-                                <span class="seat-amount "> <i class="fal fa-seat-airline"></i> {{$seatCount}} pax</span>
-                              </div>
-                            </div>
+                            <div class="end-time-date">
+                                 <div class="start-time-icon">
+                                       <i class="fal fa-calendar"></i>
+                                 </div>
+                                 <div class="start-time-info">
+                                      
+                                       <h6 class="end-time-text">{{$flightData['TripDate']}}</h6>
+                                  </div>
+                           </div>
                           </div>
 
                         </div>
 
-                        <div class="flight-booking-content mt-3">
+                        <div class="flight-booking-details mt-3">
                           <div class="flight-booking-time">
                             <div class="start-time">
                               <div class="start-time-icon">
@@ -72,35 +67,47 @@
                                 <h6 class="end-time-text">{{$flightData['ArrivalTime']}}</h6>
                               </div>
                             </div>
-                            <div class="end-time-date">
-                                 <div class="start-time-icon">
-                                       <i class="fal fa-calendar"></i>
-                                 </div>
-                                 <div class="start-time-info">
-                                       <span class="flight-destination">Date</span>
-                                       <h6 class="end-time-text">{{$flightData['TripDate']}}</h6>
-                                  </div>
-                           </div>
+                            
                           </div>
-                          <div class="flight-booking-duration">
+                          <!-- <div class="flight-booking-duration">
                             <span class="duration-text"></span>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
 
                     </div>
 
                   </div>
-                  <div class="row">
+                <div class="traveller-details">
+                <div class="row">
                     <div class="col-md-12">
                       <!-- passenger list -->
-                        <h4>Traveller Details</h4>
-                          @for ($i = 0; $i < $seatCount; $i++) 
-                                <div class="card border-1 shadow rounded-3 mb-2">
-                                    <div class="card-body p-3 p-sm-3">
+                        <h4>Traveller Details or <a href="">Login</a></h4>
+
+                        <h6>Contact Details</h6>
+                        <div class="row">                                               
+                          <div class="col-md-6 col-12">
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="PassengerDetailphone"  class="form-control" id="floatingPhone" placeholder="Phone Number" required>
+                                  <label for="phone">Phone Number</label>
+                              </div>
+                          </div>
+                          <div class="col-md-6 col-12">
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="PassengerDetailemenumber" class="form-control" id="floatingPhone" placeholder="Phone Number" required>
+                                  <label for="emergencyContactNumber">Emergency Contact Number</label>
+                              </div>
+                          </div>
+                        </div>
+                        <p class="note">Your booking details will be sent to this email address and mobile number.</p>
+                        
+                        @for ($i = 0; $i < $seatCount; $i++) 
+                        <h6>Adult {{ $i+1 }}</h6>
+                                <div class="card border-1 rounded-3 mb-2">
+                                    <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4 col-4">
-                                                <div class="form-floating mb-3">
+                                            <div class="col-md-2 col-4">
+                                                <div class="form-floating">
                                                     <select name="PassengerDetail[{{ $i }}][salutation]" class="form-control" placeholder="Salutation" required>
                                                     <option value="">Title</option>   
 
@@ -112,13 +119,15 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 col-8">
-                                                <div class="form-floating mb-3">
+                                            <div class="col-md-10 col-8">
+                                                <div class="form-floating ">
                                                     <input type="text" name="PassengerDetail[{{ $i }}][name]" class="form-control" id="floatingName" placeholder="Full Name" required>
                                                     <label for="name">Passenger Name</label>
 
                                                 </div>
                                             </div>
+
+                                            <?php /* ?>
                                             <div class="col-md-3 col-12">
                                                 <div class="form-floating mb-3">
                                                     <!-- <label for="from">From</label> -->
@@ -149,27 +158,10 @@
                                                     <label for="email">Email address</label>
                                                 </div>
                                             </div>
-                                        </div>
+                                      
 
-                                        <div class="row">
-
-                                            
-                                            
-                                           
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="PassengerDetail[{{ $i }}][phone]"  class="form-control" id="floatingPhone" placeholder="Phone Number" required>
-                                                    <label for="phone">Phone Number</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="PassengerDetail[{{ $i }}][emergency_contact_number]" class="form-control" id="floatingPhone" placeholder="Phone Number" required>
-                                                    <label for="emergencyContactNumber">Emergency Contact Number</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                      <?php */ ?>
+                                    </div>
 
                                     </div>
                                   </div>
@@ -179,6 +171,8 @@
                     
                   </div>
                 </div>
+                  
+                </div>
 
 
 
@@ -187,6 +181,24 @@
 
             </div>
           </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="bg-light shadow-md rounded p-3">
+              <h3 class="text-5 mb-3">Fare Details</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2">Base Fare <span class="float-right text-4 font-weight-500 text-dark">$980</span><br>
+                  <small class="text-muted">Adult : 2, Child : 0, Infant : 0</small> <span class="seat-amount "> <i class="fal fa-seat-airline"></i> {{$seatCount}} pax</span></li>
+                <li class="mb-2">Taxes &amp; Fees <span class="float-right text-4 font-weight-500 text-dark">$215</span></li>
+                <li class="mb-2">Insurance <span class="float-right text-4 font-weight-500 text-dark">$95</span></li>
+              </ul>
+              <div class="text-dark bg-light-4 text-4 font-weight-600 p-3"> Total Amount <span class="float-right text-6">  <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
+                               </span> </div>
+              
+              <button class="mt-4 btn btn-lg btn-dark btn-block"  type="submit">Proceed To Payment</button>
+            </div>
+          </>
+          <?php /* ?>
+          // ujjwol comment
           <div class="col-sm-12 col-md-12 col-lg-4">
 
             <div class="card border-0 shadow rounded-3 bg-red">
@@ -262,6 +274,7 @@
               </div>
             </div>
           </div>
+          <?php */ ?>
         </div>
 
       </div>

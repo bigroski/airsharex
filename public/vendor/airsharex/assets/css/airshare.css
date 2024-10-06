@@ -1,4 +1,5 @@
 /* Reset */
+
 :root {
   scroll-behavior: smooth;
 }
@@ -13,7 +14,7 @@ a:hover {
   text-decoration: none;
 }
 body, select, p, strong, b, div, i, button{
-  font-family: "Poppins", sans-serif;
+  font-family: "Figtree", sans-serif;
 
 }
 h1,
@@ -23,7 +24,7 @@ h4,
 h5,
 h6 {
   /*font-family: var(--font-primary);*/
-  font-family: "Poppins", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-weight: bold;
   line-height: 1.4;
 }
@@ -1071,7 +1072,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
       }
     }
     .tab-content{
-      padding: 20px;
+      padding: 14px;
       [type=button], [type=reset], [type=submit] {
         /* height: 45px; */
         display: block;
@@ -1086,7 +1087,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
    
 }
  .form-control{
-  padding: .810rem .96rem;
+  padding: .810rem 1.6rem 0.818rem .4rem;
   background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -1210,7 +1211,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(162,162,162,1) 
     .content{
       text-align: center;
       h3{
-        font-style:italic ;
+        
         font-size: 24px;
         line-height: 1.5;
         a{
@@ -2686,7 +2687,7 @@ div#v-pills-tabContent {
   background: #fff;
   border-radius: 8px;
   margin-bottom: 15px;
-  padding: 15px;
+  padding: 8px;
   box-shadow: 0 0 20px 5px rgb(0 0 0/5%);
 
 
@@ -2816,7 +2817,7 @@ div#v-pills-tabContent {
   display: flex;
   gap: 10px;
   justify-content: right;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .flight-booking-price {
@@ -2933,7 +2934,7 @@ h5.flight-airline-name {
   width: 100%;
   background: rgba(113, 103, 255, .1);
   border-radius: 0 0 5px 0;
-  padding: 8px 18px;
+  padding: 8px;
   border-radius: 7px
 }
 
@@ -4000,10 +4001,9 @@ section.hero-section.light.ken-burn-center {
 .icon-inside {
   position: absolute;
   right: 15px;
-  top: calc(50% - 11px);
+  top: 15px;
   pointer-events: none;
-  font-size: 18px;
-  font-size: 1.125rem;
+  font-size: 16px;
   color: #c4c3c3;
   z-index: 3;
 }
@@ -4062,4 +4062,74 @@ h6.flight-booking-detail-price-title {
   padding: 4px 8px;
 }
   }
+}
+
+h6.flight-booking-detail-price-title {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+section.checkout.new-layout{
+  .end-time-date{
+    display: flex;
+    gap: 10px;
+    align-self: center;
+    align-items: center;
+    .start-time-icon {
+      font-size: 18px !important;
+  }
+    h6.end-time-text{
+      margin: 0;
+    }
+  }
+
+  .flight-booking-item {
+    .flight-booking-time {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        justify-content: space-between;
+    }
+}
+
+.form-floating>.form-control:not(:placeholder-shown) {
+   padding-top: 0rem; 
+  padding-bottom: 0rem; 
+}
+
+.traveller-details {
+  margin: 40px 0 20px;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+.text-5{
+  font-size: 1.3125rem !important;
+}
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+ 
+}
+
+.bg-light-4 {
+  background-color: #eff0f2 !important;
+}
+.font-weight-600 {
+  font-weight: 600 !important;
+}
+.text-dark {
+  color: #343a40 !important;
+}
+.float-right {
+    float: right !important;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
 }
