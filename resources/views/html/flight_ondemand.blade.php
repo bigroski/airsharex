@@ -248,11 +248,11 @@
                                         </div>
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
 
-                                            <button type="submit" class="btn btn-danger form-control" id="filghtSearchButton" style="background: black;">Submit</button>
+                                            <button type="submit" class="mt-3 btn btn-danger form-control" id="filghtSearchButton" style="background: black;">Submit</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>s
                         </div>
 
 
