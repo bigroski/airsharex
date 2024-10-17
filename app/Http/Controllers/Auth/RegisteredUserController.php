@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Password;
 
 class RegisteredUserController extends Controller
 {
@@ -124,8 +125,16 @@ class RegisteredUserController extends Controller
     public function verifyPassword(){
 
     }
-    public function resetPassword(){
-
+    public function resetPassword(Request $request){
+        $request->validate(['email' => 'required|email']);
+     
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __($status)])
+                    : back()->withErrors(['email' => __($status)]);
+        // dump($all);
     }
     public function processResetPassword(){
         

@@ -61,7 +61,7 @@ Route::get('/services', [StaticController::class, 'services']);
 Route::get('/service-detail/{id}', [StaticController::class, 'servicesdetail'])->name('site.service-detail');
 Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
 Route::get('/registration', [StaticController::class, 'register'])->name('public.register');
-Route::get('/forgetpassord', [StaticController::class, 'forgetpassord']);
+
 Route::get('/emailverify', [StaticController::class, 'emailverify']);
 Route::middleware(
     [
@@ -157,3 +157,5 @@ require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page'])->where('slug', '[0-9,a-z,/]+')->middleware('web');
+Route::get('/forgot-password', [StaticController::class, 'forgetpassord'])->name('public.forgot-password');
+Route::post('/forgot-password/reset', [RegisteredUserController::class, 'resetPassword'])->name('public.process.forgot-password');
