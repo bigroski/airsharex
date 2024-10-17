@@ -117,4 +117,17 @@ class RegisteredUserController extends Controller
 
         }
     }
+
+    public function forgotPassword(){
+
+    }
+    public function verifyPassword(){
+
+    }
+    public function resetPassword(){
+
+    }
+    public function processResetPassword(){
+        
+    }
 }
