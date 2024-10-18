@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 $(document).ready(function() {
   $selectElement = $('.test_skill').select2({
-    placeholder: "Please select an skill",
+    // placeholder: "Please select an skill",
     allowClear: false,
     theme: "classic"
   });

@@ -43,4 +43,11 @@ class FlightBookingService
         $localTicket->confirmation_status = 'confirmed';
         $localTicket->save();
     }
+
+    public function getTotalCount(){
+        return FlightBookingDetails::count();
+    }
+    public function getTotalDemandCount(){
+        return BookingOnDemand::count();
+    }
 }

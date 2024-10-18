@@ -18,4 +18,8 @@ class CustomerRepository extends Repository{
 	public function findBy($column,$value){
 		return $this->model->where($column,$value)->first();
 	}
+
+	public function getTotal(){
+		return $this->model->count();
+	}
 }

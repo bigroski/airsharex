@@ -145,7 +145,7 @@ return [
                         [
                             'name' => 'Regular Booking',
                             'icon-class' => 'fas fa-book-medical',
-                            'routeName' => 'web.vendors.index',
+                            'routeName' => 'web.booking.index',
                             'permission-name' => 'web.booking.create',
 
                         ],
@@ -166,7 +166,7 @@ return [
         [
             'name' => 'User Management',
             'routeName' => '',
-            'targetId' => 'kt_aside_tab_2',
+            'targetId' => 'user_management',
             'icon-class' => 'la la-cogs',
             //Entity SubMenu
             'sub_menus' => [
@@ -197,38 +197,27 @@ return [
                             'icon-class' => 'fas fa-user-friends',
                             'routeName' => 'web.customer.index',
                             'permission-name' => 'web.customer.index',
-                            // 'sub_menus' => [
-                            //     [
-                            //         'name' => 'All Customers',
-                            //     ],
-                            //     // [
-                            //     //     'name' => 'Create Customer',
-                            //     //     'routeName' => 'web.customer.create',
-                            //     //     'permission-name' => 'web.customer.create',
-                            //     // ],
-
-                            // ]
                         ], 
-                        [                        
-                            'name' => 'Employees',
-                            'icon-class' => 'fas fa-user-clock',
-                            'routeName' => 'web.employee.index',
-                            'permission-name' => 'web.employee.index',
-                            'sub_menus' => [
-                                [
-                                    'name' => 'All Employees',
-                                    'routeName' => 'web.employee.create',
-                                    'permission-name' => 'web.employee.create',
+                        // [                        
+                        //     'name' => 'Employees',
+                        //     'icon-class' => 'fas fa-user-clock',
+                        //     'routeName' => 'web.employee.index',
+                        //     'permission-name' => 'web.employee.index',
+                        //     'sub_menus' => [
+                        //         [
+                        //             'name' => 'All Employees',
+                        //             'routeName' => 'web.employee.create',
+                        //             'permission-name' => 'web.employee.create',
                                     
-                                ],
-                                [
-                                    'name' => 'Create Employee',
-                                    'routeName' => 'web.employee.create',
-                                    'permission-name' => 'web.employee.create',
-                                ],
+                        //         ],
+                        //         [
+                        //             'name' => 'Create Employee',
+                        //             'routeName' => 'web.employee.create',
+                        //             'permission-name' => 'web.employee.create',
+                        //         ],
 
-                            ]
-                        ],
+                        //     ]
+                        // ],
                         
                     ]
                 ],

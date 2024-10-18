@@ -48,7 +48,7 @@
                     <div class="row g-3 justify-center">
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
-                            <select name="from" class="form-control" placeholder="From" required>
+                            <select name="from" class="test_skill form-control" placeholder="From" required>
                                 <!-- <option >KTM</option> -->
                                 <option value="">Select Departure</option>
                                 @foreach ($cities as $city)
@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
-                            <select name="to" class="form-control " placeholder="to" required>
+                            <select name="to" class="form-control test_skill " placeholder="to" required>
                                 <option value="">Select Destination</option>
                                 @foreach ($cities as $city)
                                 @php
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
-                            <select name="nationality" class="form-control " placeholder="to" required>
+                            <select name="nationality" class="form-control test_skill " placeholder="to" required>
                                 <option value="">Nationality</option>
                                 @foreach ($nationalities as $nationality)
                                 <option value="{{ $nationality['NationalityCode'] }}" {{ $nationality['NationalityCode'] == 'NP' ? 'selected' : '' }}>{{ $nationality['Nationality']}}</option>
@@ -97,7 +97,7 @@
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
 
-                            <select name="heliServiceType" class="form-control " placeholder="Service Type" required>
+                            <select name="heliServiceType" class="form-control test_skill " placeholder="Service Type" required>
                                 <option value=""> Service Type</option>
                                 @foreach ($heliServiceTypes as $heliServicdType)
                                 <option value="{{ $heliServicdType['ServiceTypeId'] }}" {{ $heliServicdType['ServiceTypeId'] == 9 ? 'selected' : '' }}>{{ $heliServicdType['ServiceType']}}</option>
@@ -125,7 +125,7 @@
 
                         <div class="col-lg-6 col-md-6 ol-sm-6 col-12 form-group">
 
-                            <input type="hidden" name="seat_count" id="seatCount01" required >
+                            <input type="hidden" name="seat_count" id="seatCount01" required value="1" >
                             <span class="icon-inside"><i class="fas fa-user"></i></span>
                             <button type="button" id="toggleButton" class="form-control passanger-popup text-start">Passenger<span id="totalContainer01">
                                     : <span id="totalQuantity01">1</span>

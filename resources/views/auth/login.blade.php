@@ -50,6 +50,7 @@
                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
                   in</button>
               </div>
+              <label class="form-check-label justify-center d-flex my-2 gap-2">Forgot Password??  <a href="{{route('public.forgot-password')}}"> Click here to Reset</a></label>
               <hr class="my-4">
               <div class="d-grid mb-2">
                 <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">

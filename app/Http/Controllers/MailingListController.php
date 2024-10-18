@@ -57,9 +57,9 @@ class MailingListController extends Controller
     public function store(Request $request)
     {
         $MailingList = $this->mailingListService->makeMailingList($request);
-        $request->session()->flash('success', $MailingList->id . ' has been created');
-
-        return redirect()->route('register');
+        $request->session()->flash('success', 'Thank you for subscribing to airsharex.');
+        return redirect('/');
+        // return redirect()->route('register');
     }
 
     /**

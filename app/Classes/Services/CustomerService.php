@@ -61,4 +61,8 @@ class CustomerService extends BaseService{
 		return $this->customerRepository->findBy($column,$value);
 
 	}
+
+	public function getTotalCount(){
+		return $this->customerRepository->getTotal();
+	}
 }
