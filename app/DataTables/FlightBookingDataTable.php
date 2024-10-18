@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\MailingList;
+use App\Models\FlightBooking;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Bigroski\Tukicms\App\Traits\Tuples;
 
-class MailingListDataTable extends DataTable
+class FlightBookingDataTable extends DataTable
 {
     use Tuples;
 
@@ -37,10 +37,10 @@ class MailingListDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\MailingList $model
+     * @param \App\Models\FlightBooking $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(MailingList $model): QueryBuilder
+    public function query(FlightBooking $model): QueryBuilder
     {
         return $model->newQuery()->orderBy('created_at', 'desc');
     }
@@ -53,19 +53,19 @@ class MailingListDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('mailingList-table')
+                    ->setTableId('flightBooking-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
+                    //->dom('Bfrtip')
                     // ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
                     ]);
     }
 
@@ -88,6 +88,6 @@ class MailingListDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'mailingList_' . date('YmdHis');
+        return 'flightBooking_' . date('YmdHis');
     }
 }

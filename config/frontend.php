@@ -131,27 +131,27 @@ return [
             'name' => 'Bookings',
             'routeName' => '',
             'targetId' => 'kt_aside_tab_2',
-            'icon-class' => 'la la-cogs',
+            'icon-class' => 'flaticon-paper-plane',
             //Entity SubMenu
             'sub_menus' => [
                 [
                     'name' => 'Bookings',
                     'routeName' => '',
-                    'icon-class' => 'flaticon2-box-1',
+                    'icon-class' => 'flaticon-paper-plane',
                 ],
                 [
                     'name' => 'Booking',
                     'sub_menus' => [
                         [
                             'name' => 'Regular Booking',
-                            'icon-class' => 'fas fa-book-medical',
-                            'routeName' => 'web.booking.index',
+                            'icon-class' => 'flaticon-paper-plane',
+                            'routeName' => 'web.flightBooking.index',
                             'permission-name' => 'web.booking.create',
 
                         ],
                         [
                             'name' => 'Booking On Demand',
-                            'icon-class' => 'fas fa-book-medical',
+                            'icon-class' => 'flaticon-bell',
                             'routeName' => 'web.bookingOnDemand.index',
                             'permission-name' => 'web.booking.create',
 
@@ -178,6 +178,13 @@ return [
                 [
                     'name' => 'Users',
                     'sub_menus' => [
+                        [
+                            'name' => 'Mailing List',
+                            'icon-class' => 'flaticon2-new-email',
+                            'routeName' => 'web.mailingList.index',
+                            'permission-name' => 'web.booking.create',
+
+                        ],
                         [
                             'name' => 'Vendors',
                             'icon-class' => 'fas fa-book-medical',

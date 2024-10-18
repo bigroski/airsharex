@@ -26,6 +26,8 @@ class BookingOnDemandController extends Controller
         // ---------------------------------------------
         $this->setTableAdapter('datatable');
         $this->setDatatable($datatable);
+        $this->removeButton('hasCreate');
+        
         // ---------------------------------------------
         // End of Datatable Adapter
         // ---------------------------------------------

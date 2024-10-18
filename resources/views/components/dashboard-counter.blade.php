@@ -17,7 +17,7 @@
 							<!--end::Svg Icon-->
 						</span>
 						<div class="text-inverse-success font-weight-bolder font-size-h2 mt-3">{{$bookings}}</div>
-						<a href="#" class="text-inverse-success font-weight-bold font-size-lg mt-1">Total Bookings</a>
+						<a href="{{route('web.flightBooking.index')}}" class="text-inverse-success font-weight-bold font-size-lg mt-1">Total Bookings</a>
 					</div>
 				</div>
 				<!--end::Tiles Widget 11-->
@@ -51,7 +51,7 @@
 				<div>
 					<div class="text-white font-weight-bolder font-size-h2 mt-3">{{$onDemands}}</div>
 					<h3 class="text-white font-weight-bolder line-height-lg mb-5">On Demand Bookings</h3>
-					<a href="#" class="btn btn-success font-weight-bold px-6 py-3">View Bookings</a>
+					<a href="{{route('web.bookingOnDemand.index')}}" class="btn btn-success font-weight-bold px-6 py-3">View Bookings</a>
 				</div>
 			</div>
 			<!--end::Body-->

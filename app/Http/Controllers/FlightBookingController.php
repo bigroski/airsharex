@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\MailingList;
-use App\Classes\Services\MailingListService;
+use App\Models\FlightBooking;
+use App\Classes\Services\FlightBookingService;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
-use App\DataTables\MailingListDataTable;
-class MailingListController extends Controller
+use App\DataTables\FlightBookingDataTable;
+class FlightBookingController extends Controller
 {
     use HasUiTraits;
 
-    public function __construct(protected MailingListService $mailingListService)
+    public function __construct(protected FlightBookingService $flightBookingService)
     {
-        $this->setRoutes(['create', 'edit', 'destroy'], 'mailingList', 'web');
+        $this->setRoutes(['create', 'edit', 'destroy'], 'flightBooking', 'web');
     }
     /**
      * Display a listing of the resource.
      */
-    public function index(MailingListDataTable $datatable)
+    public function index(FlightBookingDataTable $datatable)
     {
         //
                 // ---------------------------------------------
@@ -27,18 +27,17 @@ class MailingListController extends Controller
         $this->setTableAdapter('datatable');
         $this->setDatatable($datatable);
         $this->removeButton('hasCreate');
+        
         // ---------------------------------------------
         // End of Datatable Adapter
         // ---------------------------------------------
         // Permission authorization;
-        // $this->authorize('web.mailingList.index');
+        // $this->authorize('web.flightBooking.index');
         $model = null;
         return $this->generateList(
-            ['MailingList', 'List of all MailingList'],
-            $this->mailingListService->getModelFields('mailingList'),
-            $model,
-            [],
-            ['update', 'delete']
+            ['FlightBooking', 'List of all FlightBooking'],
+            $this->flightBookingService->getModelFields('flightBooking'),
+            $model
         );
     }
 
@@ -49,8 +48,8 @@ class MailingListController extends Controller
     {
         //
         return $this->renderCreateForm(
-            $this->mailingListService->getModel('mailingList'),
-            ['MailingList', 'Create MailingList'],
+            $this->flightBookingService->getModel('flightBooking'),
+            ['FlightBooking', 'Create FlightBooking'],
         );
     }
 
@@ -59,10 +58,12 @@ class MailingListController extends Controller
      */
     public function store(Request $request)
     {
-        $MailingList = $this->mailingListService->makeMailingList($request);
-        $request->session()->flash('success', 'Thank you for subscribing to airsharex.');
-        return redirect('/');
-        // return redirect()->route('register');
+        //
+        $FlightBooking = $this->flightBookingService->makeFlightBooking($request);
+
+        $request->session()->flash('success', $FlightBooking->id . ' has been created');
+
+        return redirect()->route('web.flightBooking.index');
     }
 
     /**
@@ -78,11 +79,11 @@ class MailingListController extends Controller
      */
     public function edit(string $id)
     {
-        $mailingList = $this->mailingListService->findById($id);
+        $flightBooking = $this->flightBookingService->findById($id);
         // dd($post->categories);
         return $this->renderUpdateForm(
-            $mailingList,
-            ['Update MailingList', 'Edit MailingList'],
+            $flightBooking,
+            ['Update FlightBooking', 'Edit FlightBooking'],
         );
     }
 
@@ -91,9 +92,9 @@ class MailingListController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->mailingListService->updateMailingList($request, $id);
+        $this->flightBookingService->updateFlightBooking($request, $id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.mailingList.index');
+        return redirect()->route('web.flightBooking.index');
     }
 
     /**
@@ -101,8 +102,8 @@ class MailingListController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        $this->mailingListService->delete($id);
+        $this->flightBookingService->delete($id);
         $request->session()->flash('success', 'Successfully Updated');
-        return redirect()->route('web.mailingList.index');
+        return redirect()->route('web.flightBooking.index');
     }
 }

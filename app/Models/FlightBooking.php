@@ -8,16 +8,19 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Bigroski\Tukicms\App\Traits\HasUiTraits;
 use Bigroski\Tukicms\App\Traits\HasListableTrait;
-
-class MailingList extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class FlightBooking extends Model  implements HasMedia
 {
     use HasFactory;
+    use LogsActivity;
     // UI Trait for form creation
     use HasUiTraits;
     // Ui Trait for datatable
     use HasListableTrait;
-    use LogsActivity;
+    use InteractsWithMedia;
 
+    protected $table = 'flight_booking_details';
     // Activity Log as Per Spatie Activitylog
     protected static $logAttributes = ["*"];
     protected static $ignoreChangedAttributes = ['updated_at','created_at'];
@@ -28,21 +31,20 @@ class MailingList extends Model
      * @var array
      */
     protected $fillable = [
-        'email',
-        'user_id'
-    ];
-    protected $casts = [
-        'id' => 'integer',
-        // 'created_at' => 'timestamp',
-        // 'updated_at' => 'timestamp',
+        'name',
     ];
     /**
      * Listable for index page
      * @var array
      */
     public $listable = [
-        'email' => ['email' => 'Email'],
-        'created_at' => ['name' => 'Created At']
+        'created_at' => ['created_at' => 'Created At'],
+        'booking_name' => ['name' => 'Booking Name'],
+        'booking_emergency_contact' => ['name' => 'Emergency Contact'],
+        'confirmation_status' => ['name' => 'Status'],
+        'ticket_number' => ['name' => 'Ticket Number'],
+        'total_seats' => ['name' => 'Total Seat'],
+        'total_amount' => ['name' => 'Total Amount'],
     ];
     /**
      * Form configuration
@@ -51,12 +53,12 @@ class MailingList extends Model
     public $formConfig = [
         'create' => [
             'title' => 'Create Employee',
-            'route' => 'web.mailingList.store',
+            'route' => 'web.flightBooking.store',
             'method' => 'post'
         ],
         'update' => [
             'title' => 'Edit Employee',
-            'route' => 'web.mailingList.update',
+            'route' => 'web.flightBooking.update',
             'method' => 'put'
         ],
         /**
@@ -95,4 +97,12 @@ class MailingList extends Model
 
     }
 
+    public function getFeaturedImageAttribute(){
+        $images = $this->getMedia('featured_image');
+        if($images->count() > 0){
+
+            return $images[0]->getFullUrl();
+        }
+        return '';
+    }
 }

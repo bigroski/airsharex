@@ -24,6 +24,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CitizenshipController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\BookingOnDemandController;
+use App\Http\Controllers\FlightBookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -118,16 +119,17 @@ Route::prefix("admin")->middleware(
         Route::resource('airports', AirportController::class, ['as' => 'web']);
         Route::resource('vendors', VendorController::class, ['as' => 'web']);
         Route::resource('passengers', PassengerController::class, ['as' => 'web']);
-
+        Route::resource('flightBooking', FlightBookingController::class, ['as' => 'web']);
         Route::resource('testimonials', TestimonialController::class, ['as' => 'web']);
         Route::resource('gallery', GalleryController::class, ['as' => 'web']);
         Route::resource('leadership', LeadershipController::class, ['as' => 'web']);
         Route::get('leadership/delete/{id}', [LeadershipController::class, 'destroy'])->name('web.leadership.delete');
         Route::post('gallery/delete-image', [GalleryController::class, 'deleteImage']);
         Route::resource('bookingOnDemand', BookingOnDemandController::class, ['as' => 'web']);
+        Route::resource('mailingList', MailingListController::class, ['as' => 'web']);
+
     }
 );
-Route::resource('mailing-list', MailingListController::class, ['as' => 'web']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
