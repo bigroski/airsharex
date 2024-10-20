@@ -457,6 +457,10 @@ class StaticController extends Controller
 	{
 		return view('html.thankyou');
 	}
+	public function afterBooking(){
+		return view('html.after-booking');
+
+	}
 	public function storeMailingList(Request $request){
         $this->mailingListService->makeMailingList($request);
         $request->session()->flash('success', 'Thank you for subscribing.');

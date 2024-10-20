@@ -511,7 +511,7 @@ class ApiService
                 ],
                 'json' => $data
             ]);
-
+            // dd($data);
             $result = $response->getBody()->getContents();
 
             return json_decode($result, true);

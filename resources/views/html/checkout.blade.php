@@ -9,6 +9,7 @@
     </div>
   </section>
   <form name="flight-customer-form" action="{{ route('book.flight') }}" method="POST" id="checkoutForm">
+    @csrf
     <section class=" checkout new-layout">
       <div class="container">
         <div class="row">
@@ -108,7 +109,7 @@
                             @else
                             
                               <div class="form-floating mb-3">
-                                  <input type="text" name="Email"  class="form-control" id="floatingEmail" placeholder="Email" required>
+                                  <input type="text" name="email"  class="form-control" id="floatingEmail" placeholder="Email" required>
                                   <label for="floatingEmail">Email</label>
                               </div>
                             @endif
@@ -269,10 +270,12 @@
             <div class="bg-light shadow-md rounded p-3">
               <h3 class="text-5 mb-3">Fare Details</h3>
               <ul class="list-unstyled">
-                <li class="mb-2">Base Fare <span class="float-right text-4 font-weight-500 text-dark">$980</span><br>
-                  <small class="text-muted">Adult : 2, Child : 0, Infant : 0</small> <span class="seat-amount "> <i class="fal fa-seat-airline"></i> {{$seatCount}} pax</span></li>
-                <li class="mb-2">Taxes &amp; Fees <span class="float-right text-4 font-weight-500 text-dark">$215</span></li>
-                <li class="mb-2">Insurance <span class="float-right text-4 font-weight-500 text-dark">$95</span></li>
+                <li class="mb-2">Base Fare <span class="float-right text-4 font-weight-500 text-dark">NPR. {{$flightData['TicketSellingRate']}}</span><br>
+                <!--   <small class="text-muted">Adult : 2, Child : 0, Infant : 0</small> <span class="seat-amount "> <i class="fal fa-seat-airline"></i> {{$seatCount}} pax</span> -->
+                </li>
+                <li class="mb-2">Number Of Passangers <span class="float-right text-4 font-weight-500 text-dark">{{$seatCount}}</span></li>
+                <!-- <li class="mb-2">Taxes &amp; Fees <span class="float-right text-4 font-weight-500 text-dark">$215</span></li>
+                <li class="mb-2">Insurance <span class="float-right text-4 font-weight-500 text-dark">$95</span></li> -->
               </ul>
               <div class="text-dark bg-light-4 text-4 font-weight-600 p-3"> Total Amount <span class="float-right text-6">  <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
                                </span> </div>

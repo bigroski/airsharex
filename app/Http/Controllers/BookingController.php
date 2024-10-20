@@ -27,26 +27,32 @@ class BookingController extends Controller
         private FlightBookingService $flightBookingService
         // private PassengerService $passengerService
     ) {}
-
-    public function bookFlight(FlightBookigRequest $request)
+    // Came Here
+    public function bookFlight(Request $request)
     {
+        $user = $request->user();
+        
         $search_id = $request->flight_search_detail_id;
         $fligtSearchData = $this->flightSearchService->getFlightDataById($search_id);
         // dd($fligtSearchData);
-        try {
+        // try {
             $tripId = $request['trip_id'];
-            $user = $request->user();
             $customerData = [
-                "name" => $request['name'],
-                "email" => $request['email'],
-                "phone" => $request['phone'],
-                "address" => $request['address'],
-                "city" => $request['city'],
-                "state" => $request['state'],
-                // "user_id" => $user->id,
+                "name" => $user ? $user->name : $request['name'],
+                "email" => $user ? $user->email : $request['email'],
+                "phone" => $user ? $user->phone : $request['phone'],
+                "address" => $user ? $user->address : $request['address'],
+                "city" => $user ? $user->city : $request['city'],
+                "state" => $user ? $user->state : $request['state'],
+                "user_id" => $user ? $user->id : null,
             ];
-            // dd($customerData);
-            $customer =  $this->customerService->findBy('user_id', $user->id) ?? $this->customerService->createFlightBookigCustomer($customerData);
+            if($user){
+                $customer =  $this->customerService->findBy('user_id', $user->id);
+
+            }else{
+
+                $customer =  $this->customerService->createFlightBookigCustomer($customerData);
+            }
             // dd($customer);
             // $customer =  $this->customerService->makeCustomer($request);
             $data = [
@@ -83,7 +89,7 @@ class BookingController extends Controller
                 // "TotalSeat" => $fligtSearchData->requested_seats,
                 "SearchMasterId" => $fligtSearchData->search_master_id,
                 "TripId" => $tripId,
-                "CustomerId" => $user->email,
+                "CustomerId" => $user ? $user->email : $request['email'],
             ];
             // dump($bookingData);
             // dd($fligtSearchData);
@@ -97,20 +103,24 @@ class BookingController extends Controller
                 $flightData['booking_reference_id'] = $resultData['TransactionRefId'];
                 $flightData['ticket_number'] = $this->getResponseData($resultData['ResultData'], 'TicketBookingNumber');
                 $flightData['search_master_id'] = $fligtSearchData->search_master_id;
-                $flightData['customer_id'] = $user->id;
+                $flightData['customer_id'] = $user ? $user->id : null;
                 $flightData['payment_method'] = 'COD';
                 $flightData['requested_seats'] = $fligtSearchData->requested_seats;
                 $flightData['flight_data'] = json_encode($resultData['ResultData']);
                 $flightData['flight_date'] = $fligtSearchData->queue_date;
                 $flightData['trip_id'] = $tripId;
-                $this->flightSearchService->storeFlightticketDetails($flightData);
+                $localTicket = $this->flightSearchService->storeFlightticketDetails($flightData);
+
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];
                 $salutations = $this->apiService->getSalutation();
                 $genders = $this->apiService->getGender();
                 $nationalities = $this->apiService->getNationality();
                 $user = $request->user();
-                $user->phone = $user->phone ?? $request->phone;
-                $user->save();
+                if($user){
+
+                    $user->phone = $user->phone ?? $request->phone;
+                    $user->save();
+                }
                 // Need to perform Flight Confirm here
                 $this->autoConfirm($request, $flightData['ticket_number']);
                 return $this->verifyAndConfirm($request, $flightData['ticket_number']);
@@ -120,10 +130,10 @@ class BookingController extends Controller
                 logger('api fetch error', $resultData['ResultData']);
                 throw new ApiErrorException("Error on fetching trip details " . $resultData['ResultData']['Error'][0]["ErrorMessage"], $resultData['ResultCode']);
             }
-        } catch (Exception $e) {
-            logger("book flight" . $e->getMessage());
-            return back()->withErrors($e->getMessage())->withInput();
-        }
+        // } catch (Exception $e) {
+        //     logger("book flight" . $e->getMessage());
+        //     return back()->withErrors($e->getMessage())->withInput();
+        // }
     }
 
     public function getResponseData($result, $key)
@@ -139,8 +149,12 @@ class BookingController extends Controller
         $ticket_number = $ticket_number;
         // $ticket_number = $request->get('ticket_booking_number');
         $user = $request->user();
+        $customer = [
+            'name' => $user ? $user->name : $request->get('name'),
+            'phone' => $user ? $user->phone : $request->get('phone')
+        ];
         $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
-        $this->flightBookingService->setBookingCustomer($localTicket, $request);
+        $this->flightBookingService->setBookingCustomer($localTicket, $customer);
         $this->flightBookingService->createBookingPassenger($localTicket, $passengers);
         
         $flightData = json_decode($localTicket->flight_data);
@@ -169,20 +183,21 @@ class BookingController extends Controller
     }
 
 
-    public function verifyAndConfirm(FlightBookigRequest $request, $ticket_number){
+    public function verifyAndConfirm(Request $request, $ticket_number){
     // public function verifyAndConfirm(Request $request, $ticket_number){
         // dd($request->user());
-        try{
+        // try{
             $user = $request->user();
             $localTicket = $this->flightBookingService->getTicketByTicketNo($ticket_number);
             $flightData = json_decode($localTicket->flight_data);
             // dd($flightData);
-            $apiTicket = $this->apiService->getTicketByTicketNo(['TicketBookingNo' => $ticket_number, 'CustomerId' => $request->user()->email]);
+            $email = $user ? $user->email : $request->get('email');
+            $apiTicket = $this->apiService->getTicketByTicketNo(['TicketBookingNo' => $ticket_number, 'CustomerId' => $email]);
             
             $bookingData = [
                 "NationalityCode" => $apiTicket['NationalityCode'] ?? 'NP',
                 "Nationality" => $apiTicket['Nationality']??"Nepalese",
-                "EmailId" => $user->email,
+                "EmailId" => $email,
                 "ContactNo" => $user->phone ?? "9878787878",
                 "EmergencyContactNo" => $localTicket->booking_emergency_contact,
                 "BookingName" => $localTicket->booking_name,
@@ -190,7 +205,7 @@ class BookingController extends Controller
                 "ReceivedAmount" => $flightData->DHTicketBookingResult->TotalAmount,
                 "TotalAmount" => $flightData->DHTicketBookingResult->TotalAmount,
                 "TicketBookingNo" => $flightData->DHTicketBookingResult->TicketBookingNumber,
-                "CustomerId" => $user->id,
+                "CustomerId" => $user ? $user->id : $email,
 
                 "PaymentDetail" => [
                     "paymentReferenceId" => "123er",
@@ -211,7 +226,7 @@ class BookingController extends Controller
                     "walletId" => "234",
                     "walletName" => "himilayan",
                     "voucherCode" => "avg12",
-                    "customerId" => $user->id,
+                    "customerId" => $email,
                 ],
             ];
 
@@ -232,12 +247,12 @@ class BookingController extends Controller
                     "SalutationId" => $salutationId,
                     "Salutation" => $salutationName,
                     "PassengerName" => $passenger->name,
-                    "Age" => $passenger->age,
+                    "Age" => '-',
                     "GenderId" => $genderId,
                     "Gender" => $genderName,
-                    "MobileNo" => $passenger->phone,
-                    "EmergencyContactNo" => $passenger->emergency_contact_number,
-                    "EmailId" => $passenger->email
+                    "MobileNo" => '-',
+                    "EmergencyContactNo" => '-',
+                    "EmailId" => '-'
                 ];
             }
             $bookingData['PassengerDetail'] = $passengerDetail;
@@ -256,11 +271,11 @@ class BookingController extends Controller
                 // return back()->withErrors("Unable to Proceed, Data Mismatch");
 
             }
-            return redirect()->route('profile.edit');
-        } catch (Exception $e) {
-            logger("book flight" . $e->getMessage());
-            return back()->withErrors($e->getMessage())->withInput();
-        }    
+            return redirect()->route('site.thankyou.booking');
+        // } catch (Exception $e) {
+        //     logger("book flight" . $e->getMessage());
+        //     return back()->withErrors($e->getMessage())->withInput();
+        // }    
     }
     
     public function confirmBooking(Request $request)

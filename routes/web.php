@@ -58,6 +58,8 @@ Route::post('/account/update', [StaticController::class, 'updateAccount'])->name
 // Route::get('/blog', [StaticController::class, 'blog']);
 // Route::get('/blog/detail/{id}', [StaticController::class, 'blogDetail'])->name('blogDetail');
 Route::get('/thank-you', [StaticController::class, 'thankyou'])->name('site.thankyou');
+Route::get('/thank-you/booking', [StaticController::class, 'afterBooking'])->name('site.thankyou.booking');
+
 Route::get('/services', [StaticController::class, 'services']);
 Route::get('/service-detail/{id}', [StaticController::class, 'servicesdetail'])->name('site.service-detail');
 Route::get('/signup', [StaticController::class, 'signup'])->name('public.login');
@@ -139,13 +141,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
 });
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
 
 
     Route::controller(BookingController::class)->prefix('book-flight')->group(function () {
         Route::post('', 'bookFlight')->name('book.flight');
-        Route::get('/test', 'test')->name('book.test');
         Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
+        Route::get('/test', 'test')->name('book.test');
         Route::get('/{ticketNo}/ticket', 'getTicketDetail')->name('flight.ticket');
         
         Route::post('/confirm', 'confirmBooking')->name('confirm.booking-flight');
@@ -153,7 +155,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/verify/{ticket_number}', 'verifyAndConfirm')->name('verify.ticket');
 
     });
-});
+// });
 
 Route::get('/on-demand', [BookingController::class, 'flightOnDemand'])->name('booking.ondemand');
 Route::post('/on-demand-store', [BookingController::class, 'flightOnDemandStore'])->name('store.booking.ondemand');

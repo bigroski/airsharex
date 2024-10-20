@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('booking_on_demands', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name')->nullable()->default(NULL);
-        //     $table->timestamps();
-        // });
+        Schema::table('customers', function (Blueprint $table) {
+            //
+            $table->integer('user_id')->nullable()->change();
+        });
     }
 
     /**
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('booking_on_demands');
+        Schema::table('customers', function (Blueprint $table) {
+            //
+        });
     }
 };
