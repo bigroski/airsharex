@@ -109,6 +109,8 @@ class BookingController extends Controller
                 $flightData['flight_data'] = json_encode($resultData['ResultData']);
                 $flightData['flight_date'] = $fligtSearchData->queue_date;
                 $flightData['trip_id'] = $tripId;
+                $flightData['total_seats'] = $request->total_seats;
+                $flightData['total_amount'] = $request->total_amount;
                 $localTicket = $this->flightSearchService->storeFlightticketDetails($flightData);
 
                 $bookingDetails = $resultData['ResultData']['DHTicketBookingResult'];

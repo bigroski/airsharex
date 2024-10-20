@@ -33,7 +33,6 @@ class FlightBookingService
     }
 
     public function setBookingCustomer($localTicket, $customer){
-        // dd($request->all());
         $localTicket->booking_name = $customer['name'];
         $localTicket->booking_emergency_contact = $customer['phone'];
         $localTicket->save();
@@ -49,5 +48,12 @@ class FlightBookingService
     }
     public function getTotalDemandCount(){
         return BookingOnDemand::count();
+    }
+    public function getLatestBookings(){
+        return FlightBookingDetails::orderBy('created_at','desc')->take(10)->get();
+    }
+    public function getLatestDemands(){
+        return BookingOnDemand::orderBy('created_at','desc')->take(10)->get();
+
     }
 }

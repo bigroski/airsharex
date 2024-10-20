@@ -281,6 +281,8 @@
                                </span> </div>
               <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
               <input type="hidden" name="flight_search_detail_id" value="{{$flightSearch->id}}">
+              <input type="hidden" name="total_seats" value="{{$seatCount}}">
+              <input type="hidden" name="total_amount" value="{{$flightData['TicketSellingRate'] * $seatCount}}">
                     
               <button class="mt-4 btn btn-lg btn-dark btn-block"  type="submit">Proceed To Payment</button>
             </div>
