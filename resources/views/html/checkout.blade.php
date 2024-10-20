@@ -82,27 +82,94 @@
                 <div class="row">
                     <div class="col-md-12">
                       <!-- passenger list -->
-                        <h4>Traveller Details or <a href="">Login</a></h4>
+                        <h4>Traveller Details @if(!$user)or <a href="">Login</a> @endif</h4>
 
                         <h6>Contact Details</h6>
                         <div class="row">                                               
-                          <div class="col-md-6 col-12">
+                          <div class="col-md-4 col-12">
+                            @if($user)
+
+                            <div class="user-detail">
+                              <i class="fa fa-user"></i>
+                            {{ $user->name}}
+                            </div>
+                            @else
                               <div class="form-floating mb-3">
-                                  <input type="text" name="PassengerDetailphone"  class="form-control" id="floatingPhone" placeholder="Phone Number" required>
-                                  <label for="phone">Phone Number</label>
+                                  <input type="text" name="name"  class="form-control" id="floatingNameMain" placeholder="Name" required>
+                                  <label for="floatingNameMain">Name</label>
                               </div>
+                            @endif
                           </div>
-                          <div class="col-md-6 col-12">
+                          <div class="col-md-4 col-12">
+                            @if($user)
+                            <div class="user-detail">
+                              <i class="fa fa-envelope-circle"></i>{{$user->email}}
+                            </div>
+                            @else
+                            
                               <div class="form-floating mb-3">
-                                  <input type="text" name="PassengerDetailemenumber" class="form-control" id="floatingPhone" placeholder="Phone Number" required>
-                                  <label for="emergencyContactNumber">Emergency Contact Number</label>
+                                  <input type="text" name="Email"  class="form-control" id="floatingEmail" placeholder="Email" required>
+                                  <label for="floatingEmail">Email</label>
                               </div>
+                            @endif
+                          </div>
+                          <div class="col-md-4 col-12">
+                            @if($user)
+                              <div class="user-detail">
+                                <i class="fa fa-phone"></i>{{$user->phone}}
+                              </div>
+                              
+                            @else
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="phone" class="form-control" id="floatingPhone" placeholder="Phone Number" required>
+                                  <label for="floatingPhone">Phone Number</label>
+                              </div>
+                            @endif
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-4 col-12">
+                            @if($user)
+                              <div class="user-detail">
+                                <i class="fa fa-address-card"></i>{{$user->address}}
+                              </div>
+                            @else
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="address" class="form-control" id="address" placeholder="Address" required>
+                                  <label for="address">Address</label>
+                              </div>
+                            @endif
+                          </div>
+                          <div class="col-md-4 col-12">
+                            @if($user)
+                              <div class="user-detail">
+                                <i class="fa fa-city"></i>{{$user->city}}
+                              </div>
+                            @else
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="city" class="form-control" id="floatingCity" placeholder="City" required>
+                                  <label for="floatingCity">City</label>
+                              </div>
+                            @endif
+                          </div>
+                          <div class="col-md-4 col-12">
+                            @if($user)
+                              <div class="user-detail">
+                                <i class="fa fa-location"></i> {{$user->state}}
+                              </div>
+                            @else
+                              <div class="form-floating mb-3">
+                                  <input type="text" name="state" class="form-control" id="floatingState" placeholder="State" required>
+                                  <label for="floatingState">State</label>
+                              </div>
+                            @endif
+                          </div>
+                        </div>
+
                         <p class="note">Your booking details will be sent to this email address and mobile number.</p>
                         
                         @for ($i = 0; $i < $seatCount; $i++) 
-                        <h6>Adult {{ $i+1 }}</h6>
+                        <h6>Passanger {{ $i+1 }}</h6>
                                 <div class="card border-1 rounded-3 mb-2">
                                     <div class="card-body">
                                         <div class="row">
@@ -119,7 +186,23 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-10 col-8">
+                                            <div class="col-md-2 col-2">
+                                                <div class="form-floating mb-3">
+                                                    <!-- <label for="from">From</label> -->
+                                                    <select name="PassengerDetail[{{ $i }}][gender]" class="form-control" placeholder="Salutation" required>
+                                                    <option value="">Gender</option>   
+                                                    @foreach ($genders as $gender)
+                                                        @php
+                                                        $combinedGender = $gender['GenderId'] . ' - ' . $gender['Gender'];
+                                                        @endphp
+                                                        <option value="{{ $gender['GenderId'] }} - {{ $gender['Gender'] }}" >
+                                                            {{ $gender['Gender'] }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-6">
                                                 <div class="form-floating ">
                                                     <input type="text" name="PassengerDetail[{{ $i }}][name]" class="form-control" id="floatingName" placeholder="Full Name" required>
                                                     <label for="name">Passenger Name</label>
@@ -193,7 +276,9 @@
               </ul>
               <div class="text-dark bg-light-4 text-4 font-weight-600 p-3"> Total Amount <span class="float-right text-6">  <span class="price-amount">NPR. {{$flightData['TicketSellingRate'] * $seatCount}}/-</span>
                                </span> </div>
-              
+              <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
+              <input type="hidden" name="flight_search_detail_id" value="{{$flightSearch->id}}">
+                    
               <button class="mt-4 btn btn-lg btn-dark btn-block"  type="submit">Proceed To Payment</button>
             </div>
           </>
@@ -218,7 +303,7 @@
                 
                   @csrf
                   <div class="form-floating mb-3">
-                    <input type="hidden" name="trip_id" value="{{$flightData['TripId']}}" class="form-control" id="floatingTripId" placeholder="Full Name">
+
                     <input type="text" name="name" class="form-control" id="floatingName" value="{{ $user->name}}" placeholder="Full Name">
                     <label for="name">Full Name</label>
                     @if ($errors->has('name'))
@@ -266,7 +351,6 @@
                     </label>
                   </div>
                   <div class="d-grid gap-4">
-                    <input type="hidden" name="flight_search_detail_id" value="{{$flightSearch->id}}">
                     <button class="btn btn-black btn-login text-uppercase fw-bold" type="submit">Checkout</button>
 
                   </div>

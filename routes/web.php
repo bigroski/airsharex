@@ -71,11 +71,13 @@ Route::middleware(
         // 'verified'
     ]
 )->group( function () {
-Route::get('/checkout', [StaticController::class, 'checkout'])->name('search.checkout');
-Route::post('/customerCreate',[RegisteredUserController::class,'createCutomer']);
-Route::get('/ticket', [TicketController::class, 'getTicket'])->name('ticket.search');
+
+    Route::post('/customerCreate',[RegisteredUserController::class,'createCutomer']);
+    Route::get('/ticket', [TicketController::class, 'getTicket'])->name('ticket.search');
 
 });
+// Putting this out of login
+Route::get('/checkout', [StaticController::class, 'checkout'])->name('search.checkout');
 
 Route::get('/gallery', [StaticController::class, 'gallery']);
 Route::get('/account', [StaticController::class, 'account']);
@@ -156,6 +158,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/on-demand', [BookingController::class, 'flightOnDemand'])->name('booking.ondemand');
 Route::post('/on-demand-store', [BookingController::class, 'flightOnDemandStore'])->name('store.booking.ondemand');
 require __DIR__ . '/auth.php';
+Route::post('/list/store', [StaticController::class, 'storeMailingList'])->name('public.mailingList.store');
 Route::get('/', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page']);
 Route::any('{slug}', [SiteController::class, 'page'])->where('slug', '[0-9,a-z,/]+')->middleware('web');

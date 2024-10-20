@@ -43,7 +43,7 @@ class BookingController extends Controller
                 "address" => $request['address'],
                 "city" => $request['city'],
                 "state" => $request['state'],
-                "user_id" => $user->id,
+                // "user_id" => $user->id,
             ];
             // dd($customerData);
             $customer =  $this->customerService->findBy('user_id', $user->id) ?? $this->customerService->createFlightBookigCustomer($customerData);

@@ -4133,3 +4133,6 @@ section.checkout.new-layout{
   width: 100%;
 }
 }
+.user-detail i{
+  margin: 10px;
+}

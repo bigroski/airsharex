@@ -242,7 +242,8 @@ class ApiService
             ]);
 
             $result = $response->getBody()->getContents();
-
+            // dump($data);
+            // dd($result);
             return json_decode($result, true);
         } catch (RequestException $e) {
 

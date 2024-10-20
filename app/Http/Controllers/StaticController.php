@@ -9,6 +9,7 @@ use Bigroski\Tukicms\App\Classes\Services\PostService;
 use Bigroski\Tukicms\App\Classes\Services\CategoryService;
 use Bigroski\Tukicms\App\Classes\Services\TagService;
 use Bigroski\Tukicms\App\Classes\Services\CommentService;
+use App\Classes\Services\MailingListService;
 use App\Classes\Services\ServiceService;
 use App\Exceptions\ApiErrorException;
 use App\Jobs\FlightSearchStore;
@@ -34,7 +35,8 @@ class StaticController extends Controller
 		private ServiceService $serviceService,
 		private GalleryService $galleryService,
 		private ApiService $apiService,
-		private FlightSearchService $flightSearchService
+		private FlightSearchService $flightSearchService,
+		private MailingListService $mailingListService
 	) {
 	}
 	public function home()
@@ -196,7 +198,7 @@ class StaticController extends Controller
 	}
 	public function checkout(Request $request)
 	{
-
+		
 		$tripId = $request['trip_id'];
 		$seatCount = $request['total_seat'];
 		// dump($tripId);
@@ -455,4 +457,9 @@ class StaticController extends Controller
 	{
 		return view('html.thankyou');
 	}
+	public function storeMailingList(Request $request){
+        $this->mailingListService->makeMailingList($request);
+        $request->session()->flash('success', 'Thank you for subscribing.');
+        return redirect()->back();
+    }
 }

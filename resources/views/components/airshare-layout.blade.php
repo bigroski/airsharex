@@ -126,7 +126,7 @@
                           <div class="footer-widget">
                                   <h4>Newsletter Module</h4>
                                   <p>Signup to our Newsletter to receive latest updates</p>
-                                  <form method="POST" action="{{ route('web.mailing-list.store') }}">
+                                  <form method="POST" action="{{ route('public.mailingList.store') }}">
                                   @csrf
                                   <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
